@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "indy-explorer"
+version = "0.1.0"
+description = "Interactive Explorer of Indy Pass Mountain Resorts"
+authors = ["Jon Stelman <jon@jonstelman.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

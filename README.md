@@ -1,2 +1,2 @@
 # indy-explorer
-indy-navigator
+indy-explorer
