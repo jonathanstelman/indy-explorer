@@ -16,7 +16,8 @@
         "num_trails": 88,
         "num_lifts": 7,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/49-degrees-north"
     },
     "350": {
         "name": "Amihari Onsen Ski Resort",
@@ -35,7 +36,8 @@
         "num_trails": 7,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/amihari-onsen-ski-resort"
     },
     "43": {
         "name": "Andes Tower Hills",
@@ -54,7 +56,8 @@
         "num_trails": 16,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/andes-tower-hills"
     },
     "44": {
         "name": "Ani Ski Resort",
@@ -73,7 +76,8 @@
         "num_trails": 5,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/ani-ski-resort"
     },
     "45": {
         "name": "Antelope Butte",
@@ -92,7 +96,8 @@
         "num_trails": 30,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/antelope-butte"
     },
     "46": {
         "name": "Aomori Spring Ski Resort",
@@ -111,7 +116,8 @@
         "num_trails": 14,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/aomori-spring-ski-resort"
     },
     "47": {
         "name": "Apex Mountain Resort",
@@ -130,7 +136,8 @@
         "num_trails": 80,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/apex-mountain-resort"
     },
     "48": {
         "name": "Arctic Valley",
@@ -149,7 +156,8 @@
         "num_trails": 15,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/arctic-valley"
     },
     "49": {
         "name": "Baldy Mountain Resort",
@@ -168,7 +176,8 @@
         "num_trails": 35,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/baldy-mountain-resort"
     },
     "365": {
         "name": "Baqueira/Beret",
@@ -187,7 +196,8 @@
         "num_trails": 122,
         "num_lifts": 36,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/baqueiraberet"
     },
     "396": {
         "name": "Bear Creek",
@@ -206,7 +216,8 @@
         "num_trails": 23,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bear-creek"
     },
     "272": {
         "name": "Bear Valley Adventure Company",
@@ -225,7 +236,8 @@
         "num_trails": 38,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/bear-valley-adventure-company"
     },
     "371": {
         "name": "Bear Valley Mountain Resort",
@@ -244,7 +256,8 @@
         "num_trails": 75,
         "num_lifts": 9,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bear-valley-mountain-resort"
     },
     "50": {
         "name": "Beaver Mountain",
@@ -263,7 +276,8 @@
         "num_trails": 48,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/beaver-mountain"
     },
     "51": {
         "name": "Berkshire East Mountain Resort",
@@ -282,7 +296,8 @@
         "num_trails": 45,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/berkshire-east-mountain-resort"
     },
     "337": {
         "name": "Big Moose",
@@ -301,7 +316,8 @@
         "num_trails": 29,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/big-moose"
     },
     "52": {
         "name": "Big Powderhorn",
@@ -320,7 +336,8 @@
         "num_trails": 45,
         "num_lifts": 10,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/big-powderhorn"
     },
     "339": {
         "name": "Big Red Cats",
@@ -336,7 +353,8 @@
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/big-red-cats"
     },
     "53": {
         "name": "Big Rock Mountain",
@@ -355,7 +373,8 @@
         "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/big-rock-mountain"
     },
     "178": {
         "name": "Big White Ski Resort",
@@ -374,7 +393,8 @@
         "num_trails": 119,
         "num_lifts": 16,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/big-white-ski-resort"
     },
     "273": {
         "name": "Black Jack Cross Country Ski Club",
@@ -393,7 +413,8 @@
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/black-jack-cross-country-ski-club"
     },
     "55": {
         "name": "Black Mountain of Maine",
@@ -412,7 +433,8 @@
         "num_trails": 31,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/black-mountain-of-maine"
     },
     "56": {
         "name": "Black Mountain Ski Area",
@@ -431,7 +453,8 @@
         "num_trails": 45,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/black-mountain-ski-area"
     },
     "57": {
         "name": "Blacktail Mountain Resort",
@@ -450,7 +473,8 @@
         "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/blacktail-mountain-resort"
     },
     "58": {
         "name": "Blue Knob All Season Resort",
@@ -469,7 +493,8 @@
         "num_trails": 34,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/blue-knob-all-season-resort"
     },
     "59": {
         "name": "Bolton Valley Resort",
@@ -488,7 +513,8 @@
         "num_trails": 71,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bolton-valley-resort"
     },
     "60": {
         "name": "Bottineau Winter Park",
@@ -507,7 +533,8 @@
         "num_trails": 9,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bottineau-winter-park"
     },
     "372": {
         "name": "Bousquet Mountain",
@@ -526,7 +553,8 @@
         "num_trails": 55,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bousquet-mountain-0"
     },
     "388": {
         "name": "Bruce Mound Winter Sports Area",
@@ -545,7 +573,8 @@
         "num_trails": 10,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bruce-mound-winter-sports-area"
     },
     "61": {
         "name": "Brundage Mountain Resort",
@@ -564,7 +593,8 @@
         "num_trails": 70,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/brundage-mountain-resort"
     },
     "62": {
         "name": "Bryce Resort",
@@ -583,7 +613,8 @@
         "num_trails": 8,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/bryce-resort"
     },
     "63": {
         "name": "Buck Hill",
@@ -602,7 +633,8 @@
         "num_trails": 15,
         "num_lifts": 10,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/buck-hill"
     },
     "266": {
         "name": "Burke Mountain",
@@ -621,7 +653,8 @@
         "num_trails": 54,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/burke-mountain"
     },
     "64": {
         "name": "Caberfae Peaks",
@@ -640,7 +673,8 @@
         "num_trails": 27,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/caberfae-peaks"
     },
     "65": {
         "name": "Calabogie Peaks Resort",
@@ -659,7 +693,8 @@
         "num_trails": 25,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/calabogie-peaks-resort"
     },
     "275": {
         "name": "Caledonia Nordic Ski Club",
@@ -678,7 +713,8 @@
         "num_trails": 55,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/caledonia-nordic-ski-club"
     },
     "346": {
         "name": "Camden Snow Bowl",
@@ -697,7 +733,8 @@
         "num_trails": 15,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/camden-snow-bowl"
     },
     "367": {
         "name": "Camp Fortune",
@@ -716,7 +753,8 @@
         "num_trails": 27,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/camp-fortune"
     },
     "66": {
         "name": "Canaan Valley",
@@ -735,7 +773,8 @@
         "num_trails": 47,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/canaan-valley"
     },
     "67": {
         "name": "Cannon Mountain",
@@ -754,7 +793,8 @@
         "num_trails": 97,
         "num_lifts": 10,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/cannon-mountain"
     },
     "345": {
         "name": "Cape Smokey",
@@ -773,7 +813,8 @@
         "num_trails": 16,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/cape-smokey"
     },
     "341": {
         "name": "Cascade Powder Guides",
@@ -789,7 +830,8 @@
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/cascade-powder-guides"
     },
     "384": {
         "name": "Cascade Welcome Center",
@@ -808,7 +850,8 @@
         "num_trails": 12,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/cascade-welcome-center"
     },
     "265": {
         "name": "Castle Mountain Resort",
@@ -827,7 +870,8 @@
         "num_trails": 95,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/castle-mountain-resort"
     },
     "69": {
         "name": "Cataloochee Ski Area",
@@ -846,7 +890,8 @@
         "num_trails": 18,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/cataloochee-ski-area"
     },
     "70": {
         "name": "Catamount Mountain Resort",
@@ -865,7 +910,8 @@
         "num_trails": 44,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/catamount-mountain-resort"
     },
     "276": {
         "name": "Catamount Outdoor Family Center",
@@ -884,7 +930,8 @@
         "num_trails": 100,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/catamount-outdoor-family-center"
     },
     "380": {
         "name": "Cazenovia Ski Club",
@@ -903,7 +950,8 @@
         "num_trails": 14,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/cazenovia-ski-club"
     },
     "317": {
         "name": "Cherry Peak",
@@ -922,7 +970,8 @@
         "num_trails": 38,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/cherry-peak"
     },
     "71": {
         "name": "Chestnut Mountain Resort",
@@ -941,7 +990,8 @@
         "num_trails": 19,
         "num_lifts": 9,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/chestnut-mountain-resort"
     },
     "72": {
         "name": "China Peak",
@@ -960,7 +1010,8 @@
         "num_trails": 55,
         "num_lifts": 9,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/china-peak"
     },
     "383": {
         "name": "Christie Mountain",
@@ -979,7 +1030,8 @@
         "num_trails": 33,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/christie-mountain"
     },
     "74": {
         "name": "Cooper Spur Ski Area",
@@ -998,7 +1050,8 @@
         "num_trails": 9,
         "num_lifts": 2,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/cooper-spur-ski-area"
     },
     "277": {
         "name": "Crosscut Mountain Sports Center",
@@ -1017,7 +1070,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/crosscut-mountain-sports-center"
     },
     "73": {
         "name": "Crystal Mountain",
@@ -1036,7 +1090,8 @@
         "num_trails": 59,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/crystal-mountain"
     },
     "156": {
         "name": "Crystal Ridge",
@@ -1055,7 +1110,8 @@
         "num_trails": 6,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/crystal-ridge"
     },
     "357": {
         "name": "Cupid Valley",
@@ -1074,7 +1130,8 @@
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/cupid-valley"
     },
     "75": {
         "name": "Dartmouth Skiway",
@@ -1093,7 +1150,8 @@
         "num_trails": 28,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/dartmouth-skiway"
     },
     "76": {
         "name": "Detroit Mountain",
@@ -1112,7 +1170,8 @@
         "num_trails": 21,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/detroit-mountain"
     },
     "77": {
         "name": "Dodge Ridge",
@@ -1131,7 +1190,8 @@
         "num_trails": 67,
         "num_lifts": 11,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/dodge-ridge"
     },
     "279": {
         "name": "Dog Creek Lodge & Nordic Center",
@@ -1150,7 +1210,8 @@
         "num_trails": 25,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/dog-creek-lodge-nordic-center"
     },
     "362": {
         "name": "Dynaland",
@@ -1169,7 +1230,8 @@
         "num_trails": 18,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/dynaland"
     },
     "264": {
         "name": "Eagle Point",
@@ -1188,7 +1250,8 @@
         "num_trails": 40,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/eagle-point"
     },
     "79": {
         "name": "Eaglecrest",
@@ -1207,7 +1270,8 @@
         "num_trails": 36,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/eaglecrest"
     },
     "80": {
         "name": "Echo Mountain",
@@ -1226,7 +1290,8 @@
         "num_trails": 8,
         "num_lifts": 2,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/echo-mountain"
     },
     "280": {
         "name": "Enchanted Forest XC",
@@ -1245,7 +1310,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/enchanted-forest-xc"
     },
     "392": {
         "name": "Erc\u0130yes Ski Resort",
@@ -1264,7 +1330,8 @@
         "num_trails": 31,
         "num_lifts": 24,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/erciyes-ski-resort"
     },
     "81": {
         "name": "Fairmont Hot Springs",
@@ -1283,7 +1350,8 @@
         "num_trails": 14,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/fairmont-hot-springs"
     },
     "281": {
         "name": "Garnet Hill XC",
@@ -1302,7 +1370,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/garnet-hill-xc"
     },
     "82": {
         "name": "Geto Kogen",
@@ -1321,7 +1390,8 @@
         "num_trails": 14,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/geto-kogen"
     },
     "391": {
         "name": "Glencoe Mountain Resort",
@@ -1340,7 +1410,8 @@
         "num_trails": 20,
         "num_lifts": 8,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/glencoe-mountain-resort"
     },
     "83": {
         "name": "Granby Ranch",
@@ -1359,7 +1430,8 @@
         "num_trails": 43,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/granby-ranch"
     },
     "84": {
         "name": "Granite Peak",
@@ -1378,7 +1450,8 @@
         "num_trails": 68,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/granite-peak"
     },
     "85": {
         "name": "Great Bear Ski Valley",
@@ -1397,7 +1470,8 @@
         "num_trails": 14,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/great-bear-ski-valley"
     },
     "86": {
         "name": "Greek Peak Mountain Resort",
@@ -1416,7 +1490,8 @@
         "num_trails": 55,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/greek-peak-mountain-resort"
     },
     "282": {
         "name": "Hardwood Ski and Bike",
@@ -1435,7 +1510,8 @@
         "num_trails": 6,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/hardwood-ski-and-bike"
     },
     "349": {
         "name": "Hatley Pointe",
@@ -1454,7 +1530,8 @@
         "num_trails": 17,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hatley-pointe"
     },
     "319": {
         "name": "Hickory Ski Center",
@@ -1473,7 +1550,8 @@
         "num_trails": 18,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/hickory-ski-center"
     },
     "283": {
         "name": "High Point XC Ski Center",
@@ -1492,7 +1570,8 @@
         "num_trails": 6,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/high-point-xc-ski-center"
     },
     "356": {
         "name": "Hirugano Kogen Ski Resort",
@@ -1511,7 +1590,8 @@
         "num_trails": 8,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/hirugano-kogen-ski-resort"
     },
     "368": {
         "name": "Hoedown Hill",
@@ -1530,7 +1610,8 @@
         "num_trails": 6,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hoedown-hill"
     },
     "284": {
         "name": "Homestake Lodge",
@@ -1549,7 +1630,8 @@
         "num_trails": 21,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/homestake-lodge"
     },
     "87": {
         "name": "Hoodoo",
@@ -1568,7 +1650,8 @@
         "num_trails": 36,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hoodoo"
     },
     "88": {
         "name": "Howelsen Hill",
@@ -1587,7 +1670,8 @@
         "num_trails": 19,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/howelsen-hill"
     },
     "323": {
         "name": "Hudson Bay Mountain",
@@ -1606,7 +1690,8 @@
         "num_trails": 44,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/hudson-bay-mountain"
     },
     "89": {
         "name": "Huff Hills Ski Area",
@@ -1625,7 +1710,8 @@
         "num_trails": 16,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/huff-hills-ski-area"
     },
     "373": {
         "name": "Hunt Hollow Ski Club",
@@ -1644,7 +1730,8 @@
         "num_trails": 21,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hunt-hollow-ski-club"
     },
     "90": {
         "name": "Hurricane Ridge",
@@ -1663,7 +1750,8 @@
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hurricane-ridge"
     },
     "381": {
         "name": "Innsbruck Ski & City Network",
@@ -1682,7 +1770,8 @@
         "num_trails": null,
         "num_lifts": 111,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/innsbruck-ski-city-network"
     },
     "286": {
         "name": "Jackson XC",
@@ -1701,7 +1790,8 @@
         "num_trails": 60,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/jackson-xc"
     },
     "91": {
         "name": "Jay Peak Resort",
@@ -1720,7 +1810,8 @@
         "num_trails": 81,
         "num_lifts": 9,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/jay-peak-resort"
     },
     "92": {
         "name": "Kamui Ski Links",
@@ -1739,7 +1830,8 @@
         "num_trails": 25,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/kamui-ski-links"
     },
     "93": {
         "name": "Kelly Canyon",
@@ -1758,7 +1850,8 @@
         "num_trails": 27,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/kelly-canyon"
     },
     "287": {
         "name": "Kimberley Nordic Club",
@@ -1777,7 +1870,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/kimberley-nordic-club"
     },
     "314": {
         "name": "King Pine",
@@ -1796,7 +1890,8 @@
         "num_trails": 23,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/king-pine"
     },
     "94": {
         "name": "Kiroro Snow World",
@@ -1815,7 +1910,8 @@
         "num_trails": 23,
         "num_lifts": 10,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/kiroro-snow-world"
     },
     "288": {
         "name": "Leavenworth Winter Sports Club",
@@ -1834,7 +1930,8 @@
         "num_trails": 6,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/leavenworth-winter-sports-club"
     },
     "95": {
         "name": "Little Switzerland",
@@ -1853,7 +1950,8 @@
         "num_trails": 16,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/little-switzerland"
     },
     "96": {
         "name": "Loch Lomond",
@@ -1872,7 +1970,8 @@
         "num_trails": 18,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/loch-lomond"
     },
     "97": {
         "name": "Lost Trail Powder Mountain",
@@ -1891,7 +1990,8 @@
         "num_trails": 68,
         "num_lifts": 8,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/lost-trail-powder-mountain"
     },
     "369": {
         "name": "Lost Valley",
@@ -1910,7 +2010,8 @@
         "num_trails": 22,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/lost-valley"
     },
     "98": {
         "name": "Loup Loup Ski Bowl",
@@ -1929,7 +2030,8 @@
         "num_trails": 14,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/loup-loup-ski-bowl"
     },
     "377": {
         "name": "Loveland Ski Area",
@@ -1948,7 +2050,8 @@
         "num_trails": 94,
         "num_lifts": 12,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/loveland-ski-area"
     },
     "99": {
         "name": "Lutsen Mountains",
@@ -1967,7 +2070,8 @@
         "num_trails": 95,
         "num_lifts": 7,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/lutsen-mountains"
     },
     "100": {
         "name": "Madarao Ski Resort",
@@ -1986,7 +2090,8 @@
         "num_trails": 32,
         "num_lifts": 10,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/madarao-ski-resort"
     },
     "101": {
         "name": "Magic Mountain",
@@ -2005,7 +2110,8 @@
         "num_trails": 50,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/magic-mountain"
     },
     "353": {
         "name": "Maiko Resort",
@@ -2024,7 +2130,8 @@
         "num_trails": 26,
         "num_lifts": 10,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/maiko-resort"
     },
     "387": {
         "name": "Mal\u00e1 \u00dapa",
@@ -2043,7 +2150,8 @@
         "num_trails": 8,
         "num_lifts": 9,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mala-upa"
     },
     "102": {
         "name": "Manning Park",
@@ -2062,7 +2170,8 @@
         "num_trails": 35,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/manning-park"
     },
     "289": {
         "name": "Manning Park XC",
@@ -2081,7 +2190,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/manning-park-xc"
     },
     "103": {
         "name": "Maple Ski Ridge",
@@ -2100,7 +2210,8 @@
         "num_trails": 8,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/maple-ski-ridge"
     },
     "290": {
         "name": "Maplelag Resort",
@@ -2119,7 +2230,8 @@
         "num_trails": 17,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/maplelag-resort"
     },
     "104": {
         "name": "Marquette Mountain",
@@ -2138,7 +2250,8 @@
         "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/marquette-mountain"
     },
     "105": {
         "name": "Massanutten Resort",
@@ -2157,7 +2270,8 @@
         "num_trails": 23,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/massanutten-resort"
     },
     "382": {
         "name": "Massif du Sud",
@@ -2176,7 +2290,8 @@
         "num_trails": 37,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/massif-du-sud"
     },
     "267": {
         "name": "McIntyre Ski Area",
@@ -2195,7 +2310,8 @@
         "num_trails": 11,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mcintyre-ski-area"
     },
     "106": {
         "name": "Meadowlark Ski Resort",
@@ -2214,7 +2330,8 @@
         "num_trails": 14,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/meadowlark-ski-resort"
     },
     "292": {
         "name": "Methow Trails XC",
@@ -2233,7 +2350,8 @@
         "num_trails": 64,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/methow-trails-xc"
     },
     "348": {
         "name": "Middlebury Snowbowl",
@@ -2252,7 +2370,8 @@
         "num_trails": 17,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/middlebury-snowbowl"
     },
     "293": {
         "name": "Minocqua Winter Park",
@@ -2271,7 +2390,8 @@
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/minocqua-winter-park"
     },
     "107": {
         "name": "Mission Ridge",
@@ -2290,7 +2410,8 @@
         "num_trails": 54,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mission-ridge"
     },
     "108": {
         "name": "Mohawk Mountain",
@@ -2309,7 +2430,8 @@
         "num_trails": 26,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/mohawk-mountain"
     },
     "374": {
         "name": "Mont Rigaud",
@@ -2328,7 +2450,8 @@
         "num_trails": 15,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mont-rigaud"
     },
     "268": {
         "name": "Mont Ripley Ski Area",
@@ -2347,7 +2470,8 @@
         "num_trails": 24,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mont-ripley-ski-area"
     },
     "109": {
         "name": "Montage Mountain",
@@ -2366,7 +2490,8 @@
         "num_trails": 27,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/montage-mountain"
     },
     "110": {
         "name": "Montana Snowbowl",
@@ -2385,7 +2510,8 @@
         "num_trails": 68,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/montana-snowbowl"
     },
     "322": {
         "name": "Moose Mountain",
@@ -2404,7 +2530,8 @@
         "num_trails": 42,
         "num_lifts": 1,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/moose-mountain"
     },
     "111": {
         "name": "Mount Baldy Ski Area",
@@ -2423,7 +2550,8 @@
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mount-baldy-ski-area"
     },
     "113": {
         "name": "Mount Kato",
@@ -2442,7 +2570,8 @@
         "num_trails": 19,
         "num_lifts": 10,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mount-kato"
     },
     "114": {
         "name": "Mountain High",
@@ -2461,7 +2590,8 @@
         "num_trails": 50,
         "num_lifts": 14,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mountain-high"
     },
     "338": {
         "name": "Mt Eyak",
@@ -2477,7 +2607,8 @@
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/mt-eyak"
     },
     "347": {
         "name": "Mt. Abram",
@@ -2496,7 +2627,8 @@
         "num_trails": 43,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/mt-abram"
     },
     "379": {
         "name": "Mt. Holiday",
@@ -2515,7 +2647,8 @@
         "num_trails": 12,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-holiday"
     },
     "181": {
         "name": "Mt. Hood Meadows",
@@ -2534,7 +2667,8 @@
         "num_trails": 142,
         "num_lifts": 12,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-hood-meadows"
     },
     "169": {
         "name": "Mt. Racey Ski Resort",
@@ -2553,7 +2687,8 @@
         "num_trails": 18,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-racey-ski-resort"
     },
     "116": {
         "name": "Mt. Shasta",
@@ -2572,7 +2707,8 @@
         "num_trails": 38,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-shasta"
     },
     "332": {
         "name": "Mt. Washington",
@@ -2591,7 +2727,8 @@
         "num_trails": 81,
         "num_lifts": 11,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-washington"
     },
     "360": {
         "name": "Muica Snow Resort",
@@ -2610,7 +2747,8 @@
         "num_trails": 12,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/muica-snow-resort"
     },
     "354": {
         "name": "Nayoro Piyashiri Ski Resort",
@@ -2629,7 +2767,8 @@
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/nayoro-piyashiri-ski-resort"
     },
     "295": {
         "name": "Nelson Nordic Ski Club",
@@ -2648,7 +2787,8 @@
         "num_trails": 15,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/nelson-nordic-ski-club"
     },
     "311": {
         "name": "Nickel Plate Cross Country Ski Club",
@@ -2667,7 +2807,8 @@
         "num_trails": 28,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/nickel-plate-cross-country-ski-club"
     },
     "358": {
         "name": "Ninox Snow Park",
@@ -2686,7 +2827,8 @@
         "num_trails": 2,
         "num_lifts": 2,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ninox-snow-park"
     },
     "117": {
         "name": "Nordic Mountain",
@@ -2705,7 +2847,8 @@
         "num_trails": 16,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/nordic-mountain"
     },
     "386": {
         "name": "Norway Mountain",
@@ -2724,7 +2867,8 @@
         "num_trails": 17,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/norway-mountain"
     },
     "118": {
         "name": "Nubs Nob",
@@ -2743,7 +2887,8 @@
         "num_trails": 53,
         "num_lifts": 10,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/nubs-nob-0"
     },
     "119": {
         "name": "Ober Mountain",
@@ -2762,7 +2907,8 @@
         "num_trails": 10,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ober-mountain"
     },
     "120": {
         "name": "Okunakayama Kogen",
@@ -2781,7 +2927,8 @@
         "num_trails": 11,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/okunakayama-kogen"
     },
     "352": {
         "name": "Palcall Tsumagoi Resort",
@@ -2800,7 +2947,8 @@
         "num_trails": 22,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/palcall-tsumagoi-resort"
     },
     "121": {
         "name": "Pass Powderkeg",
@@ -2819,7 +2967,8 @@
         "num_trails": 27,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pass-powderkeg"
     },
     "122": {
         "name": "Pats Peak",
@@ -2838,7 +2987,8 @@
         "num_trails": 28,
         "num_lifts": 11,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pats-peak"
     },
     "325": {
         "name": "Paul Bunyan Ski Hill",
@@ -2857,7 +3007,8 @@
         "num_trails": 10,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/paul-bunyan-ski-hill"
     },
     "123": {
         "name": "Peek \u2018n Peak",
@@ -2876,7 +3027,8 @@
         "num_trails": 27,
         "num_lifts": 9,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/peek-n-peak"
     },
     "124": {
         "name": "Phoenix Mountain",
@@ -2895,7 +3047,8 @@
         "num_trails": 22,
         "num_lifts": 2,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/phoenix-mountain"
     },
     "125": {
         "name": "Pine Mountain",
@@ -2914,7 +3067,8 @@
         "num_trails": 35,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pine-mountain"
     },
     "126": {
         "name": "Pippu Ski Resort",
@@ -2933,7 +3087,8 @@
         "num_trails": 9,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pippu-ski-resort"
     },
     "127": {
         "name": "Pomerelle Mountain Resort",
@@ -2952,7 +3107,8 @@
         "num_trails": 22,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pomerelle-mountain-resort"
     },
     "129": {
         "name": "Powder Ridge",
@@ -2971,7 +3127,8 @@
         "num_trails": 13,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/powder-ridge"
     },
     "333": {
         "name": "Powderhorn",
@@ -2990,7 +3147,8 @@
         "num_trails": 40,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/powderhorn"
     },
     "297": {
         "name": "Quarry Road Trails",
@@ -3009,7 +3167,8 @@
         "num_trails": 22,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/quarry-road-trails"
     },
     "344": {
         "name": "Ragged Mountain",
@@ -3028,7 +3187,8 @@
         "num_trails": 57,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ragged-mountain"
     },
     "298": {
         "name": "Rangeley Lakes Trail Center",
@@ -3047,7 +3207,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/rangeley-lakes-trail-center"
     },
     "130": {
         "name": "Red Lodge",
@@ -3066,7 +3227,8 @@
         "num_trails": 70,
         "num_lifts": 8,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/red-lodge"
     },
     "299": {
         "name": "Rikert Nordic Center",
@@ -3085,7 +3247,8 @@
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/rikert-nordic-center"
     },
     "131": {
         "name": "Saddleback Mountain",
@@ -3104,7 +3267,8 @@
         "num_trails": 68,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/saddleback-mountain"
     },
     "132": {
         "name": "Saskadena Six Ski Area",
@@ -3123,7 +3287,8 @@
         "num_trails": 28,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/saskadena-six-ski-area"
     },
     "133": {
         "name": "Sasquatch Mountain Resort",
@@ -3142,7 +3307,8 @@
         "num_trails": 36,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/sasquatch-mountain-resort"
     },
     "134": {
         "name": "Schuss Mountain at Shanty Creek",
@@ -3161,7 +3327,8 @@
         "num_trails": 42,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/schuss-mountain-at-shanty-creek"
     },
     "135": {
         "name": "Shames Mountain",
@@ -3180,7 +3347,8 @@
         "num_trails": 30,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/shames-mountain"
     },
     "136": {
         "name": "Shawnee Mountain Ski Area",
@@ -3199,7 +3367,8 @@
         "num_trails": 23,
         "num_lifts": 11,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/shawnee-mountain-ski-area"
     },
     "188": {
         "name": "Shimokura",
@@ -3218,7 +3387,8 @@
         "num_trails": 7,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/shimokura"
     },
     "138": {
         "name": "Silver Mountain",
@@ -3237,7 +3407,8 @@
         "num_trails": 83,
         "num_lifts": 7,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/silver-mountain"
     },
     "269": {
         "name": "Skaneateles Ski Club",
@@ -3256,7 +3427,8 @@
         "num_trails": 7,
         "num_lifts": 3,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/skaneateles-ski-club"
     },
     "139": {
         "name": "Ski Big Bear",
@@ -3275,7 +3447,8 @@
         "num_trails": 18,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ski-big-bear"
     },
     "140": {
         "name": "Ski Bluewood",
@@ -3294,7 +3467,8 @@
         "num_trails": 25,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ski-bluewood"
     },
     "141": {
         "name": "Ski Sawmill",
@@ -3313,7 +3487,8 @@
         "num_trails": 13,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ski-sawmill"
     },
     "177": {
         "name": "SkiWelt",
@@ -3332,7 +3507,8 @@
         "num_trails": 279,
         "num_lifts": 82,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/skiwelt"
     },
     "142": {
         "name": "Snow King Mountain Resort",
@@ -3351,7 +3527,8 @@
         "num_trails": 46,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/snow-king-mountain-resort"
     },
     "143": {
         "name": "Snow Ridge",
@@ -3370,7 +3547,8 @@
         "num_trails": 33,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/snow-ridge"
     },
     "144": {
         "name": "Snowriver",
@@ -3389,7 +3567,8 @@
         "num_trails": 71,
         "num_lifts": 11,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/snowriver"
     },
     "145": {
         "name": "Snowstar",
@@ -3408,7 +3587,8 @@
         "num_trails": 15,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/snowstar"
     },
     "146": {
         "name": "Soldier Mountain",
@@ -3427,7 +3607,8 @@
         "num_trails": 35,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/soldier-mountain"
     },
     "300": {
         "name": "Sovereign Lake Nordic Club",
@@ -3446,7 +3627,8 @@
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/sovereign-lake-nordic-club"
     },
     "147": {
         "name": "Spirit Mountain",
@@ -3465,7 +3647,8 @@
         "num_trails": 22,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/spirit-mountain"
     },
     "148": {
         "name": "Sundown Mountain",
@@ -3484,7 +3667,8 @@
         "num_trails": 21,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/sundown-mountain"
     },
     "149": {
         "name": "Sunlight Mountain Resort",
@@ -3503,7 +3687,8 @@
         "num_trails": 72,
         "num_lifts": 3,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/sunlight-mountain-resort"
     },
     "150": {
         "name": "Sunrise Park",
@@ -3522,7 +3707,8 @@
         "num_trails": 65,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/sunrise-park"
     },
     "151": {
         "name": "Swain Resort",
@@ -3541,7 +3727,8 @@
         "num_trails": 35,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/swain-resort"
     },
     "184": {
         "name": "Swiss Valley",
@@ -3560,7 +3747,8 @@
         "num_trails": 11,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/swiss-valley"
     },
     "361": {
         "name": "Takasu Snow Park",
@@ -3579,7 +3767,8 @@
         "num_trails": 13,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/takasu-snow-park"
     },
     "153": {
         "name": "Tamarack Mountain Resort",
@@ -3598,7 +3787,8 @@
         "num_trails": 50,
         "num_lifts": 7,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tamarack-mountain-resort"
     },
     "376": {
         "name": "Tangram Ski Circus",
@@ -3617,7 +3807,8 @@
         "num_trails": 17,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/tangram-ski-circus"
     },
     "154": {
         "name": "Tazawako",
@@ -3636,7 +3827,8 @@
         "num_trails": 13,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tazawako"
     },
     "301": {
         "name": "Telemark Nordic Center",
@@ -3655,7 +3847,8 @@
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/telemark-nordic-center"
     },
     "155": {
         "name": "Terry Peak",
@@ -3674,7 +3867,8 @@
         "num_trails": 30,
         "num_lifts": 5,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/terry-peak"
     },
     "157": {
         "name": "Titus Mountain",
@@ -3693,7 +3887,8 @@
         "num_trails": 53,
         "num_lifts": 9,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/titus-mountain"
     },
     "158": {
         "name": "Togakushi Ski Resort",
@@ -3712,7 +3907,8 @@
         "num_trails": 19,
         "num_lifts": 7,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/togakushi-ski-resort"
     },
     "302": {
         "name": "Trapp Family Lodge",
@@ -3731,7 +3927,8 @@
         "num_trails": 24,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/trapp-family-lodge"
     },
     "159": {
         "name": "Tree Tops Resort",
@@ -3750,7 +3947,8 @@
         "num_trails": 25,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tree-tops-resort"
     },
     "160": {
         "name": "Trollhaugen",
@@ -3769,7 +3967,8 @@
         "num_trails": 30,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/trollhaugen"
     },
     "304": {
         "name": "Turpin Meadow Ranch",
@@ -3788,7 +3987,8 @@
         "num_trails": 7,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/turpin-meadow-ranch"
     },
     "161": {
         "name": "Tussey Mountain",
@@ -3807,7 +4007,8 @@
         "num_trails": 8,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tussey-mountain"
     },
     "162": {
         "name": "Tyrol Basin Ski and Snowboard",
@@ -3826,7 +4027,8 @@
         "num_trails": 24,
         "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tyrol-basin-ski-and-snowboard"
     },
     "364": {
         "name": "Washigatake Ski Resort",
@@ -3845,7 +4047,8 @@
         "num_trails": 13,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/washigatake-ski-resort"
     },
     "163": {
         "name": "Waterville Valley Resort",
@@ -3864,7 +4067,8 @@
         "num_trails": 62,
         "num_lifts": 11,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/waterville-valley-resort"
     },
     "164": {
         "name": "West Mountain",
@@ -3883,7 +4087,8 @@
         "num_trails": 35,
         "num_lifts": 6,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/west-mountain"
     },
     "165": {
         "name": "Whaleback Mountain",
@@ -3902,7 +4107,8 @@
         "num_trails": 31,
         "num_lifts": 4,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/whaleback-mountain"
     },
     "307": {
         "name": "White Grass Ski Touring",
@@ -3921,7 +4127,8 @@
         "num_trails": 44,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/white-grass-ski-touring"
     },
     "166": {
         "name": "White Pass",
@@ -3940,7 +4147,8 @@
         "num_trails": 45,
         "num_lifts": 8,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/white-pass"
     },
     "308": {
         "name": "White Pine Touring Nordic Center",
@@ -3959,7 +4167,8 @@
         "num_trails": 5,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/white-pine-touring-nordic-center"
     },
     "378": {
         "name": "Whitehorse Nordic Centre",
@@ -3978,7 +4187,8 @@
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/whitehorse-nordic-centre"
     },
     "363": {
         "name": "WhitePIA Takasu",
@@ -3997,7 +4207,8 @@
         "num_trails": 13,
         "num_lifts": 4,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/whitepia-takasu"
     },
     "167": {
         "name": "Whitepine Mountain Resort",
@@ -4016,7 +4227,8 @@
         "num_trails": 29,
         "num_lifts": 2,
         "is_open_nights": false,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/whitepine-mountain-resort"
     },
     "309": {
         "name": "Williams Lake Cross Country Ski Club",
@@ -4035,7 +4247,8 @@
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/williams-lake-cross-country-ski-club"
     },
     "334": {
         "name": "Wintergreen",
@@ -4054,7 +4267,8 @@
         "num_trails": 26,
         "num_lifts": 5,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/wintergreen"
     },
     "168": {
         "name": "Winterplace Ski Resort",
@@ -4073,7 +4287,8 @@
         "num_trails": 27,
         "num_lifts": 10,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/winterplace-ski-resort"
     },
     "335": {
         "name": "Wisp",
@@ -4092,7 +4307,8 @@
         "num_trails": 33,
         "num_lifts": 13,
         "is_open_nights": true,
-        "has_terrain_parks": true
+        "has_terrain_parks": true,
+        "href": "/our-resorts/wisp"
     },
     "310": {
         "name": "Woodstock Nordic Center",
@@ -4111,7 +4327,8 @@
         "num_trails": 48,
         "num_lifts": null,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/woodstock-nordic-center"
     },
     "359": {
         "name": "Yuzawa Nakazato Snow Resort",
@@ -4130,6 +4347,7 @@
         "num_trails": 16,
         "num_lifts": 6,
         "is_open_nights": false,
-        "has_terrain_parks": false
+        "has_terrain_parks": false,
+        "href": "/our-resorts/yuzawa-nakazato-snow-resort"
     }
 }

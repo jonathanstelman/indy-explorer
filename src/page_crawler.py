@@ -103,6 +103,7 @@ for resort_node in resort_node_list:
     num_lifts = None
     is_open_nights = None
     has_terrain_parks = None
+    href = None
 
     # TODO: add try/except statements
     name = resort_node.select_one("span.label").get_text(strip=True)
@@ -160,6 +161,12 @@ for resort_node in resort_node_list:
     except KeyError:
         print(f'Could not get is_allied for resort ID: {_id}')
 
+
+    try:
+        href = resort_node['href']
+    except KeyError:
+        print(f'Could not get href for resort ID: {_id}')
+
     resorts[_id] = {
         'name': name,
         'location': location,
@@ -175,11 +182,12 @@ for resort_node in resort_node_list:
         "num_lifts": num_lifts,
         "is_open_nights": is_open_nights,
         "has_terrain_parks": has_terrain_parks,
+        "href": href
     }
     success_count += 1    
 
 
-# pprint(resorts, indent=4)
+pprint(resorts, indent=4)
 print(f'Parsed {success_count} resorts')
 print(f'Failed to parse {failed_count} resorts')
 
