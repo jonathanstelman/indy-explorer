@@ -10,6 +10,7 @@ resorts_df = pd.DataFrame(resorts).transpose()
 
 # need to remove locations that don't have location
 resorts_df = resorts_df[resorts_df.location.notnull()]
+resorts_df['web_page'] = resorts_df['href'].apply(lambda x: 'https://www.indyskipass.com' + x if x else 'n/a')
 
 # Prep data for visualization
 def get_color(resort):
@@ -91,7 +92,8 @@ tooltip = {
         <b>Alpine / Cross-Counry:</b> {is_alpine_xc_display}<br>
         <b>Nights:</b> {is_open_nights_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
-        <b>Indy Allied:</b> {is_allied_display}
+        <b>Indy Allied:</b> {is_allied_display}<br>
+        <!-- <b>Web Page:</b> {web_page}<br> -->
     """,
     "style": {
         "backgroundColor": "white",
@@ -141,7 +143,8 @@ def display_results():
         'is_open_nights' : 'Nights',
         'has_terrain_parks' : 'Terrain Parks',
         'radius' : 'Radius',
-        'color' : 'Color'
+        'color' : 'Color',
+        'web_page': 'Web Page'
     }
     display_cols = [
         'Resort',
@@ -155,6 +158,7 @@ def display_results():
         'Nights',
         'Terrain Parks',
         'Allied',
+        'Web Page'
     ]
     display_df = filtered_data.rename(columns=col_names_map)[display_cols]
 
