@@ -164,7 +164,11 @@ def display_results():
 
     res = 'resort' if len(display_df) == 1 else 'resorts'
     st.markdown(f'Displaying {len(display_df)} {res}...')
-    st.dataframe(display_df, hide_index=True)
+    st.dataframe(
+        display_df,
+        column_config={"Web Page": st.column_config.LinkColumn()},
+        hide_index=True
+    )
 
 st.markdown('## Resorts')
 display_results()
