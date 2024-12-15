@@ -26,9 +26,11 @@ def get_radius(resort):
     """
     Returns the radius that a resort should appear on the map
     """
-    if not (resort.num_trails and resort.vertical and resort.num_lifts):
-        return 500
-    return resort.num_trails * 200 + resort.vertical + resort.num_lifts * 2
+    num_trails = resort.num_trails if resort.num_trails else 5
+    vertical = resort.vertical if resort.vertical else 300
+    num_lifts = resort.num_lifts if resort.num_lifts else 0
+
+    return 2 * (50 * num_trails + 1.5 * vertical + 5 * num_lifts)
 
 resorts_df["radius"] = resorts_df.apply(get_radius, axis=1)
 resorts_df["color"] = resorts_df.apply(get_color, axis=1)
@@ -86,7 +88,7 @@ tooltip = {
         <b>Vertical:</b> {vertical} ft<br>
         <b>Trails:</b> {num_trails}<br>
         <b>Lifts:</b> {num_lifts}<br>
-        <b>Alpine:</b> {is_alpine_xc_display}<br>
+        <b>Alpine / Cross-Counry:</b> {is_alpine_xc_display}<br>
         <b>Nights:</b> {is_open_nights_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Indy Allied:</b> {is_allied_display}
@@ -155,6 +157,9 @@ def display_results():
         'Allied',
     ]
     display_df = filtered_data.rename(columns=col_names_map)[display_cols]
+
+    res = 'resort' if len(display_df) == 1 else 'resorts'
+    st.markdown(f'Displaying {len(display_df)} {res}...')
     st.dataframe(display_df, hide_index=True)
 
 st.markdown('## Resorts')
