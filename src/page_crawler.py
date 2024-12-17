@@ -92,8 +92,8 @@ for resort_node in resort_node_list:
         failed_count += 1
 
     name = None
-    city = None
-    location = None
+    location_name = None
+    coordinates = None
     is_nordic = None
     is_alpine_xc = None
     is_xc_only = None
@@ -107,7 +107,7 @@ for resort_node in resort_node_list:
 
     # TODO: add try/except statements
     name = resort_node.select_one("span.label").get_text(strip=True)
-    city = resort_node.select_one("span.location").get_text(strip=True)
+    location_name = resort_node.select_one("span.location").get_text(strip=True)
     is_open_nights = to_boolean(resort_node.select_one("li:nth-child(4) .value").get_text(strip=True))
     has_terrain_parks = to_boolean(resort_node.select_one("li:nth-child(5) .value").get_text(strip=True))
 
@@ -137,9 +137,9 @@ for resort_node in resort_node_list:
 
 
     try:
-        location = parse_lat_long(resort_node['data-location'])
+        coordinates = parse_lat_long(resort_node['data-location'])
     except KeyError:
-        print(f'Could not get location for resort ID: {_id}')
+        print(f'Could not get coordinate location for resort ID: {_id}')
 
     try:
         is_nordic = to_boolean(resort_node['data-isnordic'])
@@ -169,27 +169,25 @@ for resort_node in resort_node_list:
 
     resorts[_id] = {
         'name': name,
-        'location': location,
-        'latitude': location['latitude'] if location else None,
-        'longitude': location['longitude'] if location else None,
+        'coordinates': coordinates,
+        "location_name": location_name,
         'vertical': vertical,
         'is_nordic': is_nordic,
         'is_alpine_xc': is_alpine_xc,
         'is_xc_only': is_xc_only,
         'is_allied': is_allied,
-        "city": city,
         "num_trails": num_trails,
         "num_lifts": num_lifts,
         "is_open_nights": is_open_nights,
         "has_terrain_parks": has_terrain_parks,
         "href": href
     }
-    success_count += 1    
+    success_count += 1
 
 
-pprint(resorts, indent=4)
+# pprint(resorts, indent=4)
 print(f'Parsed {success_count} resorts')
 print(f'Failed to parse {failed_count} resorts')
 
-with open('data/resorts_data.json', 'w', encoding='utf-8') as json_file:
+with open('data/resorts_raw.json', 'w', encoding='utf-8') as json_file:
     json.dump(resorts, json_file, indent=4)
