@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 pandas = "^2.2.3"
+python-dotenv = "^1.0.1"
+googlemaps = "^4.10.0"
 
 
 [build-system]
