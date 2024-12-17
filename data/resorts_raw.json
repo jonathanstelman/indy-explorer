@@ -1,18 +1,16 @@
 {
     "42": {
         "name": "49 Degrees North",
-        "location": {
+        "coordinates": {
             "latitude": 48.3010898,
             "longitude": -117.6042013
         },
-        "latitude": 48.3010898,
-        "longitude": -117.6042013,
+        "location_name": "Chewelah, WA, USA",
         "vertical": 1851,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Chewelah, WA, USA",
         "num_trails": 88,
         "num_lifts": 7,
         "is_open_nights": false,
@@ -21,18 +19,16 @@
     },
     "350": {
         "name": "Amihari Onsen Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 39.821302978855,
             "longitude": 140.93623505636
         },
-        "latitude": 39.821302978855,
-        "longitude": 140.93623505636,
+        "location_name": "Morioka City, Iwate Prefecture, Japan",
         "vertical": 1969,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Morioka City, Iwate Prefecture, Japan",
         "num_trails": 7,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -41,18 +37,16 @@
     },
     "43": {
         "name": "Andes Tower Hills",
-        "location": {
+        "coordinates": {
             "latitude": 45.850975,
             "longitude": -95.6330774
         },
-        "latitude": 45.850975,
-        "longitude": -95.6330774,
+        "location_name": "Alexandria, MN, USA",
         "vertical": 290,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Alexandria, MN, USA",
         "num_trails": 16,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -61,18 +55,16 @@
     },
     "44": {
         "name": "Ani Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 39.9573111,
             "longitude": 140.4950898
         },
-        "latitude": 39.9573111,
-        "longitude": 140.4950898,
+        "location_name": "Akita, Tohoku, Japan",
         "vertical": 2175,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Akita, Tohoku, Japan",
         "num_trails": 5,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -81,18 +73,16 @@
     },
     "45": {
         "name": "Antelope Butte",
-        "location": {
+        "coordinates": {
             "latitude": 44.6124452,
             "longitude": -107.5171051
         },
-        "latitude": 44.6124452,
-        "longitude": -107.5171051,
+        "location_name": "Shell, WY, USA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Shell, WY, USA",
         "num_trails": 30,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -101,18 +91,16 @@
     },
     "46": {
         "name": "Aomori Spring Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 40.693185,
             "longitude": 140.2767197
         },
-        "latitude": 40.693185,
-        "longitude": 140.2767197,
+        "location_name": "Hirosaki, Tohoku, Japan",
         "vertical": 1788,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Hirosaki, Tohoku, Japan",
         "num_trails": 14,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -121,18 +109,16 @@
     },
     "47": {
         "name": "Apex Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 49.3908831,
             "longitude": -119.9060377
         },
-        "latitude": 49.3908831,
-        "longitude": -119.9060377,
+        "location_name": "Penticton, BC, CA",
         "vertical": 1979,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Penticton, BC, CA",
         "num_trails": 80,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -141,18 +127,16 @@
     },
     "48": {
         "name": "Arctic Valley",
-        "location": {
+        "coordinates": {
             "latitude": 61.2465242,
             "longitude": -149.5350607
         },
-        "latitude": 61.2465242,
-        "longitude": -149.5350607,
+        "location_name": "Anchorage, AK, USA",
         "vertical": 1400,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Anchorage, AK, USA",
         "num_trails": 15,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -161,18 +145,16 @@
     },
     "49": {
         "name": "Baldy Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 49.1530415,
             "longitude": -119.2411421
         },
-        "latitude": 49.1530415,
-        "longitude": -119.2411421,
+        "location_name": "Oliver, BC, CA",
         "vertical": 1315,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Oliver, BC, CA",
         "num_trails": 35,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -181,18 +163,16 @@
     },
     "365": {
         "name": "Baqueira/Beret",
-        "location": {
+        "coordinates": {
             "latitude": 42.6952103,
             "longitude": 0.9064088
         },
-        "latitude": 42.6952103,
-        "longitude": 0.9064088,
+        "location_name": "Baqueira, Spain",
         "vertical": 3608,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Baqueira, Spain",
         "num_trails": 122,
         "num_lifts": 36,
         "is_open_nights": false,
@@ -201,18 +181,16 @@
     },
     "396": {
         "name": "Bear Creek",
-        "location": {
+        "coordinates": {
             "latitude": 40.4813472,
             "longitude": -75.6496577
         },
-        "latitude": 40.4813472,
-        "longitude": -75.6496577,
+        "location_name": "Macungie, PA",
         "vertical": 510,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Macungie, PA",
         "num_trails": 23,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -221,18 +199,16 @@
     },
     "272": {
         "name": "Bear Valley Adventure Company",
-        "location": {
+        "coordinates": {
             "latitude": 38.462895733807,
             "longitude": -120.03797910193
         },
-        "latitude": 38.462895733807,
-        "longitude": -120.03797910193,
+        "location_name": "Bear Valley, CA, USA",
         "vertical": 900,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Bear Valley, CA, USA",
         "num_trails": 38,
         "num_lifts": null,
         "is_open_nights": false,
@@ -241,18 +217,16 @@
     },
     "371": {
         "name": "Bear Valley Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 38.4788547,
             "longitude": -120.0628751
         },
-        "latitude": 38.4788547,
-        "longitude": -120.0628751,
+        "location_name": "Bear Valley, CA",
         "vertical": 1900,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Bear Valley, CA",
         "num_trails": 75,
         "num_lifts": 9,
         "is_open_nights": false,
@@ -261,18 +235,16 @@
     },
     "50": {
         "name": "Beaver Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 41.968075,
             "longitude": -111.5467243
         },
-        "latitude": 41.968075,
-        "longitude": -111.5467243,
+        "location_name": "Garden City, UT, USA",
         "vertical": 1700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Garden City, UT, USA",
         "num_trails": 48,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -281,18 +253,16 @@
     },
     "51": {
         "name": "Berkshire East Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.6211485,
             "longitude": -72.8797153
         },
-        "latitude": 42.6211485,
-        "longitude": -72.8797153,
+        "location_name": "Charlemont, MA, USA",
         "vertical": 1180,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Charlemont, MA, USA",
         "num_trails": 45,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -301,18 +271,16 @@
     },
     "337": {
         "name": "Big Moose",
-        "location": {
+        "coordinates": {
             "latitude": 45.507262858109,
             "longitude": -69.701919722368
         },
-        "latitude": 45.507262858109,
-        "longitude": -69.701919722368,
+        "location_name": "447 Ski Resort Rd, Greenville Junction, ME 04442",
         "vertical": 600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "447 Ski Resort Rd, Greenville Junction, ME 04442",
         "num_trails": 29,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -321,18 +289,16 @@
     },
     "52": {
         "name": "Big Powderhorn",
-        "location": {
+        "coordinates": {
             "latitude": 46.5090372,
             "longitude": -90.0982872
         },
-        "latitude": 46.5090372,
-        "longitude": -90.0982872,
+        "location_name": "Bessemer, MI, USA",
         "vertical": 622,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Bessemer, MI, USA",
         "num_trails": 45,
         "num_lifts": 10,
         "is_open_nights": false,
@@ -341,15 +307,13 @@
     },
     "339": {
         "name": "Big Red Cats",
-        "location": null,
-        "latitude": null,
-        "longitude": null,
+        "coordinates": null,
+        "location_name": "",
         "vertical": null,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "",
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
@@ -358,18 +322,16 @@
     },
     "53": {
         "name": "Big Rock Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 46.5223714,
             "longitude": -67.8353602
         },
-        "latitude": 46.5223714,
-        "longitude": -67.8353602,
+        "location_name": "Mars Hill, ME, USA",
         "vertical": 920,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mars Hill, ME, USA",
         "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -378,18 +340,16 @@
     },
     "178": {
         "name": "Big White Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 49.7216277,
             "longitude": -118.9291592
         },
-        "latitude": 49.7216277,
-        "longitude": -118.9291592,
+        "location_name": "Kelowna, BC, CA",
         "vertical": 2550,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Kelowna, BC, CA",
         "num_trails": 119,
         "num_lifts": 16,
         "is_open_nights": true,
@@ -398,18 +358,16 @@
     },
     "273": {
         "name": "Black Jack Cross Country Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 49.285741872159,
             "longitude": -117.72990986843
         },
-        "latitude": 49.285741872159,
-        "longitude": -117.72990986843,
+        "location_name": "Rossland, BC, CA",
         "vertical": 1062,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Rossland, BC, CA",
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
@@ -418,18 +376,16 @@
     },
     "55": {
         "name": "Black Mountain of Maine",
-        "location": {
+        "coordinates": {
             "latitude": 44.5769444,
             "longitude": -70.6159136
         },
-        "latitude": 44.5769444,
-        "longitude": -70.6159136,
+        "location_name": "Rumford, ME, USA",
         "vertical": 1380,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Rumford, ME, USA",
         "num_trails": 31,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -438,18 +394,16 @@
     },
     "56": {
         "name": "Black Mountain Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 44.1666811,
             "longitude": -71.168649
         },
-        "latitude": 44.1666811,
-        "longitude": -71.168649,
+        "location_name": "Jackson, NH, USA",
         "vertical": 1100,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Jackson, NH, USA",
         "num_trails": 45,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -458,18 +412,16 @@
     },
     "57": {
         "name": "Blacktail Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 48.0148365,
             "longitude": -114.3721471
         },
-        "latitude": 48.0148365,
-        "longitude": -114.3721471,
+        "location_name": "Lakeside, MT, USA",
         "vertical": 1440,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Lakeside, MT, USA",
         "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -478,18 +430,16 @@
     },
     "58": {
         "name": "Blue Knob All Season Resort",
-        "location": {
+        "coordinates": {
             "latitude": 40.2885997,
             "longitude": -78.5666261
         },
-        "latitude": 40.2885997,
-        "longitude": -78.5666261,
+        "location_name": "Claysburg, PA, USA",
         "vertical": 1068,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Claysburg, PA, USA",
         "num_trails": 34,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -498,18 +448,16 @@
     },
     "59": {
         "name": "Bolton Valley Resort",
-        "location": {
+        "coordinates": {
             "latitude": 44.4223862,
             "longitude": -72.8538529
         },
-        "latitude": 44.4223862,
-        "longitude": -72.8538529,
+        "location_name": "Burlington, VT, USA",
         "vertical": 1704,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Burlington, VT, USA",
         "num_trails": 71,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -518,18 +466,16 @@
     },
     "60": {
         "name": "Bottineau Winter Park",
-        "location": {
+        "coordinates": {
             "latitude": 48.950695,
             "longitude": -100.4775329
         },
-        "latitude": 48.950695,
-        "longitude": -100.4775329,
+        "location_name": "Bottineau , ND, USA",
         "vertical": 200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Bottineau , ND, USA",
         "num_trails": 9,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -538,18 +484,16 @@
     },
     "372": {
         "name": "Bousquet Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 42.4190908,
             "longitude": -73.2791733
         },
-        "latitude": 42.4190908,
-        "longitude": -73.2791733,
+        "location_name": "Pittsfield, MA",
         "vertical": 750,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Pittsfield, MA",
         "num_trails": 55,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -558,18 +502,16 @@
     },
     "388": {
         "name": "Bruce Mound Winter Sports Area",
-        "location": {
+        "coordinates": {
             "latitude": 44.4462814,
             "longitude": -90.7882194
         },
-        "latitude": 44.4462814,
-        "longitude": -90.7882194,
+        "location_name": "Merrillan, WI",
         "vertical": 375,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Merrillan, WI",
         "num_trails": 10,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -578,18 +520,16 @@
     },
     "61": {
         "name": "Brundage Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 45.0054,
             "longitude": -116.1569924
         },
-        "latitude": 45.0054,
-        "longitude": -116.1569924,
+        "location_name": "McCall, ID, USA",
         "vertical": 1921,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "McCall, ID, USA",
         "num_trails": 70,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -598,18 +538,16 @@
     },
     "62": {
         "name": "Bryce Resort",
-        "location": {
+        "coordinates": {
             "latitude": 38.8174554,
             "longitude": -78.7682726
         },
-        "latitude": 38.8174554,
-        "longitude": -78.7682726,
+        "location_name": "Basye, VA, USA",
         "vertical": 500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Basye, VA, USA",
         "num_trails": 8,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -618,18 +556,16 @@
     },
     "63": {
         "name": "Buck Hill",
-        "location": {
+        "coordinates": {
             "latitude": 44.724844,
             "longitude": -93.2862539
         },
-        "latitude": 44.724844,
-        "longitude": -93.2862539,
+        "location_name": "Burnsville, MN, USA",
         "vertical": 309,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Burnsville, MN, USA",
         "num_trails": 15,
         "num_lifts": 10,
         "is_open_nights": true,
@@ -638,18 +574,16 @@
     },
     "266": {
         "name": "Burke Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 44.62870605,
             "longitude": -71.91029195
         },
-        "latitude": 44.62870605,
-        "longitude": -71.91029195,
+        "location_name": "East Burke, VT, USA",
         "vertical": 2011,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": true,
-        "city": "East Burke, VT, USA",
         "num_trails": 54,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -658,18 +592,16 @@
     },
     "64": {
         "name": "Caberfae Peaks",
-        "location": {
+        "coordinates": {
             "latitude": 44.2447088,
             "longitude": -85.7231528
         },
-        "latitude": 44.2447088,
-        "longitude": -85.7231528,
+        "location_name": "Cadillac, MI, USA",
         "vertical": 485,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Cadillac, MI, USA",
         "num_trails": 27,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -678,18 +610,16 @@
     },
     "65": {
         "name": "Calabogie Peaks Resort",
-        "location": {
+        "coordinates": {
             "latitude": 45.274401,
             "longitude": -76.7829706
         },
-        "latitude": 45.274401,
-        "longitude": -76.7829706,
+        "location_name": "Calabogie, ON, CA",
         "vertical": 781,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Calabogie, ON, CA",
         "num_trails": 25,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -698,18 +628,16 @@
     },
     "275": {
         "name": "Caledonia Nordic Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 53.970752907698,
             "longitude": -122.87265744481
         },
-        "latitude": 53.970752907698,
-        "longitude": -122.87265744481,
+        "location_name": "Prince George, BC, CA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Prince George, BC, CA",
         "num_trails": 55,
         "num_lifts": null,
         "is_open_nights": true,
@@ -718,18 +646,16 @@
     },
     "346": {
         "name": "Camden Snow Bowl",
-        "location": {
+        "coordinates": {
             "latitude": 44.217698441191,
             "longitude": -69.131466755139
         },
-        "latitude": 44.217698441191,
-        "longitude": -69.131466755139,
+        "location_name": "Camden, Maine",
         "vertical": 1070,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Camden, Maine",
         "num_trails": 15,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -738,18 +664,16 @@
     },
     "367": {
         "name": "Camp Fortune",
-        "location": {
+        "coordinates": {
             "latitude": 45.5090169,
             "longitude": -75.8537991
         },
-        "latitude": 45.5090169,
-        "longitude": -75.8537991,
+        "location_name": "Chelsea, Quebec, Canada",
         "vertical": 627,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Chelsea, Quebec, Canada",
         "num_trails": 27,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -758,18 +682,16 @@
     },
     "66": {
         "name": "Canaan Valley",
-        "location": {
+        "coordinates": {
             "latitude": 39.029186666679,
             "longitude": -79.460698240724
         },
-        "latitude": 39.029186666679,
-        "longitude": -79.460698240724,
+        "location_name": "Davis, WV, USA",
         "vertical": 850,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Davis, WV, USA",
         "num_trails": 47,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -778,18 +700,16 @@
     },
     "67": {
         "name": "Cannon Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 44.1773749,
             "longitude": -71.7044046
         },
-        "latitude": 44.1773749,
-        "longitude": -71.7044046,
+        "location_name": "Franconia, NH, USA",
         "vertical": 2180,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Franconia, NH, USA",
         "num_trails": 97,
         "num_lifts": 10,
         "is_open_nights": false,
@@ -798,18 +718,16 @@
     },
     "345": {
         "name": "Cape Smokey",
-        "location": {
+        "coordinates": {
             "latitude": 46.627615294095,
             "longitude": -60.421888642657
         },
-        "latitude": 46.627615294095,
-        "longitude": -60.421888642657,
+        "location_name": "Ingonish Beach, Nova Scotia, CA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Ingonish Beach, Nova Scotia, CA",
         "num_trails": 16,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -818,15 +736,13 @@
     },
     "341": {
         "name": "Cascade Powder Guides",
-        "location": null,
-        "latitude": null,
-        "longitude": null,
+        "coordinates": null,
+        "location_name": "",
         "vertical": null,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "",
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
@@ -835,18 +751,16 @@
     },
     "384": {
         "name": "Cascade Welcome Center",
-        "location": {
+        "coordinates": {
             "latitude": 44.2412103,
             "longitude": -73.9263423
         },
-        "latitude": 44.2412103,
-        "longitude": -73.9263423,
+        "location_name": "Lake Placid, New York",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Lake Placid, New York",
         "num_trails": 12,
         "num_lifts": null,
         "is_open_nights": true,
@@ -855,18 +769,16 @@
     },
     "265": {
         "name": "Castle Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 49.3191188,
             "longitude": -114.4151632
         },
-        "latitude": 49.3191188,
-        "longitude": -114.4151632,
+        "location_name": "Pincher Creek, AB, CA",
         "vertical": 2845,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Pincher Creek, AB, CA",
         "num_trails": 95,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -875,18 +787,16 @@
     },
     "69": {
         "name": "Cataloochee Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 35.5592351,
             "longitude": -83.0949862
         },
-        "latitude": 35.5592351,
-        "longitude": -83.0949862,
+        "location_name": "Maggie Valley, NC, USA",
         "vertical": 740,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Maggie Valley, NC, USA",
         "num_trails": 18,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -895,18 +805,16 @@
     },
     "70": {
         "name": "Catamount Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.1690998,
             "longitude": -73.4795061
         },
-        "latitude": 42.1690998,
-        "longitude": -73.4795061,
+        "location_name": "South Egremont, MA, USA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "South Egremont, MA, USA",
         "num_trails": 44,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -915,18 +823,16 @@
     },
     "276": {
         "name": "Catamount Outdoor Family Center",
-        "location": {
+        "coordinates": {
             "latitude": 44.448316445224,
             "longitude": -73.048833333583
         },
-        "latitude": 44.448316445224,
-        "longitude": -73.048833333583,
+        "location_name": "Williston, VT, USA",
         "vertical": 250,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Williston, VT, USA",
         "num_trails": 100,
         "num_lifts": null,
         "is_open_nights": true,
@@ -935,18 +841,16 @@
     },
     "380": {
         "name": "Cazenovia Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 42.97673,
             "longitude": -75.8582938
         },
-        "latitude": 42.97673,
-        "longitude": -75.8582938,
+        "location_name": "Cazenovia, New York",
         "vertical": 500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Cazenovia, New York",
         "num_trails": 14,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -955,18 +859,16 @@
     },
     "317": {
         "name": "Cherry Peak",
-        "location": {
+        "coordinates": {
             "latitude": 41.636244851822,
             "longitude": -112.01267522305
         },
-        "latitude": 41.636244851822,
-        "longitude": -112.01267522305,
+        "location_name": "Richmond, UT, USA",
         "vertical": 1265,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": true,
-        "city": "Richmond, UT, USA",
         "num_trails": 38,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -975,18 +877,16 @@
     },
     "71": {
         "name": "Chestnut Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.319017,
             "longitude": -90.3963733
         },
-        "latitude": 42.319017,
-        "longitude": -90.3963733,
+        "location_name": "Galena, IL, USA",
         "vertical": 600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Galena, IL, USA",
         "num_trails": 19,
         "num_lifts": 9,
         "is_open_nights": true,
@@ -995,18 +895,16 @@
     },
     "72": {
         "name": "China Peak",
-        "location": {
+        "coordinates": {
             "latitude": 37.2364356,
             "longitude": -119.1599511
         },
-        "latitude": 37.2364356,
-        "longitude": -119.1599511,
+        "location_name": "Lakeshore, CA, USA",
         "vertical": 1700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Lakeshore, CA, USA",
         "num_trails": 55,
         "num_lifts": 9,
         "is_open_nights": false,
@@ -1015,18 +913,16 @@
     },
     "383": {
         "name": "Christie Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 45.5090962,
             "longitude": -91.3833987
         },
-        "latitude": 45.5090962,
-        "longitude": -91.3833987,
+        "location_name": "Bruce, WI",
         "vertical": 350,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Bruce, WI",
         "num_trails": 33,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -1035,18 +931,16 @@
     },
     "74": {
         "name": "Cooper Spur Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 45.4124145,
             "longitude": -121.607698
         },
-        "latitude": 45.4124145,
-        "longitude": -121.607698,
+        "location_name": "Parkdale, OR, USA",
         "vertical": 400,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Parkdale, OR, USA",
         "num_trails": 9,
         "num_lifts": 2,
         "is_open_nights": true,
@@ -1055,18 +949,16 @@
     },
     "277": {
         "name": "Crosscut Mountain Sports Center",
-        "location": {
+        "coordinates": {
             "latitude": 45.847946445692,
             "longitude": -110.80215582992
         },
-        "latitude": 45.847946445692,
-        "longitude": -110.80215582992,
+        "location_name": "Bozeman, MT, USA",
         "vertical": 600,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Bozeman, MT, USA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": true,
@@ -1075,18 +967,16 @@
     },
     "73": {
         "name": "Crystal Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 44.52010072,
             "longitude": -85.99161557
         },
-        "latitude": 44.52010072,
-        "longitude": -85.99161557,
+        "location_name": "Thompsonville, MI, USA",
         "vertical": 375,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Thompsonville, MI, USA",
         "num_trails": 59,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -1095,18 +985,16 @@
     },
     "156": {
         "name": "Crystal Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 42.9208017,
             "longitude": -88.0172624
         },
-        "latitude": 42.9208017,
-        "longitude": -88.0172624,
+        "location_name": "Franklin, WI, USA",
         "vertical": 230,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Franklin, WI, USA",
         "num_trails": 6,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -1115,18 +1003,16 @@
     },
     "357": {
         "name": "Cupid Valley",
-        "location": {
+        "coordinates": {
             "latitude": 37.0552643,
             "longitude": 138.4817142
         },
-        "latitude": 37.0552643,
-        "longitude": 138.4817142,
+        "location_name": "Joetsu, Niigata 942-0534, Japan",
         "vertical": 1607,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Joetsu, Niigata 942-0534, Japan",
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -1135,18 +1021,16 @@
     },
     "75": {
         "name": "Dartmouth Skiway",
-        "location": {
+        "coordinates": {
             "latitude": 43.787748,
             "longitude": -72.1021183
         },
-        "latitude": 43.787748,
-        "longitude": -72.1021183,
+        "location_name": "Lyme Center, NH, USA",
         "vertical": 986,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Lyme Center, NH, USA",
         "num_trails": 28,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -1155,18 +1039,16 @@
     },
     "76": {
         "name": "Detroit Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 46.8130854,
             "longitude": -95.785864
         },
-        "latitude": 46.8130854,
-        "longitude": -95.785864,
+        "location_name": "Detroit Lakes, MN, USA",
         "vertical": 210,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Detroit Lakes, MN, USA",
         "num_trails": 21,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -1175,18 +1057,16 @@
     },
     "77": {
         "name": "Dodge Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 38.1898028,
             "longitude": -119.9584442
         },
-        "latitude": 38.1898028,
-        "longitude": -119.9584442,
+        "location_name": "Pinecrest, CA, USA",
         "vertical": 1600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Pinecrest, CA, USA",
         "num_trails": 67,
         "num_lifts": 11,
         "is_open_nights": false,
@@ -1195,18 +1075,16 @@
     },
     "279": {
         "name": "Dog Creek Lodge & Nordic Center",
-        "location": {
+        "coordinates": {
             "latitude": 48.591109845438,
             "longitude": -114.60616667171
         },
-        "latitude": 48.591109845438,
-        "longitude": -114.60616667171,
+        "location_name": "Whitefish, MT, USA",
         "vertical": 440,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Whitefish, MT, USA",
         "num_trails": 25,
         "num_lifts": null,
         "is_open_nights": false,
@@ -1215,18 +1093,16 @@
     },
     "362": {
         "name": "Dynaland",
-        "location": {
+        "coordinates": {
             "latitude": 35.9902088,
             "longitude": 136.8679602
         },
-        "latitude": 35.9902088,
-        "longitude": 136.8679602,
+        "location_name": "Gujo, Gifu, Japan",
         "vertical": 1467,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gujo, Gifu, Japan",
         "num_trails": 18,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -1235,18 +1111,16 @@
     },
     "264": {
         "name": "Eagle Point",
-        "location": {
+        "coordinates": {
             "latitude": 38.3203245,
             "longitude": -112.3864365
         },
-        "latitude": 38.3203245,
-        "longitude": -112.3864365,
+        "location_name": "Beaver, UT, USA",
         "vertical": 1500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Beaver, UT, USA",
         "num_trails": 40,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -1255,18 +1129,16 @@
     },
     "79": {
         "name": "Eaglecrest",
-        "location": {
+        "coordinates": {
             "latitude": 58.2745312,
             "longitude": -134.5153968
         },
-        "latitude": 58.2745312,
-        "longitude": -134.5153968,
+        "location_name": "Juneau, AK, USA",
         "vertical": 1620,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Juneau, AK, USA",
         "num_trails": 36,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1275,18 +1147,16 @@
     },
     "80": {
         "name": "Echo Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 39.6845817,
             "longitude": -105.5219731
         },
-        "latitude": 39.6845817,
-        "longitude": -105.5219731,
+        "location_name": "Evergreen, CO, USA",
         "vertical": 600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Evergreen, CO, USA",
         "num_trails": 8,
         "num_lifts": 2,
         "is_open_nights": true,
@@ -1295,18 +1165,16 @@
     },
     "280": {
         "name": "Enchanted Forest XC",
-        "location": {
+        "coordinates": {
             "latitude": 36.7001562,
             "longitude": -105.3505175
         },
-        "latitude": 36.7001562,
-        "longitude": -105.3505175,
+        "location_name": "Red River, NM, USA",
         "vertical": 400,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Red River, NM, USA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
@@ -1315,18 +1183,16 @@
     },
     "392": {
         "name": "Erc\u0130yes Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 37.8781927,
             "longitude": 34.014505
         },
-        "latitude": 37.8781927,
-        "longitude": 34.014505,
+        "location_name": "Hisarc\u0131k Erciyes, 38220 Melikgazi/Kayseri, T\u00fcrkiye",
         "vertical": 1260,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Hisarc\u0131k Erciyes, 38220 Melikgazi/Kayseri, T\u00fcrkiye",
         "num_trails": 31,
         "num_lifts": 24,
         "is_open_nights": true,
@@ -1335,18 +1201,16 @@
     },
     "81": {
         "name": "Fairmont Hot Springs",
-        "location": {
+        "coordinates": {
             "latitude": 50.3388251,
             "longitude": -115.8307703
         },
-        "latitude": 50.3388251,
-        "longitude": -115.8307703,
+        "location_name": "Fairmont Hot Springs, BC, CA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Fairmont Hot Springs, BC, CA",
         "num_trails": 14,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -1355,18 +1219,16 @@
     },
     "281": {
         "name": "Garnet Hill XC",
-        "location": {
+        "coordinates": {
             "latitude": 43.7124502,
             "longitude": -74.1073436
         },
-        "latitude": 43.7124502,
-        "longitude": -74.1073436,
+        "location_name": "North River, NY, USA",
         "vertical": 760,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "North River, NY, USA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
@@ -1375,18 +1237,16 @@
     },
     "82": {
         "name": "Geto Kogen",
-        "location": {
+        "coordinates": {
             "latitude": 39.2366246,
             "longitude": 140.9036806
         },
-        "latitude": 39.2366246,
-        "longitude": 140.9036806,
+        "location_name": "Kita Kami, Tohoku, Japan",
         "vertical": 1410,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Kita Kami, Tohoku, Japan",
         "num_trails": 14,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -1395,18 +1255,16 @@
     },
     "391": {
         "name": "Glencoe Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 56.6324409,
             "longitude": -4.8278692
         },
-        "latitude": 56.6324409,
-        "longitude": -4.8278692,
+        "location_name": "Glencoe, Scotland",
         "vertical": 2388,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Glencoe, Scotland",
         "num_trails": 20,
         "num_lifts": 8,
         "is_open_nights": false,
@@ -1415,18 +1273,16 @@
     },
     "83": {
         "name": "Granby Ranch",
-        "location": {
+        "coordinates": {
             "latitude": 40.0446489,
             "longitude": -105.9089128
         },
-        "latitude": 40.0446489,
-        "longitude": -105.9089128,
+        "location_name": "Granby, CO, USA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Granby, CO, USA",
         "num_trails": 43,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -1435,18 +1291,16 @@
     },
     "84": {
         "name": "Granite Peak",
-        "location": {
+        "coordinates": {
             "latitude": 44.9253444,
             "longitude": -89.6958047
         },
-        "latitude": 44.9253444,
-        "longitude": -89.6958047,
+        "location_name": "Wausau, WI, USA",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Wausau, WI, USA",
         "num_trails": 68,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -1455,18 +1309,16 @@
     },
     "85": {
         "name": "Great Bear Ski Valley",
-        "location": {
+        "coordinates": {
             "latitude": 43.57814995,
             "longitude": -96.66392463
         },
-        "latitude": 43.57814995,
-        "longitude": -96.66392463,
+        "location_name": "Sioux Falls, SD, USA",
         "vertical": 182,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Sioux Falls, SD, USA",
         "num_trails": 14,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -1475,18 +1327,16 @@
     },
     "86": {
         "name": "Greek Peak Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.5085935,
             "longitude": -76.1474284
         },
-        "latitude": 42.5085935,
-        "longitude": -76.1474284,
+        "location_name": "Cortland, NY, USA",
         "vertical": 952,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Cortland, NY, USA",
         "num_trails": 55,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -1495,18 +1345,16 @@
     },
     "282": {
         "name": "Hardwood Ski and Bike",
-        "location": {
+        "coordinates": {
             "latitude": 44.5176652,
             "longitude": -79.594334
         },
-        "latitude": 44.5176652,
-        "longitude": -79.594334,
+        "location_name": "Barrie, ON, CA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Barrie, ON, CA",
         "num_trails": 6,
         "num_lifts": null,
         "is_open_nights": true,
@@ -1515,18 +1363,16 @@
     },
     "349": {
         "name": "Hatley Pointe",
-        "location": {
+        "coordinates": {
             "latitude": 35.954295621864,
             "longitude": -82.508867754907
         },
-        "latitude": 35.954295621864,
-        "longitude": -82.508867754907,
+        "location_name": "Mars Hill, NC",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mars Hill, NC",
         "num_trails": 17,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1535,18 +1381,16 @@
     },
     "319": {
         "name": "Hickory Ski Center",
-        "location": {
+        "coordinates": {
             "latitude": 43.476208724561,
             "longitude": -73.816881816156
         },
-        "latitude": 43.476208724561,
-        "longitude": -73.816881816156,
+        "location_name": "Warrensburg, NY",
         "vertical": 1200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Warrensburg, NY",
         "num_trails": 18,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1555,18 +1399,16 @@
     },
     "283": {
         "name": "High Point XC Ski Center",
-        "location": {
+        "coordinates": {
             "latitude": 41.30625,
             "longitude": -74.6733403
         },
-        "latitude": 41.30625,
-        "longitude": -74.6733403,
+        "location_name": "Millford, NJ, USA",
         "vertical": 400,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Millford, NJ, USA",
         "num_trails": 6,
         "num_lifts": null,
         "is_open_nights": true,
@@ -1575,18 +1417,16 @@
     },
     "356": {
         "name": "Hirugano Kogen Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 36.0055471,
             "longitude": 136.9036975
         },
-        "latitude": 36.0055471,
-        "longitude": 136.9036975,
+        "location_name": "Gujo, Gifu, Japan",
         "vertical": 492,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gujo, Gifu, Japan",
         "num_trails": 8,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -1595,18 +1435,16 @@
     },
     "368": {
         "name": "Hoedown Hill",
-        "location": {
+        "coordinates": {
             "latitude": 40.4520656,
             "longitude": -104.9338958
         },
-        "latitude": 40.4520656,
-        "longitude": -104.9338958,
+        "location_name": "Windsor, Colorado",
         "vertical": 200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Windsor, Colorado",
         "num_trails": 6,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1615,18 +1453,16 @@
     },
     "284": {
         "name": "Homestake Lodge",
-        "location": {
+        "coordinates": {
             "latitude": 45.9052331,
             "longitude": -112.3834782
         },
-        "latitude": 45.9052331,
-        "longitude": -112.3834782,
+        "location_name": "Butte, MT, USA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Butte, MT, USA",
         "num_trails": 21,
         "num_lifts": null,
         "is_open_nights": true,
@@ -1635,18 +1471,16 @@
     },
     "87": {
         "name": "Hoodoo",
-        "location": {
+        "coordinates": {
             "latitude": 44.4086439,
             "longitude": -121.8739961
         },
-        "latitude": 44.4086439,
-        "longitude": -121.8739961,
+        "location_name": "Sisters, OR, USA",
         "vertical": 1035,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Sisters, OR, USA",
         "num_trails": 36,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -1655,18 +1489,16 @@
     },
     "88": {
         "name": "Howelsen Hill",
-        "location": {
+        "coordinates": {
             "latitude": 40.4833683,
             "longitude": -106.8405524
         },
-        "latitude": 40.4833683,
-        "longitude": -106.8405524,
+        "location_name": "Steamboat Springs, CO, USA",
         "vertical": 440,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Steamboat Springs, CO, USA",
         "num_trails": 19,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1675,18 +1507,16 @@
     },
     "323": {
         "name": "Hudson Bay Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 54.765806606618,
             "longitude": -127.26899513045
         },
-        "latitude": 54.765806606618,
-        "longitude": -127.26899513045,
+        "location_name": "Smithers, BC, Canada",
         "vertical": 1750,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Smithers, BC, Canada",
         "num_trails": 44,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -1695,18 +1525,16 @@
     },
     "89": {
         "name": "Huff Hills Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 46.627425,
             "longitude": -100.7257943
         },
-        "latitude": 46.627425,
-        "longitude": -100.7257943,
+        "location_name": "Mandan, ND, USA",
         "vertical": 400,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mandan, ND, USA",
         "num_trails": 16,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1715,18 +1543,16 @@
     },
     "373": {
         "name": "Hunt Hollow Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 42.645996,
             "longitude": -77.4806785
         },
-        "latitude": 42.645996,
-        "longitude": -77.4806785,
+        "location_name": "Naples, NY",
         "vertical": 875,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Naples, NY",
         "num_trails": 21,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -1735,18 +1561,16 @@
     },
     "90": {
         "name": "Hurricane Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 47.9699846,
             "longitude": -123.4977155
         },
-        "latitude": 47.9699846,
-        "longitude": -123.4977155,
+        "location_name": "Port Angeles, WA, USA",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Port Angeles, WA, USA",
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -1755,18 +1579,16 @@
     },
     "381": {
         "name": "Innsbruck Ski & City Network",
-        "location": {
+        "coordinates": {
             "latitude": 47.1953877,
             "longitude": 11.1618082
         },
-        "latitude": 47.1953877,
-        "longitude": 11.1618082,
+        "location_name": "Innsbruck, Austria",
         "vertical": 5282,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Innsbruck, Austria",
         "num_trails": null,
         "num_lifts": 111,
         "is_open_nights": false,
@@ -1775,18 +1597,16 @@
     },
     "286": {
         "name": "Jackson XC",
-        "location": {
+        "coordinates": {
             "latitude": 44.1455635,
             "longitude": -71.1875049
         },
-        "latitude": 44.1455635,
-        "longitude": -71.1875049,
+        "location_name": "Jackson, NH, USA",
         "vertical": 1000,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Jackson, NH, USA",
         "num_trails": 60,
         "num_lifts": null,
         "is_open_nights": false,
@@ -1795,18 +1615,16 @@
     },
     "91": {
         "name": "Jay Peak Resort",
-        "location": {
+        "coordinates": {
             "latitude": 44.9379013,
             "longitude": -72.5073526
         },
-        "latitude": 44.9379013,
-        "longitude": -72.5073526,
+        "location_name": "Jay, VT, USA",
         "vertical": 2153,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Jay, VT, USA",
         "num_trails": 81,
         "num_lifts": 9,
         "is_open_nights": false,
@@ -1815,18 +1633,16 @@
     },
     "92": {
         "name": "Kamui Ski Links",
-        "location": {
+        "coordinates": {
             "latitude": 43.704967,
             "longitude": 142.1845217
         },
-        "latitude": 43.704967,
-        "longitude": 142.1845217,
+        "location_name": "Asahikawa, Tohoku, Japan",
         "vertical": 1968,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Asahikawa, Tohoku, Japan",
         "num_trails": 25,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -1835,18 +1651,16 @@
     },
     "93": {
         "name": "Kelly Canyon",
-        "location": {
+        "coordinates": {
             "latitude": 43.6460169,
             "longitude": -111.6324654
         },
-        "latitude": 43.6460169,
-        "longitude": -111.6324654,
+        "location_name": "Ririe, ID, USA",
         "vertical": 1200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Ririe, ID, USA",
         "num_trails": 27,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -1855,18 +1669,16 @@
     },
     "287": {
         "name": "Kimberley Nordic Club",
-        "location": {
+        "coordinates": {
             "latitude": 49.6822765,
             "longitude": -116.0095172
         },
-        "latitude": 49.6822765,
-        "longitude": -116.0095172,
+        "location_name": "Kimberley, BC, CA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Kimberley, BC, CA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": true,
@@ -1875,18 +1687,16 @@
     },
     "314": {
         "name": "King Pine",
-        "location": {
+        "coordinates": {
             "latitude": 43.868280175903,
             "longitude": -71.088944717979
         },
-        "latitude": 43.868280175903,
-        "longitude": -71.088944717979,
+        "location_name": "Madison, NH, USA",
         "vertical": 350,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": true,
-        "city": "Madison, NH, USA",
         "num_trails": 23,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -1895,18 +1705,16 @@
     },
     "94": {
         "name": "Kiroro Snow World",
-        "location": {
+        "coordinates": {
             "latitude": 43.0663934,
             "longitude": 140.9833059
         },
-        "latitude": 43.0663934,
-        "longitude": 140.9833059,
+        "location_name": "Otaru, Hokkaido, Japan",
         "vertical": 2165,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Otaru, Hokkaido, Japan",
         "num_trails": 23,
         "num_lifts": 10,
         "is_open_nights": true,
@@ -1915,18 +1723,16 @@
     },
     "288": {
         "name": "Leavenworth Winter Sports Club",
-        "location": {
+        "coordinates": {
             "latitude": 47.6141122,
             "longitude": -120.6712683
         },
-        "latitude": 47.6141122,
-        "longitude": -120.6712683,
+        "location_name": "Leavenworth, WA, USA",
         "vertical": 235,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Leavenworth, WA, USA",
         "num_trails": 6,
         "num_lifts": null,
         "is_open_nights": true,
@@ -1935,18 +1741,16 @@
     },
     "95": {
         "name": "Little Switzerland",
-        "location": {
+        "coordinates": {
             "latitude": 43.3379806,
             "longitude": -88.2815214
         },
-        "latitude": 43.3379806,
-        "longitude": -88.2815214,
+        "location_name": "Slinger, WI, USA",
         "vertical": 200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Slinger, WI, USA",
         "num_trails": 16,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -1955,18 +1759,16 @@
     },
     "96": {
         "name": "Loch Lomond",
-        "location": {
+        "coordinates": {
             "latitude": 48.2939871,
             "longitude": -89.3508156
         },
-        "latitude": 48.2939871,
-        "longitude": -89.3508156,
+        "location_name": "Thunder Bay, ON, CA",
         "vertical": 751,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Thunder Bay, ON, CA",
         "num_trails": 18,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -1975,18 +1777,16 @@
     },
     "97": {
         "name": "Lost Trail Powder Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 45.6922649,
             "longitude": -113.9546482
         },
-        "latitude": 45.6922649,
-        "longitude": -113.9546482,
+        "location_name": "Darby , MT, USA",
         "vertical": 1200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Darby , MT, USA",
         "num_trails": 68,
         "num_lifts": 8,
         "is_open_nights": false,
@@ -1995,18 +1795,16 @@
     },
     "369": {
         "name": "Lost Valley",
-        "location": {
+        "coordinates": {
             "latitude": 44.1360699,
             "longitude": -70.2855319
         },
-        "latitude": 44.1360699,
-        "longitude": -70.2855319,
+        "location_name": "Auburn, ME",
         "vertical": 233,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Auburn, ME",
         "num_trails": 22,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -2015,18 +1813,16 @@
     },
     "98": {
         "name": "Loup Loup Ski Bowl",
-        "location": {
+        "coordinates": {
             "latitude": 48.3943616,
             "longitude": -119.9135503
         },
-        "latitude": 48.3943616,
-        "longitude": -119.9135503,
+        "location_name": "Twisp, WA, USA",
         "vertical": 1240,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Twisp, WA, USA",
         "num_trails": 14,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -2035,18 +1831,16 @@
     },
     "377": {
         "name": "Loveland Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 39.6800625,
             "longitude": -105.9005334
         },
-        "latitude": 39.6800625,
-        "longitude": -105.9005334,
+        "location_name": "Georgetown, CO",
         "vertical": 2210,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Georgetown, CO",
         "num_trails": 94,
         "num_lifts": 12,
         "is_open_nights": false,
@@ -2055,18 +1849,16 @@
     },
     "99": {
         "name": "Lutsen Mountains",
-        "location": {
+        "coordinates": {
             "latitude": 47.663713,
             "longitude": -90.716136
         },
-        "latitude": 47.663713,
-        "longitude": -90.716136,
+        "location_name": "Lutsen, MN, USA",
         "vertical": 825,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Lutsen, MN, USA",
         "num_trails": 95,
         "num_lifts": 7,
         "is_open_nights": false,
@@ -2075,18 +1867,16 @@
     },
     "100": {
         "name": "Madarao Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 36.8524572,
             "longitude": 138.2880255
         },
-        "latitude": 36.8524572,
-        "longitude": 138.2880255,
+        "location_name": "Myoko Kogen, Nagano",
         "vertical": 1443,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Myoko Kogen, Nagano",
         "num_trails": 32,
         "num_lifts": 10,
         "is_open_nights": false,
@@ -2095,18 +1885,16 @@
     },
     "101": {
         "name": "Magic Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 43.20191601,
             "longitude": -72.77132459
         },
-        "latitude": 43.20191601,
-        "longitude": -72.77132459,
+        "location_name": "Londonderry , VT, USA",
         "vertical": 1500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Londonderry , VT, USA",
         "num_trails": 50,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -2115,18 +1903,16 @@
     },
     "353": {
         "name": "Maiko Resort",
-        "location": {
+        "coordinates": {
             "latitude": 36.982265957181,
             "longitude": 138.82445635587
         },
-        "latitude": 36.982265957181,
-        "longitude": 138.82445635587,
+        "location_name": "Maiko, Minamiuonuma, Niigata, Japan",
         "vertical": 2166,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Maiko, Minamiuonuma, Niigata, Japan",
         "num_trails": 26,
         "num_lifts": 10,
         "is_open_nights": true,
@@ -2135,18 +1921,16 @@
     },
     "387": {
         "name": "Mal\u00e1 \u00dapa",
-        "location": {
+        "coordinates": {
             "latitude": 50.7201426,
             "longitude": 15.5505559
         },
-        "latitude": 50.7201426,
-        "longitude": 15.5505559,
+        "location_name": "Mal\u00e1 \u00dapa, Czechia",
         "vertical": 853,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mal\u00e1 \u00dapa, Czechia",
         "num_trails": 8,
         "num_lifts": 9,
         "is_open_nights": false,
@@ -2155,18 +1939,16 @@
     },
     "102": {
         "name": "Manning Park",
-        "location": {
+        "coordinates": {
             "latitude": 49.0701941,
             "longitude": -120.9521503
         },
-        "latitude": 49.0701941,
-        "longitude": -120.9521503,
+        "location_name": "Hope, BC, CA",
         "vertical": 1417,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Hope, BC, CA",
         "num_trails": 35,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -2175,18 +1957,16 @@
     },
     "289": {
         "name": "Manning Park XC",
-        "location": {
+        "coordinates": {
             "latitude": 49.063089,
             "longitude": -120.7897713
         },
-        "latitude": 49.063089,
-        "longitude": -120.7897713,
+        "location_name": "Hope, BC, CA",
         "vertical": 1417,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Hope, BC, CA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
@@ -2195,18 +1975,16 @@
     },
     "103": {
         "name": "Maple Ski Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 42.8170709,
             "longitude": -74.0371723
         },
-        "latitude": 42.8170709,
-        "longitude": -74.0371723,
+        "location_name": "Schenectady, NY, USA",
         "vertical": 270,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Schenectady, NY, USA",
         "num_trails": 8,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -2215,18 +1993,16 @@
     },
     "290": {
         "name": "Maplelag Resort",
-        "location": {
+        "coordinates": {
             "latitude": 47.009156,
             "longitude": -95.7793197
         },
-        "latitude": 47.009156,
-        "longitude": -95.7793197,
+        "location_name": "Callaway, MN, USA",
         "vertical": 110,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Callaway, MN, USA",
         "num_trails": 17,
         "num_lifts": null,
         "is_open_nights": false,
@@ -2235,18 +2011,16 @@
     },
     "104": {
         "name": "Marquette Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 46.5082074,
             "longitude": -87.42339
         },
-        "latitude": 46.5082074,
-        "longitude": -87.42339,
+        "location_name": "Marquette, MI, USA",
         "vertical": 540,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Marquette, MI, USA",
         "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -2255,18 +2029,16 @@
     },
     "105": {
         "name": "Massanutten Resort",
-        "location": {
+        "coordinates": {
             "latitude": 38.4035359,
             "longitude": -78.7572956
         },
-        "latitude": 38.4035359,
-        "longitude": -78.7572956,
+        "location_name": "Massanutten, VA, USA",
         "vertical": 1100,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Massanutten, VA, USA",
         "num_trails": 23,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -2275,18 +2047,16 @@
     },
     "382": {
         "name": "Massif du Sud",
-        "location": {
+        "coordinates": {
             "latitude": 46.621511,
             "longitude": -70.5247494
         },
-        "latitude": 46.621511,
-        "longitude": -70.5247494,
+        "location_name": "Saint-Phil\u00e9mon, Quebec",
         "vertical": 1686,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Saint-Phil\u00e9mon, Quebec",
         "num_trails": 37,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -2295,18 +2065,16 @@
     },
     "267": {
         "name": "McIntyre Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 43.00755388,
             "longitude": -71.44381919
         },
-        "latitude": 43.00755388,
-        "longitude": -71.44381919,
+        "location_name": "Manchester, NH, USA",
         "vertical": 200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": true,
-        "city": "Manchester, NH, USA",
         "num_trails": 11,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -2315,18 +2083,16 @@
     },
     "106": {
         "name": "Meadowlark Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 44.1636263,
             "longitude": -107.2238357
         },
-        "latitude": 44.1636263,
-        "longitude": -107.2238357,
+        "location_name": "Ten Sleep, WY, USA",
         "vertical": 735,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Ten Sleep, WY, USA",
         "num_trails": 14,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -2335,18 +2101,16 @@
     },
     "292": {
         "name": "Methow Trails XC",
-        "location": {
+        "coordinates": {
             "latitude": 48.4681634,
             "longitude": -120.1825961
         },
-        "latitude": 48.4681634,
-        "longitude": -120.1825961,
+        "location_name": "Winthrop, WA, USA",
         "vertical": 2250,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Winthrop, WA, USA",
         "num_trails": 64,
         "num_lifts": null,
         "is_open_nights": false,
@@ -2355,18 +2119,16 @@
     },
     "348": {
         "name": "Middlebury Snowbowl",
-        "location": {
+        "coordinates": {
             "latitude": 43.939029933484,
             "longitude": -72.957726677625
         },
-        "latitude": 43.939029933484,
-        "longitude": -72.957726677625,
+        "location_name": "Hancock, VT",
         "vertical": 1020,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Hancock, VT",
         "num_trails": 17,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -2375,18 +2137,16 @@
     },
     "293": {
         "name": "Minocqua Winter Park",
-        "location": {
+        "coordinates": {
             "latitude": 45.830018,
             "longitude": -89.8977884
         },
-        "latitude": 45.830018,
-        "longitude": -89.8977884,
+        "location_name": "Minocqua, WI, USA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Minocqua, WI, USA",
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": false,
@@ -2395,18 +2155,16 @@
     },
     "107": {
         "name": "Mission Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 47.2924657,
             "longitude": -120.4024513
         },
-        "latitude": 47.2924657,
-        "longitude": -120.4024513,
+        "location_name": "Wenatchee, WA, USA",
         "vertical": 2250,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Wenatchee, WA, USA",
         "num_trails": 54,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -2415,18 +2173,16 @@
     },
     "108": {
         "name": "Mohawk Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 41.838231,
             "longitude": -73.3176389
         },
-        "latitude": 41.838231,
-        "longitude": -73.3176389,
+        "location_name": "Cornwall, CT, USA",
         "vertical": 650,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Cornwall, CT, USA",
         "num_trails": 26,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -2435,18 +2191,16 @@
     },
     "374": {
         "name": "Mont Rigaud",
-        "location": {
+        "coordinates": {
             "latitude": 45.4680559,
             "longitude": -74.4091987
         },
-        "latitude": 45.4680559,
-        "longitude": -74.4091987,
+        "location_name": "Riquad QC, Canada",
         "vertical": 394,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Riquad QC, Canada",
         "num_trails": 15,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -2455,18 +2209,16 @@
     },
     "268": {
         "name": "Mont Ripley Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 47.12809236,
             "longitude": -88.56009945
         },
-        "latitude": 47.12809236,
-        "longitude": -88.56009945,
+        "location_name": "Hancock , MI, USA",
         "vertical": 440,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": true,
-        "city": "Hancock , MI, USA",
         "num_trails": 24,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -2475,18 +2227,16 @@
     },
     "109": {
         "name": "Montage Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 41.3512429,
             "longitude": -75.6654972
         },
-        "latitude": 41.3512429,
-        "longitude": -75.6654972,
+        "location_name": "Scranton PA, PA, USA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Scranton PA, PA, USA",
         "num_trails": 27,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -2495,18 +2245,16 @@
     },
     "110": {
         "name": "Montana Snowbowl",
-        "location": {
+        "coordinates": {
             "latitude": 47.014436,
             "longitude": -114.0021483
         },
-        "latitude": 47.014436,
-        "longitude": -114.0021483,
+        "location_name": "Missoula, MT, USA",
         "vertical": 2600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Missoula, MT, USA",
         "num_trails": 68,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -2515,18 +2263,16 @@
     },
     "322": {
         "name": "Moose Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 64.941226825412,
             "longitude": -147.99068199473
         },
-        "latitude": 64.941226825412,
-        "longitude": -147.99068199473,
+        "location_name": "Fairbanks, AK",
         "vertical": 1300,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Fairbanks, AK",
         "num_trails": 42,
         "num_lifts": 1,
         "is_open_nights": false,
@@ -2535,18 +2281,16 @@
     },
     "111": {
         "name": "Mount Baldy Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 48.5258002,
             "longitude": -89.1308235
         },
-        "latitude": 48.5258002,
-        "longitude": -89.1308235,
+        "location_name": "Thunder Bay, ON, CA",
         "vertical": 476,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Thunder Bay, ON, CA",
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -2555,18 +2299,16 @@
     },
     "113": {
         "name": "Mount Kato",
-        "location": {
+        "coordinates": {
             "latitude": 44.1331301,
             "longitude": -94.0359465
         },
-        "latitude": 44.1331301,
-        "longitude": -94.0359465,
+        "location_name": "Mankato, MN, USA",
         "vertical": 240,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mankato, MN, USA",
         "num_trails": 19,
         "num_lifts": 10,
         "is_open_nights": true,
@@ -2575,18 +2317,16 @@
     },
     "114": {
         "name": "Mountain High",
-        "location": {
+        "coordinates": {
             "latitude": 34.3769418,
             "longitude": -117.6941045
         },
-        "latitude": 34.3769418,
-        "longitude": -117.6941045,
+        "location_name": "Wrightwood, CA, USA",
         "vertical": 1600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Wrightwood, CA, USA",
         "num_trails": 50,
         "num_lifts": 14,
         "is_open_nights": true,
@@ -2595,15 +2335,13 @@
     },
     "338": {
         "name": "Mt Eyak",
-        "location": null,
-        "latitude": null,
-        "longitude": null,
+        "coordinates": null,
+        "location_name": "",
         "vertical": null,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "",
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
@@ -2612,18 +2350,16 @@
     },
     "347": {
         "name": "Mt. Abram",
-        "location": {
+        "coordinates": {
             "latitude": 44.379734955115,
             "longitude": -70.706811255825
         },
-        "latitude": 44.379734955115,
-        "longitude": -70.706811255825,
+        "location_name": "Greenwood, Maine",
         "vertical": 1050,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Greenwood, Maine",
         "num_trails": 43,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -2632,18 +2368,16 @@
     },
     "379": {
         "name": "Mt. Holiday",
-        "location": {
+        "coordinates": {
             "latitude": 44.7423148,
             "longitude": -85.5135188
         },
-        "latitude": 44.7423148,
-        "longitude": -85.5135188,
+        "location_name": "Traverse City, MI",
         "vertical": 200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Traverse City, MI",
         "num_trails": 12,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -2652,18 +2386,16 @@
     },
     "181": {
         "name": "Mt. Hood Meadows",
-        "location": {
+        "coordinates": {
             "latitude": 45.3317552,
             "longitude": -121.6677651
         },
-        "latitude": 45.3317552,
-        "longitude": -121.6677651,
+        "location_name": "Mt. Hood, OR, USA",
         "vertical": 1939,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mt. Hood, OR, USA",
         "num_trails": 142,
         "num_lifts": 12,
         "is_open_nights": true,
@@ -2672,18 +2404,16 @@
     },
     "169": {
         "name": "Mt. Racey Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 43.0503785,
             "longitude": 141.9688449
         },
-        "latitude": 43.0503785,
-        "longitude": 141.9688449,
+        "location_name": "Yubari, Hokkaido",
         "vertical": 1326,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Yubari, Hokkaido",
         "num_trails": 18,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -2692,18 +2422,16 @@
     },
     "116": {
         "name": "Mt. Shasta",
-        "location": {
+        "coordinates": {
             "latitude": 41.321106,
             "longitude": -122.2060823
         },
-        "latitude": 41.321106,
-        "longitude": -122.2060823,
+        "location_name": "Mount Shasta, CA, USA",
         "vertical": 2036,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mount Shasta, CA, USA",
         "num_trails": 38,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -2712,18 +2440,16 @@
     },
     "332": {
         "name": "Mt. Washington",
-        "location": {
+        "coordinates": {
             "latitude": 49.804509751028,
             "longitude": -125.26140942545
         },
-        "latitude": 49.804509751028,
-        "longitude": -125.26140942545,
+        "location_name": "",
         "vertical": 1657,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "",
         "num_trails": 81,
         "num_lifts": 11,
         "is_open_nights": false,
@@ -2732,18 +2458,16 @@
     },
     "360": {
         "name": "Muica Snow Resort",
-        "location": {
+        "coordinates": {
             "latitude": 37.0719009,
             "longitude": 138.8433196
         },
-        "latitude": 37.0719009,
-        "longitude": 138.8433196,
+        "location_name": "Minamiuonuma, Niigata, Japan",
         "vertical": 1312,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Minamiuonuma, Niigata, Japan",
         "num_trails": 12,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -2752,18 +2476,16 @@
     },
     "354": {
         "name": "Nayoro Piyashiri Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 44.404547241474,
             "longitude": 142.51389060792
         },
-        "latitude": 44.404547241474,
-        "longitude": 142.51389060792,
+        "location_name": "Nisshin, Nayoro City, Hokkaido, Japan",
         "vertical": 1578,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Nisshin, Nayoro City, Hokkaido, Japan",
         "num_trails": 12,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -2772,18 +2494,16 @@
     },
     "295": {
         "name": "Nelson Nordic Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 49.409235,
             "longitude": -117.2137275
         },
-        "latitude": 49.409235,
-        "longitude": -117.2137275,
+        "location_name": "Nelson, BC, CA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Nelson, BC, CA",
         "num_trails": 15,
         "num_lifts": null,
         "is_open_nights": true,
@@ -2792,18 +2512,16 @@
     },
     "311": {
         "name": "Nickel Plate Cross Country Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 49.383699,
             "longitude": -119.9567878
         },
-        "latitude": 49.383699,
-        "longitude": -119.9567878,
+        "location_name": "Hedley, BC, CA",
         "vertical": 495,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Hedley, BC, CA",
         "num_trails": 28,
         "num_lifts": null,
         "is_open_nights": false,
@@ -2812,18 +2530,16 @@
     },
     "358": {
         "name": "Ninox Snow Park",
-        "location": {
+        "coordinates": {
             "latitude": 37.9268164,
             "longitude": 139.4653277
         },
-        "latitude": 37.9268164,
-        "longitude": 139.4653277,
+        "location_name": "Niigata, Shibata, Kamisanko, \u5927\u5e73\u56fd\u6709\u6797\u7121\u756a\u5730",
         "vertical": 709,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Niigata, Shibata, Kamisanko, \u5927\u5e73\u56fd\u6709\u6797\u7121\u756a\u5730",
         "num_trails": 2,
         "num_lifts": 2,
         "is_open_nights": true,
@@ -2832,18 +2548,16 @@
     },
     "117": {
         "name": "Nordic Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 44.1214576,
             "longitude": -89.1838618
         },
-        "latitude": 44.1214576,
-        "longitude": -89.1838618,
+        "location_name": "Wild Rose, WI, USA",
         "vertical": 265,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Wild Rose, WI, USA",
         "num_trails": 16,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -2852,18 +2566,16 @@
     },
     "386": {
         "name": "Norway Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 45.7894874,
             "longitude": -87.8724272
         },
-        "latitude": 45.7894874,
-        "longitude": -87.8724272,
+        "location_name": "Norway, MI",
         "vertical": 500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Norway, MI",
         "num_trails": 17,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -2872,18 +2584,16 @@
     },
     "118": {
         "name": "Nubs Nob",
-        "location": {
+        "coordinates": {
             "latitude": 45.471166,
             "longitude": -84.9069303
         },
-        "latitude": 45.471166,
-        "longitude": -84.9069303,
+        "location_name": "Harbor Springs, MI, USA",
         "vertical": 425,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Harbor Springs, MI, USA",
         "num_trails": 53,
         "num_lifts": 10,
         "is_open_nights": true,
@@ -2892,18 +2602,16 @@
     },
     "119": {
         "name": "Ober Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 35.7031411,
             "longitude": -83.5608417
         },
-        "latitude": 35.7031411,
-        "longitude": -83.5608417,
+        "location_name": "Gatlinburg, TN, USA",
         "vertical": 660,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gatlinburg, TN, USA",
         "num_trails": 10,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -2912,18 +2620,16 @@
     },
     "120": {
         "name": "Okunakayama Kogen",
-        "location": {
+        "coordinates": {
             "latitude": 40.0874,
             "longitude": 141.1715197
         },
-        "latitude": 40.0874,
-        "longitude": 141.1715197,
+        "location_name": "Morioka, Tohoku, Japan",
         "vertical": 1273,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Morioka, Tohoku, Japan",
         "num_trails": 11,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -2932,18 +2638,16 @@
     },
     "352": {
         "name": "Palcall Tsumagoi Resort",
-        "location": {
+        "coordinates": {
             "latitude": 36.55600188804,
             "longitude": 138.46402342241
         },
-        "latitude": 36.55600188804,
-        "longitude": 138.46402342241,
+        "location_name": "Gunma, Agatsuma District, Tsumagoi, Japan",
         "vertical": 2395,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gunma, Agatsuma District, Tsumagoi, Japan",
         "num_trails": 22,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -2952,18 +2656,16 @@
     },
     "121": {
         "name": "Pass Powderkeg",
-        "location": {
+        "coordinates": {
             "latitude": 49.60297943,
             "longitude": -114.4492817
         },
-        "latitude": 49.60297943,
-        "longitude": -114.4492817,
+        "location_name": "Crowsnest Pass, AB, CA",
         "vertical": 985,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Crowsnest Pass, AB, CA",
         "num_trails": 27,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -2972,18 +2674,16 @@
     },
     "122": {
         "name": "Pats Peak",
-        "location": {
+        "coordinates": {
             "latitude": 43.1639733,
             "longitude": -71.8002399
         },
-        "latitude": 43.1639733,
-        "longitude": -71.8002399,
+        "location_name": "Henniker, NH, USA",
         "vertical": 770,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Henniker, NH, USA",
         "num_trails": 28,
         "num_lifts": 11,
         "is_open_nights": true,
@@ -2992,18 +2692,16 @@
     },
     "325": {
         "name": "Paul Bunyan Ski Hill",
-        "location": {
+        "coordinates": {
             "latitude": 45.325719991721,
             "longitude": -88.524082142113
         },
-        "latitude": 45.325719991721,
-        "longitude": -88.524082142113,
+        "location_name": "Lakewood, WI",
         "vertical": null,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": true,
-        "city": "Lakewood, WI",
         "num_trails": 10,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -3012,18 +2710,16 @@
     },
     "123": {
         "name": "Peek \u2018n Peak",
-        "location": {
+        "coordinates": {
             "latitude": 42.0623302,
             "longitude": -79.7381204
         },
-        "latitude": 42.0623302,
-        "longitude": -79.7381204,
+        "location_name": "Clymer, NY, USA",
         "vertical": 400,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Clymer, NY, USA",
         "num_trails": 27,
         "num_lifts": 9,
         "is_open_nights": true,
@@ -3032,18 +2728,16 @@
     },
     "124": {
         "name": "Phoenix Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 49.103709,
             "longitude": -118.5866193
         },
-        "latitude": 49.103709,
-        "longitude": -118.5866193,
+        "location_name": "Grand Forks, BC, CA",
         "vertical": 705,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Grand Forks, BC, CA",
         "num_trails": 22,
         "num_lifts": 2,
         "is_open_nights": true,
@@ -3052,18 +2746,16 @@
     },
     "125": {
         "name": "Pine Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 45.8391227,
             "longitude": -88.0913177
         },
-        "latitude": 45.8391227,
-        "longitude": -88.0913177,
+        "location_name": "Iron Mountain, MI, USA",
         "vertical": 364,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Iron Mountain, MI, USA",
         "num_trails": 35,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -3072,18 +2764,16 @@
     },
     "126": {
         "name": "Pippu Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 43.9331104,
             "longitude": 142.4972506
         },
-        "latitude": 43.9331104,
-        "longitude": 142.4972506,
+        "location_name": "Asahikawa, Hokkaido, Japan",
         "vertical": 1053,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Asahikawa, Hokkaido, Japan",
         "num_trails": 9,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -3092,18 +2782,16 @@
     },
     "127": {
         "name": "Pomerelle Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.3179871,
             "longitude": -113.6103326
         },
-        "latitude": 42.3179871,
-        "longitude": -113.6103326,
+        "location_name": "Burley, ID, USA",
         "vertical": 998,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Burley, ID, USA",
         "num_trails": 22,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -3112,18 +2800,16 @@
     },
     "129": {
         "name": "Powder Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 45.3438676,
             "longitude": -94.3075934
         },
-        "latitude": 45.3438676,
-        "longitude": -94.3075934,
+        "location_name": "Kimball, MN, USA",
         "vertical": 300,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Kimball, MN, USA",
         "num_trails": 13,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -3132,18 +2818,16 @@
     },
     "333": {
         "name": "Powderhorn",
-        "location": {
+        "coordinates": {
             "latitude": 39.070007153611,
             "longitude": -108.15083984603
         },
-        "latitude": 39.070007153611,
-        "longitude": -108.15083984603,
+        "location_name": "Mesa, CO",
         "vertical": 1697,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mesa, CO",
         "num_trails": 40,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -3152,18 +2836,16 @@
     },
     "297": {
         "name": "Quarry Road Trails",
-        "location": {
+        "coordinates": {
             "latitude": 44.5826282,
             "longitude": -69.6605718
         },
-        "latitude": 44.5826282,
-        "longitude": -69.6605718,
+        "location_name": "Waterville, ME, USA",
         "vertical": 270,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Waterville, ME, USA",
         "num_trails": 22,
         "num_lifts": null,
         "is_open_nights": true,
@@ -3172,18 +2854,16 @@
     },
     "344": {
         "name": "Ragged Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 43.485425809051,
             "longitude": -71.84227591883
         },
-        "latitude": 43.485425809051,
-        "longitude": -71.84227591883,
+        "location_name": "Danbury, NH",
         "vertical": 1250,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Danbury, NH",
         "num_trails": 57,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -3192,18 +2872,16 @@
     },
     "298": {
         "name": "Rangeley Lakes Trail Center",
-        "location": {
+        "coordinates": {
             "latitude": 44.9564326,
             "longitude": -70.5684757
         },
-        "latitude": 44.9564326,
-        "longitude": -70.5684757,
+        "location_name": "Rangeley, ME, USA",
         "vertical": 400,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Rangeley, ME, USA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
@@ -3212,18 +2890,16 @@
     },
     "130": {
         "name": "Red Lodge",
-        "location": {
+        "coordinates": {
             "latitude": 45.19147328,
             "longitude": -109.3352328
         },
-        "latitude": 45.19147328,
-        "longitude": -109.3352328,
+        "location_name": "Billings, MT, USA",
         "vertical": 2400,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Billings, MT, USA",
         "num_trails": 70,
         "num_lifts": 8,
         "is_open_nights": false,
@@ -3232,18 +2908,16 @@
     },
     "299": {
         "name": "Rikert Nordic Center",
-        "location": {
+        "coordinates": {
             "latitude": 43.954787,
             "longitude": -72.9936673
         },
-        "latitude": 43.954787,
-        "longitude": -72.9936673,
+        "location_name": "Ripton, VT, USA",
         "vertical": 350,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Ripton, VT, USA",
         "num_trails": 35,
         "num_lifts": null,
         "is_open_nights": false,
@@ -3252,18 +2926,16 @@
     },
     "131": {
         "name": "Saddleback Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 44.9462173,
             "longitude": -70.5296617
         },
-        "latitude": 44.9462173,
-        "longitude": -70.5296617,
+        "location_name": "Rangeley, ME, USA",
         "vertical": 2000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Rangeley, ME, USA",
         "num_trails": 68,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -3272,18 +2944,16 @@
     },
     "132": {
         "name": "Saskadena Six Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 43.6650614,
             "longitude": -72.5458462
         },
-        "latitude": 43.6650614,
-        "longitude": -72.5458462,
+        "location_name": "Woodstock, VT, USA",
         "vertical": 650,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Woodstock, VT, USA",
         "num_trails": 28,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -3292,18 +2962,16 @@
     },
     "133": {
         "name": "Sasquatch Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 49.379918,
             "longitude": -121.9380493
         },
-        "latitude": 49.379918,
-        "longitude": -121.9380493,
+        "location_name": "Agassiz, BC, CA",
         "vertical": 1200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Agassiz, BC, CA",
         "num_trails": 36,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -3312,18 +2980,16 @@
     },
     "134": {
         "name": "Schuss Mountain at Shanty Creek",
-        "location": {
+        "coordinates": {
             "latitude": 44.940947,
             "longitude": -85.1357063
         },
-        "latitude": 44.940947,
-        "longitude": -85.1357063,
+        "location_name": "Bellaire, MI, USA",
         "vertical": 450,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Bellaire, MI, USA",
         "num_trails": 42,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -3332,18 +2998,16 @@
     },
     "135": {
         "name": "Shames Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 54.484131,
             "longitude": -128.9553952
         },
-        "latitude": 54.484131,
-        "longitude": -128.9553952,
+        "location_name": "Terrace, BC, CA",
         "vertical": 1600,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Terrace, BC, CA",
         "num_trails": 30,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -3352,18 +3016,16 @@
     },
     "136": {
         "name": "Shawnee Mountain Ski Area",
-        "location": {
+        "coordinates": {
             "latitude": 41.03977382,
             "longitude": -75.08480066
         },
-        "latitude": 41.03977382,
-        "longitude": -75.08480066,
+        "location_name": "East Stroudsburg , PA, USA",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "East Stroudsburg , PA, USA",
         "num_trails": 23,
         "num_lifts": 11,
         "is_open_nights": true,
@@ -3372,18 +3034,16 @@
     },
     "188": {
         "name": "Shimokura",
-        "location": {
+        "coordinates": {
             "latitude": 39.8990404,
             "longitude": 140.9543099
         },
-        "latitude": 39.8990404,
-        "longitude": 140.9543099,
+        "location_name": "Hachimantai, Iwate, Japan",
         "vertical": 1804,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Hachimantai, Iwate, Japan",
         "num_trails": 7,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -3392,18 +3052,16 @@
     },
     "138": {
         "name": "Silver Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 47.4950187,
             "longitude": -116.1343218
         },
-        "latitude": 47.4950187,
-        "longitude": -116.1343218,
+        "location_name": "Kellogg, ID, USA",
         "vertical": 2200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Kellogg, ID, USA",
         "num_trails": 83,
         "num_lifts": 7,
         "is_open_nights": false,
@@ -3412,18 +3070,16 @@
     },
     "269": {
         "name": "Skaneateles Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 42.91535333,
             "longitude": -76.33377842
         },
-        "latitude": 42.91535333,
-        "longitude": -76.33377842,
+        "location_name": "Syracuse, NY, USA",
         "vertical": 330,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Syracuse, NY, USA",
         "num_trails": 7,
         "num_lifts": 3,
         "is_open_nights": true,
@@ -3432,18 +3088,16 @@
     },
     "139": {
         "name": "Ski Big Bear",
-        "location": {
+        "coordinates": {
             "latitude": 41.5233005,
             "longitude": -75.0278006
         },
-        "latitude": 41.5233005,
-        "longitude": -75.0278006,
+        "location_name": "Lackawaxen, PA, USA",
         "vertical": 650,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Lackawaxen, PA, USA",
         "num_trails": 18,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -3452,18 +3106,16 @@
     },
     "140": {
         "name": "Ski Bluewood",
-        "location": {
+        "coordinates": {
             "latitude": 46.0824682,
             "longitude": -117.853694
         },
-        "latitude": 46.0824682,
-        "longitude": -117.853694,
+        "location_name": "Dayton, WA, USA",
         "vertical": 1120,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Dayton, WA, USA",
         "num_trails": 25,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -3472,18 +3124,16 @@
     },
     "141": {
         "name": "Ski Sawmill",
-        "location": {
+        "coordinates": {
             "latitude": 41.5209883,
             "longitude": -77.2925621
         },
-        "latitude": 41.5209883,
-        "longitude": -77.2925621,
+        "location_name": "Morris, PA, USA",
         "vertical": 515,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Morris, PA, USA",
         "num_trails": 13,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -3492,18 +3142,16 @@
     },
     "177": {
         "name": "SkiWelt",
-        "location": {
+        "coordinates": {
             "latitude": 47.4787937,
             "longitude": 12.2008647
         },
-        "latitude": 47.4787937,
-        "longitude": 12.2008647,
+        "location_name": "Kufstein, Austria",
         "vertical": 4098,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Kufstein, Austria",
         "num_trails": 279,
         "num_lifts": 82,
         "is_open_nights": true,
@@ -3512,18 +3160,16 @@
     },
     "142": {
         "name": "Snow King Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 43.4728087,
             "longitude": -110.7586156
         },
-        "latitude": 43.4728087,
-        "longitude": -110.7586156,
+        "location_name": "Jackson, WY, USA",
         "vertical": 1560,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Jackson, WY, USA",
         "num_trails": 46,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -3532,18 +3178,16 @@
     },
     "143": {
         "name": "Snow Ridge",
-        "location": {
+        "coordinates": {
             "latitude": 43.6397477,
             "longitude": -75.4249888
         },
-        "latitude": 43.6397477,
-        "longitude": -75.4249888,
+        "location_name": "Turin, NY, USA",
         "vertical": 500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Turin, NY, USA",
         "num_trails": 33,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -3552,18 +3196,16 @@
     },
     "144": {
         "name": "Snowriver",
-        "location": {
+        "coordinates": {
             "latitude": 46.500921527786,
             "longitude": -89.966801281413
         },
-        "latitude": 46.500921527786,
-        "longitude": -89.966801281413,
+        "location_name": "Wakefield, MI, USA",
         "vertical": 538,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Wakefield, MI, USA",
         "num_trails": 71,
         "num_lifts": 11,
         "is_open_nights": false,
@@ -3572,18 +3214,16 @@
     },
     "145": {
         "name": "Snowstar",
-        "location": {
+        "coordinates": {
             "latitude": 41.425203,
             "longitude": -90.7487552
         },
-        "latitude": 41.425203,
-        "longitude": -90.7487552,
+        "location_name": "Andalusia, IL, USA",
         "vertical": 262,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Andalusia, IL, USA",
         "num_trails": 15,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -3592,18 +3232,16 @@
     },
     "146": {
         "name": "Soldier Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 43.484719,
             "longitude": -114.8394912
         },
-        "latitude": 43.484719,
-        "longitude": -114.8394912,
+        "location_name": "Fairfield, ID, USA",
         "vertical": 1421,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Fairfield, ID, USA",
         "num_trails": 35,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -3612,18 +3250,16 @@
     },
     "300": {
         "name": "Sovereign Lake Nordic Club",
-        "location": {
+        "coordinates": {
             "latitude": 50.36244,
             "longitude": -119.1077133
         },
-        "latitude": 50.36244,
-        "longitude": -119.1077133,
+        "location_name": "Vernon, BC, CA",
         "vertical": 560,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Vernon, BC, CA",
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
@@ -3632,18 +3268,16 @@
     },
     "147": {
         "name": "Spirit Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 46.7182684,
             "longitude": -92.2167365
         },
-        "latitude": 46.7182684,
-        "longitude": -92.2167365,
+        "location_name": "Duluth, MN, USA",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Duluth, MN, USA",
         "num_trails": 22,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -3652,18 +3286,16 @@
     },
     "148": {
         "name": "Sundown Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 42.5152436,
             "longitude": -90.8217712
         },
-        "latitude": 42.5152436,
-        "longitude": -90.8217712,
+        "location_name": "Dubuque, IA, USA",
         "vertical": 475,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Dubuque, IA, USA",
         "num_trails": 21,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -3672,18 +3304,16 @@
     },
     "149": {
         "name": "Sunlight Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 39.3997821,
             "longitude": -107.341345
         },
-        "latitude": 39.3997821,
-        "longitude": -107.341345,
+        "location_name": "Glenwood Springs, CO, USA",
         "vertical": 2010,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Glenwood Springs, CO, USA",
         "num_trails": 72,
         "num_lifts": 3,
         "is_open_nights": false,
@@ -3692,18 +3322,16 @@
     },
     "150": {
         "name": "Sunrise Park",
-        "location": {
+        "coordinates": {
             "latitude": 33.9737271,
             "longitude": -109.5668086
         },
-        "latitude": 33.9737271,
-        "longitude": -109.5668086,
+        "location_name": "Greer, AZ, USA",
         "vertical": 1800,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Greer, AZ, USA",
         "num_trails": 65,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -3712,18 +3340,16 @@
     },
     "151": {
         "name": "Swain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.4765984,
             "longitude": -77.8577131
         },
-        "latitude": 42.4765984,
-        "longitude": -77.8577131,
+        "location_name": "Swain, NY, USA",
         "vertical": 650,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Swain, NY, USA",
         "num_trails": 35,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -3732,18 +3358,16 @@
     },
     "184": {
         "name": "Swiss Valley",
-        "location": {
+        "coordinates": {
             "latitude": 41.9546966,
             "longitude": -85.8299194
         },
-        "latitude": 41.9546966,
-        "longitude": -85.8299194,
+        "location_name": "Jones, MI, USA",
         "vertical": 225,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Jones, MI, USA",
         "num_trails": 11,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -3752,18 +3376,16 @@
     },
     "361": {
         "name": "Takasu Snow Park",
-        "location": {
+        "coordinates": {
             "latitude": 35.9982091,
             "longitude": 136.8747543
         },
-        "latitude": 35.9982091,
-        "longitude": 136.8747543,
+        "location_name": "Gujo, Gifu, Japan",
         "vertical": 1968,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gujo, Gifu, Japan",
         "num_trails": 13,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -3772,18 +3394,16 @@
     },
     "153": {
         "name": "Tamarack Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 44.6707683,
             "longitude": -116.1256351
         },
-        "latitude": 44.6707683,
-        "longitude": -116.1256351,
+        "location_name": "Donnelly , ID, USA",
         "vertical": 2800,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Donnelly , ID, USA",
         "num_trails": 50,
         "num_lifts": 7,
         "is_open_nights": false,
@@ -3792,18 +3412,16 @@
     },
     "376": {
         "name": "Tangram Ski Circus",
-        "location": {
+        "coordinates": {
             "latitude": 36.8533811,
             "longitude": 138.2604231
         },
-        "latitude": 36.8533811,
-        "longitude": 138.2604231,
+        "location_name": "Shinano, Nagano, Japan",
         "vertical": 1706,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Shinano, Nagano, Japan",
         "num_trails": 17,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -3812,18 +3430,16 @@
     },
     "154": {
         "name": "Tazawako",
-        "location": {
+        "coordinates": {
             "latitude": 39.7623337,
             "longitude": 140.7681328
         },
-        "latitude": 39.7623337,
-        "longitude": 140.7681328,
+        "location_name": "Tazawako, Tohoku",
         "vertical": 1995,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Tazawako, Tohoku",
         "num_trails": 13,
         "num_lifts": 6,
         "is_open_nights": false,
@@ -3832,18 +3448,16 @@
     },
     "301": {
         "name": "Telemark Nordic Center",
-        "location": {
+        "coordinates": {
             "latitude": 49.863107,
             "longitude": -119.7175073
         },
-        "latitude": 49.863107,
-        "longitude": -119.7175073,
+        "location_name": "Kelowna, BC, CA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Kelowna, BC, CA",
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
@@ -3852,18 +3466,16 @@
     },
     "155": {
         "name": "Terry Peak",
-        "location": {
+        "coordinates": {
             "latitude": 44.3345768,
             "longitude": -103.8429043
         },
-        "latitude": 44.3345768,
-        "longitude": -103.8429043,
+        "location_name": "Lead, SD, USA",
         "vertical": 1100,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Lead, SD, USA",
         "num_trails": 30,
         "num_lifts": 5,
         "is_open_nights": false,
@@ -3872,18 +3484,16 @@
     },
     "157": {
         "name": "Titus Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 44.7634267,
             "longitude": -74.2378371
         },
-        "latitude": 44.7634267,
-        "longitude": -74.2378371,
+        "location_name": "Malone, NY, USA",
         "vertical": 1200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Malone, NY, USA",
         "num_trails": 53,
         "num_lifts": 9,
         "is_open_nights": true,
@@ -3892,18 +3502,16 @@
     },
     "158": {
         "name": "Togakushi Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 36.754361,
             "longitude": 138.0920507
         },
-        "latitude": 36.754361,
-        "longitude": 138.0920507,
+        "location_name": "Nagano, Japan",
         "vertical": 1732,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Nagano, Japan",
         "num_trails": 19,
         "num_lifts": 7,
         "is_open_nights": false,
@@ -3912,18 +3520,16 @@
     },
     "302": {
         "name": "Trapp Family Lodge",
-        "location": {
+        "coordinates": {
             "latitude": 44.4654613,
             "longitude": -72.7477526
         },
-        "latitude": 44.4654613,
-        "longitude": -72.7477526,
+        "location_name": "Stowe, VT, USA",
         "vertical": 800,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Stowe, VT, USA",
         "num_trails": 24,
         "num_lifts": null,
         "is_open_nights": false,
@@ -3932,18 +3538,16 @@
     },
     "159": {
         "name": "Tree Tops Resort",
-        "location": {
+        "coordinates": {
             "latitude": 45.0343188,
             "longitude": -84.5887653
         },
-        "latitude": 45.0343188,
-        "longitude": -84.5887653,
+        "location_name": "Gayord, MI, USA",
         "vertical": 225,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gayord, MI, USA",
         "num_trails": 25,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -3952,18 +3556,16 @@
     },
     "160": {
         "name": "Trollhaugen",
-        "location": {
+        "coordinates": {
             "latitude": 45.3513159,
             "longitude": -92.6206738
         },
-        "latitude": 45.3513159,
-        "longitude": -92.6206738,
+        "location_name": "Dresser, WI, USA",
         "vertical": 280,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Dresser, WI, USA",
         "num_trails": 30,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -3972,18 +3574,16 @@
     },
     "304": {
         "name": "Turpin Meadow Ranch",
-        "location": {
+        "coordinates": {
             "latitude": 43.8549223,
             "longitude": -110.2708794
         },
-        "latitude": 43.8549223,
-        "longitude": -110.2708794,
+        "location_name": "Jackson , WY, USA",
         "vertical": 600,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Jackson , WY, USA",
         "num_trails": 7,
         "num_lifts": null,
         "is_open_nights": true,
@@ -3992,18 +3592,16 @@
     },
     "161": {
         "name": "Tussey Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 40.769202,
             "longitude": -77.7565121
         },
-        "latitude": 40.769202,
-        "longitude": -77.7565121,
+        "location_name": "State College, PA, USA",
         "vertical": 500,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "State College, PA, USA",
         "num_trails": 8,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -4012,18 +3610,16 @@
     },
     "162": {
         "name": "Tyrol Basin Ski and Snowboard",
-        "location": {
+        "coordinates": {
             "latitude": 43.0447546,
             "longitude": -89.7855207
         },
-        "latitude": 43.0447546,
-        "longitude": -89.7855207,
+        "location_name": "Mt. Horeb, WI, USA",
         "vertical": 300,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Mt. Horeb, WI, USA",
         "num_trails": 24,
         "num_lifts": 7,
         "is_open_nights": true,
@@ -4032,18 +3628,16 @@
     },
     "364": {
         "name": "Washigatake Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 35.942471,
             "longitude": 136.9169811
         },
-        "latitude": 35.942471,
-        "longitude": 136.9169811,
+        "location_name": "Gujo, Gifu, Japan",
         "vertical": 1444,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gujo, Gifu, Japan",
         "num_trails": 13,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -4052,18 +3646,16 @@
     },
     "163": {
         "name": "Waterville Valley Resort",
-        "location": {
+        "coordinates": {
             "latitude": 43.965814884251,
             "longitude": -71.528136004038
         },
-        "latitude": 43.965814884251,
-        "longitude": -71.528136004038,
+        "location_name": "Waterville Valley, NH, USA",
         "vertical": 2020,
         "is_nordic": true,
         "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Waterville Valley, NH, USA",
         "num_trails": 62,
         "num_lifts": 11,
         "is_open_nights": true,
@@ -4072,18 +3664,16 @@
     },
     "164": {
         "name": "West Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 43.285651,
             "longitude": -73.7278653
         },
-        "latitude": 43.285651,
-        "longitude": -73.7278653,
+        "location_name": "Queensbury, NY, USA",
         "vertical": 1000,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Queensbury, NY, USA",
         "num_trails": 35,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -4092,18 +3682,16 @@
     },
     "165": {
         "name": "Whaleback Mountain",
-        "location": {
+        "coordinates": {
             "latitude": 43.601705,
             "longitude": -72.1828453
         },
-        "latitude": 43.601705,
-        "longitude": -72.1828453,
+        "location_name": "Enfield, NH, USA",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Enfield, NH, USA",
         "num_trails": 31,
         "num_lifts": 4,
         "is_open_nights": true,
@@ -4112,18 +3700,16 @@
     },
     "307": {
         "name": "White Grass Ski Touring",
-        "location": {
+        "coordinates": {
             "latitude": 39.019,
             "longitude": -79.4242803
         },
-        "latitude": 39.019,
-        "longitude": -79.4242803,
+        "location_name": "Davis, WV, USA",
         "vertical": 1200,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Davis, WV, USA",
         "num_trails": 44,
         "num_lifts": null,
         "is_open_nights": true,
@@ -4132,18 +3718,16 @@
     },
     "166": {
         "name": "White Pass",
-        "location": {
+        "coordinates": {
             "latitude": 46.6366469,
             "longitude": -121.3950684
         },
-        "latitude": 46.6366469,
-        "longitude": -121.3950684,
+        "location_name": "White Pass, WA, USA",
         "vertical": 2050,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "White Pass, WA, USA",
         "num_trails": 45,
         "num_lifts": 8,
         "is_open_nights": true,
@@ -4152,18 +3736,16 @@
     },
     "308": {
         "name": "White Pine Touring Nordic Center",
-        "location": {
+        "coordinates": {
             "latitude": 40.66233179,
             "longitude": -111.5135009
         },
-        "latitude": 40.66233179,
-        "longitude": -111.5135009,
+        "location_name": "Park City, UT, USA",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Park City, UT, USA",
         "num_trails": 5,
         "num_lifts": null,
         "is_open_nights": false,
@@ -4172,18 +3754,16 @@
     },
     "378": {
         "name": "Whitehorse Nordic Centre",
-        "location": {
+        "coordinates": {
             "latitude": 60.7306527,
             "longitude": -135.1040097
         },
-        "latitude": 60.7306527,
-        "longitude": -135.1040097,
+        "location_name": "Whitehorse, Yukon, Canada",
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Whitehorse, Yukon, Canada",
         "num_trails": null,
         "num_lifts": null,
         "is_open_nights": true,
@@ -4192,18 +3772,16 @@
     },
     "363": {
         "name": "WhitePIA Takasu",
-        "location": {
+        "coordinates": {
             "latitude": 35.9558168,
             "longitude": 136.9300044
         },
-        "latitude": 35.9558168,
-        "longitude": 136.9300044,
+        "location_name": "Gujo, Gifu, Japan",
         "vertical": 1509,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Gujo, Gifu, Japan",
         "num_trails": 13,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -4212,18 +3790,16 @@
     },
     "167": {
         "name": "Whitepine Mountain Resort",
-        "location": {
+        "coordinates": {
             "latitude": 42.9736669,
             "longitude": -109.7824737
         },
-        "latitude": 42.9736669,
-        "longitude": -109.7824737,
+        "location_name": "Pinedale, WY, USA",
         "vertical": 1100,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Pinedale, WY, USA",
         "num_trails": 29,
         "num_lifts": 2,
         "is_open_nights": false,
@@ -4232,18 +3808,16 @@
     },
     "309": {
         "name": "Williams Lake Cross Country Ski Club",
-        "location": {
+        "coordinates": {
             "latitude": 52.2464628,
             "longitude": -122.1228259
         },
-        "latitude": 52.2464628,
-        "longitude": -122.1228259,
+        "location_name": "Williams Lake, BC, CA",
         "vertical": 410,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Williams Lake, BC, CA",
         "num_trails": 30,
         "num_lifts": null,
         "is_open_nights": true,
@@ -4252,18 +3826,16 @@
     },
     "334": {
         "name": "Wintergreen",
-        "location": {
+        "coordinates": {
             "latitude": 37.93049274977,
             "longitude": -78.939293866598
         },
-        "latitude": 37.93049274977,
-        "longitude": -78.939293866598,
+        "location_name": "",
         "vertical": null,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "",
         "num_trails": 26,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -4272,18 +3844,16 @@
     },
     "168": {
         "name": "Winterplace Ski Resort",
-        "location": {
+        "coordinates": {
             "latitude": 37.596639,
             "longitude": -81.128918
         },
-        "latitude": 37.596639,
-        "longitude": -81.128918,
+        "location_name": "Flat Top , WV, USA",
         "vertical": 603,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Flat Top , WV, USA",
         "num_trails": 27,
         "num_lifts": 10,
         "is_open_nights": true,
@@ -4292,18 +3862,16 @@
     },
     "335": {
         "name": "Wisp",
-        "location": {
+        "coordinates": {
             "latitude": 39.557463271077,
             "longitude": -79.363232023281
         },
-        "latitude": 39.557463271077,
-        "longitude": -79.363232023281,
+        "location_name": "",
         "vertical": 700,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "",
         "num_trails": 33,
         "num_lifts": 13,
         "is_open_nights": true,
@@ -4312,18 +3880,16 @@
     },
     "310": {
         "name": "Woodstock Nordic Center",
-        "location": {
+        "coordinates": {
             "latitude": 43.6151845,
             "longitude": -72.5187081
         },
-        "latitude": 43.6151845,
-        "longitude": -72.5187081,
+        "location_name": "Woodstock, VT, USA",
         "vertical": 570,
         "is_nordic": true,
         "is_alpine_xc": false,
         "is_xc_only": true,
         "is_allied": false,
-        "city": "Woodstock, VT, USA",
         "num_trails": 48,
         "num_lifts": null,
         "is_open_nights": false,
@@ -4332,18 +3898,16 @@
     },
     "359": {
         "name": "Yuzawa Nakazato Snow Resort",
-        "location": {
+        "coordinates": {
             "latitude": 36.9141426,
             "longitude": 138.8490268
         },
-        "latitude": 36.9141426,
-        "longitude": 138.8490268,
+        "location_name": "Yuzawa, Niigata, Japan",
         "vertical": 800,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "city": "Yuzawa, Niigata, Japan",
         "num_trails": 16,
         "num_lifts": 6,
         "is_open_nights": false,
