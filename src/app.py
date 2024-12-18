@@ -35,17 +35,26 @@ def get_search_terms(resort):
     search_terms = [f for f in search_fields if isinstance(f, str)]
     return ' '.join(search_terms).lower()
 
+def feet_to_meters(feet):
+    """
+    Convert feet to meters, safely handling missing values
+    """
+    return int(feet * 0.30479999) if pd.notnull(feet) else np.nan
+
+
+# Load resort data
 resorts = pd.read_csv('data/resorts.csv')
 
-# Drop locations that don't have location
+# Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
-
 
 # Display and search
 resorts["radius"] = resorts.apply(get_radius, axis=1)
 resorts["color"] = resorts.apply(get_color, axis=1)
 resorts['search_terms'] = resorts.apply(get_search_terms, axis=1)
 
+# Units
+resorts['vertical_meters'] = resorts.vertical.apply(feet_to_meters)
 
 # Configure Streamlit page
 st.set_page_config(page_title="Indy Pass Resorts Map", layout="wide")
@@ -93,10 +102,10 @@ tooltip = {
     "html": """
         <b>Resort:</b> {name}<br>
         <b>City:</b> {location_name}<br>
-        <b>Vertical:</b> {vertical} ft<br>
+        <b>Vertical:</b> {vertical} ft / {vertical_meters} m<br>
         <b>Trails:</b> {num_trails}<br>
         <b>Lifts:</b> {num_lifts}<br>
-        <b>Alpine / Cross-Counry:</b> {is_alpine_xc_display}<br>
+        <b>Alpine / Cross-Country:</b> {is_alpine_xc_display}<br>
         <b>Nights:</b> {is_open_nights_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
@@ -111,7 +120,7 @@ tooltip = {
     }
 }
 
-# Create the Pydeck map view
+# Create the Pydeck map view with initial zoom
 view_state = pdk.ViewState(
     latitude=44,
     longitude=-95,
@@ -119,7 +128,7 @@ view_state = pdk.ViewState(
     pitch=0
 )
 
-# Render the map in Streamlit
+# Render the map
 st.pydeck_chart(
     pdk.Deck(
         layers=[layer],
@@ -144,7 +153,8 @@ def display_resorts_table():
         'country': 'Country',
         'latitude' : 'Latitude',
         'longitude' : 'Longitude',
-        'vertical' : 'Vertical',
+        'vertical' : 'Vertical (ft)',
+        'vertical_meters' : 'Vertical (m)',
         'is_nordic' : 'Nordic',
         'is_alpine_xc' : 'Alpine / Cross-Country',
         'is_xc_only' : 'Cross-Country Only',
@@ -164,7 +174,8 @@ def display_resorts_table():
         'Country',
         'Latitude',
         'Longitude',
-        'Vertical',
+        'Vertical (ft)',
+        'Vertical (m)',
         'Alpine / Cross-Country',
         'Trails',
         'Lifts',
@@ -189,9 +200,10 @@ def display_footer():
     """
     st.markdown(
     """
+    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts), as of December 14, 2024.  
+      
     To suggest features, report bugs, or contribute, see 
     [Indy Explorer Project](https://github.com/users/jonathanstelman/projects/2/views/1) on GitHub.  
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts), as of December 14, 2024.  
     """
     )
 
