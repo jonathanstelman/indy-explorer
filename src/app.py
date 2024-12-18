@@ -35,27 +35,44 @@ def get_search_terms(resort):
     search_terms = [f for f in search_fields if isinstance(f, str)]
     return ' '.join(search_terms).lower()
 
+def feet_to_meters(feet):
+    """
+    Convert feet to meters, safely handling missing values
+    """
+    return int(feet * 0.30479999) if pd.notnull(feet) else np.nan
+
+
+# Load resort data
 resorts = pd.read_csv('data/resorts.csv')
 
-# Drop locations that don't have location
+# Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
-
 
 # Display and search
 resorts["radius"] = resorts.apply(get_radius, axis=1)
 resorts["color"] = resorts.apply(get_color, axis=1)
 resorts['search_terms'] = resorts.apply(get_search_terms, axis=1)
 
+# Units
+resorts['vertical_meters'] = resorts.vertical.apply(feet_to_meters)
 
 # Configure Streamlit page
 st.set_page_config(page_title="Indy Pass Resorts Map", layout="wide")
-st.image('img/indy-pass-logo.png', width=200)
+# st.image('img/indy-pass-logo.png', width=200)
 st.title("Indy Pass Resorts Map")
 
 # Filters in Sidebar
 st.sidebar.header("Filter Resorts")
 
-search_query = st.sidebar.text_input('Search for a resort:')
+search_query = st.sidebar.text_input(
+    label='Search for a resort:',
+    help='Enter the name of a resort, city, state/region, or country.'
+)
+country = st.sidebar.selectbox(
+    'Country',
+    options=['All'] + sorted(resorts.country.dropna().unique()),
+)
+selected_countries = resorts.country.unique() if country == 'All' else [country]
 min_vertical, max_vertical = st.sidebar.slider(":mountain: Vertical (ft)", 0, int(resorts.vertical.max()), (0, int(resorts.vertical.max())))
 min_trails, max_trails = st.sidebar.slider(":wavy_dash: Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
 min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
@@ -69,6 +86,7 @@ is_allied = st.sidebar.segmented_control(key='allied', label=':handshake: Allied
 
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower())) &
+    (resorts.country.isin(selected_countries)) &
     (resorts.vertical.between(min_vertical, max_vertical) | resorts.vertical.isnull()) &
     (resorts.num_trails.between(min_trails, max_trails) | resorts.num_trails.isnull()) &
     (resorts.num_lifts.between(min_lifts, max_lifts) | resorts.num_lifts.isnull()) &
@@ -93,10 +111,10 @@ tooltip = {
     "html": """
         <b>Resort:</b> {name}<br>
         <b>City:</b> {location_name}<br>
-        <b>Vertical:</b> {vertical} ft<br>
+        <b>Vertical:</b> {vertical} ft / {vertical_meters} m<br>
         <b>Trails:</b> {num_trails}<br>
         <b>Lifts:</b> {num_lifts}<br>
-        <b>Alpine / Cross-Counry:</b> {is_alpine_xc_display}<br>
+        <b>Alpine / Cross-Country:</b> {is_alpine_xc_display}<br>
         <b>Nights:</b> {is_open_nights_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
@@ -111,7 +129,7 @@ tooltip = {
     }
 }
 
-# Create the Pydeck map view
+# Create the Pydeck map view with initial zoom
 view_state = pdk.ViewState(
     latitude=44,
     longitude=-95,
@@ -119,7 +137,7 @@ view_state = pdk.ViewState(
     pitch=0
 )
 
-# Render the map in Streamlit
+# Render the map
 st.pydeck_chart(
     pdk.Deck(
         layers=[layer],
@@ -140,11 +158,12 @@ def display_resorts_table():
         'name' : 'Resort',
         'location_name': 'Location Name',
         'city' : 'City',
-        'state': 'State',
+        'state': 'State / Region',
         'country': 'Country',
         'latitude' : 'Latitude',
         'longitude' : 'Longitude',
-        'vertical' : 'Vertical',
+        'vertical' : 'Vertical (ft)',
+        'vertical_meters' : 'Vertical (m)',
         'is_nordic' : 'Nordic',
         'is_alpine_xc' : 'Alpine / Cross-Country',
         'is_xc_only' : 'Cross-Country Only',
@@ -160,11 +179,12 @@ def display_resorts_table():
     display_cols = [
         'Resort',
         'City',
-        'State',
+        'State / Region',
         'Country',
         'Latitude',
         'Longitude',
-        'Vertical',
+        'Vertical (ft)',
+        'Vertical (m)',
         'Alpine / Cross-Country',
         'Trails',
         'Lifts',
@@ -173,14 +193,17 @@ def display_resorts_table():
         'Allied',
         'Web Page'
     ]
-    display_df = filtered_data.rename(columns=col_names_map)[display_cols]
+    display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
     st.markdown('## Resorts')
     st.markdown(f'Displaying {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
     st.dataframe(
         display_df,
         column_config={"Web Page": st.column_config.LinkColumn()},
-        hide_index=True
+        hide_index=True,
+        on_select='rerun',
+        selection_mode='multi-row'
+        
     )
 
 def display_footer():
@@ -188,11 +211,15 @@ def display_footer():
     Display the footer text
     """
     st.markdown(
-    """
-    To suggest features, report bugs, or contribute, see 
-    [Indy Explorer Project](https://github.com/users/jonathanstelman/projects/2/views/1) on GitHub.  
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts), as of December 14, 2024.  
-    """
+        """
+        Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 14, 2024.  
+        
+        ---
+        Help improve this app:
+        - [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?template=bug_report.md)
+        - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?template=feature_request.md)
+        - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)  
+        """
     )
 
 display_resorts_table()
