@@ -58,7 +58,7 @@ resorts['vertical_meters'] = resorts.vertical.apply(feet_to_meters)
 
 # Configure Streamlit page
 st.set_page_config(page_title="Indy Pass Resorts Map", layout="wide")
-st.image('img/indy-pass-logo.png', width=200)
+# st.image('img/indy-pass-logo.png', width=200)
 st.title("Indy Pass Resorts Map")
 
 # Filters in Sidebar
@@ -199,12 +199,15 @@ def display_footer():
     Display the footer text
     """
     st.markdown(
-    """
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts), as of December 14, 2024.  
-      
-    To suggest features, report bugs, or contribute, see 
-    [Indy Explorer Project](https://github.com/users/jonathanstelman/projects/2/views/1) on GitHub.  
-    """
+        """
+        Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 14, 2024.  
+        
+        ---
+        Help improve this app:
+        - [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?template=bug_report.md)
+        - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?template=feature_request.md)
+        - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)  
+        """
     )
 
 display_resorts_table()
