@@ -64,7 +64,15 @@ st.title("Indy Pass Resorts Map")
 # Filters in Sidebar
 st.sidebar.header("Filter Resorts")
 
-search_query = st.sidebar.text_input('Search for a resort:')
+search_query = st.sidebar.text_input(
+    label='Search for a resort:',
+    help='Enter the name of a resort, city, state/region, or country.'
+)
+country = st.sidebar.selectbox(
+    'Country',
+    options=['All'] + sorted(resorts.country.dropna().unique()),
+)
+selected_countries = resorts.country.unique() if country == 'All' else [country]
 min_vertical, max_vertical = st.sidebar.slider(":mountain: Vertical (ft)", 0, int(resorts.vertical.max()), (0, int(resorts.vertical.max())))
 min_trails, max_trails = st.sidebar.slider(":wavy_dash: Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
 min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
@@ -78,6 +86,7 @@ is_allied = st.sidebar.segmented_control(key='allied', label=':handshake: Allied
 
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower())) &
+    (resorts.country.isin(selected_countries)) &
     (resorts.vertical.between(min_vertical, max_vertical) | resorts.vertical.isnull()) &
     (resorts.num_trails.between(min_trails, max_trails) | resorts.num_trails.isnull()) &
     (resorts.num_lifts.between(min_lifts, max_lifts) | resorts.num_lifts.isnull()) &
@@ -149,7 +158,7 @@ def display_resorts_table():
         'name' : 'Resort',
         'location_name': 'Location Name',
         'city' : 'City',
-        'state': 'State',
+        'state': 'State / Region',
         'country': 'Country',
         'latitude' : 'Latitude',
         'longitude' : 'Longitude',
@@ -170,7 +179,7 @@ def display_resorts_table():
     display_cols = [
         'Resort',
         'City',
-        'State',
+        'State / Region',
         'Country',
         'Latitude',
         'Longitude',
@@ -184,14 +193,17 @@ def display_resorts_table():
         'Allied',
         'Web Page'
     ]
-    display_df = filtered_data.rename(columns=col_names_map)[display_cols]
+    display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
     st.markdown('## Resorts')
     st.markdown(f'Displaying {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
     st.dataframe(
         display_df,
         column_config={"Web Page": st.column_config.LinkColumn()},
-        hide_index=True
+        hide_index=True,
+        on_select='rerun',
+        selection_mode='multi-row'
+        
     )
 
 def display_footer():
