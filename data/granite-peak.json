@@ -1,0 +1,26 @@
+{
+    "id": "84",
+    "slug": "granite-peak",
+    "name": "Granite Peak",
+    "description": "Granite Peak Ski Area, with its rich heritage and breathtaking 700-foot vertical rise, is the Midwest's destination for skiers and riders seeking legendary experiences. Our slopes boast an impressive array of 68 trails, offering everything from serene glides to heart-racing descents. The spotlight shines on our innovative terrain parks, which invite both novices and experts to showcase their skills. With state-of-the-art lifts, including a high-speed 6-pack, your time is maximized on the snow, not in line. Embrace the winter at Granite Peak, where every visit is more than just skiing\u2014it's an adventure etched in snow.",
+    "url": "https://www.skigranitepeak.com",
+    "trails": 68,
+    "lifts": 7,
+    "acres": 400,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 700,
+        "summit": 1942,
+        "base": 1242
+    },
+    "difficulty": {
+        "beginner": 25,
+        "intermediate": 25,
+        "advanced": 50
+    },
+    "snowfall": {
+        "average": 60,
+        "high": 115
+    }
+}

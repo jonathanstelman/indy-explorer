@@ -1,0 +1,26 @@
+{
+    "id": "379",
+    "slug": "mt-holiday",
+    "name": "Mt. Holiday",
+    "description": "For those seeking an unparalleled Mt. Holiday experience, we are thrilled to offer boundless enjoyment on the slopes, a warm and inviting atmosphere, breathtaking views, and a plethora of snow activities.",
+    "url": "https://mt-holiday.com/ski-and-snowboarding/",
+    "trails": 12,
+    "lifts": 4,
+    "acres": 45,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 200,
+        "summit": 440,
+        "base": 240
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 59,
+        "high": 175
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "id": "109",
+    "slug": "montage-mountain",
+    "name": "Montage Mountain",
+    "description": "Wide open runs, minimal lift lines, and surprisingly steep terrain. Montage Mountain has skiing and riding for all experience levels and is conveniently located just 2 hours from New York City and Philadelphia. Beat the Pocono traffic and ski Northeast PA's best. 100% night skiing and 100% snowmaking, a modern lodge with an inviting atmosphere and great food make for the total package. Plan your next trip to Montage Mountain!",
+    "url": "https://www.montagemountainresorts.com",
+    "trails": 27,
+    "lifts": 7,
+    "acres": 140,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1000,
+        "summit": 1960,
+        "base": 960
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 45,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 25,
+        "high": 41
+    }
+}

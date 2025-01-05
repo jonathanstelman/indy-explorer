@@ -1,0 +1,26 @@
+{
+    "id": "136",
+    "slug": "shawnee-mountain-ski-area",
+    "name": "Shawnee Mountain Ski Area",
+    "description": "Shawnee Mountain Ski Area has earned a reputation for aggressive snowmaking and quality grooming. Located in the heart of the Pocono Mountains, Shawnee offers 23 trails with day and night skiing, snowboarding, top-rated childrens programs and a tubing park.",
+    "url": "https://www.shawneemt.com",
+    "trails": 23,
+    "lifts": 11,
+    "acres": 125,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 700,
+        "summit": 1350,
+        "base": 650
+    },
+    "difficulty": {
+        "beginner": 43,
+        "intermediate": 31,
+        "advanced": 26
+    },
+    "snowfall": {
+        "average": 50,
+        "high": 117
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "id": "46",
+    "slug": "aomori-spring-ski-resort",
+    "name": "Aomori Spring Ski Resort",
+    "description": "Nestled at the base of Mt. Iwaki, Aomori Spring ski resort is located deep in the backcountry of Japan\u2019s Tohoku region and is truly off the beaten path. Blessed with abundant snowfall, Aomori Spring has it all from family-friendly slopes to steep tree skiing (if you\u2019re willing to work for it), as well as a high-quality terrain park with the largest half-pipe in Japan. Experienced powder hunters with a touring rig will find the lift-accessed backcountry to be the main feature of this mountain.",
+    "url": "https://aomorispringski.com",
+    "trails": 14,
+    "lifts": 5,
+    "acres": 0,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1788,
+        "summit": 3025,
+        "base": 1303
+    },
+    "difficulty": {
+        "beginner": 50,
+        "intermediate": 30,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 320,
+        "high": 415
+    }
+}

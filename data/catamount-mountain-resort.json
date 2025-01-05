@@ -1,0 +1,26 @@
+{
+    "id": "70",
+    "slug": "catamount-mountain-resort",
+    "name": "Catamount Mountain Resort",
+    "description": "Catamount Mountain Resort straddles the New York and Massachusetts border, located just 2.5 hours from NYC and conveniently located by Western Massachusetts, Connecticut, and the Hudson Valley. Catamount features a vertical drop of 1,000 feet and a total of 44 trails and 8 lis with some of the most varied terrain in Southern New England. Resort services include rentals, lessons, and multiple food & drink options. Its renowned snow sports school offers group and private lessons for all ages and abilities and is home to the popular \u201cMountain Cats\u201d children\u2019s programs.",
+    "url": "https://catamountski.com",
+    "trails": 44,
+    "lifts": 8,
+    "acres": 150,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1000,
+        "summit": 2000,
+        "base": 1000
+    },
+    "difficulty": {
+        "beginner": 35,
+        "intermediate": 42,
+        "advanced": 23
+    },
+    "snowfall": {
+        "average": 60,
+        "high": 80
+    }
+}

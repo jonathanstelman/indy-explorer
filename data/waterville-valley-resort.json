@@ -1,0 +1,26 @@
+{
+    "id": "163",
+    "slug": "waterville-valley-resort",
+    "name": "Waterville Valley Resort",
+    "description": "Winter in Waterville is one of a kind. Skiers and riders can enjoy 100 snowmaking across 265 skiable acres, 2,020 vertical, recreational STAR racing, professionally designed and maintained terrain parks, and more. Family ski days are laid back and hassle-free thanks to our mountain-side amenities. Families can take advantage of our full-service childcare facility, private rentable slopeside spaces, parking lot ski trails, free resort shuttles, bag checks, lockers, and complimentary bag drops. At Waterville, skiing is more than just a sport, its a shared experience with the people you love.",
+    "url": "https://www.waterville.com",
+    "trails": 62,
+    "lifts": 11,
+    "acres": 265,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 2020,
+        "summit": 3840,
+        "base": 1820
+    },
+    "difficulty": {
+        "beginner": 16,
+        "intermediate": 60,
+        "advanced": 24
+    },
+    "snowfall": {
+        "average": 125,
+        "high": 212
+    }
+}

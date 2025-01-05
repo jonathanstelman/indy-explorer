@@ -1,0 +1,26 @@
+{
+    "id": "386",
+    "slug": "norway-mountain",
+    "name": "Norway Mountain",
+    "description": "Nestled in the heart of the Western UP and only 2 Miles from Wisconsin, Norway Mountain Ski Resort offers a premier skiing experience with breathtaking views, diverse terrain, and a warm, welcoming atmosphere.",
+    "url": "http://www.norwaymt.com/",
+    "trails": 17,
+    "lifts": 6,
+    "acres": 80,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 500,
+        "summit": 1335,
+        "base": 835
+    },
+    "difficulty": {
+        "beginner": 6,
+        "intermediate": 66,
+        "advanced": 28
+    },
+    "snowfall": {
+        "average": 33,
+        "high": 50
+    }
+}

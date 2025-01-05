@@ -1,0 +1,23 @@
+{
+    "id": "392",
+    "slug": "erciyes-ski-resort",
+    "name": "Erc\u0130yes Ski Resort",
+    "description": "T\u00fcrkiye's Biggest Resort",
+    "url": "https://www.kayserierciyes.com.tr/",
+    "trails": 31,
+    "lifts": 24,
+    "acres": 2965,
+    "terrain_parks": false,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1260,
+        "summit": 12851,
+        "base": 6889
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 50,
+        "advanced": 20
+    },
+    "snowfall": {}
+}

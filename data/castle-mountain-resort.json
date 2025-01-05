@@ -1,0 +1,26 @@
+{
+    "id": "265",
+    "slug": "castle-mountain-resort",
+    "name": "Castle Mountain Resort",
+    "description": "Castle Mountain Resort is Alberta, Canada\u2019s most authentic mountain experience. Occupying an exceptionally beautiful and snowy location, in the South Canadian Rockies region, the resort is located 2.5 hours southwest of Calgary (C-YYC) and 90 minutes west of Lethbridge (C-YQL). Independent and community-owned, Castle is well known for having the most annual snowfall in Alberta paired with seemingly never-ending fall line trails, chutes, and bowls. Castle takes skiers and snowboarders back to the roots of our sport with uncrowded slopes, a welcoming community, friendly staff, and fixed grip lifts.",
+    "url": "https://www.skicastle.ca/",
+    "trails": 95,
+    "lifts": 6,
+    "acres": 3592,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 2845,
+        "summit": 2295,
+        "base": 1425
+    },
+    "difficulty": {
+        "beginner": 10,
+        "intermediate": 25,
+        "advanced": 65
+    },
+    "snowfall": {
+        "average": 335,
+        "high": 475
+    }
+}

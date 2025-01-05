@@ -1,0 +1,26 @@
+{
+    "id": "73",
+    "slug": "crystal-mountain",
+    "name": "Crystal Mountain",
+    "description": "Established in 1956, Crystal Mountain is a family-owned, four-season resort destination located 28 miles southwest of Traverse City and a short drive from Sleeping Bear Dunes National Lakeshore. The 1,500-acre resort features lodging, dining, downhill and cross-country skiing, two championship golf courses, shopping, award-winning Crystal Spa, Michigan\u2019s only alpine slide, Peak Fitness, the Park at Water\u2019s Edge, Michigan Legacy Art Park, weddings, a conference center, and real estate options.",
+    "url": "https://www.crystalmountain.com",
+    "trails": 59,
+    "lifts": 8,
+    "acres": 103,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 375,
+        "summit": 1132,
+        "base": 757
+    },
+    "difficulty": {
+        "beginner": 22,
+        "intermediate": 48,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 132,
+        "high": 230
+    }
+}

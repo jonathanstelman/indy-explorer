@@ -1,0 +1,26 @@
+{
+    "id": "267",
+    "slug": "mcintyre-ski-area",
+    "name": "McIntyre Ski Area",
+    "description": "McIntyre Ski Area is located in Manchester, NH and is the gateway to winter sports in Southern New Hampshire. McIntyre offers 11 trails with varying difficulty from beginner to intermediate as well as an 8-lane surface lift snow tubing Bonneville Family Thrill Hill. McIntyre Ski Area is the quintessential, family-friendly, affordable outing for those interested in trying a winter activity for the first time.",
+    "url": "https://www.mcintyreskiarea.com",
+    "trails": 11,
+    "lifts": 5,
+    "acres": 26,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 200,
+        "summit": 510,
+        "base": 340
+    },
+    "difficulty": {
+        "beginner": 90,
+        "intermediate": 10,
+        "advanced": 0
+    },
+    "snowfall": {
+        "average": 50,
+        "high": 55
+    }
+}

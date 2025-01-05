@@ -1,0 +1,26 @@
+{
+    "id": "269",
+    "slug": "skaneateles-ski-club",
+    "name": "Skaneateles Ski Club",
+    "description": "The Skaneateles Ski Club is a nonprofit, 501c3 charitable organization. It is a member-owned and volunteer-run ski hill established in 1959 as a hub for the local community around winter recreation. We have snowmaking, lights, and surface lights on 350 vertical feet over 33 acres in Central New York. Potlucks on Friday nights and check out the cardboard sled race!",
+    "url": "https://www.skiskan.com/",
+    "trails": 7,
+    "lifts": 3,
+    "acres": 33,
+    "terrain_parks": false,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 330,
+        "summit": 1200,
+        "base": 800
+    },
+    "difficulty": {
+        "beginner": 45,
+        "intermediate": 40,
+        "advanced": 15
+    },
+    "snowfall": {
+        "average": 100,
+        "high": 200
+    }
+}

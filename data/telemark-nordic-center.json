@@ -1,0 +1,17 @@
+{
+    "id": "301",
+    "slug": "telemark-nordic-center",
+    "name": "Telemark Nordic Center",
+    "description": "50km of XC ski trail and 50km of snowshoe trails close to town with a reputation for the best grooming.",
+    "url": "https://telemarknordic.com/current-trail-conditions/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": 0,
+    "vertical": {},
+    "difficulty": {
+        "beginner": {},
+        "intermediate": {},
+        "advanced": {}
+    },
+    "snowfall": {}
+}

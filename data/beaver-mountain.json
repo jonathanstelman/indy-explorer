@@ -1,0 +1,26 @@
+{
+    "id": "50",
+    "slug": "beaver-mountain",
+    "name": "Beaver Mountain",
+    "description": "Beaver Mountain is located in far northern Utah. Averaging 400 inches of snowfall annually, snow conditions are fantastic. Beaver is blessed with great fall lines everywhere. Not the biggest but plenty of great turns as the mountain all goes downhill. With a focus on skiing and snowboarding for families, Beaver Mountain reminds guests of how skiing used to be.",
+    "url": "https://www.skithebeav.com",
+    "trails": 48,
+    "lifts": 6,
+    "acres": 828,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1700,
+        "summit": 8860,
+        "base": 7100
+    },
+    "difficulty": {
+        "beginner": 35,
+        "intermediate": 40,
+        "advanced": 25
+    },
+    "snowfall": {
+        "average": 400,
+        "high": 575
+    }
+}

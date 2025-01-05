@@ -1,0 +1,26 @@
+{
+    "id": "368",
+    "slug": "hoedown-hill",
+    "name": "Hoedown Hill",
+    "description": "If you\u2019ve got a hankerin\u2019 for some tubing, skiing, and boarding, you\u2019ve just hit the bullseye. Saddle up, \u2019cause we\u2019re fixin\u2019 to take you on a wild ride like no other. Prepare to whoop and holler as you glide, slide, and ride down our tubing hill. It doesn\u2019t matter if you\u2019re a a first-time rider, or a pro on the slopes, Hoedown Hill\u2019s family fun for everyone!",
+    "url": "https://hoedownhill.com/",
+    "trails": 6,
+    "lifts": 4,
+    "acres": 10,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 200,
+        "summit": null,
+        "base": null
+    },
+    "difficulty": {
+        "beginner": 50,
+        "intermediate": 50,
+        "advanced": 0
+    },
+    "snowfall": {
+        "average": 26,
+        "high": 36
+    }
+}

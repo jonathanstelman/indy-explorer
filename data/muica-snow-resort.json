@@ -1,0 +1,26 @@
+{
+    "id": "360",
+    "slug": "muica-snow-resort",
+    "name": "Muica Snow Resort",
+    "description": "Muica Snow Resort features abundant snowfall just five minutes from the highway interchange, and the main slopes, with their spectacular views, are spacious and easy to ski.",
+    "url": "https://www.muikamachi.com/ski/",
+    "trails": 12,
+    "lifts": 4,
+    "acres": 244,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1312,
+        "summit": 2454,
+        "base": 1142
+    },
+    "difficulty": {
+        "beginner": 25,
+        "intermediate": 40,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 394,
+        "high": 590
+    }
+}

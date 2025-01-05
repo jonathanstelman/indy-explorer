@@ -1,0 +1,26 @@
+{
+    "id": "92",
+    "slug": "kamui-ski-links",
+    "name": "Kamui Ski Links",
+    "description": "Kamui Ski Links in Japan offers a budget-friendly ski experience with abundant powder skiing and snowboarding opportunities. Nestled in a location reachable from Asahikawa or Furano, it provides enough terrain for two to three days of enjoyment, featuring 25 courses with about 600 meters of vertical and a mix of groomed/non groomed runs. Off-piste and tree skiing are highlights, easily accessible via lifts. While the gondola can have queues, the resort remains relatively uncrowded, making it a serene destination for powder enthusiasts.",
+    "url": "https://www.kamui-skilinks.com",
+    "trails": 25,
+    "lifts": 6,
+    "acres": 0,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1968,
+        "summit": 2463,
+        "base": 492
+    },
+    "difficulty": {
+        "beginner": 32,
+        "intermediate": 36,
+        "advanced": 32
+    },
+    "snowfall": {
+        "average": 275,
+        "high": 400
+    }
+}

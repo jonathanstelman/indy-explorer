@@ -1,0 +1,26 @@
+{
+    "id": "116",
+    "slug": "mt-shasta",
+    "name": "Mt. Shasta",
+    "description": "We are a welcoming family-friendly resort that has something for everyone! Whether it is your first time in the snow or you are an expert, you will have a great time at the Mt Shasta Ski Park.",
+    "url": "https://www.skipark.com",
+    "trails": 38,
+    "lifts": 6,
+    "acres": 635,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 2036,
+        "summit": 7536,
+        "base": 5500
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 45,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 157,
+        "high": 472
+    }
+}

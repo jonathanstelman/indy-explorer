@@ -1,0 +1,26 @@
+{
+    "id": "77",
+    "slug": "dodge-ridge",
+    "name": "Dodge Ridge",
+    "description": "Located in the heart of California\u2019s Central Sierra, Dodge Ridge Mountain Resort has been family-loved and operated for over 70 years. Enjoy the shortest drive to ski and ride from Bay Area and Central Valley locations, accessing 1600 vertical feet, 67 trails and 11 lifts across 862 skiable acres with an average snowfall of over 350\u2033 each season.",
+    "url": "https://dodgeridge.com",
+    "trails": 67,
+    "lifts": 11,
+    "acres": 862,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1600,
+        "summit": 8200,
+        "base": 6600
+    },
+    "difficulty": {
+        "beginner": 25,
+        "intermediate": 50,
+        "advanced": 25
+    },
+    "snowfall": {
+        "average": 350,
+        "high": 560
+    }
+}

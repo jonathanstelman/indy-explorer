@@ -1,0 +1,26 @@
+{
+    "id": "65",
+    "slug": "calabogie-peaks-resort",
+    "name": "Calabogie Peaks Resort",
+    "description": "The big mountain close to home. Ontario\u2019s tallest public vertical drop of 781ft with the longest beginner run. Diverse groomed intermediate terrain and advanced trails packed with bumps, turns, pitches, and parks. Try exceptional programs, skating, and snowshoeing trails. 1 hour from Ottawa, the Peaks has something for everyone.",
+    "url": "https://www.calabogie.com",
+    "trails": 25,
+    "lifts": 3,
+    "acres": 80,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 781,
+        "summit": 1285,
+        "base": 505
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 45,
+        "advanced": 25
+    },
+    "snowfall": {
+        "average": 37,
+        "high": 67
+    }
+}

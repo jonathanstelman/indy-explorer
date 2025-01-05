@@ -1,0 +1,26 @@
+{
+    "id": "159",
+    "slug": "tree-tops-resort",
+    "name": "Tree Tops Resort",
+    "description": "Treetops Resort is ready to welcome first-time skiers to the resort\u2019s family-based terrain, with a state-of-the-art ski instruction program called Terrain Based Learning. Treetops Resort is proud to be the ONLY Michigan ski and snowboard facility to offer the learning program. Along with 1,500 acres to explore, extreme tubing, x-country, snowshoe, and our Spectacular Cool School program there\u2019s a lot to see and do at Treetops in winter. So, we would like to Welcome you to Your Winter Playground.",
+    "url": "https://www.treetops.com",
+    "trails": 25,
+    "lifts": 5,
+    "acres": 80,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 225,
+        "summit": 1333,
+        "base": 1110
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 150,
+        "high": 208
+    }
+}

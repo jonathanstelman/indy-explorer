@@ -1,0 +1,26 @@
+{
+    "id": "131",
+    "slug": "saddleback-mountain",
+    "name": "Saddleback Mountain",
+    "description": "At 4,120ft and over 600 acres of terrain, Saddleback is the third-largest ski mountain in the state of Maine and the largest independent mountain in the East. With a base elevation of 2,460\u2032, Saddleback gets more snow and the temps to ensure it sticks. Due to the elevation and geography of Saddleback, it averages the most snowfall in the state. Saddleback is renowned for the Kennebago Steeps, one of the largest advanced and expert steep skiing zones in the East. Add 2,000\u2032 vertical feet and sweeping views over Maine\u2019s famous Rangeley Lakes Region, it\u2019s a wonder you haven\u2019t skied here yet. Saddleback is a true big mountain experience, with a small mountain vibe. And it\u2019s one of the few independent mountains in the East that replicates the feel of skiing out West.",
+    "url": "https://www.saddlebackmaine.com",
+    "trails": 68,
+    "lifts": 6,
+    "acres": 600,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 2000,
+        "summit": 4120,
+        "base": 2460
+    },
+    "difficulty": {
+        "beginner": 35,
+        "intermediate": 30,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 177,
+        "high": 225
+    }
+}

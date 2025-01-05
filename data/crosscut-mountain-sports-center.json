@@ -1,0 +1,17 @@
+{
+    "id": "277",
+    "slug": "crosscut-mountain-sports-center",
+    "name": "Crosscut Mountain Sports Center",
+    "description": "Crosscut Mountain Sports Center provides year-round recreation, sports training, and outdoor education opportunities for everyone through our simple yet exceptional facilities and trails.",
+    "url": "https://www.crosscutmt.org/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": 0,
+    "vertical": {},
+    "difficulty": {
+        "beginner": {},
+        "intermediate": {},
+        "advanced": {}
+    },
+    "snowfall": {}
+}

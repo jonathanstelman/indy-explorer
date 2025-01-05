@@ -1,0 +1,26 @@
+{
+    "id": "97",
+    "slug": "lost-trail-powder-mountain",
+    "name": "Lost Trail Powder Mountain",
+    "description": "Montana's best-kept secret. Lost Trail Powder Mountain receives 350\u201d of Montana\u2019s lightest snow. With 1800 skiable acres LT has something for everyone. Lost Trail will be your home mountain before you know it.",
+    "url": "https://losttrail.com",
+    "trails": 68,
+    "lifts": 8,
+    "acres": 1800,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1200,
+        "summit": 8200,
+        "base": 7000
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 40,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 350,
+        "high": 450
+    }
+}

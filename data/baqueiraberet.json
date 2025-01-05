@@ -1,0 +1,26 @@
+{
+    "id": "365",
+    "slug": "baqueiraberet",
+    "name": "Baqueira/Beret",
+    "description": "Unknown amazing ski resort and ski vacation destination at the heart of the Pyrenees",
+    "url": "https://www.baqueira.es/en",
+    "trails": 122,
+    "lifts": 36,
+    "acres": 5616,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 3608,
+        "summit": 8560,
+        "base": 4900
+    },
+    "difficulty": {
+        "beginner": 35,
+        "intermediate": 35,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 50,
+        "high": 152
+    }
+}

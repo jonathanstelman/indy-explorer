@@ -1,0 +1,26 @@
+{
+    "id": "346",
+    "slug": "camden-snow-bowl",
+    "name": "Camden Snow Bowl",
+    "description": "The Snow Bowl has that friendly small-town feel and rivals the best mountains in Maine with nearly 1,000 feet of vertical elevation, 15 trails, 11 glades, two terrain parks, and lessons/equipment rental for all ages. The Snow Bowl is also the home of the world-famous U.S. National Toboggan Championships.",
+    "url": "https://camdensnowbowl.com/",
+    "trails": 15,
+    "lifts": 3,
+    "acres": 105,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1070,
+        "summit": 1286,
+        "base": 216
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 60,
+        "advanced": 10
+    },
+    "snowfall": {
+        "average": 41,
+        "high": 100
+    }
+}

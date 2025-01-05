@@ -1,0 +1,26 @@
+{
+    "id": "106",
+    "slug": "meadowlark-ski-resort",
+    "name": "Meadowlark Ski Resort",
+    "description": "Located on US Highway 16 in Wyoming's Bighorn Mountains, this hidden gem has some great terrain and no lift lines! Beginners and experts alike will find what they need, both on the mountain and in the lodge: Ski and snowboard rentals, great food, a full bar and a mountain atmosphere.",
+    "url": "https://snoflo.org/ski-area/big-horn-ski-resort",
+    "trails": 14,
+    "lifts": 2,
+    "acres": 300,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 735,
+        "summit": 9200,
+        "base": 8465
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 120,
+        "high": 260
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "id": "154",
+    "slug": "tazawako",
+    "name": "Tazawako",
+    "description": "Site of the Annual FIS Freestyle Ski Worldcup Competition, Tazawako has a bit of everything\u2014high-speed lifts, good piste options, side-country, backcountry and a variety of terrain for all skier types. Located on the West side of the mountain range, this side is more exposed to the storms off the Sea of Japan and gets plenty of snow.",
+    "url": "https://www.tazawako-ski.com/",
+    "trails": 13,
+    "lifts": 6,
+    "acres": 0,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1995,
+        "summit": 3891,
+        "base": 1896
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 30,
+        "advanced": 40
+    },
+    "snowfall": {}
+}

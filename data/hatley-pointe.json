@@ -1,0 +1,26 @@
+{
+    "id": "349",
+    "slug": "hatley-pointe",
+    "name": "Hatley Pointe",
+    "description": "Hatley Pointe is a boutique mountain resort built for those who seek to embrace the spirit of adventure. With a peak elevation of 4700 ft and both beginner and expert trails, Hatley Pointe has something for everyone. Hatley Pointe also offers an incredible atmosphere for apres ski inside the newly renovated base lodge. Hatley Pointe offers a full-service restaurant and bar as well as quick on-the-go food and beverage options.",
+    "url": "https://www.hatleypointe.com/",
+    "trails": 17,
+    "lifts": 4,
+    "acres": 52,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 700,
+        "summit": 4700,
+        "base": 4000
+    },
+    "difficulty": {
+        "beginner": 25,
+        "intermediate": 60,
+        "advanced": 15
+    },
+    "snowfall": {
+        "average": 65,
+        "high": 90
+    }
+}

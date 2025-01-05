@@ -1,0 +1,26 @@
+{
+    "id": "166",
+    "slug": "white-pass",
+    "name": "White Pass",
+    "description": "Experience a winter adventure at White Pass! Soak in majestic views of Mt. Rainier while carving groomers in Paradise Basin. Dive into steeps off the West Ridge or explore Pigtail Peak's epic front side. White Pass prides itself on providing a relaxed, family atmosphere for skiers and riders of every ability!",
+    "url": "https://skiwhitepass.com",
+    "trails": 45,
+    "lifts": 8,
+    "acres": 1402,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 2050,
+        "summit": 6550,
+        "base": 4500
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 60,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 415,
+        "high": 658
+    }
+}

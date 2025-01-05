@@ -1,0 +1,26 @@
+{
+    "id": "396",
+    "slug": "bear-creek",
+    "name": "Bear Creek",
+    "description": "Bear Creek is the premiere learn to ski and ride destination in our region. Bear Creek features 23 trails that are not only good for beginners but also challenging for novice and advanced skiers or snowboarders. Throw in a 116 bedroom hotel, 3 restaurants, and a Spa and it's a true ski destination.",
+    "url": "https://www.bcmountainresort.com/",
+    "trails": 23,
+    "lifts": 6,
+    "acres": 86,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 510,
+        "summit": 1100,
+        "base": 590
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 55,
+        "advanced": 10
+    },
+    "snowfall": {
+        "average": 45,
+        "high": 64
+    }
+}

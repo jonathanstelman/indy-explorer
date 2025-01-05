@@ -1,0 +1,26 @@
+{
+    "id": "356",
+    "slug": "hirugano-kogen-ski-resort",
+    "name": "Hirugano Kogen Ski Resort",
+    "description": "There is a shuttle bus service from the bus stop if you take the highway bus from Nagoya, and nearby accommodations are also within walking distance, including pensions. Our ski resort has a wide range of gentle slopes suitable for beginners and families.",
+    "url": "https://www.hiruganokogen.com/",
+    "trails": 8,
+    "lifts": 3,
+    "acres": 75,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 492,
+        "summit": 3415,
+        "base": 2923
+    },
+    "difficulty": {
+        "beginner": 45,
+        "intermediate": 55,
+        "advanced": 0
+    },
+    "snowfall": {
+        "average": 165,
+        "high": 200
+    }
+}

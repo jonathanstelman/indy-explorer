@@ -1,0 +1,26 @@
+{
+    "id": "268",
+    "slug": "mont-ripley-ski-area",
+    "name": "Mont Ripley Ski Area",
+    "description": "Mont Ripley was the first ski hill in the state of Michigan and is in the snowiest city in the Midwest, thanks to Lake Superior's lake effect snow. We are part of Michigan Tech University and we welcome all snow sport enthusiasts.",
+    "url": "https://www.mtu.edu",
+    "trails": 24,
+    "lifts": 4,
+    "acres": 115,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 440,
+        "summit": 1100,
+        "base": 650
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 30,
+        "advanced": 50
+    },
+    "snowfall": {
+        "average": 275,
+        "high": 390
+    }
+}

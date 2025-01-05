@@ -1,0 +1,26 @@
+{
+    "id": "94",
+    "slug": "kiroro-snow-world",
+    "name": "Kiroro Snow World",
+    "description": "Nestled in Hokkaido, Japan, Kiroro Resort is a renowned destination offering upscale amenities and exceptional powder skiing conditions. Once a hidden gem, it\u2019s now gaining popularity, especially with Club Med Kiroro\u2019s arrival. Accessible for day trips from Niseko, Otaru, or Sapporo, Kiroro boasts 23 runs, catering to all skill levels. The resort shines in its tree skiing and sidecountry opportunities, with copious amounts of snowfall each season. Plus, its modern lift system ensures a comfortable experience for all visitors.",
+    "url": "https://www.kiroro.co.",
+    "trails": 23,
+    "lifts": 10,
+    "acres": 0,
+    "terrain_parks": false,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 2165,
+        "summit": 3872,
+        "base": 1706
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 30,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 840,
+        "high": 1000
+    }
+}

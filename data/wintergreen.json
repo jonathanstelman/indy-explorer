@@ -1,0 +1,23 @@
+{
+    "id": "334",
+    "slug": "wintergreen",
+    "name": "Wintergreen",
+    "description": "New for the 2024-25 season. Treat yourself to magnificent mountain views, luxury, and recreation at Wintergreen Resort. Spanning 11,000 acres on the eastern slopes of the Blue Ridge Mountains, our spacious condominiums and vacation homes are surrounded by winding trails, cascading streams and lush forests. The ultimate four-season vacation or conference spot, Wintergreen Resort is peaceful and refreshing, with an endless variety of activities.",
+    "url": "https://www.wintergreenresort.com",
+    "trails": 26,
+    "lifts": 5,
+    "acres": 0,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": null,
+        "summit": null,
+        "base": null
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 35,
+        "advanced": 45
+    },
+    "snowfall": {}
+}

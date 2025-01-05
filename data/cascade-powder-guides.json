@@ -1,0 +1,23 @@
+{
+    "id": "341",
+    "slug": "cascade-powder-guides",
+    "name": "Cascade Powder Guides",
+    "description": "",
+    "url": null,
+    "trails": 0,
+    "lifts": 0,
+    "acres": 0,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": null,
+        "summit": null,
+        "base": null
+    },
+    "difficulty": {
+        "beginner": {},
+        "intermediate": {},
+        "advanced": {}
+    },
+    "snowfall": {}
+}

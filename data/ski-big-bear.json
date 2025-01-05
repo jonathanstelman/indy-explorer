@@ -1,0 +1,26 @@
+{
+    "id": "139",
+    "slug": "ski-big-bear",
+    "name": "Ski Big Bear",
+    "description": "Ski Big Bear is a ski area for families. Specializing in private beginner lessons, Ski Big Bear offers something for all abilities. The mountain is open for skiing, snowboarding and snow tubing with 100 snowmaking. Eighteen trails, seven lis and a terrain park provide great family winter recreation. Rental equipment is available in the on-site shop.",
+    "url": "https://www.ski-bigbear.com",
+    "trails": 18,
+    "lifts": 7,
+    "acres": 26,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 650,
+        "summit": 1200,
+        "base": 550
+    },
+    "difficulty": {
+        "beginner": 33,
+        "intermediate": 34,
+        "advanced": 33
+    },
+    "snowfall": {
+        "average": 45,
+        "high": 100
+    }
+}

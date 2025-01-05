@@ -1,0 +1,26 @@
+{
+    "id": "362",
+    "slug": "dynaland",
+    "name": "Dynaland",
+    "description": "With one of the best course layouts in western Japan and night skiing every day during the ski season, we have a hotel attached to the resort (5-minute walk), making it convenient for overnight stays. The resort is also connected to the adjacent Takasu Snow Park at the top of the mountain, allowing access to both ski areas with one ticket (which will be issued to Indy Pass holders). The Takasu area has a high concentration of ski resorts, with five ski resorts within a 30-minute drive, so we are a perfect match for Indy Pass holders.",
+    "url": "https://www.dynaland.co.jp/",
+    "trails": 18,
+    "lifts": 5,
+    "acres": 198,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1467,
+        "summit": 4695,
+        "base": 3228
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 32,
+        "advanced": 25
+    },
+    "snowfall": {
+        "average": 67,
+        "high": 197
+    }
+}

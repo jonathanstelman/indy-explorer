@@ -1,0 +1,26 @@
+{
+    "id": "95",
+    "slug": "little-switzerland",
+    "name": "Little Switzerland",
+    "description": "Our focus is on family fun and parks. We pride ourselves on having a state-of-the-art snowmaking system that ensures great conditions no matter what. Located just outside of Milwaukee, we have real skiing, really close.",
+    "url": "https://www.littleswitz.com",
+    "trails": 16,
+    "lifts": 8,
+    "acres": 64,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 200,
+        "summit": 1001,
+        "base": 801
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 50,
+        "high": 200
+    }
+}

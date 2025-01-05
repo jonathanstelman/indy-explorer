@@ -1,0 +1,23 @@
+{
+    "id": "100",
+    "slug": "madarao-ski-resort",
+    "name": "Madarao Ski Resort",
+    "description": "Madarao Kogen Ski Resort, nestled between Myoko Kogen and Nozawa Onsen, offers generous snowfall, exceptional tree skiing, and off-piste opportunities. This mid-sized resort features 30 courses, 9 lifts, and a 440-meter vertical drop. Madarao has a lot to offer for all skill levels, with some challenging black runs, an ungroomed terrain park, and a playful tree skiing area. The resort's northern aspect ensures excellent powder conditions.",
+    "url": "https://www.madarao.jp",
+    "trails": 32,
+    "lifts": 10,
+    "acres": 0,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1443,
+        "summit": 4429,
+        "base": 2985
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 35,
+        "advanced": 35
+    },
+    "snowfall": {}
+}

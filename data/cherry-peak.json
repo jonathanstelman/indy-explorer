@@ -1,0 +1,26 @@
+{
+    "id": "317",
+    "slug": "cherry-peak",
+    "name": "Cherry Peak",
+    "description": "Cherry Peak is part of the Indy Allied Program. Indy Passholders receive 25% off lift tickets on weekends and holidays between Dec. 23 through March 10, and 50% off all other days in the season. Please check the resort website for pricing and other information.",
+    "url": "https://www.skicherrypeak.us/",
+    "trails": 38,
+    "lifts": 4,
+    "acres": 400,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1265,
+        "summit": 7040,
+        "base": 5775
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 40,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 320,
+        "high": 550
+    }
+}

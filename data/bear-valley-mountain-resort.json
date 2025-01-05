@@ -1,0 +1,26 @@
+{
+    "id": "371",
+    "slug": "bear-valley-mountain-resort",
+    "name": "Bear Valley Mountain Resort",
+    "description": "Nestled off scenic highway 4 in the Central Sierra Mountains and Stanislaus National Forest, Bear Valley Mountain Resort offers world-class terrain at 8,495 feet. Easily accessible from all of Northern and Central California, a retreat for both beginners and experts seeking space and breathtaking views. At Bear Valley, you'll find the big mountain experience with small town vibes.",
+    "url": "https://www.bearvalley.com/",
+    "trails": 75,
+    "lifts": 9,
+    "acres": 1679,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1900,
+        "summit": 8500,
+        "base": 6600
+    },
+    "difficulty": {
+        "beginner": 25,
+        "intermediate": 40,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 288,
+        "high": 546
+    }
+}

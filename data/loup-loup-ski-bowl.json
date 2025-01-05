@@ -1,0 +1,26 @@
+{
+    "id": "98",
+    "slug": "loup-loup-ski-bowl",
+    "name": "Loup Loup Ski Bowl",
+    "description": "Tucked between the Okanogan and Methow Valleys, The \"Loup\" offers skiing like it used to be...short lift lines and a friendly small-town vibe. In addition to an amazing amount of terrain packed into a manageable 300-acre footprint, the Loup offers 10k+ of groomed Nordic trails, tubing and the PNW's only alpine Luge experience.",
+    "url": "https://www.skitheloup.com",
+    "trails": 14,
+    "lifts": 3,
+    "acres": 300,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1240,
+        "summit": 5260,
+        "base": 4020
+    },
+    "difficulty": {
+        "beginner": 35,
+        "intermediate": 15,
+        "advanced": 50
+    },
+    "snowfall": {
+        "average": 86,
+        "high": 120
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "id": "319",
+    "slug": "hickory-ski-center",
+    "name": "Hickory Ski Center",
+    "description": "Quintessential Adirondack views, glades, backcountry, steeps and groomed slopes. Easy access from I-87. Hickory is known for its history, vintage surface lifts and family friendly atmosphere. Its 1200' vertical and black diamond top of the mountain terrain are renown. Boarders and skinners are welcome.",
+    "url": "https://skihickory.com/",
+    "trails": 18,
+    "lifts": 4,
+    "acres": 225,
+    "terrain_parks": false,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1200,
+        "summit": 1900,
+        "base": 700
+    },
+    "difficulty": {
+        "beginner": 31,
+        "intermediate": 33,
+        "advanced": 39
+    },
+    "snowfall": {
+        "average": 80,
+        "high": 260
+    }
+}

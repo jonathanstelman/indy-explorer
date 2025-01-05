@@ -1,0 +1,26 @@
+{
+    "id": "323",
+    "slug": "hudson-bay-mountain",
+    "name": "Hudson Bay Mountain",
+    "description": "Hudson Bay Mountain Resort is the premium ski destination of Northern BC, offering incredible powder snow, family-friendly hospitality, and a mix of terrain to please skiers and snowboarders of any ability. Established in 1969, we\u2019re dedicated to providing a big mountain experience with small town charm.",
+    "url": "https://hudsonbaymountain.ca",
+    "trails": 44,
+    "lifts": 3,
+    "acres": 700,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1750,
+        "summit": 5413,
+        "base": 3747
+    },
+    "difficulty": {
+        "beginner": 41,
+        "intermediate": 32,
+        "advanced": 27
+    },
+    "snowfall": {
+        "average": 160,
+        "high": 250
+    }
+}

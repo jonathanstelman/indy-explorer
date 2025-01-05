@@ -1,0 +1,26 @@
+{
+    "id": "387",
+    "slug": "mala-upa",
+    "name": "Mal\u00e1 \u00dapa",
+    "description": "Mal\u00e1 \u00dapa offers unforgettable winter experiences. In the highest mountains of the Czech Republic, there is a picturesque ski area, groomed cross-country ski tracks and beautiful nature. The authentic atmosphere of a mountain village, fresh air and skiing with a view of the majestic Sn\u011b\u017eka create ideal conditions for a family winter holiday.",
+    "url": "https://www.skimu.cz/zima",
+    "trails": 8,
+    "lifts": 9,
+    "acres": 1680,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 853,
+        "summit": 4134,
+        "base": 3264
+    },
+    "difficulty": {
+        "beginner": 0,
+        "intermediate": 39,
+        "advanced": 61
+    },
+    "snowfall": {
+        "average": 26,
+        "high": 28
+    }
+}

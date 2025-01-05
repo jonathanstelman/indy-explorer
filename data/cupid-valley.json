@@ -1,0 +1,26 @@
+{
+    "id": "357",
+    "slug": "cupid-valley",
+    "name": "Cupid Valley",
+    "description": "Located in a heavy snowfall region, this ski resort enjoys an abundance of snow. Although it is a small resort, it has courses that can be enjoyed by all levels of skiers, from beginners to experts. There is also a day-trip hot spring nearby, where you can relax after a long day of skiing.",
+    "url": "https://www.yukidaruma-kogen.com/winter.html",
+    "trails": 12,
+    "lifts": 3,
+    "acres": 77,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1607,
+        "summit": 3018,
+        "base": 1411
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 40,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 49,
+        "high": 56
+    }
+}

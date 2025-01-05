@@ -1,0 +1,26 @@
+{
+    "id": "344",
+    "slug": "ragged-mountain",
+    "name": "Ragged Mountain",
+    "description": "Home to the Summit 6-pack, New Hampshire's legendary high-speed six-person chairlift and the Spear Mountain Express high-speed quad! Ragged Mountain has two peaks with a total of 250 skiable acres of terrain. Ragged consists of 1250' vertical feet, 57 trails, 17 renowned glades, 3 terrain parks, and perfectly pitched groomers. The slope variety and renowned snow surfaces make Ragged arguably one of the best places to ski and ride in the state!",
+    "url": "https://www.raggedmountainresort.com/",
+    "trails": 57,
+    "lifts": 5,
+    "acres": 250,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1250,
+        "summit": 2286,
+        "base": 1000
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 105,
+        "high": 150
+    }
+}

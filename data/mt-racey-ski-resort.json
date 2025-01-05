@@ -1,0 +1,26 @@
+{
+    "id": "169",
+    "slug": "mt-racey-ski-resort",
+    "name": "Mt. Racey Ski Resort",
+    "description": "Mt. Racey Ski Resort is a small scale ski destination located in the town of Yubari in Hokkaido, not far from both the New Chitose Airport and Sapporo. Similar to many other resorts in Hokkaido, it benefits from consistent snowfall and dry powder snow. Yubari Ski Resort features 5 ski lifts, 18 trails, and provides some excellent opportunities for tree skiing. Frequent stormy weather in Hokkaido can cause lift closures from time to time. Due to its lower elevation and relatively sheltered conditions, Mt.",
+    "url": null,
+    "trails": 18,
+    "lifts": 4,
+    "acres": 0,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1326,
+        "summit": 2303,
+        "base": 977
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 40,
+        "advanced": 40
+    },
+    "snowfall": {
+        "average": 315,
+        "high": 475
+    }
+}

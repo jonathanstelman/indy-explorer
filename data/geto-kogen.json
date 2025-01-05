@@ -1,0 +1,26 @@
+{
+    "id": "82",
+    "slug": "geto-kogen",
+    "name": "Geto Kogen",
+    "description": "Geto Kogen ski resort consistently ranks amongst Japan\u2019s top snowfall regions, receiving an estimated 50 feet per season! Still relatively unknown in the Japow world, Geto Kogen offers an authentic Japanese ski experience, with frequent powder resets. Geto Kogen summed up: Consistently deep pow, with little competition for the freshies!",
+    "url": "https://www.getokogen.com/",
+    "trails": 14,
+    "lifts": 5,
+    "acres": 0,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1410,
+        "summit": 3511,
+        "base": 2100
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 40,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 880,
+        "high": 1100
+    }
+}

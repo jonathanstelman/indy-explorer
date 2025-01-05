@@ -1,0 +1,26 @@
+{
+    "id": "87",
+    "slug": "hoodoo",
+    "name": "Hoodoo",
+    "description": "Awaken a New Sense of Fun at Hoodoo! Reconnect & reinvigorate in a place of incredible natural beauty at Oregon\u2019s original ski area & your destination for family-friendly winter fun!",
+    "url": "http://skihoodoo.com",
+    "trails": 36,
+    "lifts": 6,
+    "acres": 805,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1035,
+        "summit": 5703,
+        "base": 4668
+    },
+    "difficulty": {
+        "beginner": 21,
+        "intermediate": 41,
+        "advanced": 38
+    },
+    "snowfall": {
+        "average": 250,
+        "high": 400
+    }
+}

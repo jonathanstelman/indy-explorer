@@ -1,0 +1,26 @@
+{
+    "id": "165",
+    "slug": "whaleback-mountain",
+    "name": "Whaleback Mountain",
+    "description": "Your community Mountain, right off I89 - An excellent learning area, night skiing/riding, sweet terrain park and 700' of vertical in a small ski area, we have it all. You have to Ski It To Believe It!",
+    "url": "https://www.whaleback.com",
+    "trails": 31,
+    "lifts": 4,
+    "acres": 86,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 700,
+        "summit": 1800,
+        "base": 1100
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 35,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 50,
+        "high": 96
+    }
+}

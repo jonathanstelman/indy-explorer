@@ -1,0 +1,26 @@
+{
+    "id": "81",
+    "slug": "fairmont-hot-springs",
+    "name": "Fairmont Hot Springs",
+    "description": "With a total of 14 runs, ranging from green to black in skill level, the Fairmont Hot Springs Ski Area provides an ideal family ski experience. Enjoy our resort\u2019s nearly non-existent lift lines, the un-crowded trails, and runs of perfect corduroy and panoramic views of the stunning Purcell and Rocky Mountains. And don't forget teh incredible hot springs after a day on the slopes.",
+    "url": "https://www.fairmonthotsprings.com",
+    "trails": 14,
+    "lifts": 3,
+    "acres": 88,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1000,
+        "summit": 5200,
+        "base": 4200
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 60,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 100,
+        "high": 550
+    }
+}

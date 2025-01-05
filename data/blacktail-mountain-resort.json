@@ -1,0 +1,26 @@
+{
+    "id": "57",
+    "slug": "blacktail-mountain-resort",
+    "name": "Blacktail Mountain Resort",
+    "description": "Blacktail Mountain is a unique top-down ski area located in the Rocky Mountains of Northwest Montana. The ski area offers over 1,000 acres of terrain and 1,440 feet of vertical drop. North-facing slopes keep snow light and dry with amazing views of Flathead Lake and Glacier National Park. Blacktail Mountain warmly welcomes the whole family to explore.",
+    "url": "https://blacktailmountain.com",
+    "trails": 29,
+    "lifts": 4,
+    "acres": 1000,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1440,
+        "summit": 6780,
+        "base": 5340
+    },
+    "difficulty": {
+        "beginner": 15,
+        "intermediate": 65,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 250,
+        "high": 400
+    }
+}

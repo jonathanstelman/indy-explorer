@@ -1,0 +1,26 @@
+{
+    "id": "60",
+    "slug": "bottineau-winter-park",
+    "name": "Bottineau Winter Park",
+    "description": "Bottineau Winter Park is a family-friendly recreation area that features downhill skiing, snowboarding, snow tubing and snowshoeing, for all ages and abilities. Annie\u2019s House Adaptive Recreation Program offers specially trained instructors and modifications, for our guests with disabilities. Located in the Turtle Mountains of North Dakota.",
+    "url": "https://skibwp.com",
+    "trails": 9,
+    "lifts": 6,
+    "acres": 17,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 200,
+        "summit": 2460,
+        "base": 2260
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 40,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 70,
+        "high": 170
+    }
+}

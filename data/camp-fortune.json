@@ -1,0 +1,26 @@
+{
+    "id": "367",
+    "slug": "camp-fortune",
+    "name": "Camp Fortune",
+    "description": "Steeped in ski history, Camp Fortune offers great family skiing and snowboarding in Chelsea, Qu\u00e9bec, only minutes from downtown Ottawa. Generations of families learn to ski here and are proud to call Camp Fortune home. We offer day and night skiing, ski & snowboard lessons, full-service rentals, cafeteria and bar.",
+    "url": "https://campfortune.com/winter/",
+    "trails": 27,
+    "lifts": 8,
+    "acres": 93,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 627,
+        "summit": 650,
+        "base": 23
+    },
+    "difficulty": {
+        "beginner": 17,
+        "intermediate": 46,
+        "advanced": 37
+    },
+    "snowfall": {
+        "average": 71,
+        "high": 184
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "id": "107",
+    "slug": "mission-ridge",
+    "name": "Mission Ridge",
+    "description": "Light powder. Tons of sun. Amazing views. Terrain that fits everyone in the family. That\u2019s Mission Ridge. Only 12 miles from Wenatchee, the ski area is built into a 2,000-acre basin on the eastern side of the Cascades. When storms come in, they drop a different kind of snow at Mission Ridge: light, dry powder.",
+    "url": "https://www.missionridge.com",
+    "trails": 54,
+    "lifts": 7,
+    "acres": 2000,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 2250,
+        "summit": 6820,
+        "base": 4570
+    },
+    "difficulty": {
+        "beginner": 10,
+        "intermediate": 60,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 200,
+        "high": 400
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "id": "337",
+    "slug": "big-moose",
+    "name": "Big Moose",
+    "description": "Big Moose Mountain is a locally run, 501c(3) non-profit ski area that serves citizens and visitors to Maine\u2019s Piscataquis County. Big Moose Mountain (aka Squaw Mountain) is located 5 miles north of Greenville overlooking magnificent Moosehead Lake. Facing northeast not only provides us with the best views in the East, our natural snowpack is well preserved. We offer lift service on a triple chair to the lower mountain and a beginner conveyor lift for our newest skiers. Nordic skiers will find a 9K figure 8 system. Backcountry is open for uphill adventures too. Come SKI THE VIEW! See you on the mountain!",
+    "url": "https://skibigmoose.com/",
+    "trails": 29,
+    "lifts": 2,
+    "acres": 0,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 600,
+        "summit": 3200,
+        "base": 1750
+    },
+    "difficulty": {
+        "beginner": {},
+        "intermediate": {},
+        "advanced": {}
+    },
+    "snowfall": {}
+}

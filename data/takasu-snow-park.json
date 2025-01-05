@@ -1,0 +1,26 @@
+{
+    "id": "361",
+    "slug": "takasu-snow-park",
+    "name": "Takasu Snow Park",
+    "description": "Takasu Snow Park, which is next to Dynaland, is the largest snow resort in western Japan, and has a wide variety of courses that can be skied from early December to late April. We get relatively few visitors from overseas and are kind of a hidden gem, so we are applying to let the world know the appeal of this area.",
+    "url": "https://www.takasu.gr.jp/",
+    "trails": 13,
+    "lifts": 4,
+    "acres": 247,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1968,
+        "summit": 5085,
+        "base": 3117
+    },
+    "difficulty": {
+        "beginner": 35,
+        "intermediate": 35,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 59,
+        "high": 94
+    }
+}

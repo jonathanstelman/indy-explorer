@@ -1,0 +1,26 @@
+{
+    "id": "133",
+    "slug": "sasquatch-mountain-resort",
+    "name": "Sasquatch Mountain Resort",
+    "description": "Our natural powder-packed bowl tucked in the mountains of the Fraser Valley provides unmatched quality for skiers and riders of all abilities. Discover a vast range of dynamic terrain from cruisy beginner runs to steep downhill drops and off-piste gullies at Sasquatch Mountain Resort. Conveniently located an hour from Abbotsford, 2 hours from Vancouver and 3 hours from Seattle, were the perfect ski destination for the whole family to explore and enjoy!",
+    "url": "https://sasquatchmountain.ca/",
+    "trails": 36,
+    "lifts": 4,
+    "acres": 205,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1200,
+        "summit": 4500,
+        "base": 3300
+    },
+    "difficulty": {
+        "beginner": 19,
+        "intermediate": 34,
+        "advanced": 47
+    },
+    "snowfall": {
+        "average": 184,
+        "high": 315
+    }
+}

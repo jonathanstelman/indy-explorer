@@ -1,0 +1,26 @@
+{
+    "id": "383",
+    "slug": "christie-mountain",
+    "name": "Christie Mountain",
+    "description": "Christie Mountain is a family-friendly winter destination in Northwest Wisconsin, offering exceptional mountain experiences amidst scenic country roads and snow-covered trees. Guests can explore groomed trails, glades, and cliff drops. Christie is Northwest Wisconsin's premier ski, snowboard, and tubing destination.",
+    "url": "https://www.christiemountain.com/",
+    "trails": 33,
+    "lifts": 5,
+    "acres": 100,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 350,
+        "summit": 1650,
+        "base": 1300
+    },
+    "difficulty": {
+        "beginner": 34,
+        "intermediate": 24,
+        "advanced": 42
+    },
+    "snowfall": {
+        "average": 33,
+        "high": 170
+    }
+}

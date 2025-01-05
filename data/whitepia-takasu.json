@@ -1,0 +1,26 @@
+{
+    "id": "363",
+    "slug": "whitepia-takasu",
+    "name": "WhitePIA Takasu",
+    "description": "The view of the Hakusan mountain range spreading out before your eyes and the linkage with the adjacent Washigatake Ski Resort make this a 115-hectare \u201cWashitopia\u201d.",
+    "url": "https://whitepia.jp/",
+    "trails": 13,
+    "lifts": 4,
+    "acres": 146,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 1509,
+        "summit": 4610,
+        "base": 3100
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 47,
+        "high": 79
+    }
+}

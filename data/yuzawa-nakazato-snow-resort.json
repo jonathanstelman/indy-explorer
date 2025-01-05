@@ -1,0 +1,26 @@
+{
+    "id": "359",
+    "slug": "yuzawa-nakazato-snow-resort",
+    "name": "Yuzawa Nakazato Snow Resort",
+    "description": "Yuzawa Nakazato Snow Resort has great slopes for beginners making their ski debut, but also has ample ungroomed and tree run areas, making for all-day fun for families and friends!",
+    "url": "https://www.yuzawa-nakazato.com/winter/",
+    "trails": 16,
+    "lifts": 6,
+    "acres": 326,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 800,
+        "summit": 2303,
+        "base": 1503
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 30,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 531,
+        "high": 925
+    }
+}

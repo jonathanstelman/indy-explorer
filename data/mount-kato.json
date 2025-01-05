@@ -1,0 +1,26 @@
+{
+    "id": "113",
+    "slug": "mount-kato",
+    "name": "Mount Kato",
+    "description": "Located just one mile south of Mankato Minnesota in the scenic Minnesota River Valley. Skiing, Snowboarding and Snow Tubing. With 19 Trails, 8 Chairlifts, 2 Terrain Parks, 2 Conveyor Lifts (beginner area & tubing park), a Food Court, The Li Bar & Grill, a Certified Ski/Snowboard School, 100% Snow Making, Full-Service Rental Shop, a Tuning Center & Accessory Shop, Summer Mountain Biking. Nice views, no lift lines and terrain that fits everyone in the family.",
+    "url": "https://www.mountkato.com",
+    "trails": 19,
+    "lifts": 10,
+    "acres": 55,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 240,
+        "summit": 1030,
+        "base": 790
+    },
+    "difficulty": {
+        "beginner": 21,
+        "intermediate": 42,
+        "advanced": 37
+    },
+    "snowfall": {
+        "average": 50,
+        "high": 124
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "id": "364",
+    "slug": "washigatake-ski-resort",
+    "name": "Washigatake Ski Resort",
+    "description": "Only 3 km from Takasu Interchange on the expressway, we have ski-in-ski-out accommodations and a wide variety of ski courses that can be enjoyed by beginners and advanced skiers alike.",
+    "url": "https://ski.washigatake.jp/",
+    "trails": 13,
+    "lifts": 4,
+    "acres": 136,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1444,
+        "summit": 4429,
+        "base": 2986
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 40,
+        "advanced": 30
+    },
+    "snowfall": {
+        "average": 71,
+        "high": 157
+    }
+}

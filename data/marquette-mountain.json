@@ -1,0 +1,26 @@
+{
+    "id": "104",
+    "slug": "marquette-mountain",
+    "name": "Marquette Mountain",
+    "description": "540 feet of vertical, 29 runs, 9 glades, natural hits everywhere. Overlooking Lake Superior and 5 minutes from the city of Marquette and all of its amenities. Terrain for the adrenaline junky and corduroy cruiser and everyone in between.",
+    "url": "https://marquettemountain.com",
+    "trails": 29,
+    "lifts": 4,
+    "acres": 170,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 540,
+        "summit": 1297,
+        "base": 757
+    },
+    "difficulty": {
+        "beginner": 16,
+        "intermediate": 42,
+        "advanced": 42
+    },
+    "snowfall": {
+        "average": 210,
+        "high": 300
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "id": "90",
+    "slug": "hurricane-ridge",
+    "name": "Hurricane Ridge",
+    "description": "From sea level to ski level in just 17 miles. Hurricane Ridge Ski and Snowboard Area is located in the Olympic National Park, just south of Port Angeles, Washington. It is one of only two remaining lift operations in the National Parks. Rising a mile high, Hurricane Ridge offers a variety of winter recreation activities and features winter vistas unmatched anywhere in the Pacific Northwest. It is a small, family-oriented ski area, providing a quality winter sports experience to residents and visitors alike, without the high cost or congestion of most ski areas. The Ridge boasts some groomed areas and a terrain park, but for the accomplished skier or snowboarder the steeps, bowls and glades are well worth the effort it takes to get there. There are miles of lift-accessed backcountry available from the ski area boundaries. With a summit elevation of 5,240, the average annual snowfall is 400-plus inches. Come visit us and you can say, I skied/snowboarded in the Olympics!",
+    "url": "https://www.olympicnationalparks.com/things-to-do/hurricane-ridge/winter-at-hurricane-ridge/",
+    "trails": 12,
+    "lifts": 3,
+    "acres": 50,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 700,
+        "summit": 5500,
+        "base": 4800
+    },
+    "difficulty": {
+        "beginner": 20,
+        "intermediate": 40,
+        "advanced": 40
+    },
+    "snowfall": {
+        "average": 400,
+        "high": 800
+    }
+}

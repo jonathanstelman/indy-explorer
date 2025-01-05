@@ -1,0 +1,26 @@
+{
+    "id": "348",
+    "slug": "middlebury-snowbowl",
+    "name": "Middlebury Snowbowl",
+    "description": "A family-friendly ski area just twenty minutes from the village of Middlebury in the heart of the Green Mountains, with skiing and riding on a variety of terrain. Closed non-holiday Mondays and Tuesdays.\u00a0",
+    "url": "https://www.middleburysnowbowl.com/",
+    "trails": 17,
+    "lifts": 4,
+    "acres": 200,
+    "terrain_parks": false,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1020,
+        "summit": 2720,
+        "base": 1700
+    },
+    "difficulty": {
+        "beginner": 21,
+        "intermediate": 44,
+        "advanced": 35
+    },
+    "snowfall": {
+        "average": 200,
+        "high": 250
+    }
+}

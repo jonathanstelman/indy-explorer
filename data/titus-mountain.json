@@ -1,0 +1,26 @@
+{
+    "id": "157",
+    "slug": "titus-mountain",
+    "name": "Titus Mountain",
+    "description": "Rated North Americas #1 Family Friendly Ski Resort. 53 runs. 380 skiable acres. 3 Mountains. Day and night skiing. 3-lane tubing hill. Home of the Slopeside Skiba.",
+    "url": "https://www.titusmountain.com",
+    "trails": 53,
+    "lifts": 9,
+    "acres": 380,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 1200,
+        "summit": 2025,
+        "base": 825
+    },
+    "difficulty": {
+        "beginner": 34,
+        "intermediate": 38,
+        "advanced": 28
+    },
+    "snowfall": {
+        "average": 150,
+        "high": 215
+    }
+}

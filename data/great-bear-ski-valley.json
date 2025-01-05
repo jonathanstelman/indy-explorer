@@ -1,0 +1,26 @@
+{
+    "id": "85",
+    "slug": "great-bear-ski-valley",
+    "name": "Great Bear Ski Valley",
+    "description": "Great Bear offers more than 220 acres of unlimited year-round fun and excitement just minutes away from downtown Sioux Falls, SD, featuring winter sports activities for the whole family. The park is home to 14 downhill trails, a terrain park, the Kirby Family Tubing Park, and cross-country and snowshoeing trails that provide fun and excitement for all skill levels.",
+    "url": "https://www.greatbearpark.com",
+    "trails": 14,
+    "lifts": 3,
+    "acres": 21,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 182,
+        "summit": 1645,
+        "base": 1463
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 40,
+        "advanced": 20
+    },
+    "snowfall": {
+        "average": 41,
+        "high": 94
+    }
+}

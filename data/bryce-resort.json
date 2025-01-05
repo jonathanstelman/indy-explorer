@@ -1,0 +1,26 @@
+{
+    "id": "62",
+    "slug": "bryce-resort",
+    "name": "Bryce Resort",
+    "description": "Whether you're looking for an adventure filled escape or a peaceful retreat we have everything for a fulfilling trip no matter what time of year it is. Ski or snowboard the slopes, rip down the tubing hill, and warm up by the fire in the Copper Kettle. Apr\u00e9s every weekend at Carter's H\u00fctte in the base area! Regardless of which activity you choose the atmosphere at Bryce is top notch!",
+    "url": "https://bryceresort.com",
+    "trails": 8,
+    "lifts": 4,
+    "acres": 32,
+    "terrain_parks": false,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 500,
+        "summit": 1750,
+        "base": 1250
+    },
+    "difficulty": {
+        "beginner": 40,
+        "intermediate": 50,
+        "advanced": 10
+    },
+    "snowfall": {
+        "average": 40,
+        "high": 80
+    }
+}

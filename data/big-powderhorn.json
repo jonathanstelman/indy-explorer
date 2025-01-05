@@ -1,0 +1,26 @@
+{
+    "id": "52",
+    "slug": "big-powderhorn",
+    "name": "Big Powderhorn",
+    "description": "If you want to experience real \"Lake Effect\" powder, Big Powderhorn Mountain is right in the middle of the famous Big Snow Country in Michigan\u2019s beautiful Upper Peninsula. With two full-service restaurants, a dedicated beginner lift, a charming Bavarian-style village, and 17 feet of annual natural snowfall see for yourself why Big Powderhorn was voted the #1 \u201cMom & Pop\u201d ski resort in the country by Men\u2019s Journal.",
+    "url": "https://bigpowderhorn.net",
+    "trails": 45,
+    "lifts": 10,
+    "acres": 253,
+    "terrain_parks": true,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 622,
+        "summit": 1862,
+        "base": 1240
+    },
+    "difficulty": {
+        "beginner": 25,
+        "intermediate": 35,
+        "advanced": 40
+    },
+    "snowfall": {
+        "average": 200,
+        "high": 319
+    }
+}

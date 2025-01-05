@@ -1,0 +1,26 @@
+{
+    "id": "391",
+    "slug": "glencoe-mountain-resort",
+    "name": "Glencoe Mountain Resort",
+    "description": "Glencoe Mountain Resort, nestled in the spectacular and rugged Highlands, is Scotland's original ski area and its most iconic. Dating back to 1956, it is located on the slopes of Meall a' Bhuiridh mountain, in the middle of the dramatic Rannoch Moor,\u00a0one of the last true wilderness areas of Scotland. It's no wonder that major film productions like Harry Potter and the Bond movie\u00a0Skyfall, have used\u00a0this location.\u00a0 Glencoe Mountain Resort offers a unique blend of natural beauty and challenging terrain. With stunning views, it features runs across a range of skill levels, from beginner slopes to expert-level challenges, including Scotland's steepest run, the \"Flypaper.\" The resort attracts adventurous skiers and snowboarders looking for a more natural and less commercialized experience. Glencoe also provides a dedicated beginner area with rope tow and magic carpet, a snow park, and backcountry options for advanced riders, making it a favorite for both families and thrill-seekers. Its facilities include three chairlifts, five surface\u00a0lifts, a new panoramic caf\u00e9, ski and snowboard hire, a snowsports\u00a0school and upgraded onsite accommodations. With its down-to-earth vibe, Glencoe Ski Area is a gem for those seeking a memorable mountain adventure in Scotland\u2019s Highlands. In winter, skiing, snowboarding, sledding, and avalanche rescue training are available, and the resort has both the longest and the steepest ski run in Scotland and great home-cooked food in the panoramic log cabin cafe.",
+    "url": "https://www.glencoemountain.co.uk/",
+    "trails": 20,
+    "lifts": 8,
+    "acres": 3953,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": 2388,
+        "summit": 3635,
+        "base": 1247
+    },
+    "difficulty": {
+        "beginner": 37,
+        "intermediate": 26,
+        "advanced": 37
+    },
+    "snowfall": {
+        "average": 35,
+        "high": 50
+    }
+}

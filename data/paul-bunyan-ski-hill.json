@@ -1,0 +1,23 @@
+{
+    "id": "325",
+    "slug": "paul-bunyan-ski-hill",
+    "name": "Paul Bunyan Ski Hill",
+    "description": "",
+    "url": "https://skipaulbunyan.com/",
+    "trails": 10,
+    "lifts": 6,
+    "acres": 0,
+    "terrain_parks": false,
+    "night_skiing": false,
+    "vertical": {
+        "elevation": null,
+        "summit": null,
+        "base": null
+    },
+    "difficulty": {
+        "beginner": 30,
+        "intermediate": 20,
+        "advanced": 50
+    },
+    "snowfall": {}
+}

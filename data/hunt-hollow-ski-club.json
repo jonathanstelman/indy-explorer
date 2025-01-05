@@ -1,0 +1,26 @@
+{
+    "id": "373",
+    "slug": "hunt-hollow-ski-club",
+    "name": "Hunt Hollow Ski Club",
+    "description": "We are a semi-private club that welcomes non-members during the week and reserves weekends for members only. We also offer Business Pass Packages, Student and Weekday only passes. Our Snowsports School is excellent, with 97% of the senior instructors being PSIA certified. We have a variety of programs, camps and lessons.",
+    "url": "https://www.hunthollow.com/Home",
+    "trails": 21,
+    "lifts": 4,
+    "acres": 100,
+    "terrain_parks": true,
+    "night_skiing": true,
+    "vertical": {
+        "elevation": 875,
+        "summit": 2030,
+        "base": 1000
+    },
+    "difficulty": {
+        "beginner": 32,
+        "intermediate": 21,
+        "advanced": 48
+    },
+    "snowfall": {
+        "average": 46,
+        "high": 72
+    }
+}
