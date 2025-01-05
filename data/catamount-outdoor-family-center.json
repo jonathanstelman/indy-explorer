@@ -7,11 +7,12 @@
     "trails": 0,
     "lifts": 0,
     "acres": 0,
-    "vertical": {},
-    "difficulty": {
-        "beginner": {},
-        "intermediate": {},
-        "advanced": {}
-    },
-    "snowfall": {}
+    "vertical_base": null,
+    "vertical_summit": null,
+    "vertical_elevation": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average": null,
+    "snowfall_high": null
 }

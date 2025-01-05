@@ -271,34 +271,42 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
         resort_data['night_skiing'] = 'Yes' in night_skiing_field.text.strip()
 
     # Extract vertical (elevation, summit, and base)
-    resort_data['vertical'] = {}
-    vertical_field = soup.find('div', class_='elevation__tag--vertical')
-    if vertical_field:
-        resort_data['vertical']['elevation'] = get_numbers(vertical_field.text.strip())
-    summit_field = soup.find('div', class_='elevation__tag--summit')
-    if summit_field:
-        resort_data['vertical']['summit'] = get_numbers(summit_field.text.strip())
-    base_field = soup.find('div', class_='elevation__tag--base')
-    if base_field:
-        resort_data['vertical']['base'] = get_numbers(base_field.text.strip())
+    resort_data['vertical_base'] = None
+    resort_data['vertical_summit'] = None
+    resort_data['vertical_elevation'] = None
+
+    base_div = soup.find('div', class_='elevation__tag--base')
+    if base_div:
+        resort_data['vertical_base'] = get_numbers(base_div.text.strip())
+
+    elevation_div = soup.find('div', class_='elevation__tag--vertical')
+    if elevation_div:
+        resort_data['vertical_elevation'] = get_numbers(elevation_div.text.strip())
+
+    summit_div = soup.find('div', class_='elevation__tag--summit')
+    if summit_div:
+        resort_data['vertical_summit'] = get_numbers(summit_div.text.strip())
 
     # Extract terrain difficulty coverage
-    resort_data['difficulty'] = {}
-    for difficulty in ['beginner', 'intermediate', 'advanced']:
-        resort_data['difficulty'][difficulty] = {}
-        diff_class = soup.find('div', class_=f'field--name-field-{difficulty}')
+    resort_data['difficulty_beginner'] = None
+    resort_data['difficulty_intermediate'] = None
+    resort_data['difficulty_advanced'] = None
+
+    for level in ['beginner', 'intermediate', 'advanced']:
+        diff_class = soup.find('div', class_=f'field--name-field-{level}')
         if diff_class:
-            resort_data['difficulty'][difficulty] = get_numbers(diff_class.text.strip())
+            resort_data[f'difficulty_{level}'] = get_numbers(diff_class.text.strip())
 
     # Extract snowfall
-    resort_data['snowfall'] = {}
+    resort_data['snowfall_average'] = None
+    resort_data['snowfall_high'] = None
     snowfall_field = soup.find('div', class_='snowfall--content')
     if snowfall_field:
-        for snowfall_type in ['average', 'high']:
-            snowfall_div = snowfall_field.find('div', class_=f'label {snowfall_type}')
+        for snow_type in ['average', 'high']:
+            snowfall_div = snowfall_field.find('div', class_=f'label {snow_type}')
             if snowfall_div:
                 snowfall_raw = snowfall_div.find('span', class_='f-w-700 d-block').text.strip()
-                resort_data['snowfall'][snowfall_type] = int(snowfall_raw.split('in')[0].strip())
+                resort_data[f'snowfall_{snow_type}'] = int(snowfall_raw.split('in')[0].strip())
 
     return resort_data
 
@@ -316,9 +324,7 @@ if __name__ == '__main__':
     for _id, resort in resorts_raw.items():
         _url = f'https://www.indyskipass.com{resort["href"]}'
         _slug = resort["href"].replace('/our-resorts/', '').replace('/', '')
-        
         print(f'Parsing resort:\n - "{resort["name"]}\n - ID: {_id}\n - Slug: {_slug}\n - URL: {_url}')
-
 
         page_html_str = get_page_html(_url, read_mode='cache')
         resort_dict = parse_resort_page(page_html_str, resort_id=_id, resort_slug=_slug)

@@ -9,18 +9,12 @@
     "acres": 50,
     "terrain_parks": true,
     "night_skiing": true,
-    "vertical": {
-        "elevation": 660,
-        "summit": 3208,
-        "base": 2682
-    },
-    "difficulty": {
-        "beginner": 20,
-        "intermediate": 60,
-        "advanced": 20
-    },
-    "snowfall": {
-        "average": 16,
-        "high": 45
-    }
+    "vertical_base": 2682,
+    "vertical_summit": 3208,
+    "vertical_elevation": 660,
+    "difficulty_beginner": 20,
+    "difficulty_intermediate": 60,
+    "difficulty_advanced": 20,
+    "snowfall_average": 16,
+    "snowfall_high": 45
 }
