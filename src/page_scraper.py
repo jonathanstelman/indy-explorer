@@ -246,7 +246,7 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     resort_data['description'] = description_meta['content'] if description_meta else ''
     button_div = soup.find('div', class_='grid-inner-full d-flex jc-center buttons')
     url_button = button_div.find('a', class_='button-inverted')
-    resort_data['url'] = url_button['href'] if url_button else None
+    resort_data['website'] = url_button['href'] if url_button else None
 
     # Extract trails
     trails_field = soup.find('div', class_='field--name-field-trails')
@@ -312,15 +312,9 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
 
 if __name__ == '__main__':
 
-    # _url = 'https://www.indyskipass.com/our-resorts'
-    # _url = 'https://www.indyskipass.com/our-resorts/jay-peak-resort'
-    # _url = 'https://www.indyskipass.com/our-resorts/shawnee-mountain-ski-area'
-
-
     with open('data/resorts_raw.json', 'r', encoding='utf-8') as f:
         resorts_raw = json.load(f)
 
-    # print(resorts_raw)
     for _id, resort in resorts_raw.items():
         _url = f'https://www.indyskipass.com{resort["href"]}'
         _slug = resort["href"].replace('/our-resorts/', '').replace('/', '')

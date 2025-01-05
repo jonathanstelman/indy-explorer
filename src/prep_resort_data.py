@@ -70,7 +70,7 @@ cols = [
     # 'country',
     # 'href',
     'indy_page',
-    'url',
+    'website',
     'latitude',
     'longitude',
     'vertical',
@@ -79,17 +79,13 @@ cols = [
     'is_xc_only',
     'is_allied',
     'num_trails',
-    # 'trails', # from resort page
     'num_lifts',
-    # 'lifts', # from resort page
     'vertical_base',
     'vertical_summit',
     'vertical_elevation',
-    # 'is_open_nights',
-    'night_skiing', # from main page
+    'night_skiing',
     'has_terrain_parks',
-    # 'terrain_parks', # from resort page
-    'acres', # from resort page
+    'acres',
     'difficulty_beginner',
     'difficulty_intermediate',
     'difficulty_advanced',
