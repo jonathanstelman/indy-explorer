@@ -53,7 +53,7 @@ resorts['is_allied_display'] = resorts.is_allied.map(bool_map)
 # Location
 resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
 resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
-# resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
+resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
 
 
 
@@ -65,9 +65,9 @@ cols = [
     'location_name',
     # 'description',
     # 'coordinates',
-    # 'city',
-    # 'state',
-    # 'country',
+    'city',
+    'state',
+    'country',
     # 'href',
     'indy_page',
     'website',
