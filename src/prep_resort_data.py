@@ -76,21 +76,26 @@ cols = [
     'vertical',
     'is_nordic',
     'is_alpine_xc',
-    'is_xc_only',
+    'is_xc_only', # from main page
+    'is_cross_country', # from resort page
     'is_allied',
+    'acres',
     'num_trails',
+    'trail_length_mi',
+    'trail_length_km',
     'num_lifts',
-    'vertical_base',
-    'vertical_summit',
-    'vertical_elevation',
+    'vertical_base_ft',
+    'vertical_summit_ft',
+    'vertical_elevation_ft',
     'night_skiing',
     'has_terrain_parks',
-    'acres',
+    'is_dog_friendly',
+    'has_snowshoeing',
     'difficulty_beginner',
     'difficulty_intermediate',
     'difficulty_advanced',
-    'snowfall_average',
-    'snowfall_high',
+    'snowfall_average_in',
+    'snowfall_high_in',
     'is_alpine_xc_display',
     'night_skiing_display',
     'has_terrain_parks_display',
@@ -98,16 +103,8 @@ cols = [
 ]
 
 resorts = resorts[cols]
-
-# find places where resorts page differs from main page
-# qa_cols = ['name', 'has_terrain_parks', 'terrain_parks', 'indy_page']
-# mismatched = resorts[resorts['has_terrain_parks'] != resorts['terrain_parks']][qa_cols]
-# mismatched.to_csv('resorts_qa.csv')
-
 resorts.to_csv('data/resorts_v2.csv')
 
 # pd.options.display.max_columns = None
 # pd.options.display.max_rows = None
-
-
-# # print(resorts)
+# print(resorts)
