@@ -74,14 +74,18 @@ country = st.sidebar.selectbox(
 )
 selected_countries = resorts.country.unique() if country == 'All' else [country]
 min_vertical, max_vertical = st.sidebar.slider(":mountain: Vertical (ft)", 0, int(resorts.vertical.max()), (0, int(resorts.vertical.max())))
-min_trails, max_trails = st.sidebar.slider(":wavy_dash: Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
-min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
+min_trails, max_trails = st.sidebar.slider(":wavy_dash: Number of Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
+# min_trail_length, max_trail_length = st.sidebar.slider(":straight_ruler: Trail Length (mi)", 0, int(resorts.trail_length_mi.max()), (0, int(resorts.trail_length_mi.max())))
+min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Number of Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
 
 boolean_map = {'Yes': True, 'No': False}
 is_alpine_xc = st.sidebar.segmented_control(key='alpine', label=':evergreen_tree: Alpine / Cross-Country', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
-is_open_nights = st.sidebar.segmented_control(key='night', label=':last_quarter_moon_with_face: Open Nights', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+has_night_skiing = st.sidebar.segmented_control(key='night', label=':last_quarter_moon_with_face: Open Nights', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_terrain_parks = st.sidebar.segmented_control(key='park', label=':snowboarder: Terrain Parks', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+is_dog_friendly = st.sidebar.segmented_control(key='dog', label=":dog: Dog Friendly", options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+has_snowshoeing = st.sidebar.segmented_control(key='snowshoe', label=":hiking_boot: Snowshoeing", options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 is_allied = st.sidebar.segmented_control(key='allied', label=':handshake: Allied Resorts', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+
 
 
 filtered_data = resorts[
@@ -89,12 +93,16 @@ filtered_data = resorts[
     (resorts.country.isin(selected_countries)) &
     (resorts.vertical.between(min_vertical, max_vertical) | resorts.vertical.isnull()) &
     (resorts.num_trails.between(min_trails, max_trails) | resorts.num_trails.isnull()) &
+    # (resorts.trail_length_mi.between(min_trail_length, max_trail_length) | resorts.trail_length_mi.isnull()) &
     (resorts.num_lifts.between(min_lifts, max_lifts) | resorts.num_lifts.isnull()) &
     (resorts.is_alpine_xc.isin([boolean_map.get(s) for s in is_alpine_xc])) &
-    (resorts.is_open_nights.isin([boolean_map.get(s) for s in is_open_nights])) &
+    (resorts.has_night_skiing.isin([boolean_map.get(s) for s in has_night_skiing])) &
     (resorts.has_terrain_parks.isin([boolean_map.get(s) for s in has_terrain_parks])) &
-    (resorts.is_allied.isin([boolean_map.get(s) for s in is_allied]))
+    (resorts.is_allied.isin([boolean_map.get(s) for s in is_allied])) &
+    (resorts.is_dog_friendly.isin([boolean_map.get(s) for s in is_dog_friendly])) &
+    (resorts.has_snowshoeing.isin([boolean_map.get(s) for s in has_snowshoeing]))
 ]
+
 
 # PyDeck Map
 layer = pdk.Layer(
@@ -115,10 +123,12 @@ tooltip = {
         <b>Trails:</b> {num_trails}<br>
         <b>Lifts:</b> {num_lifts}<br>
         <b>Alpine / Cross-Country:</b> {is_alpine_xc_display}<br>
-        <b>Nights:</b> {is_open_nights_display}<br>
+        <b>Nights:</b> {night_skiing_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
+        <b>Dogs Friendly:</b> {is_dog_friendly}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
-        <!-- <b>Web Page:</b> {web_page}<br> -->
+        <!-- <b>Indy Resort Page:</b> {indy_page}<br> -->
+        <!-- <b>Website:</b> {website}<br> -->
     """,
     "style": {
         "backgroundColor": "white",
@@ -165,16 +175,22 @@ def display_resorts_table():
         'vertical' : 'Vertical (ft)',
         'vertical_meters' : 'Vertical (m)',
         'is_nordic' : 'Nordic',
+        'is_cross_country' : 'Cross-Country',
         'is_alpine_xc' : 'Alpine / Cross-Country',
         'is_xc_only' : 'Cross-Country Only',
         'is_allied' : 'Allied',
-        'num_trails' : 'Trails',
+        'num_trails' : 'Num. Trails',
+        'trail_length_mi' : 'Trail Length (mi)',
+        'trail_length_km' : 'Trail Length (km)',
         'num_lifts' : 'Lifts',
-        'is_open_nights' : 'Nights',
+        'has_night_skiing' : 'Nights',
         'has_terrain_parks' : 'Terrain Parks',
+        'is_dog_friendly' : 'Dog Friendly',
+        'has_snowshoeing' : 'Snowshoeing',
         'radius' : 'Radius',
         'color' : 'Color',
-        'web_page': 'Web Page'
+        'indy_page': 'Indy Page',
+        'website' : 'Website',
     }
     display_cols = [
         'Resort',
@@ -185,13 +201,20 @@ def display_resorts_table():
         'Longitude',
         'Vertical (ft)',
         'Vertical (m)',
+        'Nordic',
+        'Cross-Country',
         'Alpine / Cross-Country',
-        'Trails',
+        'Num. Trails',
+        'Trail Length (mi)',
+        'Trail Length (km)',
         'Lifts',
         'Nights',
         'Terrain Parks',
+        'Dog Friendly',
+        'Snowshoeing',
         'Allied',
-        'Web Page'
+        'Indy Page',
+        'Website',
     ]
     display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
@@ -203,7 +226,6 @@ def display_resorts_table():
         hide_index=True,
         on_select='rerun',
         selection_mode='multi-row'
-        
     )
 
 def display_footer():
@@ -212,7 +234,7 @@ def display_footer():
     """
     st.markdown(
         """
-        Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 14, 2024.  
+        Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of January 5, 2025.  
         
         ---
         Help improve this app:

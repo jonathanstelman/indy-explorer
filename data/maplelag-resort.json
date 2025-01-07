@@ -1,0 +1,23 @@
+{
+    "id": "290",
+    "slug": "maplelag-resort",
+    "name": "Maplelag Resort",
+    "description": "Our mission is to provide a healthy atmosphere in a safe and welcoming outdoor environment. Our terrain features 68 km of groomed and 8k of ungroomed terrain across our 17 trails. We offer family oriented outdoor themed experiences that give guests a sense of comfort and belonging, leaving them feeling rejuvenated and relaxed after their stay.",
+    "website": "https://www.maplelag.com/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 76,
+    "trail_length_mi": 47,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

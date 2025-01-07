@@ -1,0 +1,23 @@
+{
+    "id": "384",
+    "slug": "cascade-welcome-center",
+    "name": "Cascade Welcome Center",
+    "description": "Cascade Welcome Center offers 12 miles (20km) of trails groomed for classic skiing. The network is composed of large flats and rolling hills with some steeper downhills. Our trails wind through dense forests and along a large wetland, which offers excellent views of neighboring high peaks.",
+    "website": "https://adk.org/cascade-welcome-center/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 20,
+    "trail_length_mi": 12,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

@@ -1,0 +1,23 @@
+{
+    "id": "298",
+    "slug": "rangeley-lakes-trail-center",
+    "name": "Rangeley Lakes Trail Center",
+    "description": "There's something for everyone at the Rangeley Lakes Trails Center. Loads of impeccably groomed beginner through expert skate and classic Nordic trails, singletrack snowshoe and fat bike trails, and even a gnome home roam for the kids (and kids at heart)! All on the flank of Saddleback Mountain, one of Maine's snowiest mountains. Elevation, great snow, and amazing views. We have it all!",
+    "website": null,
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 55,
+    "trail_length_mi": 34,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

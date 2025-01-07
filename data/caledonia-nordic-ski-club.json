@@ -1,0 +1,23 @@
+{
+    "id": "275",
+    "slug": "caledonia-nordic-ski-club",
+    "name": "Caledonia Nordic Ski Club",
+    "description": "The facility includes 55km of groomed trails, 10km of night skiing, snowmaking, dog-friendly trails and numerous snowshoe trails. The large, comfortable day lodge has heated washrooms, a wax room, a kitchen, a ski school, and equipment rentals. CNSC is also home to a world-class biathlon facility and a cross-country technical building. These facilities allow for the hosting of local events up to national-level races including the 2015 Canada Winter Games and the 2019 World Para Nordic Ski Championships. Our program participation numbers and membership base are some of the highest in the country. Run by a dedicated volunteer board of directors, enthusiastic staff members and a huge volunteer base, Caledonia Nordic Ski Club welcomes you to our world-class facility.",
+    "website": "https://caledonianordic.com/trails-facilities/webcams",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 55,
+    "trail_length_mi": 34,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

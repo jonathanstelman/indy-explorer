@@ -1,0 +1,23 @@
+{
+    "id": "272",
+    "slug": "bear-valley-adventure-company",
+    "name": "Bear Valley Adventure Company",
+    "description": "Our cross-country skiing guests enjoy an extensive trail system with 65 kilometres of groomed paths over 3,000 acres. We have 38 carefully groomed trails for track and skate skiing, a trailside Meadow Cafe, and three warming huts throughout the trail system. The 7,000 to 7,800 feet elevation guarantees first to open (usually mid-November) and last to close (usually mid-April) among the Sierra Nevada cross-country centers.",
+    "website": "https://www.bvadventures.com/webcam",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 65,
+    "trail_length_mi": 40,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

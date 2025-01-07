@@ -19,19 +19,39 @@ def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
 
 with open('data/resorts_raw.json', 'r', encoding='utf-8') as json_file:
     resorts_dict = json.load(json_file)
+
+
+# Add data from resort page
+for _id, resort_data in resorts_dict.items():
+    resort_slug = resort_data['href'].split('/')[-1]
+    with open(f'data/{resort_slug}.json', 'r', encoding='utf-8') as json_file:
+        resort_page = json.load(json_file)
+        resorts_dict[_id].update(resort_page)
+
+# Create DataFrame
 resorts = pd.DataFrame(resorts_dict).transpose()
 
 # Webpage URL
-resorts['web_page'] = resorts['href'].apply(
+resorts['indy_page'] = resorts['href'].apply(
     lambda x: 'https://www.indyskipass.com' + x if x else 'n/a'
 )
+
+# Fix discrepancies between main page and resort page
+# Issues related to bad parsing of cross-country resorts - defer to main page
+resorts.drop(columns=['lifts'], inplace=True)
+resorts.drop(columns=['trails'], inplace=True)
+resorts.rename(columns={'is_open_nights': 'has_night_skiing'}, inplace=True)
+resorts.drop(columns=['terrain_parks'], inplace=True)
 
 # Display text
 bool_map = {False: 'No', True: 'Yes'}
 resorts['is_alpine_xc_display'] = resorts.is_alpine_xc.map(bool_map)
-resorts['is_open_nights_display'] = resorts.is_open_nights.map(bool_map)
+resorts['night_skiing_display'] = resorts.has_night_skiing.map(bool_map)
 resorts['has_terrain_parks_display'] = resorts.has_terrain_parks.map(bool_map)
 resorts['is_allied_display'] = resorts.is_allied.map(bool_map)
+resorts['is_cross_country_display'] = resorts['is_cross_country'].map(bool_map)
+resorts['is_dog_friendly_display'] = resorts['is_dog_friendly'].map(bool_map)
+resorts['has_snowshoeing_display'] = resorts['has_snowshoeing'].map(bool_map)
 
 # Location
 resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
@@ -39,35 +59,55 @@ resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') i
 resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
 
 
+
 # Clean up
 cols = [
+    # 'id',
+    # 'slug',
     'name',
     'location_name',
+    # 'description',
+    # 'coordinates',
     'city',
     'state',
     'country',
-    'longitude',
+    # 'href',
+    'indy_page',
+    'website',
     'latitude',
+    'longitude',
     'vertical',
     'is_nordic',
     'is_alpine_xc',
-    'is_xc_only',
+    'is_xc_only', # from main page
+    'is_cross_country', # from resort page
     'is_allied',
+    'acres',
     'num_trails',
+    'trail_length_mi',
+    'trail_length_km',
     'num_lifts',
-    'is_open_nights',
+    'vertical_base_ft',
+    'vertical_summit_ft',
+    'vertical_elevation_ft',
+    'has_night_skiing',
     'has_terrain_parks',
-    'web_page',
+    'is_dog_friendly',
+    'has_snowshoeing',
+    'difficulty_beginner',
+    'difficulty_intermediate',
+    'difficulty_advanced',
+    'snowfall_average_in',
+    'snowfall_high_in',
     'is_alpine_xc_display',
-    'is_open_nights_display',
+    'night_skiing_display',
     'has_terrain_parks_display',
     'is_allied_display',
 ]
+
 resorts = resorts[cols]
 resorts.to_csv('data/resorts.csv')
 
-
-pd.options.display.max_columns = None
-pd.options.display.max_rows = None
-
-print(resorts)
+# pd.options.display.max_columns = None
+# pd.options.display.max_rows = None
+# print(resorts)
