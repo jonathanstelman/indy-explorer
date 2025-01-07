@@ -49,6 +49,9 @@ resorts['is_alpine_xc_display'] = resorts.is_alpine_xc.map(bool_map)
 resorts['night_skiing_display'] = resorts.has_night_skiing.map(bool_map)
 resorts['has_terrain_parks_display'] = resorts.has_terrain_parks.map(bool_map)
 resorts['is_allied_display'] = resorts.is_allied.map(bool_map)
+resorts['is_cross_country_display'] = resorts['is_cross_country'].map(bool_map)
+resorts['is_dog_friendly_display'] = resorts['is_dog_friendly'].map(bool_map)
+resorts['has_snowshoeing_display'] = resorts['has_snowshoeing'].map(bool_map)
 
 # Location
 resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
@@ -87,7 +90,7 @@ cols = [
     'vertical_base_ft',
     'vertical_summit_ft',
     'vertical_elevation_ft',
-    'night_skiing',
+    'has_night_skiing',
     'has_terrain_parks',
     'is_dog_friendly',
     'has_snowshoeing',
@@ -103,7 +106,7 @@ cols = [
 ]
 
 resorts = resorts[cols]
-resorts.to_csv('data/resorts_v2.csv')
+resorts.to_csv('data/resorts.csv')
 
 # pd.options.display.max_columns = None
 # pd.options.display.max_rows = None
