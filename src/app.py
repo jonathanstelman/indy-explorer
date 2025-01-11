@@ -11,21 +11,34 @@ def get_color(resort):
     """
     Returns the color that a resort should appear on the map
     """
-    if resort['is_allied']:
-        return [0, 0, 0, 255]     # White for allied resorts
-    if resort['is_alpine_xc']:
-        return [255, 165, 0, 160] # Orange for Cross Country resorts
+    if resort.is_allied:
+        return [30, 30, 30, 160]     # Grey for allied resorts
+    if resort.is_alpine_xc: # Alpine AND Cross Country
+        return [128, 0, 128, 160] # Purple for Alpine AND Cross Country resorts
+    if resort.is_nordic or resort.is_xc_only:
+        return [0, 10, 200, 160]     # Blue
     return [197, 42, 28, 200]     # Default to Red -- should be alpine?
+
 
 def get_radius(resort):
     """
-    Returns the radius that a resort should appear on the map
+    Returns the radius that a resort should display on the map
     """
-    num_trails = resort.num_trails if resort.num_trails else 5
-    vertical = resort.vertical if resort.vertical else 300
-    num_lifts = resort.num_lifts if resort.num_lifts else 0
+    if resort.is_nordic or resort.is_xc_only or resort.is_alpine_xc:
+        return 3000
 
-    return 2 * (50 * num_trails + 1.5 * vertical + 5 * num_lifts)
+    if not resort.acres:
+        # use this weird formula I made up to set display radius based on other data
+        num_trails = resort.num_trails if resort.num_trails else 5
+        vertical = resort.vertical if resort.vertical else 300
+        num_lifts = resort.num_lifts if resort.num_lifts else 0
+        radius =  2 * (50 * num_trails + 1.5 * vertical + 5 * num_lifts)
+    else:
+        radius = resort.acres * 30
+
+    # set min and max radius
+    return min(50_000, max(3000, radius))
+
 
 def get_search_terms(resort):
     """
@@ -51,10 +64,10 @@ resorts = resorts[resorts.latitude.notnull()]
 # Display and search
 resorts["radius"] = resorts.apply(get_radius, axis=1)
 resorts["color"] = resorts.apply(get_color, axis=1)
-resorts['search_terms'] = resorts.apply(get_search_terms, axis=1)
+resorts["search_terms"] = resorts.apply(get_search_terms, axis=1)
 
 # Units
-resorts['vertical_meters'] = resorts.vertical.apply(feet_to_meters)
+resorts["vertical_meters"] = resorts.vertical.apply(feet_to_meters)
 
 # Configure Streamlit page
 st.set_page_config(page_title="Indy Pass Resorts Map", layout="wide")
@@ -111,21 +124,23 @@ layer = pdk.Layer(
     pickable=True,
     auto_highlight=True,
     get_position="[longitude, latitude]",
-    get_radius="radius",
-    get_fill_color='color'
+    get_radius='radius',
+    get_fill_color='color',
+    highlight_color=[255, 255, 255, 100],
 )
 
 tooltip = {
     "html": """
         <b>Resort:</b> {name}<br>
         <b>City:</b> {location_name}<br>
+        <b>Area:</b> {acres} acres<br>
         <b>Vertical:</b> {vertical} ft / {vertical_meters} m<br>
         <b>Trails:</b> {num_trails}<br>
         <b>Lifts:</b> {num_lifts}<br>
-        <b>Alpine / Cross-Country:</b> {is_alpine_xc_display}<br>
+        <b>Alpine & Cross-Country:</b> {is_alpine_xc_display}<br>
         <b>Nights:</b> {night_skiing_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
-        <b>Dogs Friendly:</b> {is_dog_friendly}<br>
+        <b>Dog Friendly:</b> {is_dog_friendly_display}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
         <!-- <b>Indy Resort Page:</b> {indy_page}<br> -->
         <!-- <b>Website:</b> {website}<br> -->
@@ -159,6 +174,59 @@ st.pydeck_chart(
     height=800
 )
 
+# Add a legend
+st.markdown(
+    """
+    <style>
+        .legend {
+            position: relative;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .red { background: rgba(197, 42, 28, 200); }
+        .blue { background: rgba(0, 10, 200, 160); }
+        .purple { background: rgba(128, 0, 128, 160); }
+        .grey { background: rgba(30, 30, 30, 160); }
+    </style>
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color red"></div>
+            Alpine
+        </div>
+        <div class="legend-item">
+            <div class="legend-color blue"></div>
+            Cross-Country
+        </div>
+        <div class="legend-item">
+            <div class="legend-color purple"></div>
+            Alpine & Cross-Country
+        </div>
+        <div class="legend-item">
+            <div class="legend-color grey"></div>
+            Allied Resort
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+
 def display_resorts_table():
     """
     Clean resorts dataframe for cleaner output
@@ -172,11 +240,12 @@ def display_resorts_table():
         'country': 'Country',
         'latitude' : 'Latitude',
         'longitude' : 'Longitude',
+        'acres': 'Area (acres)',
         'vertical' : 'Vertical (ft)',
         'vertical_meters' : 'Vertical (m)',
         'is_nordic' : 'Nordic',
         'is_cross_country' : 'Cross-Country',
-        'is_alpine_xc' : 'Alpine / Cross-Country',
+        'is_alpine_xc' : 'Alpine & Cross-Country',
         'is_xc_only' : 'Cross-Country Only',
         'is_allied' : 'Allied',
         'num_trails' : 'Num. Trails',
@@ -199,11 +268,12 @@ def display_resorts_table():
         'Country',
         'Latitude',
         'Longitude',
+        'Area (acres)',
         'Vertical (ft)',
         'Vertical (m)',
         'Nordic',
         'Cross-Country',
-        'Alpine / Cross-Country',
+        'Alpine & Cross-Country',
         'Num. Trails',
         'Trail Length (mi)',
         'Trail Length (km)',
@@ -224,8 +294,8 @@ def display_resorts_table():
         display_df,
         column_config={"Web Page": st.column_config.LinkColumn()},
         hide_index=True,
-        on_select='rerun',
-        selection_mode='multi-row'
+        # on_select='rerun',
+        # selection_mode='multi-row'
     )
 
 def display_footer():
