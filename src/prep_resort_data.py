@@ -99,6 +99,7 @@ cols = [
     'difficulty_advanced',
     'snowfall_average_in',
     'snowfall_high_in',
+    'is_dog_friendly_display',
     'is_alpine_xc_display',
     'night_skiing_display',
     'has_terrain_parks_display',
