@@ -12,20 +12,20 @@ def get_color(resort):
     Returns the color that a resort should appear on the map
     """
     if resort.is_allied:
-        return [30, 30, 30, 160]     # Grey for allied resorts
-    if resort.is_alpine_xc: # Alpine AND Cross Country
-        return [128, 0, 128, 160] # Purple for Alpine AND Cross Country resorts
-    if resort.is_nordic or resort.is_xc_only:
-        return [0, 10, 200, 160]     # Blue
-    return [197, 42, 28, 200]     # Default to Red -- should be alpine?
+        return [30, 30, 30, 160]  # Grey for allied resorts
+    if resort.has_cross_country and not resort.has_alpine:
+        return [0, 10, 200, 160]  # Blue - Cross-Country
+    if resort.has_alpine and resort.has_cross_country:
+        return [128, 0, 128, 160] # Purple - Alpine & Cross-Country
+    return [197, 42, 28, 200]     # Red - Alpine
 
 
 def get_radius(resort):
     """
     Returns the radius that a resort should display on the map
     """
-    if resort.is_nordic or resort.is_xc_only or resort.is_alpine_xc:
-        return 3000
+    if resort.has_cross_country and not resort.has_alpine:
+        return 5000
 
     if not resort.acres:
         # use this weird formula I made up to set display radius based on other data
@@ -37,7 +37,7 @@ def get_radius(resort):
         radius = resort.acres * 30
 
     # set min and max radius
-    return min(50_000, max(3000, radius))
+    return min(50_000, max(5000, radius))
 
 
 def get_search_terms(resort):
@@ -92,8 +92,9 @@ min_trails, max_trails = st.sidebar.slider(":wavy_dash: Number of Trails", 0, in
 min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Number of Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
 
 boolean_map = {'Yes': True, 'No': False}
-is_alpine_xc = st.sidebar.segmented_control(key='alpine', label=':evergreen_tree: Alpine / Cross-Country', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
-has_night_skiing = st.sidebar.segmented_control(key='night', label=':last_quarter_moon_with_face: Open Nights', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+has_alpine = st.sidebar.segmented_control(key='alpine', label=':snow_capped_mountain: Alpine', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+has_cross_country = st.sidebar.segmented_control(key='xc', label=':turtle: Cross-Country', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+has_night_skiing = st.sidebar.segmented_control(key='night', label=':last_quarter_moon_with_face: Nights', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_terrain_parks = st.sidebar.segmented_control(key='park', label=':snowboarder: Terrain Parks', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 is_dog_friendly = st.sidebar.segmented_control(key='dog', label=":dog: Dog Friendly", options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_snowshoeing = st.sidebar.segmented_control(key='snowshoe', label=":hiking_boot: Snowshoeing", options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
@@ -108,13 +109,16 @@ filtered_data = resorts[
     (resorts.num_trails.between(min_trails, max_trails) | resorts.num_trails.isnull()) &
     # (resorts.trail_length_mi.between(min_trail_length, max_trail_length) | resorts.trail_length_mi.isnull()) &
     (resorts.num_lifts.between(min_lifts, max_lifts) | resorts.num_lifts.isnull()) &
-    (resorts.is_alpine_xc.isin([boolean_map.get(s) for s in is_alpine_xc])) &
+    (resorts.has_alpine.isin([boolean_map.get(s) for s in has_alpine])) &
+    (resorts.has_cross_country.isin([boolean_map.get(s) for s in has_cross_country])) &
     (resorts.has_night_skiing.isin([boolean_map.get(s) for s in has_night_skiing])) &
     (resorts.has_terrain_parks.isin([boolean_map.get(s) for s in has_terrain_parks])) &
     (resorts.is_allied.isin([boolean_map.get(s) for s in is_allied])) &
     (resorts.is_dog_friendly.isin([boolean_map.get(s) for s in is_dog_friendly])) &
     (resorts.has_snowshoeing.isin([boolean_map.get(s) for s in has_snowshoeing]))
 ]
+
+filtered_data = filtered_data.sort_values('radius', ascending=False)
 
 
 # PyDeck Map
@@ -137,7 +141,8 @@ tooltip = {
         <b>Vertical:</b> {vertical} ft / {vertical_meters} m<br>
         <b>Trails:</b> {num_trails}<br>
         <b>Lifts:</b> {num_lifts}<br>
-        <b>Alpine & Cross-Country:</b> {is_alpine_xc_display}<br>
+        <b>Alpine:</b> {has_alpine_display}<br>
+        <b>Cross-Country:</b> {has_cross_country_display}<br>
         <b>Nights:</b> {night_skiing_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Dog Friendly:</b> {is_dog_friendly_display}<br>
@@ -243,12 +248,10 @@ def display_resorts_table():
         'acres': 'Area (acres)',
         'vertical' : 'Vertical (ft)',
         'vertical_meters' : 'Vertical (m)',
-        'is_nordic' : 'Nordic',
-        'is_cross_country' : 'Cross-Country',
-        'is_alpine_xc' : 'Alpine & Cross-Country',
-        'is_xc_only' : 'Cross-Country Only',
+        'has_alpine' : 'Alpine',
+        'has_cross_country' : 'Cross-Country',
         'is_allied' : 'Allied',
-        'num_trails' : 'Num. Trails',
+        'num_trails' : 'Trails',
         'trail_length_mi' : 'Trail Length (mi)',
         'trail_length_km' : 'Trail Length (km)',
         'num_lifts' : 'Lifts',
@@ -271,10 +274,9 @@ def display_resorts_table():
         'Area (acres)',
         'Vertical (ft)',
         'Vertical (m)',
-        'Nordic',
+        'Alpine',
         'Cross-Country',
-        'Alpine & Cross-Country',
-        'Num. Trails',
+        'Trails',
         'Trail Length (mi)',
         'Trail Length (km)',
         'Lifts',
