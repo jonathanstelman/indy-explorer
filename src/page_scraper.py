@@ -7,7 +7,6 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from pprint import pprint
 
 CACHE_DIRECTORY = 'cache/'
 
@@ -104,7 +103,7 @@ def parse_our_resorts_page(page_html: str) -> dict:
     print(f'Page title: "{soup.title}"')
 
     page_body = soup.find(id='main-content')
-    resort_node_class = 'node--type-resort' # all cards on the page are instances of type "copy"
+    resort_node_class = 'node--type-resort'
     resort_nodes = page_body.find_all(class_=resort_node_class)
     print(f'{len(resort_nodes)} Resort Card ({resort_node_class}) objects found', end='\n\n')
 
