@@ -11,6 +11,6 @@ Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of Decem
 
 ---
 Help improve this app:
-- [Report a Bug]([**https**://github.com/jonathanstelman/indy-explorer/issues/new?template=bug_report.md](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+%3CShort+description%3E))
+- [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+%3CShort+description%3E)
 - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D+%3CShort+description%3E)
 - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)
