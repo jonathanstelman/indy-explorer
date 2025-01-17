@@ -70,9 +70,9 @@ resorts["search_terms"] = resorts.apply(get_search_terms, axis=1)
 resorts["vertical_meters"] = resorts.vertical.apply(feet_to_meters)
 
 # Configure Streamlit page
-st.set_page_config(page_title="Indy Pass Resorts Map", layout="wide")
+st.set_page_config(page_title="Indy Explorer", layout="wide")
 # st.image('img/indy-pass-logo.png', width=200)
-st.title("Indy Pass Resorts Map")
+st.title("Indy Explorer")
 
 # Filters in Sidebar
 st.sidebar.header("Filter Resorts")
