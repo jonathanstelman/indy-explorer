@@ -48,12 +48,6 @@ def get_search_terms(resort):
     search_terms = [f for f in search_fields if isinstance(f, str)]
     return ' '.join(search_terms).lower()
 
-def feet_to_meters(feet):
-    """
-    Convert feet to meters, safely handling missing values
-    """
-    return int(feet * 0.30479999) if pd.notnull(feet) else np.nan
-
 
 # Load resort data
 resorts = pd.read_csv('data/resorts.csv')
@@ -66,8 +60,6 @@ resorts["radius"] = resorts.apply(get_radius, axis=1)
 resorts["color"] = resorts.apply(get_color, axis=1)
 resorts["search_terms"] = resorts.apply(get_search_terms, axis=1)
 
-# Units
-resorts["vertical_meters"] = resorts.vertical.apply(feet_to_meters)
 
 # Configure Streamlit page
 st.set_page_config(page_title="Indy Explorer", layout="wide")
@@ -88,7 +80,7 @@ country = st.sidebar.selectbox(
 selected_countries = resorts.country.unique() if country == 'All' else [country]
 min_vertical, max_vertical = st.sidebar.slider(":mountain: Vertical (ft)", 0, int(resorts.vertical.max()), (0, int(resorts.vertical.max())))
 min_trails, max_trails = st.sidebar.slider(":wavy_dash: Number of Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
-# min_trail_length, max_trail_length = st.sidebar.slider(":straight_ruler: Trail Length (mi)", 0, int(resorts.trail_length_mi.max()), (0, int(resorts.trail_length_mi.max())))
+min_trail_length, max_trail_length = st.sidebar.slider(":straight_ruler: Trail Length (mi)", 0, int(resorts.trail_length_mi.max()), (0, int(resorts.trail_length_mi.max())))
 min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Number of Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
 
 boolean_map = {'Yes': True, 'No': False}
@@ -101,13 +93,12 @@ has_snowshoeing = st.sidebar.segmented_control(key='snowshoe', label=":hiking_bo
 is_allied = st.sidebar.segmented_control(key='allied', label=':handshake: Allied Resorts', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 
 
-
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower())) &
     (resorts.country.isin(selected_countries)) &
     (resorts.vertical.between(min_vertical, max_vertical) | resorts.vertical.isnull()) &
     (resorts.num_trails.between(min_trails, max_trails) | resorts.num_trails.isnull()) &
-    # (resorts.trail_length_mi.between(min_trail_length, max_trail_length) | resorts.trail_length_mi.isnull()) &
+    (resorts.trail_length_mi.between(min_trail_length, max_trail_length) | resorts.trail_length_mi.isnull()) &
     (resorts.num_lifts.between(min_lifts, max_lifts) | resorts.num_lifts.isnull()) &
     (resorts.has_alpine.isin([boolean_map.get(s) for s in has_alpine])) &
     (resorts.has_cross_country.isin([boolean_map.get(s) for s in has_cross_country])) &
@@ -137,13 +128,13 @@ tooltip = {
     "html": """
         <b>Resort:</b> {name}<br>
         <b>City:</b> {location_name}<br>
-        <b>Area:</b> {acres} acres<br>
-        <b>Vertical:</b> {vertical} ft / {vertical_meters} m<br>
-        <b>Trails:</b> {num_trails}<br>
-        <b>Lifts:</b> {num_lifts}<br>
+        <b>Area:</b> {acres_tt}<br>
+        <b>Vertical:</b> {vertical_tt}<br>
+        <b>Trails:</b> {num_trails_tt}<br>
+        <b>Lifts:</b> {num_lifts_tt}<br>
         <b>Alpine:</b> {has_alpine_display}<br>
         <b>Cross-Country:</b> {has_cross_country_display}<br>
-        <b>Nights:</b> {night_skiing_display}<br>
+        <b>Nights:</b> {has_night_skiing_display}<br>
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Dog Friendly:</b> {is_dog_friendly_display}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
@@ -291,13 +282,14 @@ def display_resorts_table():
     display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
     st.markdown('## Resorts')
-    st.markdown(f'Displaying {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
+    st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
     st.dataframe(
         display_df,
-        column_config={"Web Page": st.column_config.LinkColumn()},
-        hide_index=True,
-        # on_select='rerun',
-        # selection_mode='multi-row'
+        column_config={
+            "Indy Page": st.column_config.LinkColumn("Indy Page"),
+            "Website": st.column_config.LinkColumn("Website"),
+        },
+        hide_index=True
     )
 
 def display_footer():
