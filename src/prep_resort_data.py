@@ -3,8 +3,9 @@ Prepare raw resorts data to produce a prepared file for use with Streamlit
 """
 
 import json
-import pandas as pd
 from typing import Tuple
+import pandas as pd
+import numpy as np
 
 from location_utils import get_normalized_location
 
@@ -41,6 +42,8 @@ resorts['indy_page'] = resorts['href'].apply(
 
 # Separate the resort type labels
 def is_alpine(resort):
+    """Determine if the resort is an alpine resort
+    """
     if (not resort.is_nordic) and (not resort.is_alpine_xc) and (not resort.is_xc_only):
         return True
     if resort.is_alpine_xc:
@@ -58,16 +61,6 @@ resorts.drop(columns=['trails'], inplace=True)
 resorts.rename(columns={'is_open_nights': 'has_night_skiing'}, inplace=True)
 resorts.drop(columns=['terrain_parks'], inplace=True)
 
-# Display text
-bool_map = {False: 'No', True: 'Yes'}
-resorts['has_alpine_display'] = resorts.has_alpine.map(bool_map)
-resorts['has_cross_country_display'] = resorts.has_cross_country.map(bool_map)
-resorts['night_skiing_display'] = resorts.has_night_skiing.map(bool_map)
-resorts['has_terrain_parks_display'] = resorts.has_terrain_parks.map(bool_map)
-resorts['is_allied_display'] = resorts.is_allied.map(bool_map)
-resorts['is_dog_friendly_display'] = resorts['is_dog_friendly'].map(bool_map)
-resorts['has_snowshoeing_display'] = resorts['has_snowshoeing'].map(bool_map)
-
 # Location
 resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
 resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
@@ -75,26 +68,56 @@ resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') i
 resorts = pd.merge(resorts, locations, left_on='name', right_on='name', how='left')
 
 
+# Formatting and units
+def feet_to_meters(feet):
+    """
+    Convert feet to meters, safely handling missing values
+    """
+    return int(feet * 0.30479999) if pd.notnull(feet) else np.nan
+resorts["vertical_meters"] = resorts.vertical.apply(feet_to_meters)
+
+
+# Fields for table display
+bool_map = {False: 'No', True: 'Yes'}
+table_cols = [
+    'has_alpine', 'has_cross_country', 'has_night_skiing', 'has_terrain_parks',
+    'is_allied', 'is_dog_friendly', 'has_snowshoeing'
+]
+for col in table_cols:
+    resorts[col + '_display'] = resorts[col].map(bool_map)
+
+
+# Fields for tooltip display
+def nan_to_text(value):
+    """Convert NaN to '--' for tooltip display
+    """
+    return '---' if pd.isnull(value) else value
+
+resorts['num_trails_tt'] = resorts['num_trails'].apply(nan_to_text)
+resorts['num_lifts_tt'] = resorts['num_lifts'].apply(nan_to_text)
+resorts['acres_tt'] = resorts['acres'].apply(lambda x: f"{x} acres" if pd.notnull(x) else '---')
+resorts['vertical_tt'] = resorts.apply(
+    lambda r: f"{r.vertical} ft / {int(r.vertical_meters)} m" if pd.notnull(r.vertical) else '---',
+    axis=1
+)
+
+
 # Clean up
 cols = [
-    # 'id',
-    # 'slug',
     'name',
     'location_name',
     'description',
-    # 'coordinates',
     'city',
     'state',
     'country',
-    # 'href',
     'indy_page',
     'website',
     'latitude',
     'longitude',
     'vertical',
+    'vertical_meters',
     'has_alpine',
     'has_cross_country',
-    # 'is_cross_country', # from resort page
     'is_allied',
     'acres',
     'num_trails',
@@ -116,10 +139,14 @@ cols = [
     'has_alpine_display',
     'has_cross_country_display',
     'is_dog_friendly_display',
-    'night_skiing_display',
+    'has_night_skiing_display',
     'has_terrain_parks_display',
     'is_allied_display',
+    'acres_tt',
+    'vertical_tt',
+    'num_trails_tt',
+    'num_lifts_tt',
 ]
 
 resorts = resorts[cols]
-resorts.to_csv('data/resorts.csv')
+resorts.to_csv('data/resorts_v2.csv')
