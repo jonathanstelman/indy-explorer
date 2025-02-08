@@ -285,7 +285,10 @@ def display_resorts_table():
     st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
     st.dataframe(
         display_df,
-        column_config={"Web Page": st.column_config.LinkColumn()},
+        column_config={
+            "Indy Page": st.column_config.LinkColumn("Indy Page"),
+            "Website": st.column_config.LinkColumn("Website"),
+        },
         hide_index=True
     )
 
