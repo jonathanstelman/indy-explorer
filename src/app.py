@@ -60,7 +60,7 @@ def get_search_terms(resort):
 
 
 # Load resort data
-resorts = pd.read_csv('data/resorts.csv')
+resorts = pd.read_csv('data/resorts.csv', na_values=[''], keep_default_na=False)
 
 # Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
@@ -94,6 +94,7 @@ min_trails, max_trails = st.sidebar.slider(":wavy_dash: Number of Trails", 0, in
 min_trail_length, max_trail_length = st.sidebar.slider(":straight_ruler: Trail Length (mi)", 0, int(resorts.trail_length_mi.max()), (0, int(resorts.trail_length_mi.max())))
 min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Number of Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
 
+
 boolean_map = {'Yes': True, 'No': False}
 has_alpine = st.sidebar.segmented_control(key='alpine', label=':snow_capped_mountain: Alpine', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_cross_country = st.sidebar.segmented_control(key='xc', label=':turtle: Cross-Country', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
@@ -118,8 +119,7 @@ filtered_data = resorts[
     (resorts.is_allied.isin([boolean_map.get(s) for s in is_allied])) &
     (resorts.is_dog_friendly.isin([boolean_map.get(s) for s in is_dog_friendly])) &
     (resorts.has_snowshoeing.isin([boolean_map.get(s) for s in has_snowshoeing]))
-]
-filtered_data = filtered_data.sort_values('radius', ascending=False)
+].sort_values('radius', ascending=False)
 
 
 # PyDeck Map
@@ -137,7 +137,7 @@ layer = pdk.Layer(
 tooltip = {
     "html": """
         <b>Resort:</b> {name}<br>
-        <b>City:</b> {location_name}<br>
+        <b>City:</b> {location_name_tt}<br>
         <b>Area:</b> {acres_tt}<br>
         <b>Vertical:</b> {vertical_tt}<br>
         <b>Trails:</b> {num_trails_tt}<br>
