@@ -1,7 +1,6 @@
 """
 Streamlit app to display Indy Pass resorts in an interactive map and table
 """
-import numpy as np
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
@@ -78,6 +77,18 @@ country = st.sidebar.selectbox(
     options=['All'] + sorted(resorts.country.dropna().unique()),
 )
 selected_countries = resorts.country.unique() if country == 'All' else [country]
+
+# create a dynamic dropdown for state and region based on selected country
+if country == 'All':
+    states_regions = resorts['state'].dropna().unique()
+else:
+    states_regions = resorts[resorts.country == country]['state'].dropna().unique()
+state_region = st.sidebar.selectbox(
+    'State / Region',
+    options=['All'] + sorted(states_regions),
+)
+selected_states_regions = resorts.state.unique() if state_region == 'All' else [state_region]
+
 min_vertical, max_vertical = st.sidebar.slider(":mountain: Vertical (ft)", 0, int(resorts.vertical.max()), (0, int(resorts.vertical.max())))
 min_trails, max_trails = st.sidebar.slider(":wavy_dash: Number of Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
 min_trail_length, max_trail_length = st.sidebar.slider(":straight_ruler: Trail Length (mi)", 0, int(resorts.trail_length_mi.max()), (0, int(resorts.trail_length_mi.max())))
@@ -92,10 +103,10 @@ is_dog_friendly = st.sidebar.segmented_control(key='dog', label=":dog: Dog Frien
 has_snowshoeing = st.sidebar.segmented_control(key='snowshoe', label=":hiking_boot: Snowshoeing", options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 is_allied = st.sidebar.segmented_control(key='allied', label=':handshake: Allied Resorts', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 
-
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower())) &
     (resorts.country.isin(selected_countries)) &
+    (resorts.state.isin(selected_states_regions)) &
     (resorts.vertical.between(min_vertical, max_vertical) | resorts.vertical.isnull()) &
     (resorts.num_trails.between(min_trails, max_trails) | resorts.num_trails.isnull()) &
     (resorts.trail_length_mi.between(min_trail_length, max_trail_length) | resorts.trail_length_mi.isnull()) &
@@ -108,7 +119,6 @@ filtered_data = resorts[
     (resorts.is_dog_friendly.isin([boolean_map.get(s) for s in is_dog_friendly])) &
     (resorts.has_snowshoeing.isin([boolean_map.get(s) for s in has_snowshoeing]))
 ]
-
 filtered_data = filtered_data.sort_values('radius', ascending=False)
 
 
@@ -150,7 +160,7 @@ tooltip = {
     }
 }
 
-# Create the Pydeck map view with initial zoom
+# Create the Pydeck map view with initial zoom centered on the US
 view_state = pdk.ViewState(
     latitude=44,
     longitude=-95,
