@@ -60,7 +60,7 @@ def get_search_terms(resort):
 
 
 # Load resort data
-resorts = pd.read_csv('data/resorts.csv', na_values=[''], keep_default_na=False)
+resorts = pd.read_csv('data/resorts.csv', index_col='index', na_values=[''], keep_default_na=False)
 
 # Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
@@ -286,6 +286,8 @@ display_cols = [
 ]
 display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
+
+
 st.markdown('## Resorts')
 st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
 resorts_table = st.dataframe(
@@ -295,7 +297,84 @@ resorts_table = st.dataframe(
         "Website": st.column_config.LinkColumn("Website"),
     },
     hide_index=True,
+    selection_mode='single-row',
+    on_select='rerun'
 )
+
+
+if 'selected_resort' not in st.session_state:
+    st.session_state.selected_resort = None
+if resorts_table.selection:
+    st.session_state.selected_resort = resorts_table.selection['rows']
+else:
+    st.session_state.selected_resort = None
+
+
+def get_resort_header_markdown(resort: dict) -> str:
+    return f"""
+        # {resort['name']}
+        **{resort['city']}, {resort['state']} {resort['country']}**  
+        [Indy Page]({resort['indy_page']}) | [Resort Website]({resort['website']})  
+
+        *{resort['description']}*
+    """
+
+def get_resort_features_markdown(resort: dict) -> str:
+    return f"""
+    **Terrain Park:** {resort['has_terrain_parks_display']}  
+    **Night Skiing:** {resort['has_night_skiing_display']}  
+    **Alpine:** {resort['has_alpine_display']}  
+    **Cross Country:** {resort['has_cross_country_display']}  
+      
+    **Snow Shoeing:** {resort['has_snowshoeing']}  
+    **Dog Friendly:** {resort['is_dog_friendly_display']}
+    """
+
+def get_resort_elevation_markdown(resort: dict) -> str:
+    return f"""
+    **Base:** {int(resort['vertical_base_ft'])} ft  
+    **Summit:** {int(resort['vertical_summit_ft'])} ft  
+    **Vertical:** {int(resort['vertical_elevation_ft'])} ft
+    """
+
+def get_resort_snowfall_markdown(resort: dict) -> str:
+    return f"""
+    **Average Snowfall:** {int(resort['snowfall_average_in'])} inches  
+    **High Snowfall:** {int(resort['snowfall_high_in'])} inches
+    """
+
+def get_resort_difficulty_markdown(resort: dict) -> str:
+    return f"""
+    **Beginner:** {int(resort['difficulty_beginner'])}%  
+    **Intermediate:** {int(resort['difficulty_intermediate'])}%  
+    **Advanced:** {int(resort['difficulty_advanced'])}%
+    """
+
+
+@st.dialog('Resort Details', width='large')
+def display_resort_modal():
+    """
+    Show a modal with resort details
+    """
+    display_index = st.session_state.selected_resort[0]
+    resort_name = display_df.iloc[display_index]['Resort']
+    resort = resorts[resorts['name'] == resort_name].squeeze().to_dict()
+    
+    st.markdown(get_resort_header_markdown(resort))
+    with st.expander("## Features", expanded=True, icon='🎿'):
+        st.markdown(get_resort_features_markdown(resort))
+    with st.expander('Resort Size', expanded=True, icon='🚠'):
+        st.markdown('## TODO')
+    with st.expander('Elevation', expanded=True, icon='🏔️'):
+        st.markdown(get_resort_elevation_markdown(resort))
+    with st.expander('Annual Snowfall', expanded=True, icon='❄️'):
+        st.markdown(get_resort_snowfall_markdown(resort))
+    with st.expander('Difficulty', expanded=True, icon='😰'):
+        st.markdown(get_resort_difficulty_markdown(resort))
+    st.write(resort)
+    
+if st.session_state.selected_resort:
+    display_resort_modal()
 
 # Footer
 st.markdown(
