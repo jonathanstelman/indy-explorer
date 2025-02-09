@@ -285,15 +285,16 @@ display_cols = [
     'Website',
 ]
 display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
+
 st.markdown('## Resorts')
 st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
-st.dataframe(
+resorts_table = st.dataframe(
     display_df,
     column_config={
         "Indy Page": st.column_config.LinkColumn("Indy Page"),
         "Website": st.column_config.LinkColumn("Website"),
     },
-    hide_index=True
+    hide_index=True,
 )
 
 # Footer
