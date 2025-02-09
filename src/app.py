@@ -6,17 +6,28 @@ import pydeck as pdk
 import streamlit as st
 
 
+# Constants
+COLORS = {
+    'red': [197, 42, 28, 200],
+    'blue': [0, 10, 200, 160],
+    'purple': [128, 0, 128, 160],
+    'grey': [30, 30, 30, 160],
+}
+MIN_POINT_RADIUS = 5_000
+MAX_POINT_RADIUS = 50_000
+
+# Functions for plotting and search
 def get_color(resort):
     """
     Returns the color that a resort should appear on the map
     """
     if resort.is_allied:
-        return [30, 30, 30, 160]  # Grey for allied resorts
+        return COLORS['grey']
     if resort.has_cross_country and not resort.has_alpine:
-        return [0, 10, 200, 160]  # Blue - Cross-Country
+        return COLORS['blue']
     if resort.has_alpine and resort.has_cross_country:
-        return [128, 0, 128, 160] # Purple - Alpine & Cross-Country
-    return [197, 42, 28, 200]     # Red - Alpine
+        return COLORS['purple']
+    return COLORS['red']
 
 
 def get_radius(resort):
@@ -24,19 +35,19 @@ def get_radius(resort):
     Returns the radius that a resort should display on the map
     """
     if resort.has_cross_country and not resort.has_alpine:
-        return 5000
+        return MIN_POINT_RADIUS
 
-    if not resort.acres:
+    if resort.acres:
+        radius = resort.acres * 30
+    else:
         # use this weird formula I made up to set display radius based on other data
         num_trails = resort.num_trails if resort.num_trails else 5
         vertical = resort.vertical if resort.vertical else 300
         num_lifts = resort.num_lifts if resort.num_lifts else 0
         radius =  2 * (50 * num_trails + 1.5 * vertical + 5 * num_lifts)
-    else:
-        radius = resort.acres * 30
-
+        
     # set min and max radius
-    return min(50_000, max(5000, radius))
+    return min(MAX_POINT_RADIUS, max(MIN_POINT_RADIUS, radius))
 
 
 def get_search_terms(resort):
@@ -49,7 +60,7 @@ def get_search_terms(resort):
 
 
 # Load resort data
-resorts = pd.read_csv('data/resorts.csv')
+resorts = pd.read_csv('data/resorts.csv', na_values=[''], keep_default_na=False)
 
 # Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
@@ -65,34 +76,24 @@ st.set_page_config(page_title="Indy Explorer", layout="wide")
 # st.image('img/indy-pass-logo.png', width=200)
 st.title("Indy Explorer")
 
-# Filters in Sidebar
+# Sidebar filters
 st.sidebar.header("Filter Resorts")
 
 search_query = st.sidebar.text_input(
     label='Search for a resort:',
     help='Enter the name of a resort, city, state/region, or country.'
 )
-country = st.sidebar.selectbox(
-    'Country',
-    options=['All'] + sorted(resorts.country.dropna().unique()),
-)
+country = st.sidebar.selectbox('Country', options=['All'] + sorted(resorts.country.dropna().unique()))
 selected_countries = resorts.country.unique() if country == 'All' else [country]
-
-# create a dynamic dropdown for state and region based on selected country
-if country == 'All':
-    states_regions = resorts['state'].dropna().unique()
-else:
-    states_regions = resorts[resorts.country == country]['state'].dropna().unique()
-state_region = st.sidebar.selectbox(
-    'State / Region',
-    options=['All'] + sorted(states_regions),
-)
+states_regions = resorts['state'].dropna().unique() if country == 'All' else resorts[resorts.country == country]['state'].dropna().unique()
+state_region = st.sidebar.selectbox('State / Region', options=['All'] + sorted(states_regions))
 selected_states_regions = resorts.state.unique() if state_region == 'All' else [state_region]
 
 min_vertical, max_vertical = st.sidebar.slider(":mountain: Vertical (ft)", 0, int(resorts.vertical.max()), (0, int(resorts.vertical.max())))
 min_trails, max_trails = st.sidebar.slider(":wavy_dash: Number of Trails", 0, int(resorts.num_trails.max()), (0, int(resorts.num_trails.max())))
 min_trail_length, max_trail_length = st.sidebar.slider(":straight_ruler: Trail Length (mi)", 0, int(resorts.trail_length_mi.max()), (0, int(resorts.trail_length_mi.max())))
 min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Number of Lifts", 0, int(resorts.num_lifts.max()), (0, int(resorts.num_lifts.max())))
+
 
 boolean_map = {'Yes': True, 'No': False}
 has_alpine = st.sidebar.segmented_control(key='alpine', label=':snow_capped_mountain: Alpine', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
@@ -118,8 +119,7 @@ filtered_data = resorts[
     (resorts.is_allied.isin([boolean_map.get(s) for s in is_allied])) &
     (resorts.is_dog_friendly.isin([boolean_map.get(s) for s in is_dog_friendly])) &
     (resorts.has_snowshoeing.isin([boolean_map.get(s) for s in has_snowshoeing]))
-]
-filtered_data = filtered_data.sort_values('radius', ascending=False)
+].sort_values('radius', ascending=False)
 
 
 # PyDeck Map
@@ -131,13 +131,13 @@ layer = pdk.Layer(
     get_position="[longitude, latitude]",
     get_radius='radius',
     get_fill_color='color',
-    highlight_color=[255, 255, 255, 100],
+    highlight_color=[255, 255, 255, 100]
 )
 
 tooltip = {
     "html": """
         <b>Resort:</b> {name}<br>
-        <b>City:</b> {location_name}<br>
+        <b>City:</b> {location_name_tt}<br>
         <b>Area:</b> {acres_tt}<br>
         <b>Vertical:</b> {vertical_tt}<br>
         <b>Trails:</b> {num_trails_tt}<br>
@@ -181,6 +181,7 @@ st.pydeck_chart(
 )
 
 # Add a legend
+# TODO: parameterize the markdown to map colors and other values from constants
 st.markdown(
     """
     <style>
@@ -231,92 +232,80 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Display resorts table
+col_names_map = {
+    'name' : 'Resort',
+    'location_name': 'Location Name',
+    'city' : 'City',
+    'state': 'State / Region',
+    'country': 'Country',
+    'latitude' : 'Latitude',
+    'longitude' : 'Longitude',
+    'acres': 'Area (acres)',
+    'vertical' : 'Vertical (ft)',
+    'vertical_meters' : 'Vertical (m)',
+    'has_alpine' : 'Alpine',
+    'has_cross_country' : 'Cross-Country',
+    'is_allied' : 'Allied',
+    'num_trails' : 'Trails',
+    'trail_length_mi' : 'Trail Length (mi)',
+    'trail_length_km' : 'Trail Length (km)',
+    'num_lifts' : 'Lifts',
+    'has_night_skiing' : 'Nights',
+    'has_terrain_parks' : 'Terrain Parks',
+    'is_dog_friendly' : 'Dog Friendly',
+    'has_snowshoeing' : 'Snowshoeing',
+    'radius' : 'Radius',
+    'color' : 'Color',
+    'indy_page': 'Indy Page',
+    'website' : 'Website',
+}
+display_cols = [
+    'Resort',
+    'City',
+    'State / Region',
+    'Country',
+    'Latitude',
+    'Longitude',
+    'Area (acres)',
+    'Vertical (ft)',
+    'Vertical (m)',
+    'Alpine',
+    'Cross-Country',
+    'Trails',
+    'Trail Length (mi)',
+    'Trail Length (km)',
+    'Lifts',
+    'Nights',
+    'Terrain Parks',
+    'Dog Friendly',
+    'Snowshoeing',
+    'Allied',
+    'Indy Page',
+    'Website',
+]
+display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
+st.markdown('## Resorts')
+st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
+resorts_table = st.dataframe(
+    display_df,
+    column_config={
+        "Indy Page": st.column_config.LinkColumn("Indy Page"),
+        "Website": st.column_config.LinkColumn("Website"),
+    },
+    hide_index=True,
+)
 
-def display_resorts_table():
+# Footer
+st.markdown(
     """
-    Clean resorts dataframe for cleaner output
+    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of January 5, 2025.  
+    
+    ---
+    Help improve this app:
+    - [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+%3CShort+description%3E)
+    - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D+%3CShort+description%3E)
+    - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)  
     """
-
-    col_names_map = {
-        'name' : 'Resort',
-        'location_name': 'Location Name',
-        'city' : 'City',
-        'state': 'State / Region',
-        'country': 'Country',
-        'latitude' : 'Latitude',
-        'longitude' : 'Longitude',
-        'acres': 'Area (acres)',
-        'vertical' : 'Vertical (ft)',
-        'vertical_meters' : 'Vertical (m)',
-        'has_alpine' : 'Alpine',
-        'has_cross_country' : 'Cross-Country',
-        'is_allied' : 'Allied',
-        'num_trails' : 'Trails',
-        'trail_length_mi' : 'Trail Length (mi)',
-        'trail_length_km' : 'Trail Length (km)',
-        'num_lifts' : 'Lifts',
-        'has_night_skiing' : 'Nights',
-        'has_terrain_parks' : 'Terrain Parks',
-        'is_dog_friendly' : 'Dog Friendly',
-        'has_snowshoeing' : 'Snowshoeing',
-        'radius' : 'Radius',
-        'color' : 'Color',
-        'indy_page': 'Indy Page',
-        'website' : 'Website',
-    }
-    display_cols = [
-        'Resort',
-        'City',
-        'State / Region',
-        'Country',
-        'Latitude',
-        'Longitude',
-        'Area (acres)',
-        'Vertical (ft)',
-        'Vertical (m)',
-        'Alpine',
-        'Cross-Country',
-        'Trails',
-        'Trail Length (mi)',
-        'Trail Length (km)',
-        'Lifts',
-        'Nights',
-        'Terrain Parks',
-        'Dog Friendly',
-        'Snowshoeing',
-        'Allied',
-        'Indy Page',
-        'Website',
-    ]
-    display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
-
-    st.markdown('## Resorts')
-    st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
-    st.dataframe(
-        display_df,
-        column_config={
-            "Indy Page": st.column_config.LinkColumn("Indy Page"),
-            "Website": st.column_config.LinkColumn("Website"),
-        },
-        hide_index=True
-    )
-
-def display_footer():
-    """
-    Display the footer text
-    """
-    st.markdown(
-        """
-        Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of January 5, 2025.  
-        
-        ---
-        Help improve this app:
-        - [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+%3CShort+description%3E)
-        - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D+%3CShort+description%3E)
-        - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)  
-        """
-    )
-
-display_resorts_table()
-display_footer()
+)

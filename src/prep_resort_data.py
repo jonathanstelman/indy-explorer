@@ -88,11 +88,16 @@ for col in table_cols:
 
 
 # Fields for tooltip display
-def nan_to_text(value):
-    """Convert NaN to '--' for tooltip display
+def nan_to_text(value, replace_text='---'):
     """
-    return '---' if pd.isnull(value) else value
+    Convert NaN to '---' for tooltip display
+    """
+    if pd.isnull(value) or value == '':
+        return replace_text
+    else:
+        return value
 
+resorts['location_name_tt'] = resorts['location_name'].apply(nan_to_text, replace_text='n/a')
 resorts['num_trails_tt'] = resorts['num_trails'].apply(nan_to_text)
 resorts['num_lifts_tt'] = resorts['num_lifts'].apply(nan_to_text)
 resorts['acres_tt'] = resorts['acres'].apply(lambda x: f"{x} acres" if pd.notnull(x) else '---')
@@ -142,6 +147,7 @@ cols = [
     'has_night_skiing_display',
     'has_terrain_parks_display',
     'is_allied_display',
+    'location_name_tt',
     'acres_tt',
     'vertical_tt',
     'num_trails_tt',
