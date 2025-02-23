@@ -1,17 +1,23 @@
 """
 Streamlit app to display Indy Pass resorts in an interactive map and table
 """
+import matplotlib.pyplot as plt
+from matplotlib.path import Path
+import numpy as np
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
+
 
 
 # Constants
 COLORS = {
     'red': [197, 42, 28, 200],
     'blue': [0, 10, 200, 160],
+    'pale-blue': [170, 220, 250, 255],
     'purple': [128, 0, 128, 160],
     'grey': [30, 30, 30, 160],
+    'pale-grey': [240, 240, 240, 255],
 }
 MIN_POINT_RADIUS = 5_000
 MAX_POINT_RADIUS = 50_000
@@ -57,6 +63,91 @@ def get_search_terms(resort):
     search_fields = [resort['name'], resort['city'], resort['state'], resort['country']]
     search_terms = [f for f in search_fields if isinstance(f, str)]
     return ' '.join(search_terms).lower()
+
+def rgba_to_hex(rgba):
+    r, g, b, a = rgba
+    return f'#{r:02x}{g:02x}{b:02x}{a:02x}'
+
+def create_elevation_plot(base, summit, vertical):
+    """Make a plot to display the resort elevation
+    """
+    SEA_LEVEL = 0
+    BASE_HEIGHT = 0.6
+    SUMMIT_HEIGHT = 3
+    VERTICAL_HEIGHT = SUMMIT_HEIGHT - BASE_HEIGHT
+
+    mountain_coords = [
+        [0, BASE_HEIGHT],
+        [2, BASE_HEIGHT + VERTICAL_HEIGHT * 0.8],
+        [3, BASE_HEIGHT + VERTICAL_HEIGHT * 0.6],
+        [4, SUMMIT_HEIGHT],
+        [6, BASE_HEIGHT]
+    ]
+    fig, ax = plt.subplots()
+    mountain = plt.Polygon(mountain_coords, closed=True, edgecolor='black', facecolor=rgba_to_hex(COLORS['pale-grey']))
+    ax.add_patch(mountain)
+
+    # Sea-level indicator
+    ax.plot((-1, 8), (SEA_LEVEL, SEA_LEVEL), marker=None, linestyle='-', color='lightblue')
+
+    # text / annotations
+    ax.text(-0.5, BASE_HEIGHT, f'{int(base)} ft', verticalalignment='baseline', horizontalalignment='right', color=rgba_to_hex(COLORS['grey']), fontsize='x-small')
+    ax.text(-0.5, SUMMIT_HEIGHT, f'{int(summit)} ft', verticalalignment='top', horizontalalignment='right', color='grey', fontsize='x-small')
+    ax.annotate('', xy=(0, 3), xytext=(0, BASE_HEIGHT), arrowprops=dict(arrowstyle='<->', color=rgba_to_hex(COLORS['red'])))
+    ax.text(-0.3, VERTICAL_HEIGHT/2+BASE_HEIGHT, f'{int(vertical)} ft', verticalalignment='center', horizontalalignment='right', color=rgba_to_hex(COLORS['red']), fontsize='x-small')
+
+    ax.set_xlim(-2, 7)
+    ax.set_ylim(-0.5, 3)
+    ax.set_aspect('equal')
+    ax.axis('off')
+    
+    return fig
+
+
+def create_difficulty_chart(beginner, intermediate, advanced):
+    levels = [beginner, intermediate, advanced]
+    labels = [
+        f'Beginner – {beginner}%',
+        f'Intermediate - {intermediate}%',
+        f'Advanced - {advanced}%'
+    ]
+    colors = [rgba_to_hex(c) for c in [COLORS['pale-blue'], COLORS['blue'], COLORS['purple']]]
+
+    fig, ax = plt.subplots(figsize=(1,1))
+    ax.pie(
+        levels, radius=7, colors=colors,
+        wedgeprops={"linewidth": 2, "edgecolor": "white"},
+        labels=labels, labeldistance=0.3
+    )
+
+    ax.axis('off')
+    return fig
+
+
+def create_snowfall_barplot(snowfall_avg, snowfall_max):
+    """
+    Create a barplot to display the average and maximum annual snowfall.
+    """
+    fig, ax = plt.subplots()
+    categories = ['Average Snowfall', 'Maximum Snowfall']
+    values = [snowfall_avg, snowfall_max]
+    colors = [rgba_to_hex(COLORS['pale-blue']), rgba_to_hex(COLORS['pale-blue'])]
+
+    ax.bar(categories, values, color=colors)
+    # ax.set_ylabel('Snowfall (inches)')
+
+    for i, v in enumerate(values):
+        ax.text(i, v + 5, f'{int(v)} in', ha='center', color='black')
+
+    # Hide the border and horizontal ticks
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False)
+    ax.tick_params(axis='y', which='both', left=True, right=False)
+
+    return fig
 
 
 # Load resort data
@@ -287,7 +378,6 @@ display_cols = [
 display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
 
-
 st.markdown('## Resorts')
 st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
 resorts_table = st.dataframe(
@@ -320,35 +410,72 @@ def get_resort_header_markdown(resort: dict) -> str:
     """
 
 def get_resort_features_markdown(resort: dict) -> str:
-    return f"""
-    **Terrain Park:** {resort['has_terrain_parks_display']}  
-    **Night Skiing:** {resort['has_night_skiing_display']}  
-    **Alpine:** {resort['has_alpine_display']}  
-    **Cross Country:** {resort['has_cross_country_display']}  
-      
-    **Snow Shoeing:** {resort['has_snowshoeing']}  
-    **Dog Friendly:** {resort['is_dog_friendly_display']}
-    """
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(f"""
+            **Alpine:** {resort['has_alpine_display']}  
+            **Cross Country:** {resort['has_cross_country_display']}
+        """)
+    with col2:
+        st.markdown(f"""
+            **Terrain Park:** {resort['has_terrain_parks_display']}  
+            **Night Skiing:** {resort['has_night_skiing_display']}
+        """)
+    with col3:
+        st.markdown(f"""
+            **Snow Shoeing:** {resort['has_snowshoeing']}  
+            **Dog Friendly:** {resort['is_dog_friendly_display']}
+        """)
+    return ''
+
+def get_resort_size_markdown(resort: dict) -> str:
+    acres = int(resort["acres"]) if pd.notnull(resort["acres"]) else '--'
+    lifts = int(resort["num_lifts"]) if pd.notnull(resort["num_lifts"]) else '--'
+    trails = int(resort["num_trails"]) if pd.notnull(resort["num_trails"]) else '--'
+    trail_len_mi = int(resort["trail_length_mi"]) if pd.notnull(resort["trail_length_mi"]) else '--'
+    trail_len_km = int(resort["trail_length_km"]) if pd.notnull(resort["trail_length_km"]) else '--'
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(f"""
+            **Acreage:** {acres} acres  
+            **Lifts:** {lifts}  
+            **Trails:** {trails}  
+        """)
+    
+    with col2:
+        st.markdown(f"""
+            **Trail Length:** {trail_len_mi} miles / {trail_len_km} km 
+        """)
+    return ''
 
 def get_resort_elevation_markdown(resort: dict) -> str:
-    return f"""
-    **Base:** {int(resort['vertical_base_ft'])} ft  
-    **Summit:** {int(resort['vertical_summit_ft'])} ft  
-    **Vertical:** {int(resort['vertical_elevation_ft'])} ft
-    """
+    base = resort['vertical_base_ft']
+    summit = resort['vertical_summit_ft']
+    vertical = resort['vertical_elevation_ft']
+    if not (pd.notnull(base) and pd.notnull(summit) and pd.notnull(vertical)):
+        return ''
+    elevation_plot = create_elevation_plot(base, summit, vertical)
+    st.pyplot(elevation_plot, use_container_width=False)
+    return ''
 
 def get_resort_snowfall_markdown(resort: dict) -> str:
-    return f"""
-    **Average Snowfall:** {int(resort['snowfall_average_in'])} inches  
-    **High Snowfall:** {int(resort['snowfall_high_in'])} inches
-    """
+    snow_avg = resort['snowfall_average_in']
+    snow_max = resort['snowfall_high_in']
+    if not(pd.notnull(snow_avg) and pd.notnull(snow_max)):
+        return ''
+    snowfall_barplot = create_snowfall_barplot(snow_avg, snow_max)
+    st.pyplot(snowfall_barplot, use_container_width=False)
 
 def get_resort_difficulty_markdown(resort: dict) -> str:
-    return f"""
-    **Beginner:** {int(resort['difficulty_beginner'])}%  
-    **Intermediate:** {int(resort['difficulty_intermediate'])}%  
-    **Advanced:** {int(resort['difficulty_advanced'])}%
-    """
+    beginner = int(resort["difficulty_beginner"]) if pd.notnull(resort["difficulty_beginner"]) else None
+    intermediate = int(resort["difficulty_intermediate"]) if pd.notnull(resort["difficulty_intermediate"]) else None
+    advanced = int(resort["difficulty_advanced"]) if pd.notnull(resort["difficulty_advanced"]) else None
+    if not (beginner and intermediate and advanced):
+        return 'Not available'
+    difficulty_pie_chart = create_difficulty_chart(beginner, intermediate, advanced)
+    st.pyplot(difficulty_pie_chart, use_container_width=False)
+    return ''
 
 
 @st.dialog('Resort Details', width='large')
@@ -363,15 +490,14 @@ def display_resort_modal():
     st.markdown(get_resort_header_markdown(resort))
     with st.expander("## Features", expanded=True, icon='🎿'):
         st.markdown(get_resort_features_markdown(resort))
-    with st.expander('Resort Size', expanded=True, icon='🚠'):
-        st.markdown('## TODO')
-    with st.expander('Elevation', expanded=True, icon='🏔️'):
+    with st.expander('Resort Size', expanded=False, icon='🚠'):
+        st.markdown(get_resort_size_markdown(resort))
+    with st.expander('Elevation', expanded=False, icon='🏔️'):
         st.markdown(get_resort_elevation_markdown(resort))
-    with st.expander('Annual Snowfall', expanded=True, icon='❄️'):
+    with st.expander('Annual Snowfall', expanded=False, icon='❄️'):
         st.markdown(get_resort_snowfall_markdown(resort))
-    with st.expander('Difficulty', expanded=True, icon='😰'):
+    with st.expander('Difficulty', expanded=False, icon='😰'):
         st.markdown(get_resort_difficulty_markdown(resort))
-    st.write(resort)
     
 if st.session_state.selected_resort:
     display_resort_modal()
