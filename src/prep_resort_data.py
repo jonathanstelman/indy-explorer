@@ -155,4 +155,4 @@ cols = [
 ]
 
 resorts = resorts[cols]
-resorts.to_csv('data/resorts.csv')
+resorts.to_csv('data/resorts.csv', index_label='index')
