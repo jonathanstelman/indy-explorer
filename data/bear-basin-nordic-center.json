@@ -1,0 +1,23 @@
+{
+    "id": "433",
+    "slug": "bear-basin-nordic-center",
+    "name": "Bear Basin Nordic Center",
+    "description": "Enjoy 25 kilometers of groomed cross-country ski and skate ski trails for every skill level. Access to 5 kilometers of snowshoe specific trails. Please follow posted signs. All trails are dog friendly! Bear Basin Nordic Center is operated by Payette Lakes Ski Club and celebrating 19 years of high-quality nordic adventure. Great views, deep snow, and wonderful skiing make Bear Basin a great place for everyone.",
+    "website": "https://payettelakesskiclub.org/bearbasinnordiccenter/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": null,
+    "trail_length_mi": null,
+    "is_cross_country": false,
+    "is_dog_friendly": false,
+    "has_snowshoeing": false,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}
