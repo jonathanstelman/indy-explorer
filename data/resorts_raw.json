@@ -179,6 +179,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/baqueiraberet"
     },
+    "433": {
+        "name": "Bear Basin Nordic Center",
+        "coordinates": {
+            "latitude": 44.929989,
+            "longitude": -116.163082
+        },
+        "location_name": "McCall, ID",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/bear-basin-nordic-center"
+    },
     "396": {
         "name": "Bear Creek",
         "coordinates": {
@@ -305,21 +323,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/big-powderhorn"
     },
-    "339": {
-        "name": "Big Red Cats",
-        "coordinates": null,
-        "location_name": "",
-        "vertical": null,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": null,
-        "num_lifts": null,
-        "is_open_nights": false,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/big-red-cats"
-    },
     "53": {
         "name": "Big Rock Mountain",
         "coordinates": {
@@ -355,6 +358,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/big-white-ski-resort"
+    },
+    "445": {
+        "name": "Bj\u00f6rkliden",
+        "coordinates": {
+            "latitude": 68.4059405,
+            "longitude": 18.6835973
+        },
+        "location_name": "Lapland, Sweden",
+        "vertical": 1640,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": 5,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/bjorkliden"
     },
     "273": {
         "name": "Black Jack Cross Country Ski Club",
@@ -494,7 +515,7 @@
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 55,
+        "num_trails": 22,
         "num_lifts": 7,
         "is_open_nights": true,
         "has_terrain_parks": true,
@@ -554,23 +575,23 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/bryce-resort"
     },
-    "63": {
-        "name": "Buck Hill",
+    "422": {
+        "name": "Buffalo Ski Club",
         "coordinates": {
-            "latitude": 44.724844,
-            "longitude": -93.2862539
+            "latitude": 42.6814603,
+            "longitude": -78.694142
         },
-        "location_name": "Burnsville, MN, USA",
-        "vertical": 309,
+        "location_name": "Colden, NY",
+        "vertical": 464,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 15,
-        "num_lifts": 10,
+        "num_trails": 38,
+        "num_lifts": 7,
         "is_open_nights": true,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/buck-hill"
+        "has_terrain_parks": false,
+        "href": "/our-resorts/buffalo-ski-club"
     },
     "266": {
         "name": "Burke Mountain",
@@ -583,7 +604,7 @@
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
-        "is_allied": true,
+        "is_allied": false,
         "num_trails": 54,
         "num_lifts": 4,
         "is_open_nights": false,
@@ -698,6 +719,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/canaan-valley"
     },
+    "444": {
+        "name": "Canmore Ski Village",
+        "coordinates": {
+            "latitude": 43.7303935,
+            "longitude": 142.5388561
+        },
+        "location_name": "Hokkaido, Japan",
+        "vertical": 820,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 8,
+        "num_lifts": 2,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/canmore-ski-village"
+    },
     "67": {
         "name": "Cannon Mountain",
         "coordinates": {
@@ -733,39 +772,6 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/cape-smokey"
-    },
-    "341": {
-        "name": "Cascade Powder Guides",
-        "coordinates": null,
-        "location_name": "",
-        "vertical": null,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": null,
-        "num_lifts": null,
-        "is_open_nights": false,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/cascade-powder-guides"
-    },
-    "384": {
-        "name": "Cascade Welcome Center",
-        "coordinates": {
-            "latitude": 44.2412103,
-            "longitude": -73.9263423
-        },
-        "location_name": "Lake Placid, New York",
-        "vertical": null,
-        "is_nordic": true,
-        "is_alpine_xc": false,
-        "is_xc_only": true,
-        "is_allied": false,
-        "num_trails": 12,
-        "num_lifts": null,
-        "is_open_nights": true,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/cascade-welcome-center"
     },
     "265": {
         "name": "Castle Mountain Resort",
@@ -857,6 +863,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/cazenovia-ski-club"
     },
+    "428": {
+        "name": "Centre Vorlage",
+        "coordinates": {
+            "latitude": 45.6449996,
+            "longitude": -75.9341479
+        },
+        "location_name": "Wakefield, QC",
+        "vertical": 509,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 18,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/centre-vorlage"
+    },
     "317": {
         "name": "Cherry Peak",
         "coordinates": {
@@ -947,6 +971,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/cooper-spur-ski-area"
     },
+    "401": {
+        "name": "Corralco Mountain Resort",
+        "coordinates": {
+            "latitude": -38.4136519,
+            "longitude": -71.5589333
+        },
+        "location_name": "Reserva Nacional Malalcahuello S/N, Curacautin, Chile",
+        "vertical": 4052,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 34,
+        "num_lifts": 8,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/corralco-mountain-resort"
+    },
     "277": {
         "name": "Crosscut Mountain Sports Center",
         "coordinates": {
@@ -1001,6 +1043,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/crystal-ridge"
     },
+    "423": {
+        "name": "Cuchara",
+        "coordinates": {
+            "latitude": 37.349845,
+            "longitude": -105.1284249
+        },
+        "location_name": "Cuchara, CO",
+        "vertical": 300,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 9,
+        "num_lifts": 1,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/cuchara"
+    },
     "357": {
         "name": "Cupid Valley",
         "coordinates": {
@@ -1036,6 +1096,24 @@
         "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/dartmouth-skiway"
+    },
+    "432": {
+        "name": "Destination Owls Head",
+        "coordinates": {
+            "latitude": 45.0742088,
+            "longitude": -72.2962595
+        },
+        "location_name": "Masonville, QC",
+        "vertical": 1770,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 50,
+        "num_lifts": 6,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/destination-owls-head"
     },
     "76": {
         "name": "Detroit Mountain",
@@ -1090,6 +1168,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/dog-creek-lodge-nordic-center"
+    },
+    "318": {
+        "name": "Dry Hill Ski Area",
+        "coordinates": {
+            "latitude": 43.93144411203,
+            "longitude": -75.901880184748
+        },
+        "location_name": "Watertown, NY, USA",
+        "vertical": 300,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 13,
+        "num_lifts": 3,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/dry-hill-ski-area"
     },
     "362": {
         "name": "Dynaland",
@@ -1188,7 +1284,7 @@
             "longitude": 34.014505
         },
         "location_name": "Hisarc\u0131k Erciyes, 38220 Melikgazi/Kayseri, T\u00fcrkiye",
-        "vertical": 1260,
+        "vertical": 4127,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
@@ -1270,6 +1366,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/glencoe-mountain-resort"
+    },
+    "415": {
+        "name": "Glenshee Ski Centre",
+        "coordinates": {
+            "latitude": 56.8866673,
+            "longitude": -3.4195093
+        },
+        "location_name": "Aberdeenshire, Scotland , AB35 5XU",
+        "vertical": 1272,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 36,
+        "num_lifts": 21,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/glenshee-ski-centre"
     },
     "83": {
         "name": "Granby Ranch",
@@ -1415,6 +1529,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/high-point-xc-ski-center"
     },
+    "434": {
+        "name": "Hilltop Ski Area",
+        "coordinates": {
+            "latitude": 61.140846,
+            "longitude": -149.7449609
+        },
+        "location_name": "Anchorage, AK",
+        "vertical": 294,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 11,
+        "num_lifts": 3,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hilltop-ski-area"
+    },
     "356": {
         "name": "Hirugano Kogen Ski Resort",
         "coordinates": {
@@ -1432,6 +1564,42 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/hirugano-kogen-ski-resort"
+    },
+    "456": {
+        "name": "Hochzeiger Bergbahnen Pitztal AG",
+        "coordinates": {
+            "latitude": 47.1521721,
+            "longitude": 10.7586005
+        },
+        "location_name": "Jerzens, Austria",
+        "vertical": null,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": 9,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/hochzeiger-bergbahnen-pitztal-ag"
+    },
+    "435": {
+        "name": "Hockley Valley Resort",
+        "coordinates": {
+            "latitude": 43.9778399,
+            "longitude": -80.0464265
+        },
+        "location_name": "Mono, ON",
+        "vertical": 374,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 13,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hockley-valley-resort"
     },
     "368": {
         "name": "Hoedown Hill",
@@ -1577,6 +1745,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/hurricane-ridge"
     },
+    "425": {
+        "name": "Hyland Hills",
+        "coordinates": {
+            "latitude": 44.84363,
+            "longitude": -93.363611
+        },
+        "location_name": "Bloomington, MN",
+        "vertical": 175,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 13,
+        "num_lifts": 9,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hyland-hills"
+    },
     "381": {
         "name": "Innsbruck Ski & City Network",
         "coordinates": {
@@ -1721,6 +1907,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/kiroro-snow-world"
     },
+    "442": {
+        "name": "Kurohime Kogen",
+        "coordinates": {
+            "latitude": 36.8262564,
+            "longitude": 138.1597281
+        },
+        "location_name": "Nagano, Japan",
+        "vertical": 1640,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 11,
+        "num_lifts": 6,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/kurohime-kogen"
+    },
     "288": {
         "name": "Leavenworth Winter Sports Club",
         "coordinates": {
@@ -1738,6 +1942,42 @@
         "is_open_nights": true,
         "has_terrain_parks": false,
         "href": "/our-resorts/leavenworth-winter-sports-club"
+    },
+    "437": {
+        "name": "Leukerbad Torrent Ski Resort & Gemmi Resort",
+        "coordinates": {
+            "latitude": 46.373894,
+            "longitude": 7.6291331
+        },
+        "location_name": "Leukerbad, Switzerland",
+        "vertical": 3937,
+        "is_nordic": true,
+        "is_alpine_xc": true,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 50,
+        "num_lifts": 8,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/leukerbad-torrent-ski-resort-gemmi-resort"
+    },
+    "426": {
+        "name": "Little Ski Hill",
+        "coordinates": {
+            "latitude": 44.929989,
+            "longitude": -116.163082
+        },
+        "location_name": "McCall, ID",
+        "vertical": 374,
+        "is_nordic": true,
+        "is_alpine_xc": true,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 14,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/little-ski-hill"
     },
     "95": {
         "name": "Little Switzerland",
@@ -1774,6 +2014,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/loch-lomond"
+    },
+    "427": {
+        "name": "LOGE Glacier",
+        "coordinates": {
+            "latitude": 48.278635,
+            "longitude": -113.611863
+        },
+        "location_name": "Essex, MT",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 20,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/loge-glacier"
     },
     "97": {
         "name": "Lost Trail Powder Mountain",
@@ -1862,7 +2120,7 @@
         "num_trails": 95,
         "num_lifts": 7,
         "is_open_nights": false,
-        "has_terrain_parks": true,
+        "has_terrain_parks": false,
         "href": "/our-resorts/lutsen-mountains"
     },
     "100": {
@@ -2009,6 +2267,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/maplelag-resort"
     },
+    "431": {
+        "name": "Marble Mountain",
+        "coordinates": {
+            "latitude": 48.9481507,
+            "longitude": 57.8310334
+        },
+        "location_name": "NL, Canada",
+        "vertical": 1700,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 43,
+        "num_lifts": 5,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/marble-mountain"
+    },
     "104": {
         "name": "Marquette Mountain",
         "coordinates": {
@@ -2074,7 +2350,7 @@
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
-        "is_allied": true,
+        "is_allied": false,
         "num_trails": 11,
         "num_lifts": 5,
         "is_open_nights": true,
@@ -2189,6 +2465,42 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/mohawk-mountain"
     },
+    "439": {
+        "name": "Mont Edouard",
+        "coordinates": {
+            "latitude": 48.167831,
+            "longitude": -70.2879454
+        },
+        "location_name": "L'Anse-Saint-Jean, QC",
+        "vertical": 1480,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 44,
+        "num_lifts": 3,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mont-edouard"
+    },
+    "450": {
+        "name": "Mont Habitant",
+        "coordinates": {
+            "latitude": 45.8830545,
+            "longitude": -74.1772441
+        },
+        "location_name": "Saint-Sauveur, QC",
+        "vertical": 600,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 43,
+        "num_lifts": 5,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mont-habitant"
+    },
     "374": {
         "name": "Mont Rigaud",
         "coordinates": {
@@ -2225,23 +2537,23 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/mont-ripley-ski-area"
     },
-    "109": {
-        "name": "Montage Mountain",
+    "443": {
+        "name": "Mont Sutton",
         "coordinates": {
-            "latitude": 41.3512429,
-            "longitude": -75.6654972
+            "latitude": 45.1046261,
+            "longitude": -72.5618618
         },
-        "location_name": "Scranton PA, PA, USA",
-        "vertical": 1000,
+        "location_name": "Sutton, QC",
+        "vertical": 1509,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 27,
-        "num_lifts": 7,
-        "is_open_nights": true,
+        "num_trails": 60,
+        "num_lifts": 10,
+        "is_open_nights": false,
         "has_terrain_parks": true,
-        "href": "/our-resorts/montage-mountain"
+        "href": "/our-resorts/mont-sutton"
     },
     "110": {
         "name": "Montana Snowbowl",
@@ -2315,6 +2627,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/mount-kato"
     },
+    "399": {
+        "name": "Mount Washington Alpine Resort Nordic Centre at Raven Lodge",
+        "coordinates": {
+            "latitude": 49.7413207,
+            "longitude": -125.3056544
+        },
+        "location_name": "Mt. Washington, BC, Canada",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 28,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/mount-washington-alpine-resort-nordic-centre-at-raven-lodge"
+    },
     "114": {
         "name": "Mountain High",
         "coordinates": {
@@ -2335,18 +2665,39 @@
     },
     "338": {
         "name": "Mt Eyak",
-        "coordinates": null,
-        "location_name": "",
-        "vertical": null,
+        "coordinates": {
+            "latitude": 60.5500012,
+            "longitude": -145.7499932
+        },
+        "location_name": "Cordova, AK",
+        "vertical": 1200,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": null,
-        "num_lifts": null,
+        "num_trails": 10,
+        "num_lifts": 2,
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/mt-eyak"
+    },
+    "429": {
+        "name": "Mt La Crosse",
+        "coordinates": {
+            "latitude": 43.74347,
+            "longitude": -91.1853009
+        },
+        "location_name": "La Crosse, WI",
+        "vertical": 516,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 20,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-la-crosse"
     },
     "347": {
         "name": "Mt. Abram",
@@ -2444,7 +2795,7 @@
             "latitude": 49.804509751028,
             "longitude": -125.26140942545
         },
-        "location_name": "",
+        "location_name": "BC, Canada",
         "vertical": 1657,
         "is_nordic": false,
         "is_alpine_xc": false,
@@ -2452,7 +2803,7 @@
         "is_allied": false,
         "num_trails": 81,
         "num_lifts": 11,
-        "is_open_nights": false,
+        "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/mt-washington"
     },
@@ -2564,6 +2915,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/nordic-mountain"
     },
+    "449": {
+        "name": "Norefjell Ski Resort",
+        "coordinates": {
+            "latitude": 60.2270077,
+            "longitude": 9.5146556
+        },
+        "location_name": "Noresund, Norway",
+        "vertical": 3313,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 30,
+        "num_lifts": 15,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/norefjell-ski-resort"
+    },
     "386": {
         "name": "Norway Mountain",
         "coordinates": {
@@ -2585,8 +2954,8 @@
     "118": {
         "name": "Nubs Nob",
         "coordinates": {
-            "latitude": 45.471166,
-            "longitude": -84.9069303
+            "latitude": 45.4714767,
+            "longitude": -84.904813
         },
         "location_name": "Harbor Springs, MI, USA",
         "vertical": 425,
@@ -2618,6 +2987,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/ober-mountain"
     },
+    "457": {
+        "name": "OBERSTDORF KLEINWALSERTAL BERGBAHNEN",
+        "coordinates": {
+            "latitude": 47.3558704,
+            "longitude": 10.1847833
+        },
+        "location_name": "Riezlern, Austria",
+        "vertical": 4632,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 70,
+        "num_lifts": 48,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/oberstdorf-kleinwalsertal-bergbahnen"
+    },
     "120": {
         "name": "Okunakayama Kogen",
         "coordinates": {
@@ -2635,6 +3022,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/okunakayama-kogen"
+    },
+    "455": {
+        "name": "Palandoken Ski Resort",
+        "coordinates": {
+            "latitude": 39.8484968,
+            "longitude": 41.2786994
+        },
+        "location_name": "Erzurum, T\u00fcrkiye",
+        "vertical": 3608,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 22,
+        "num_lifts": 19,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/palandoken-ski-resort"
     },
     "352": {
         "name": "Palcall Tsumagoi Resort",
@@ -2744,6 +3149,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/phoenix-mountain"
     },
+    "402": {
+        "name": "Pila",
+        "coordinates": {
+            "latitude": 45.7319652,
+            "longitude": 7.3192279
+        },
+        "location_name": "Aosta, Italy",
+        "vertical": 3097,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 30,
+        "num_lifts": 14,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pila"
+    },
     "125": {
         "name": "Pine Mountain",
         "coordinates": {
@@ -2780,6 +3203,42 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/pippu-ski-resort"
     },
+    "453": {
+        "name": "Pitztaler Gletscherbahn",
+        "coordinates": {
+            "latitude": 46.9583654,
+            "longitude": 10.8688513
+        },
+        "location_name": "Mittelberg, Austria",
+        "vertical": 5774,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/pitztaler-gletscherbahn"
+    },
+    "452": {
+        "name": "Plain Valley Ski Trails",
+        "coordinates": {
+            "latitude": 47.7628229,
+            "longitude": -120.6618357
+        },
+        "location_name": "Leavenworth, WA",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/plain-valley-ski-trails"
+    },
     "127": {
         "name": "Pomerelle Mountain Resort",
         "coordinates": {
@@ -2797,6 +3256,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/pomerelle-mountain-resort"
+    },
+    "430": {
+        "name": "Portes du Soleil",
+        "coordinates": {
+            "latitude": 46.2572313,
+            "longitude": 6.6571359
+        },
+        "location_name": "French Swiss Border",
+        "vertical": 5118,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 307,
+        "num_lifts": 208,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/portes-du-soleil"
     },
     "129": {
         "name": "Powder Ridge",
@@ -2888,13 +3365,31 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/rangeley-lakes-trail-center"
     },
+    "400": {
+        "name": "Rauriser-Hochalmbahnen",
+        "coordinates": {
+            "latitude": 47.223734,
+            "longitude": 12.991193
+        },
+        "location_name": "Liftweg 2, 5661 Rauris, Austria",
+        "vertical": 4019,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 14,
+        "num_lifts": 10,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/rauriser-hochalmbahnen"
+    },
     "130": {
-        "name": "Red Lodge",
+        "name": "Red Lodge Mountain",
         "coordinates": {
             "latitude": 45.19147328,
             "longitude": -109.3352328
         },
-        "location_name": "Billings, MT, USA",
+        "location_name": "Red Lodge, MT",
         "vertical": 2400,
         "is_nordic": false,
         "is_alpine_xc": false,
@@ -2904,7 +3399,7 @@
         "num_lifts": 8,
         "is_open_nights": false,
         "has_terrain_parks": true,
-        "href": "/our-resorts/red-lodge"
+        "href": "/our-resorts/red-lodge-mountain"
     },
     "299": {
         "name": "Rikert Nordic Center",
@@ -2923,6 +3418,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/rikert-nordic-center"
+    },
+    "446": {
+        "name": "Riksgr\u00e4nsen",
+        "coordinates": {
+            "latitude": 68.426591,
+            "longitude": 18.1252634
+        },
+        "location_name": "Riksgr\u00e4nsen, Sweden",
+        "vertical": 1276,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": 6,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/riksgransen"
     },
     "131": {
         "name": "Saddleback Mountain",
@@ -3140,6 +3653,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/ski-sawmill"
     },
+    "421": {
+        "name": "Ski Vall\u00e9e Bleue",
+        "coordinates": {
+            "latitude": 46.0259818,
+            "longitude": -74.2184259
+        },
+        "location_name": "Val-David, Qu\u00e9bec",
+        "vertical": 350,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 52,
+        "num_lifts": 3,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/ski-vallee-bleue"
+    },
     "177": {
         "name": "SkiWelt",
         "coordinates": {
@@ -3157,6 +3688,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/skiwelt"
+    },
+    "454": {
+        "name": "Smokey Mountain Ski Club",
+        "coordinates": {
+            "latitude": 52.9785263,
+            "longitude": -66.9240597
+        },
+        "location_name": "NL, Canada",
+        "vertical": 960,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 23,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/smokey-mountain-ski-club"
     },
     "142": {
         "name": "Snow King Mountain Resort",
@@ -3284,6 +3833,42 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/spirit-mountain"
     },
+    "447": {
+        "name": "Steinplatte",
+        "coordinates": {
+            "latitude": 47.5873656,
+            "longitude": 12.5621967
+        },
+        "location_name": "Waidring, Austria",
+        "vertical": 3674,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": 16,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/steinplatte"
+    },
+    "448": {
+        "name": "Sunburst Ski Area",
+        "coordinates": {
+            "latitude": 43.493936,
+            "longitude": -88.2265819
+        },
+        "location_name": "Kewaskum, WI",
+        "vertical": 196,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 11,
+        "num_lifts": 9,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/sunburst-ski-area"
+    },
     "148": {
         "name": "Sundown Mountain",
         "coordinates": {
@@ -3320,24 +3905,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/sunlight-mountain-resort"
     },
-    "150": {
-        "name": "Sunrise Park",
-        "coordinates": {
-            "latitude": 33.9737271,
-            "longitude": -109.5668086
-        },
-        "location_name": "Greer, AZ, USA",
-        "vertical": 1800,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 65,
-        "num_lifts": 6,
-        "is_open_nights": true,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/sunrise-park"
-    },
     "151": {
         "name": "Swain Resort",
         "coordinates": {
@@ -3355,24 +3922,6 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/swain-resort"
-    },
-    "184": {
-        "name": "Swiss Valley",
-        "coordinates": {
-            "latitude": 41.9546966,
-            "longitude": -85.8299194
-        },
-        "location_name": "Jones, MI, USA",
-        "vertical": 225,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 11,
-        "num_lifts": 7,
-        "is_open_nights": true,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/swiss-valley"
     },
     "361": {
         "name": "Takasu Snow Park",
@@ -3464,6 +4013,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/telemark-nordic-center"
     },
+    "406": {
+        "name": "Tenney Mountain",
+        "coordinates": {
+            "latitude": 43.7470855,
+            "longitude": -71.7645874
+        },
+        "location_name": "Plymouth, NH",
+        "vertical": 1500,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 53,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tenney-mountain"
+    },
     "155": {
         "name": "Terry Peak",
         "coordinates": {
@@ -3481,6 +4048,24 @@
         "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/terry-peak"
+    },
+    "436": {
+        "name": "The Krvavec Ski Resort",
+        "coordinates": {
+            "latitude": 46.2967391,
+            "longitude": 14.520736
+        },
+        "location_name": "Cerklje na Gorenjskem, Slovenia",
+        "vertical": 1709,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": 10,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/the-krvavec-ski-resort"
     },
     "157": {
         "name": "Titus Mountain",
@@ -3537,12 +4122,12 @@
         "href": "/our-resorts/trapp-family-lodge"
     },
     "159": {
-        "name": "Tree Tops Resort",
+        "name": "Treetops Resort",
         "coordinates": {
             "latitude": 45.0343188,
             "longitude": -84.5887653
         },
-        "location_name": "Gayord, MI, USA",
+        "location_name": "Gaylord, MI, USA",
         "vertical": 225,
         "is_nordic": true,
         "is_alpine_xc": true,
@@ -3552,7 +4137,7 @@
         "num_lifts": 5,
         "is_open_nights": true,
         "has_terrain_parks": true,
-        "href": "/our-resorts/tree-tops-resort"
+        "href": "/our-resorts/treetops-resort"
     },
     "160": {
         "name": "Trollhaugen",
@@ -3626,6 +4211,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/tyrol-basin-ski-and-snowboard"
     },
+    "451": {
+        "name": "Val d'Ir\u00e8ne",
+        "coordinates": {
+            "latitude": 48.465848,
+            "longitude": -67.5856486
+        },
+        "location_name": "Sainte-Ir\u00e8ne, QC",
+        "vertical": 898,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 35,
+        "num_lifts": 3,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/val-direne"
+    },
     "364": {
         "name": "Washigatake Ski Resort",
         "coordinates": {
@@ -3697,6 +4300,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/whaleback-mountain"
+    },
+    "306": {
+        "name": "Whistler Olympic Park",
+        "coordinates": {
+            "latitude": 50.139202,
+            "longitude": -123.1165702
+        },
+        "location_name": "Whistler, BC, CA",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 32,
+        "num_lifts": null,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/whistler-olympic-park"
     },
     "307": {
         "name": "White Grass Ski Touring",

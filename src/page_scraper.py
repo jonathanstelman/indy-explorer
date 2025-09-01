@@ -329,19 +329,46 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
 
     return resort_data
 
+OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
+
+def cache_our_resorts_page(read_mode='live') -> str:
+    """
+    Fetches and caches the 'our resorts' page HTML.
+    Returns the HTML string.
+    """
+    return get_page_html(OUR_RESORTS_URL, read_mode=read_mode)
+
+def parse_and_save_our_resorts(page_html: str, output_path='data/resorts_raw.json') -> dict:
+    """
+    Parses the 'our resorts' HTML and saves the parsed data to JSON.
+    Returns the parsed resorts dict.
+    """
+    resorts = parse_our_resorts_page(page_html)
+    with open(output_path, 'w', encoding='utf-8') as json_file:
+        json.dump(resorts, json_file, indent=4)
+    return resorts
+
+def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir='data'):
+    """
+    Fetches, caches, parses, and saves a single resort's page.
+    """
+    url = f'https://www.indyskipass.com{resort_href}'
+    slug = resort_href.replace('/our-resorts/', '').replace('/', '')
+    page_html = get_page_html(url, read_mode=read_mode)
+    resort_dict = parse_resort_page(page_html, resort_id=resort_id, resort_slug=slug)
+    with open(f'{output_dir}/{slug}.json', 'w', encoding='utf-8') as f:
+        json.dump(resort_dict, f, indent=4)
+    print(f'Parsed resort: "{resort_dict["name"]}"')
+    return resort_dict
+
+def main():
+    # 1. Cache and parse the "our resorts" page
+    our_resorts_html = cache_our_resorts_page(read_mode='live')
+    resorts = parse_and_save_our_resorts(our_resorts_html)
+
+    # 2. Iterate over all resorts and retrieve resort details
+    for _id, resort in resorts.items():
+        cache_and_parse_resort(_id, resort["href"], read_mode='live')
+
 if __name__ == '__main__':
-
-    with open('data/resorts_raw.json', 'r', encoding='utf-8') as f:
-        resorts_raw = json.load(f)
-
-    for _id, resort in resorts_raw.items():
-        _url = f'https://www.indyskipass.com{resort["href"]}'
-        _slug = resort["href"].replace('/our-resorts/', '').replace('/', '')
-        # print(f'Parsing resort:\n - "{resort["name"]}\n - ID: {_id}\n - Slug: {_slug}\n - URL: {_url}')
-
-        page_html_str = get_page_html(_url, read_mode='cache')
-        resort_dict = parse_resort_page(page_html_str, resort_id=_id, resort_slug=_slug)
-
-        with open(f'data/{_slug}.json', 'w', encoding='utf-8') as f:
-            json.dump(resort_dict, f, indent=4)
-        print(f'Parsed resort: "{resort_dict["name"]}"')
+    main()

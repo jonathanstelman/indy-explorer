@@ -1,0 +1,23 @@
+{
+    "id": "306",
+    "slug": "whistler-olympic-park",
+    "name": "Whistler Olympic Park",
+    "description": "Whether youre an experienced cross-country skier or new to the sport, Whistler Olympic Park offers a serene and inspiring natural setting to explore during the winter season. As the venue for the Nordic events at the 2010 Winter Games, the Park provides access to 85 kilometres of professionally groomed world-class ski trails, ranging from easy to advanced.",
+    "website": "https://www.whistlersportlegacies.com/whistler-olympic-park/webcams",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 120,
+    "trail_length_mi": 74,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

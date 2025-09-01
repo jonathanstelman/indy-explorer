@@ -12,7 +12,7 @@
     "is_cross_country": false,
     "is_dog_friendly": false,
     "has_snowshoeing": false,
-    "terrain_parks": true,
+    "terrain_parks": false,
     "night_skiing": false,
     "vertical_base_ft": 863,
     "vertical_summit_ft": 1688,

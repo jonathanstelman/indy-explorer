@@ -10,7 +10,7 @@
     "trail_length_km": 40,
     "trail_length_mi": 24,
     "is_cross_country": true,
-    "is_dog_friendly": true,
+    "is_dog_friendly": false,
     "has_snowshoeing": true,
     "vertical_base_ft": null,
     "vertical_summit_ft": null,
