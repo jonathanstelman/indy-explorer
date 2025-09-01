@@ -266,7 +266,7 @@ deck = pdk.Deck(
     api_keys={"mapbox": MAPBOX_TOKEN},
     map_style="mapbox://styles/mapbox/light-v11",
 )
-st.pydeck_chart(deck, use_container_width=True, height=800)
+st.pydeck_chart(deck, height=800)
 
 # Add a legend
 # TODO: parameterize the markdown to map colors and other values from constants
@@ -377,6 +377,7 @@ display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_valu
 
 st.markdown('## Resorts')
 st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
+st.markdown('Click the checkbox next to a resort to see more details.')
 resorts_table = st.dataframe(
     display_df,
     column_config={
@@ -453,7 +454,7 @@ def get_resort_elevation_markdown(resort: dict) -> str:
     if not (pd.notnull(base) and pd.notnull(summit) and pd.notnull(vertical)):
         return ''
     elevation_plot = create_elevation_plot(base, summit, vertical)
-    st.pyplot(elevation_plot, use_container_width=False)
+    st.pyplot(elevation_plot)
     return ''
 
 def get_resort_snowfall_markdown(resort: dict) -> str:
@@ -462,7 +463,7 @@ def get_resort_snowfall_markdown(resort: dict) -> str:
     if not(pd.notnull(snow_avg) and pd.notnull(snow_max)):
         return ''
     snowfall_barplot = create_snowfall_barplot(snow_avg, snow_max)
-    st.pyplot(snowfall_barplot, use_container_width=False)
+    st.pyplot(snowfall_barplot)
 
 def get_resort_difficulty_markdown(resort: dict) -> str:
     beginner = int(resort["difficulty_beginner"]) if pd.notnull(resort["difficulty_beginner"]) else None
@@ -471,7 +472,7 @@ def get_resort_difficulty_markdown(resort: dict) -> str:
     if not (beginner and intermediate and advanced):
         return 'Not available'
     difficulty_pie_chart = create_difficulty_chart(beginner, intermediate, advanced)
-    st.pyplot(difficulty_pie_chart, use_container_width=False)
+    st.pyplot(difficulty_pie_chart)
     return ''
 
 
@@ -502,7 +503,7 @@ if st.session_state.selected_resort:
 # Footer
 st.markdown(
     """
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of January 5, 2025.  
+    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of September 1, 2025.  
     
     ---
     Help improve this app:
