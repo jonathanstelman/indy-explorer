@@ -167,5 +167,12 @@ cython_debug/
 # Poetry
 poetry.lock
 
+# Streamlit
+.streamlit/secrets.toml
+
 # Page Cache Data
 cache/
+cache_backup_*/
+
+# Data backups
+data_backup_*/
