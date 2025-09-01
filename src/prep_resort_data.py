@@ -6,8 +6,9 @@ import json
 from typing import Tuple
 import pandas as pd
 import numpy as np
+import os
 
-from location_utils import get_normalized_location
+from location_utils import get_normalized_location, generate_resort_locations_csv
 
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
@@ -28,6 +29,11 @@ for _id, resort_data in resorts_dict.items():
     with open(f'data/{resort_slug}.json', 'r', encoding='utf-8') as json_file:
         resort_page = json.load(json_file)
         resorts_dict[_id].update(resort_page)
+
+# Get location data, generating if needed
+if not os.path.exists('data/resort_locations.csv'):
+    print("data/resort_locations.csv not found. Generating...")
+    generate_resort_locations_csv()
 
 # Add cached location data
 locations = pd.read_csv('data/resort_locations.csv')
