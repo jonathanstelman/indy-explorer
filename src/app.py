@@ -2,13 +2,11 @@
 Streamlit app to display Indy Pass resorts in an interactive map and table
 """
 import matplotlib.pyplot as plt
-from matplotlib.path import Path
-import numpy as np
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
-
+MAPBOX_TOKEN = st.secrets["MAPBOX_TOKEN"]
 
 # Constants
 COLORS = {
@@ -187,7 +185,7 @@ min_lifts, max_lifts = st.sidebar.slider(":aerial_tramway: Number of Lifts", 0, 
 
 
 boolean_map = {'Yes': True, 'No': False}
-has_alpine = st.sidebar.segmented_control(key='alpine', label=':snow_capped_mountain: Alpine', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
+has_alpine = st.sidebar.segmented_control(key='alpine', label=':mountain_snow: Alpine', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_cross_country = st.sidebar.segmented_control(key='xc', label=':turtle: Cross-Country', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_night_skiing = st.sidebar.segmented_control(key='night', label=':last_quarter_moon_with_face: Nights', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
 has_terrain_parks = st.sidebar.segmented_control(key='park', label=':snowboarder: Terrain Parks', options=boolean_map.keys(), default=boolean_map.keys(), selection_mode="multi")
@@ -259,17 +257,16 @@ view_state = pdk.ViewState(
     pitch=0
 )
 
+
 # Render the map
-st.pydeck_chart(
-    pdk.Deck(
-        layers=[layer],
-        initial_view_state=view_state,
-        tooltip=tooltip,
-        map_style="mapbox://styles/mapbox/light-v11"
-    ),
-    use_container_width=True,
-    height=800
+deck = pdk.Deck(
+    layers=layer,
+    initial_view_state=view_state,
+    tooltip=tooltip,
+    api_keys={"mapbox": MAPBOX_TOKEN},
+    map_style="mapbox://styles/mapbox/light-v11",
 )
+st.pydeck_chart(deck, use_container_width=True, height=800)
 
 # Add a legend
 # TODO: parameterize the markdown to map colors and other values from constants

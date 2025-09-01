@@ -12,6 +12,7 @@ pandas = "^2.2.3"
 python-dotenv = "^1.0.1"
 googlemaps = "^4.10.0"
 matplotlib = "^3.10.0"
+streamlit = "^1.49.1"
 
 
 [build-system]
