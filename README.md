@@ -59,8 +59,8 @@ To update all resort data (recommended about once per year), follow these steps:
 
 1. **Backup your web cache and resort data (optional but recommended):**
     ```sh
-    cp -r cache cache_backup_$(date +%Y%m%d_%H%M%S)
-    cp -r data data_backup_$(date +%Y%m%d_%H%M%S)
+    cp -r cache backups/cache_backup_$(date +%Y%m%d_%H%M%S)
+    cp -r data backups/data_backup_$(date +%Y%m%d_%H%M%S)
     ```
 
 2. **Remove the old cache and data folders:**
