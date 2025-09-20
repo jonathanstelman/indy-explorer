@@ -503,7 +503,7 @@ if st.session_state.selected_resort:
 # Footer
 st.markdown(
     """
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of September 1, 2025.  
+    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of September 20, 2025.  
     
     ---
     Help improve this app:
