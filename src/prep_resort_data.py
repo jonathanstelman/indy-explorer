@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 import os
 
-from location_utils import get_normalized_location, generate_resort_locations_csv
+from utils import get_normalized_location, generate_resort_locations_csv
 
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
