@@ -53,6 +53,30 @@ Debugging tips & quick checks
   - `python -c "from src.page_scraper import parse_resort_page, get_page_html; html=open('cache/<slug>.html').read(); print(parse_resort_page(html,'id','slug'))"`
 - If location results are incorrect or blank, check `data/resort_locations.csv` and re-run `generate_resort_locations_csv()` (note API quota).
 
+## Testing & CI (short playbook) ✅
+- Run tests locally:
+  - `poetry install`
+  - `poetry run pytest -q`
+- Generate JUnit and coverage reports (matches CI):
+  - `mkdir -p reports`
+  - `poetry run pytest --junitxml=reports/junit.xml --cov=src --cov-report=xml:reports/coverage.xml -q`
+- Formatting checks with Black:
+  - `poetry run black --check .`  (reformat with `poetry run black .`)
+- Notes for contributors/tests:
+  - Tests live in `tests/` and fixtures are under `tests/fixtures/` (examples: `powder_ridge_fixture.html`, `powder_ridge_malformed.html`).
+  - Use `tests/conftest.py` to add the repo root to `sys.path` (so `import src` works in CI).
+  - Mock `location_utils.gmaps` in tests using `monkeypatch` to avoid hitting the Google API.
+- CI specifics:
+  - GitHub Actions uses `poetry` to install dependencies and runs the above commands.
+  - Test report upload uses `dorny/test-reporter@v2` with `reporter: python-xunit` and a `test-reports` artifact.
+  - For Codecov, the workflow exports `CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}` at the job level and checks `if: env.CODECOV_TOKEN != ''` before attempting upload.
+
+## Recent changes (note for agents)
+- `parse_resort_page()` now uses `get_numbers()` to defensively extract integers; missing or malformed numeric text yields `None` instead of raising an exception.
+- `src/location_utils.py` avoids creating `googlemaps.Client` at import time when `GOOGLE_MAPS_API_KEY` is not set (tests monkeypatch `gmaps`).
+- Added unit tests for parser robustness (`tests/test_parse_resort_page_malformed.py`) and a `tests/test_location_utils.py` that mocks geocoding responses.
+- Added `beautifulsoup4` and `pytest-cov` to dev dependencies.
+
 When to ask maintainers
 - If a scraping change affects many resorts (large structural changes on indyskipass.com), open an issue before running a full scrape.
 - Ask before committing or pushing large regenerate changes to `data/` — the repository includes cached/backup files; large diffs to data files can be noisy.
