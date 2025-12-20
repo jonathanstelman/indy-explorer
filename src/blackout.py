@@ -40,9 +40,7 @@ except ModuleNotFoundError:
     )
 
 # BLACKOUT_DATES_AND_RESERVATIONS_URL = 'https://www.indyskipass.com/blackout-dates-reservations'
-BLACKOUT_DATE_GSHEET_URL = (
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
-)
+BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
 
 BLACKOUT_RESORT_NAME_MAP = {
     '49Â° North': '49 Degrees North',
@@ -71,12 +69,11 @@ BLACKOUT_RESORT_NAME_MAP = {
 }
 
 
-
 def get_blackout_dates_from_google_sheets(
-        sheet_url: Optional[str] = BLACKOUT_DATE_GSHEET_URL,
-        read_mode: str = 'live',
-        cache_path: str = 'data/blackout_dates_raw.csv',
-    ) -> pd.DataFrame:
+    sheet_url: Optional[str] = BLACKOUT_DATE_GSHEET_URL,
+    read_mode: str = 'live',
+    cache_path: str = 'data/blackout_dates_raw.csv',
+) -> pd.DataFrame:
     """Fetch blackout dates from a published Google Sheets URL (with optional cache)."""
     url = sheet_url
 
@@ -128,6 +125,7 @@ def _parse_named_ranges(df: pd.DataFrame) -> Dict[str, Dict]:
 
     Returns a mapping of named_range -> {'raw_text': str, 'dates': [YYYY-MM-DD,...]}
     """
+
     def _split_header(header: str) -> Optional[Tuple[str, str]]:
         if "\n" in header:
             return header.split("\n", 1)
@@ -250,7 +248,6 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
     blackout_dates_df = blackout_dates_df.set_index('Resort')
     # drop legend row
     blackout_dates_df = blackout_dates_df[blackout_dates_df.index != "X = Blackout Date"]
-    
 
     resort_map: Dict[str, Dict] = {}
 

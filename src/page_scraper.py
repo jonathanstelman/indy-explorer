@@ -338,9 +338,6 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     return resort_data
 
 
-
-
-
 def cache_our_resorts_page(read_mode='live') -> str:
     """
     Fetches and caches the 'our resorts' page HTML.
@@ -360,7 +357,9 @@ def parse_and_save_our_resorts(page_html: str, output_path='data/our_resorts_raw
     return resorts
 
 
-def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir='data/resort_page_extracts') -> dict:
+def cache_and_parse_resort(
+    resort_id, resort_href, read_mode='live', output_dir='data/resort_page_extracts'
+) -> dict:
     """
     Fetches, caches, parses, and saves a single resort's page.
     """

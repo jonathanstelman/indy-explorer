@@ -8,8 +8,13 @@ import pandas as pd
 import numpy as np
 import os
 
-from blackout import get_blackout_dates_from_google_sheets, parse_blackout_sheet, merge_blackout_into_resorts
+from blackout import (
+    get_blackout_dates_from_google_sheets,
+    parse_blackout_sheet,
+    merge_blackout_into_resorts,
+)
 from utils import get_normalized_location, generate_resort_locations_csv
+
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
     """
