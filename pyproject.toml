@@ -18,6 +18,10 @@ streamlit = "^1.49.1"
 pytest = "^7.3"
 black = "^24.10"
 
+[tool.black]
+skip-string-normalization = true
+line-length = 100
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
