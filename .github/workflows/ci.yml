@@ -83,6 +83,7 @@ jobs:
         with:
           name: unit tests
           path: reports/junit.xml
+          reporter: python-xunit
           fail-on-error: false
 
       - name: Upload test artifacts
