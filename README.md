@@ -105,6 +105,31 @@ To update all resort data (recommended about once per year), follow these steps:
     ```
 - If you add new resorts or change location names, you may need to manually review or update `data/resort_locations.csv`.
 
+## Blackout Dates
+
+Blackout dates are sourced from a published Google Sheet and merged into the resort data.
+
+### Refreshing blackout data
+
+1. Fetch the latest sheet data and print QA output:
+    ```sh
+    poetry run python src/blackout.py
+    ```
+    This writes `data/blackout_dates_raw.csv`.
+
+2. Run the prep script to merge blackout dates into `data/resorts.csv`:
+    ```sh
+    poetry run python src/prep_resort_data.py
+    ```
+
+### QA / troubleshooting
+
+- Print the raw sheet and name-mismatch diagnostics:
+  ```sh
+  poetry run python src/blackout.py
+  ```
+- If blackout resort names don’t match `data/resorts.csv`, update `BLACKOUT_RESORT_NAME_MAP` in `src/blackout.py`.
+
 ## Contributing
 
 We welcome contributions! Please follow these steps:

@@ -3,26 +3,13 @@ Scrapes data from resorts from general resorts page and resort-specific pages
 """
 
 import json
-import os
 import re
 import requests
 
 from bs4 import BeautifulSoup
-import pandas as pd
-
-from utils import (
-    convert_date_string_format,
-    filter_dates_for_weekday,
-    get_all_dates_in_range,
-    split_date_range,
-)
 
 CACHE_DIRECTORY = 'cache/'
 OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
-BLACKOUT_DATES_AND_RESERVATIONS_URL = 'https://www.indyskipass.com/blackout-dates-reservations'
-BLACKOUT_DATE_GSHEET_URL = url = (
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
-)
 
 
 def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
@@ -351,7 +338,7 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     return resort_data
 
 
-OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
+
 
 
 def cache_our_resorts_page(read_mode='live') -> str:
@@ -362,7 +349,7 @@ def cache_our_resorts_page(read_mode='live') -> str:
     return get_page_html(OUR_RESORTS_URL, read_mode=read_mode)
 
 
-def parse_and_save_our_resorts(page_html: str, output_path='data/resorts_raw.json') -> dict:
+def parse_and_save_our_resorts(page_html: str, output_path='data/our_resorts_raw.json') -> dict:
     """
     Parses the 'our resorts' HTML and saves the parsed data to JSON.
     Returns the parsed resorts dict.
@@ -373,31 +360,7 @@ def parse_and_save_our_resorts(page_html: str, output_path='data/resorts_raw.jso
     return resorts
 
 
-def cache_blackout_dates_and_reservations_page(read_mode='live') -> str:
-    """
-    Fetches and caches the 'blackout dates and reservations' page HTML.
-    Returns the HTML string.
-    """
-    return get_page_html(BLACKOUT_DATES_AND_RESERVATIONS_URL, read_mode=read_mode)
-
-
-def get_blackout_dates_from_google_sheets(
-    sheet_url: str, read_mode='live', cache_path='data/blackout_dates_raw.csv'
-) -> list:
-    """
-    Fetches blackout dates from a published Google Sheets URL.
-    Supports caching the result to avoid repeated fetches.
-    """
-    if read_mode == 'cache' and os.path.exists(cache_path):
-        print(f'Loading blackout dates from cached CSV file: {cache_path}')
-        df = pd.read_csv(cache_path)
-    else:
-        print(f'Fetching blackout dates from Google Sheets URL: {sheet_url}')
-        df = pd.read_csv(sheet_url)
-    return df
-
-
-def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir='data'):
+def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir='data/resort_page_extracts') -> dict:
     """
     Fetches, caches, parses, and saves a single resort's page.
     """
@@ -413,104 +376,13 @@ def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir=
 
 def main():
     # 1. Cache and parse the "our resorts" page
-    our_resorts_html = cache_our_resorts_page(read_mode='live')
+    our_resorts_html = cache_our_resorts_page(read_mode='cache')
     resorts = parse_and_save_our_resorts(our_resorts_html)
 
     # 2. Iterate over all resorts and retrieve resort details
     for _id, resort in resorts.items():
-        cache_and_parse_resort(_id, resort["href"], read_mode='live')
+        cache_and_parse_resort(_id, resort["href"], read_mode='cache')
 
 
 if __name__ == '__main__':
-    # main()
-
-    # def parse_blackout_dates_and_reservations(page_html: str) -> dict:
-    #     """
-    #     Parses the blackout dates and reservation policies from the given HTML content.
-    #     """
-    #     soup = BeautifulSoup(page_html, 'html.parser')
-    #     print(f'Page title: "{soup.title}"')
-
-    #     page_body = soup.find(id='main-content')
-    #     content_div = page_body.find('div', class_='field--name-body')
-    #     paragraphs = content_div.find_all('p') if content_div else []
-
-    #     blackout_dates = []
-    #     reservation_policy = ""
-
-    #     for para in paragraphs:
-    #         text = para.get_text(strip=True)
-    #         if "blackout" in text.lower():
-    #             blackout_dates.append(text)
-    #         elif "reservation" in text.lower():
-    #             reservation_policy += text + "\n"
-
-    #     return {
-    #         "blackout_dates": blackout_dates,
-    #         "reservation_policy": reservation_policy.strip()
-    #     }
-
-    blackout_dates_raw = get_blackout_dates_from_google_sheets(
-        BLACKOUT_DATE_GSHEET_URL, read_mode='cache'
-    )
-
-    # cache the raw data
-    # blackout_dates_raw.to_csv('data/blackout_dates_raw.csv', index=False)
-
-    named_date_ranges = dict()
-    for c in blackout_dates_raw.columns:
-        if c in ['Resort', 'Additional Blackout Dates']:
-            continue
-        name, date_range = c.split('\n')
-
-        start_date, end_date = split_date_range(date_range)
-        dates = get_all_dates_in_range(start_date, end_date)
-
-        # Adjust start date for Peak Saturdays/Sundays to first matching weekday
-        if name == 'Peak Saturdays':
-            dates = filter_dates_for_weekday(dates, weekday=5)
-        elif name == 'Peak Sundays':
-            dates = filter_dates_for_weekday(dates, weekday=6)
-
-        named_date_ranges[name] = {'raw_text': date_range, 'dates': dates}
-
-    print(json.dumps(named_date_ranges, indent=4))
-
-    blackout_dates = blackout_dates_raw.copy()
-    blackout_dates.columns = [c.split('\n')[0] for c in blackout_dates.columns]
-
-    print(blackout_dates.head())
-    # Iterate over resorts and assign blackout dates. Include any additional blackout dates.
-    resorts_dict = dict()
-    for _id, resort in blackout_dates_raw.iterrows():
-        resort_name = resort['Resort']
-
-        resort_blackout_dates = set()
-        for named_range, date_range in named_date_ranges.items():
-            try:
-                if resort[named_range] == 'X':
-                    resort_blackout_dates.update(date_range['dates'])
-            except KeyError as e:
-                print(f"Error processing resort {resort_name} for date range {named_range}: {e}")
-                continue
-
-        # Handle additional blackout dates
-        # additional_dates = resort['Additional Blackout Dates']
-        # additional_date_list = []
-        # if isinstance(additional_dates, str) and additional_dates.strip():
-        #     additional_date_parts = [d.strip() for d in additional_dates.split(',')]
-        #     for part in additional_date_parts:
-        #         if '-' in part:
-        #             start, end = split_date_range(part)
-        #             additional_date_list.extend(get_all_dates_in_range(start, end))
-        #         else:
-        #             converted_date = convert_date_string_format(part)
-        #             if converted_date:
-        #                 additional_date_list.append(converted_date)
-        # resort_blackout_dates.update(additional_date_list)
-        resorts_dict[_id]['blackout_dates'] = {
-            'named_ranges': [name for name in named_date_ranges.keys() if resort[name] == 'X'],
-            #    'additional_dates': additional_date_list,
-            'all_blackout_dates': sorted(list(resort_blackout_dates)),
-        }
-    print(json.dumps(resorts_dict, indent=4))
+    main()
