@@ -79,7 +79,7 @@ jobs:
           poetry run pytest --junitxml=reports/junit.xml --cov=src --cov-report=xml:reports/coverage.xml -q
 
       - name: Upload test report to GitHub checks
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         with:
           name: unit tests
           path: reports/junit.xml
