@@ -8,7 +8,16 @@ import pandas as pd
 
 load_dotenv()
 API_KEY: Optional[str] = os.getenv("GOOGLE_MAPS_API_KEY")
-gmaps = googlemaps.Client(key=API_KEY)
+# Initialize client lazily and safely: if no API key is provided (e.g., in CI), don't
+# attempt to create a googlemaps.Client at import time which raises ValueError.
+gmaps = None
+if API_KEY:
+    try:
+        gmaps = googlemaps.Client(key=API_KEY)
+    except Exception as e:
+        # Fail gracefully in environments without an API key; tests will monkeypatch `gmaps`.
+        print(f"Could not initialize googlemaps client: {e}")
+        gmaps = None
 
 
 def get_normalized_location(location_name: str) -> Dict[str, Optional[str]]:
