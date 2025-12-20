@@ -250,15 +250,16 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
 
     # Trails
     trails_field = soup.find('div', class_='field--name-field-trails')
-    resort_data['trails'] = int(trails_field.text.strip()) if trails_field else 0
+    # Use get_numbers to avoid ValueError on malformed digits
+    resort_data['trails'] = get_numbers(trails_field.text.strip()) if trails_field else 0
 
     # Lifts
     lifts_field = soup.find('div', class_='field--name-field-lifts')
-    resort_data['lifts'] = int(lifts_field.text.strip()) if lifts_field else 0
+    resort_data['lifts'] = get_numbers(lifts_field.text.strip()) if lifts_field else 0
 
     # Acres
     acres_field = soup.find('div', class_='field--name-field-acres')
-    resort_data['acres'] = int(acres_field.text.strip()) if acres_field else None
+    resort_data['acres'] = get_numbers(acres_field.text.strip()) if acres_field else None
 
     # Trail Length
     trail_length_field = soup.find('div', class_='field--name-field-trail-length')
