@@ -33,6 +33,8 @@ jobs:
   test:
     name: Test suite
     runs-on: ubuntu-latest
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     strategy:
       matrix:
         python-version: ['3.12']
@@ -88,7 +90,7 @@ jobs:
           path: reports/
 
       - name: Upload coverage to Codecov (optional if CODECOV_TOKEN is set)
-        if: ${{ secrets.CODECOV_TOKEN != '' }}
+        if: ${{ env.CODECOV_TOKEN != '' }}
         uses: codecov/codecov-action@v4
         with:
           files: reports/coverage.xml
