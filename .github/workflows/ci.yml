@@ -83,8 +83,7 @@ jobs:
         with:
           name: unit tests
           path: reports/junit.xml
-          reporter: junit
-          fail_on_error: false
+          fail-on-error: false
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
