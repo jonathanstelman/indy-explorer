@@ -172,7 +172,7 @@ Black configuration lives in `pyproject.toml` (we set `skip-string-normalization
 
 ### Notes for maintainers
 
-- `src/location_utils.py` now avoids creating the `googlemaps.Client` at import time when `GOOGLE_MAPS_API_KEY` is missing, which prevents import failures in CI and local environments without the key. Tests monkeypatch `location_utils.gmaps` when needed.
+- `src/utils.py` now avoids creating the `googlemaps.Client` at import time when `GOOGLE_MAPS_API_KEY` is missing, which prevents import failures in CI and local environments without the key. Tests monkeypatch `utils.gmaps` when needed.
 - `beautifulsoup4` is declared in `pyproject.toml` so `bs4` is available in CI.
 
 ---

@@ -16,13 +16,13 @@ Quick start (commands you'll use)
 Key files & responsibilities
 - `src/page_scraper.py` — HTML fetch + parsing helpers. Use `get_page_html(page_url, read_mode)` with `read_mode` in `['live','cache']` to avoid unnecessary live requests.
 - `src/prep_resort_data.py` — merges `data/resorts_raw.json`, per-resort JSON files (`data/<slug>.json`), and `data/resort_locations.csv` (cached geocoding), then writes `data/resorts.csv` used by the app.
-- `src/location_utils.py` — wraps Google Maps geocoding (`GOOGLE_MAPS_API_KEY` via `.env` or env var). Use `generate_resort_locations_csv()` to cache geocoding results into `data/resort_locations.csv`.
+- `src/utils.py` — wraps Google Maps geocoding (`GOOGLE_MAPS_API_KEY` via `.env` or env var). Use `generate_resort_locations_csv()` to cache geocoding results into `data/resort_locations.csv`.
 - `src/app.py` — Streamlit UI + mapping (pydeck). Expects `data/resorts.csv` and `st.secrets['MAPBOX_TOKEN']`.
 
 Data flow (canonical)
 1. `page_scraper.cache_our_resorts_page()` -> `data/resorts_raw.json`
 2. `page_scraper.cache_and_parse_resort()` -> `data/<resort_slug>.json`
-3. `location_utils.generate_resort_locations_csv()` -> `data/resort_locations.csv` (cached geocode results)
+3. `utils.generate_resort_locations_csv()` -> `data/resort_locations.csv` (cached geocode results)
 4. `prep_resort_data.py` merges the above -> `data/resorts.csv`
 5. `app.py` reads `data/resorts.csv` and renders map/table
 
@@ -40,7 +40,7 @@ Secrets & env vars
   ```toml
   MAPBOX_TOKEN = "your_mapbox_token"
   ```
-- Google Maps: `GOOGLE_MAPS_API_KEY` in `.env` or env var (used by `src/location_utils.py`). Geocoding calls can be expensive—always prefer `data/resort_locations.csv` if present.
+- Google Maps: `GOOGLE_MAPS_API_KEY` in `.env` or env var (used by `src/utils.py`). Geocoding calls can be expensive—always prefer `data/resort_locations.csv` if present.
 
 Agent safety & helpful constraints
 - Prefer: working with cached HTML (`cache/`) and `data/resorts_raw.json` for parser changes.
@@ -65,7 +65,7 @@ Debugging tips & quick checks
 - Notes for contributors/tests:
   - Tests live in `tests/` and fixtures are under `tests/fixtures/` (examples: `powder_ridge_fixture.html`, `powder_ridge_malformed.html`).
   - Use `tests/conftest.py` to add the repo root to `sys.path` (so `import src` works in CI).
-  - Mock `location_utils.gmaps` in tests using `monkeypatch` to avoid hitting the Google API.
+  - Mock `utils.gmaps` in tests using `monkeypatch` to avoid hitting the Google API.
 - CI specifics:
   - GitHub Actions uses `poetry` to install dependencies and runs the above commands.
   - Test report upload uses `dorny/test-reporter@v2` with `reporter: python-xunit` and a `test-reports` artifact.
