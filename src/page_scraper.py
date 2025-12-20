@@ -1,6 +1,7 @@
 """
 Scrapes data from resorts from general resorts page and resort-specific pages
 """
+
 import json
 import os
 import re
@@ -13,13 +14,15 @@ from utils import (
     convert_date_string_format,
     filter_dates_for_weekday,
     get_all_dates_in_range,
-    split_date_range
+    split_date_range,
 )
 
 CACHE_DIRECTORY = 'cache/'
 OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
 BLACKOUT_DATES_AND_RESERVATIONS_URL = 'https://www.indyskipass.com/blackout-dates-reservations'
-BLACKOUT_DATE_GSHEET_URL = url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
+BLACKOUT_DATE_GSHEET_URL = url = (
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
+)
 
 
 def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
@@ -27,8 +30,7 @@ def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
     Gets the html of a web page. Allows caching pages and writing to a cache
     """
     cache_file = CACHE_DIRECTORY + page_url.split('/')[-1] + '.html'
-    assert(read_mode in ['cache', 'live'])
-
+    assert read_mode in ['cache', 'live']
 
     if read_mode == 'live':
         # Load page from URL
@@ -44,7 +46,7 @@ def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
             except FileExistsError:
                 print(f'Cache file already exists: "{cache_file}"')
 
-    else: # read_mode == 'cache'
+    else:  # read_mode == 'cache'
         print(f'Fetching contents from cached file: "{cache_file}"')
         with open(cache_file, 'r', encoding='utf-8') as f:
             page_html: str = f.read()
@@ -72,10 +74,7 @@ def parse_lat_long(point_string: str):
     """
     coords = point_string.replace("POINT (", "").replace(")", "").split()
     longitude, latitude = map(float, coords)
-    return {
-        'latitude': latitude,
-        'longitude': longitude
-    }
+    return {'latitude': latitude, 'longitude': longitude}
 
 
 def parse_vertical(vertical_str: str):
@@ -116,7 +115,10 @@ def parse_our_resorts_page(page_html: str) -> dict:
     page_body = soup.find(id='main-content')
     resort_node_class = 'node--type-resort'
     resort_nodes = page_body.find_all(class_=resort_node_class)
-    print(f'{len(resort_nodes)} Resort Card ({resort_node_class}) objects found', end='\n\n')
+    print(
+        f'{len(resort_nodes)} Resort Card ({resort_node_class}) objects found',
+        end='\n\n',
+    )
 
     resort_node_list = list(resort_nodes)
     resorts = {}
@@ -146,8 +148,12 @@ def parse_our_resorts_page(page_html: str) -> dict:
 
         name = resort_node.select_one("span.label").get_text(strip=True)
         location_name = resort_node.select_one("span.location").get_text(strip=True)
-        is_open_nights = to_boolean(resort_node.select_one("li:nth-child(4) .value").get_text(strip=True))
-        has_terrain_parks = to_boolean(resort_node.select_one("li:nth-child(5) .value").get_text(strip=True))
+        is_open_nights = to_boolean(
+            resort_node.select_one("li:nth-child(4) .value").get_text(strip=True)
+        )
+        has_terrain_parks = to_boolean(
+            resort_node.select_one("li:nth-child(5) .value").get_text(strip=True)
+        )
 
         try:
             vert_str = resort_node.select_one("li:nth-child(1) .value").get_text(strip=True)
@@ -198,7 +204,6 @@ def parse_our_resorts_page(page_html: str) -> dict:
         except KeyError:
             print(f'Could not get is_allied for resort ID: {_id}')
 
-
         try:
             href = resort_node['href']
         except KeyError:
@@ -217,7 +222,7 @@ def parse_our_resorts_page(page_html: str) -> dict:
             "num_lifts": num_lifts,
             "is_open_nights": is_open_nights,
             "has_terrain_parks": has_terrain_parks,
-            "href": href
+            "href": href,
         }
         success_count += 1
 
@@ -259,20 +264,25 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
 
     # Trails
     trails_field = soup.find('div', class_='field--name-field-trails')
-    resort_data['trails'] = int(trails_field.text.strip()) if trails_field else 0
+    # Use get_numbers to avoid ValueError on malformed digits
+    resort_data['trails'] = get_numbers(trails_field.text.strip()) if trails_field else 0
 
     # Lifts
     lifts_field = soup.find('div', class_='field--name-field-lifts')
-    resort_data['lifts'] = int(lifts_field.text.strip()) if lifts_field else 0
+    resort_data['lifts'] = get_numbers(lifts_field.text.strip()) if lifts_field else 0
 
     # Acres
     acres_field = soup.find('div', class_='field--name-field-acres')
-    resort_data['acres'] = int(acres_field.text.strip()) if acres_field else None
+    resort_data['acres'] = get_numbers(acres_field.text.strip()) if acres_field else None
 
     # Trail Length
     trail_length_field = soup.find('div', class_='field--name-field-trail-length')
-    resort_data['trail_length_km'] = get_numbers(trail_length_field.text.strip()) if trail_length_field else None
-    resort_data['trail_length_mi'] = int(resort_data['trail_length_km'] * 0.621371) if resort_data['trail_length_km'] else None
+    resort_data['trail_length_km'] = (
+        get_numbers(trail_length_field.text.strip()) if trail_length_field else None
+    )
+    resort_data['trail_length_mi'] = (
+        int(resort_data['trail_length_km'] * 0.621371) if resort_data['trail_length_km'] else None
+    )
 
     # Is Cross Country
     grid_field = soup.find('div', class_='fade-in grid-area-main')
@@ -286,7 +296,9 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
 
     # Snowshoeing
     snowshoe_field = soup.find('div', class_='field--name-field-snowshoeing')
-    resort_data['has_snowshoeing'] = 'Yes' in snowshoe_field.text.strip() if snowshoe_field else False
+    resort_data['has_snowshoeing'] = (
+        'Yes' in snowshoe_field.text.strip() if snowshoe_field else False
+    )
 
     # Terrain parks
     terrain_parks_field = soup.find('div', class_='field--name-field-terrain-parks')
@@ -315,7 +327,6 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     if elevation_div:
         resort_data['vertical_elevation_ft'] = get_numbers(elevation_div.text.strip())
 
-
     # Terrain difficulty coverage
     resort_data['difficulty_beginner'] = None
     resort_data['difficulty_intermediate'] = None
@@ -338,6 +349,9 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
                 resort_data[f'snowfall_{snow_type}_in'] = int(snowfall_raw.split('in')[0].strip())
 
     return resort_data
+
+
+OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
 
 
 def cache_our_resorts_page(read_mode='live') -> str:
@@ -367,7 +381,9 @@ def cache_blackout_dates_and_reservations_page(read_mode='live') -> str:
     return get_page_html(BLACKOUT_DATES_AND_RESERVATIONS_URL, read_mode=read_mode)
 
 
-def get_blackout_dates_from_google_sheets(sheet_url: str, read_mode='live', cache_path='data/blackout_dates_raw.csv') -> list:
+def get_blackout_dates_from_google_sheets(
+    sheet_url: str, read_mode='live', cache_path='data/blackout_dates_raw.csv'
+) -> list:
     """
     Fetches blackout dates from a published Google Sheets URL.
     Supports caching the result to avoid repeated fetches.
@@ -379,7 +395,6 @@ def get_blackout_dates_from_google_sheets(sheet_url: str, read_mode='live', cach
         print(f'Fetching blackout dates from Google Sheets URL: {sheet_url}')
         df = pd.read_csv(sheet_url)
     return df
-
 
 
 def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir='data'):
@@ -395,6 +410,7 @@ def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir=
     print(f'Parsed resort: "{resort_dict["name"]}"')
     return resort_dict
 
+
 def main():
     # 1. Cache and parse the "our resorts" page
     our_resorts_html = cache_our_resorts_page(read_mode='live')
@@ -406,10 +422,8 @@ def main():
 
 
 if __name__ == '__main__':
-    #main()
+    # main()
 
-
-    
     # def parse_blackout_dates_and_reservations(page_html: str) -> dict:
     #     """
     #     Parses the blackout dates and reservation policies from the given HTML content.
@@ -435,21 +449,20 @@ if __name__ == '__main__':
     #         "blackout_dates": blackout_dates,
     #         "reservation_policy": reservation_policy.strip()
     #     }
-    
 
+    blackout_dates_raw = get_blackout_dates_from_google_sheets(
+        BLACKOUT_DATE_GSHEET_URL, read_mode='cache'
+    )
 
-    blackout_dates_raw = get_blackout_dates_from_google_sheets(BLACKOUT_DATE_GSHEET_URL, read_mode='cache')
-    
     # cache the raw data
-    #blackout_dates_raw.to_csv('data/blackout_dates_raw.csv', index=False)
-
+    # blackout_dates_raw.to_csv('data/blackout_dates_raw.csv', index=False)
 
     named_date_ranges = dict()
     for c in blackout_dates_raw.columns:
         if c in ['Resort', 'Additional Blackout Dates']:
             continue
         name, date_range = c.split('\n')
-        
+
         start_date, end_date = split_date_range(date_range)
         dates = get_all_dates_in_range(start_date, end_date)
 
@@ -459,15 +472,9 @@ if __name__ == '__main__':
         elif name == 'Peak Sundays':
             dates = filter_dates_for_weekday(dates, weekday=6)
 
-        named_date_ranges[name] = {
-            'raw_text': date_range,
-            'dates': dates
-        }
+        named_date_ranges[name] = {'raw_text': date_range, 'dates': dates}
 
-    
     print(json.dumps(named_date_ranges, indent=4))
-
-
 
     blackout_dates = blackout_dates_raw.copy()
     blackout_dates.columns = [c.split('\n')[0] for c in blackout_dates.columns]
@@ -486,7 +493,7 @@ if __name__ == '__main__':
             except KeyError as e:
                 print(f"Error processing resort {resort_name} for date range {named_range}: {e}")
                 continue
-        
+
         # Handle additional blackout dates
         # additional_dates = resort['Additional Blackout Dates']
         # additional_date_list = []
@@ -500,10 +507,10 @@ if __name__ == '__main__':
         #             converted_date = convert_date_string_format(part)
         #             if converted_date:
         #                 additional_date_list.append(converted_date)
-        #resort_blackout_dates.update(additional_date_list)
+        # resort_blackout_dates.update(additional_date_list)
         resorts_dict[_id]['blackout_dates'] = {
             'named_ranges': [name for name in named_date_ranges.keys() if resort[name] == 'X'],
-        #    'additional_dates': additional_date_list,
-            'all_blackout_dates': sorted(list(resort_blackout_dates))
+            #    'additional_dates': additional_date_list,
+            'all_blackout_dates': sorted(list(resort_blackout_dates)),
         }
     print(json.dumps(resorts_dict, indent=4))

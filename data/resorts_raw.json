@@ -1169,6 +1169,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/dog-creek-lodge-nordic-center"
     },
+    "462": {
+        "name": "Donner Ski Ranch",
+        "coordinates": {
+            "latitude": 39.3181619,
+            "longitude": -120.3301365
+        },
+        "location_name": "Norden, Lake Tahoe, CA",
+        "vertical": 800,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 52,
+        "num_lifts": 8,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/donner-ski-ranch"
+    },
     "318": {
         "name": "Dry Hill Ski Area",
         "coordinates": {
@@ -1258,6 +1276,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/echo-mountain"
+    },
+    "458": {
+        "name": "Ejder3200 Palandoken",
+        "coordinates": {
+            "latitude": 39.7828035,
+            "longitude": 41.1995297
+        },
+        "location_name": "Erzurum, T\u00fcrkiye",
+        "vertical": 3222,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 32,
+        "num_lifts": 19,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/ejder3200-palandoken"
     },
     "280": {
         "name": "Enchanted Forest XC",
@@ -1823,7 +1859,7 @@
             "latitude": 43.704967,
             "longitude": 142.1845217
         },
-        "location_name": "Asahikawa, Tohoku, Japan",
+        "location_name": "Asahikawa, Hokkaido, Japan",
         "vertical": 1968,
         "is_nordic": false,
         "is_alpine_xc": false,
@@ -1834,6 +1870,42 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/kamui-ski-links"
+    },
+    "465": {
+        "name": "Kaunertaler Gletscher",
+        "coordinates": {
+            "latitude": 46.8644443,
+            "longitude": 10.5949343
+        },
+        "location_name": "Kaunertal, Austria",
+        "vertical": 3160,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 55,
+        "num_lifts": 8,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/kaunertaler-gletscher"
+    },
+    "464": {
+        "name": "Kaya Palazzo Kartalkaya Ski & Mountain Resort.",
+        "coordinates": {
+            "latitude": 40.5919522,
+            "longitude": 31.8039221
+        },
+        "location_name": "G\u00f6kp\u0131nar/Bolu Merkez/Bolu, T\u00fcrkiye",
+        "vertical": null,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 32,
+        "num_lifts": 11,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/kaya-palazzo-kartalkaya-ski-mountain-resort"
     },
     "93": {
         "name": "Kelly Canyon",
@@ -1932,14 +2004,14 @@
             "longitude": -120.6712683
         },
         "location_name": "Leavenworth, WA, USA",
-        "vertical": 235,
+        "vertical": 300,
         "is_nordic": true,
-        "is_alpine_xc": false,
-        "is_xc_only": true,
+        "is_alpine_xc": true,
+        "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 6,
-        "num_lifts": null,
-        "is_open_nights": true,
+        "num_trails": 3,
+        "num_lifts": 3,
+        "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/leavenworth-winter-sports-club"
     },
@@ -2159,6 +2231,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/magic-mountain"
     },
+    "463": {
+        "name": "Magic Mountain",
+        "coordinates": {
+            "latitude": 42.1894229,
+            "longitude": -114.2853163
+        },
+        "location_name": "Kimberly, Idaho",
+        "vertical": 800,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 22,
+        "num_lifts": 4,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/magic-mountain-0"
+    },
     "353": {
         "name": "Maiko Resort",
         "coordinates": {
@@ -2271,7 +2361,7 @@
         "name": "Marble Mountain",
         "coordinates": {
             "latitude": 48.9481507,
-            "longitude": 57.8310334
+            "longitude": -57.8310334
         },
         "location_name": "NL, Canada",
         "vertical": 1700,
@@ -2555,6 +2645,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/mont-sutton"
     },
+    "109": {
+        "name": "Montage Mountain",
+        "coordinates": {
+            "latitude": 41.3512429,
+            "longitude": -75.6654972
+        },
+        "location_name": "Scranton PA, PA, USA",
+        "vertical": 1000,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 27,
+        "num_lifts": 7,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/montage-mountain"
+    },
     "110": {
         "name": "Montana Snowbowl",
         "coordinates": {
@@ -2748,7 +2856,7 @@
         "is_xc_only": false,
         "is_allied": false,
         "num_trails": 142,
-        "num_lifts": 12,
+        "num_lifts": 11,
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/mt-hood-meadows"
@@ -3022,24 +3130,6 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/okunakayama-kogen"
-    },
-    "455": {
-        "name": "Palandoken Ski Resort",
-        "coordinates": {
-            "latitude": 39.8484968,
-            "longitude": 41.2786994
-        },
-        "location_name": "Erzurum, T\u00fcrkiye",
-        "vertical": 3608,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 22,
-        "num_lifts": 19,
-        "is_open_nights": false,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/palandoken-ski-resort"
     },
     "352": {
         "name": "Palcall Tsumagoi Resort",
@@ -4260,7 +4350,7 @@
         "is_xc_only": false,
         "is_allied": false,
         "num_trails": 62,
-        "num_lifts": 11,
+        "num_lifts": 10,
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/waterville-valley-resort"
@@ -4300,24 +4390,6 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/whaleback-mountain"
-    },
-    "306": {
-        "name": "Whistler Olympic Park",
-        "coordinates": {
-            "latitude": 50.139202,
-            "longitude": -123.1165702
-        },
-        "location_name": "Whistler, BC, CA",
-        "vertical": null,
-        "is_nordic": true,
-        "is_alpine_xc": false,
-        "is_xc_only": true,
-        "is_allied": false,
-        "num_trails": 32,
-        "num_lifts": null,
-        "is_open_nights": true,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/whistler-olympic-park"
     },
     "307": {
         "name": "White Grass Ski Touring",

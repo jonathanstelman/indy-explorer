@@ -1,0 +1,23 @@
+{
+    "id": "276",
+    "slug": "catamount-outdoor-family-center",
+    "name": "Catamount Outdoor Family Center",
+    "description": "Friendly fun trails. Great grooming. Incredible views. Pleasant people. Skiing, snowshoeing, fat biking, and sledding, with rentals and lessons available. Only 10 minutes from the Burlington International Airport and easily reached from central and northern VT!",
+    "website": "https://catamountoutdoor.org/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 40,
+    "trail_length_mi": 24,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

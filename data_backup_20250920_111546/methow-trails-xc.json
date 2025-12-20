@@ -1,0 +1,23 @@
+{
+    "id": "292",
+    "slug": "methow-trails-xc",
+    "name": "Methow Trails XC",
+    "description": "Methow Trails is home to North Americas largest cross-country ski area, with over 200km of interconnected, expertly groomed trails for skiers of all abilities. Kids 18 and under and adults 75+ ski free every day. Ski sunny, open meadows to forested climbs and descents to breathtaking ridgeline tours. The interconnected trail system allows skiers to travel between towns, warming huts, scenic vistas, and more. There is something for everyone.",
+    "website": "https://methowtrails.org/",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 200,
+    "trail_length_mi": 124,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

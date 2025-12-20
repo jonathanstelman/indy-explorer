@@ -18,6 +18,7 @@ def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
     location_json = get_normalized_location(location_name)
     return location_json['city'], location_json['state'], location_json['country']
 
+
 # Get resort data from main page
 with open('data/resorts_raw.json', 'r', encoding='utf-8') as json_file:
     resorts_dict = json.load(json_file)
@@ -46,15 +47,16 @@ resorts['indy_page'] = resorts['href'].apply(
     lambda x: 'https://www.indyskipass.com' + x if x else 'n/a'
 )
 
+
 # Separate the resort type labels
 def is_alpine(resort):
-    """Determine if the resort is an alpine resort
-    """
+    """Determine if the resort is an alpine resort"""
     if (not resort.is_nordic) and (not resort.is_alpine_xc) and (not resort.is_xc_only):
         return True
     if resort.is_alpine_xc:
         return True
     return False
+
 
 resorts['has_alpine'] = resorts.apply(is_alpine, axis=1)
 resorts['has_cross_country'] = resorts['is_nordic']
@@ -80,14 +82,21 @@ def feet_to_meters(feet):
     Convert feet to meters, safely handling missing values
     """
     return int(feet * 0.30479999) if pd.notnull(feet) else np.nan
+
+
 resorts["vertical_meters"] = resorts.vertical.apply(feet_to_meters)
 
 
 # Fields for table display
 bool_map = {False: 'No', True: 'Yes'}
 table_cols = [
-    'has_alpine', 'has_cross_country', 'has_night_skiing', 'has_terrain_parks',
-    'is_allied', 'is_dog_friendly', 'has_snowshoeing'
+    'has_alpine',
+    'has_cross_country',
+    'has_night_skiing',
+    'has_terrain_parks',
+    'is_allied',
+    'is_dog_friendly',
+    'has_snowshoeing',
 ]
 for col in table_cols:
     resorts[col + '_display'] = resorts[col].map(bool_map)
@@ -103,13 +112,16 @@ def nan_to_text(value, replace_text='---'):
     else:
         return value
 
+
 resorts['location_name_tt'] = resorts['location_name'].apply(nan_to_text, replace_text='n/a')
 resorts['num_trails_tt'] = resorts['num_trails'].apply(nan_to_text)
 resorts['num_lifts_tt'] = resorts['num_lifts'].apply(nan_to_text)
 resorts['acres_tt'] = resorts['acres'].apply(lambda x: f"{x} acres" if pd.notnull(x) else '---')
 resorts['vertical_tt'] = resorts.apply(
-    lambda r: f"{r.vertical} ft / {int(r.vertical_meters)} m" if pd.notnull(r.vertical) else '---',
-    axis=1
+    lambda r: (
+        f"{r.vertical} ft / {int(r.vertical_meters)} m" if pd.notnull(r.vertical) else '---'
+    ),
+    axis=1,
 )
 
 

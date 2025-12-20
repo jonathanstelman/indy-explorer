@@ -1,0 +1,23 @@
+{
+    "id": "279",
+    "slug": "dog-creek-lodge-nordic-center",
+    "name": "Dog Creek Lodge & Nordic Center",
+    "description": "Groomed daily for XC pursuits mid-December through March with Skate, Classic, Fat bike, and Snowshoe Trails. Big, Small, Terrain and distance for all. Overnight lodging, restaurant & bar. Dog friendly. This is Dog Creek Lodge. Northwest Montanas premier Nordic destination. Ski it to believe it.",
+    "website": "http://www.dogcreeklodge.com",
+    "trails": 0,
+    "lifts": 0,
+    "acres": null,
+    "trail_length_km": 36,
+    "trail_length_mi": 22,
+    "is_cross_country": true,
+    "is_dog_friendly": false,
+    "has_snowshoeing": true,
+    "vertical_base_ft": null,
+    "vertical_summit_ft": null,
+    "vertical_elevation_ft": null,
+    "difficulty_beginner": null,
+    "difficulty_intermediate": null,
+    "difficulty_advanced": null,
+    "snowfall_average_in": null,
+    "snowfall_high_in": null
+}

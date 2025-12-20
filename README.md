@@ -116,6 +116,68 @@ We welcome contributions! Please follow these steps:
 5. Push to the branch (`git push origin feature-branch`).
 6. Open a new Pull Request.
 
+---
+
+## Testing & Continuous Integration ✅
+
+We include unit tests and CI for this project. Here are the quick commands and notes you need to run the tests, generate reports, and keep code formatted:
+
+### Running tests locally
+
+1. Install dependencies with Poetry:
+    ```sh
+    poetry install
+    ```
+
+2. Run the full test suite:
+    ```sh
+    poetry run pytest -q
+    ```
+
+3. Run tests and generate JUnit + coverage reports (matches CI):
+    ```sh
+    mkdir -p reports
+    poetry run pytest --junitxml=reports/junit.xml --cov=src --cov-report=xml:reports/coverage.xml -q
+    ```
+
+Notes:
+- Tests live in `tests/` and use fixtures in `tests/fixtures/` (e.g., `powder_ridge_fixture.html`, `powder_ridge_malformed.html`).
+- `tests/conftest.py` ensures the project root is on `sys.path` so `import src` works in CI.
+- The project includes `pytest-cov` for coverage reporting (installed in the dev group).
+
+### Formatting
+
+We use Black for code formatting. To check formatting locally:
+
+```sh
+poetry run black --check .
+```
+
+To run Black and reformat files:
+
+```sh
+poetry run black .
+```
+
+Black configuration lives in `pyproject.toml` (we set `skip-string-normalization = true` to preserve single quotes).
+
+### CI details
+
+- GitHub Actions runs tests and checks formatting on push/PRs. The CI workflow:
+  - Installs dependencies with Poetry
+  - Runs `pytest` and generates `reports/junit.xml` and `reports/coverage.xml`
+  - Uploads a test artifact named `test-reports`
+  - Publishes a GitHub Check Run summary using `dorny/test-reporter@v2` (configured for `python-xunit`)
+  - Optionally uploads coverage to Codecov if `CODECOV_TOKEN` is set in repository secrets
+
+### Notes for maintainers
+
+- `src/location_utils.py` now avoids creating the `googlemaps.Client` at import time when `GOOGLE_MAPS_API_KEY` is missing, which prevents import failures in CI and local environments without the key. Tests monkeypatch `location_utils.gmaps` when needed.
+- `beautifulsoup4` is declared in `pyproject.toml` so `bs4` is available in CI.
+
+---
+
+
 ## Reporting Issues
 
 Help improve this app:

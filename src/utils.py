@@ -10,16 +10,23 @@ import pandas as pd
 load_dotenv()
 
 
-
-# Location Utilities
 API_KEY: Optional[str] = os.getenv("GOOGLE_MAPS_API_KEY")
-gmaps = googlemaps.Client(key=API_KEY)
+# Initialize client lazily and safely: if no API key is provided (e.g., in CI), don't
+# attempt to create a googlemaps.Client at import time which raises ValueError.
+gmaps = None
+if API_KEY:
+    try:
+        gmaps = googlemaps.Client(key=API_KEY)
+    except Exception as e:
+        # Fail gracefully in environments without an API key; tests will monkeypatch `gmaps`.
+        print(f"Could not initialize googlemaps client: {e}")
+        gmaps = None
 
 
 def get_normalized_location(location_name: str) -> Dict[str, Optional[str]]:
     """
     Uses Google Maps Geocoding API to extract city, state, and country.
-    
+
     Args:
         location_name (str): Name of the location to geocode.
 
@@ -29,13 +36,13 @@ def get_normalized_location(location_name: str) -> Dict[str, Optional[str]]:
     city: Optional[str] = None
     state: Optional[str] = None
     country: Optional[str] = None
-    
+
     try:
         geocode_result = gmaps.geocode(location_name)
         if not geocode_result:
             return {"city": city, "state": state, "country": country}
 
-        result = geocode_result[0] # get the first result
+        result = geocode_result[0]  # get the first result
         components = result['address_components']
         for component in components:
             if "locality" in component["types"]:
@@ -53,8 +60,7 @@ def get_normalized_location(location_name: str) -> Dict[str, Optional[str]]:
 
 
 def generate_resort_locations_csv(
-    resorts_json_path='data/resorts_raw.json',
-    output_csv_path='data/resort_locations.csv'
+    resorts_json_path='data/resorts_raw.json', output_csv_path='data/resort_locations.csv'
 ):
     """
     Iterates through resorts JSON, fetches normalized locations, and saves to CSV.
@@ -81,12 +87,14 @@ def generate_resort_locations_csv(
     for name, location_name in unique_locations:
         print(f"Retrieving location for: {name} / {location_name}")
         loc = get_normalized_location(location_name)
-        rows.append({
-            'name': name,
-            'city': loc.get('city'),
-            'state': loc.get('state'),
-            'country': loc.get('country')
-        })
+        rows.append(
+            {
+                'name': name,
+                'city': loc.get('city'),
+                'state': loc.get('state'),
+                'country': loc.get('country'),
+            }
+        )
 
     # Save to CSV
     df = pd.DataFrame(rows)
@@ -96,6 +104,7 @@ def generate_resort_locations_csv(
 
 # Date Utilities
 
+
 def split_date_range(date_range: str) -> tuple[str, str]:
     """
     Splits a date range string formatted as "Jan 1 - Mar 31" into start and end dates.
@@ -103,7 +112,7 @@ def split_date_range(date_range: str) -> tuple[str, str]:
     - If the date is between July and Dec, then it's in the current year (2025)
     - If the date is between Jan and May, then it's in the next year (2026)
     - If the two dates are in the same month, then the second date does not include the month
-    
+
     """
     start_str, end_str = date_range.split(' - ')
     start_parts = start_str.strip().split(' ')
@@ -149,7 +158,7 @@ def convert_date_string_format(date_string: str):
     return f'{year}-{month:02d}-{day:02d}'
 
 
-def get_all_dates_in_range(start_date: str, end_date: str) -> list[str]: 
+def get_all_dates_in_range(start_date: str, end_date: str) -> list[str]:
     """
     Given a start date and end date in YYYY-MM-DD format, returns a list of all dates in that range (inclusive).
     """
@@ -158,7 +167,7 @@ def get_all_dates_in_range(start_date: str, end_date: str) -> list[str]:
     delta = end_dt - start_dt
 
     return [(start_dt + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(delta.days + 1)]
-    
+
 
 def filter_dates_for_weekday(dates: list[str], weekday: int) -> list[str]:
     """
