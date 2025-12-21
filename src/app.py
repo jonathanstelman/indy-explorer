@@ -2,6 +2,10 @@
 Streamlit app to display Indy Pass resorts in an interactive map and table
 """
 
+from datetime import date, datetime, timedelta
+import json
+from typing import List, Optional
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import pydeck as pdk
@@ -69,6 +73,41 @@ def rgba_to_hex(rgba):
     r, g, b, a = rgba
     return f'#{r:02x}{g:02x}{b:02x}{a:02x}'
 
+
+def format_blackout_dates(value: str) -> str:
+    if not value:
+        return ''
+    try:
+        dates = json.loads(value) if isinstance(value, str) else value
+    except json.JSONDecodeError:
+        return ''
+    if not dates:
+        return ''
+    return ', '.join(dates)
+
+
+def parse_blackout_dates(value: str) -> List[str]:
+    if not value:
+        return []
+    try:
+        return json.loads(value) if isinstance(value, str) else value
+    except json.JSONDecodeError:
+        return []
+
+
+def date_range_strings(start: date, end: date) -> List[str]:
+    days = (end - start).days
+    return [
+        (start + timedelta(days=offset)).strftime('%Y-%m-%d')
+        for offset in range(days + 1)
+    ]
+
+
+def parse_iso_date(value: str) -> Optional[date]:
+    try:
+        return datetime.strptime(value, '%Y-%m-%d').date()
+    except (TypeError, ValueError):
+        return None
 
 def create_elevation_plot(base, summit, vertical):
     """Make a plot to display the resort elevation"""
@@ -194,6 +233,31 @@ resorts = pd.read_csv('data/resorts.csv', index_col='index', na_values=[''], kee
 # Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
 
+# Blackout display helpers
+if 'blackout_all_dates' in resorts.columns:
+    resorts['blackout_dates_display'] = resorts['blackout_all_dates'].apply(
+        format_blackout_dates
+    )
+    resorts['blackout_dates_list'] = resorts['blackout_all_dates'].apply(parse_blackout_dates)
+else:
+    resorts['blackout_dates_display'] = ''
+    resorts['blackout_dates_list'] = [[] for _ in range(len(resorts))]
+if 'blackout_count' not in resorts.columns:
+    resorts['blackout_count'] = 0
+resorts['blackout_has_display'] = resorts['blackout_count'].apply(
+    lambda c: 'Yes' if c and int(c) > 0 else 'No'
+)
+
+all_blackout_dates = sorted(
+    {d for dates in resorts['blackout_dates_list'] for d in dates if isinstance(d, str)}
+)
+if all_blackout_dates:
+    min_blackout_date = parse_iso_date(all_blackout_dates[0]) or date.today()
+    max_blackout_date = parse_iso_date(all_blackout_dates[-1]) or date.today()
+else:
+    min_blackout_date = date.today()
+    max_blackout_date = date.today()
+
 # Display and search
 resorts["radius"] = resorts.apply(get_radius, axis=1)
 resorts["color"] = resorts.apply(get_color, axis=1)
@@ -300,6 +364,47 @@ is_allied = st.sidebar.segmented_control(
     default=boolean_map.keys(),
     selection_mode="multi",
 )
+blackout_presence = st.sidebar.segmented_control(
+    key='blackout_presence',
+    label=':heavy_multiplication_x: Blackout Dates',
+    options=['Yes', 'No'],
+    default=['Yes', 'No'],
+    selection_mode='multi',
+)
+selected_presence = [option for option in blackout_presence]
+has_blackout_selected = 'Yes' in selected_presence
+no_blackout_selected = 'No' in selected_presence
+
+filter_blackout_date = st.sidebar.checkbox(
+    'Filter by date range',
+    value=False,
+    help=(
+        'When enabled, only resorts with NO blackout dates in the selected range are '
+        'shown. This filters out any resort blacked out on ANY day in the range.'
+    ),
+)
+today = date.today()
+default_start = max(min_blackout_date, min(today, max_blackout_date))
+blackout_date_range = st.sidebar.date_input(
+    'Date range',
+    value=(default_start, default_start),
+    min_value=min_blackout_date,
+    max_value=max_blackout_date,
+    disabled=not filter_blackout_date,
+    help='Select a start and end date for the blackout filter.',
+)
+
+filter_blackout_date_active = (
+    filter_blackout_date
+    and isinstance(blackout_date_range, tuple)
+    and len(blackout_date_range) == 2
+)
+if filter_blackout_date_active:
+    start_date, end_date = blackout_date_range
+    range_dates = set(date_range_strings(start_date, end_date))
+else:
+    range_dates = set()
+
 
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower()))
@@ -319,6 +424,19 @@ filtered_data = resorts[
     & (resorts.is_allied.isin([boolean_map.get(s) for s in is_allied]))
     & (resorts.is_dog_friendly.isin([boolean_map.get(s) for s in is_dog_friendly]))
     & (resorts.has_snowshoeing.isin([boolean_map.get(s) for s in has_snowshoeing]))
+    & (
+        (has_blackout_selected and no_blackout_selected)
+        | (has_blackout_selected and (resorts.blackout_count > 0))
+        | (no_blackout_selected and (resorts.blackout_count == 0))
+    )
+    & (
+        (not filter_blackout_date_active)
+        | (
+            resorts.blackout_dates_list.apply(
+                lambda dates: range_dates.isdisjoint(dates)
+            )
+        )
+    )
 ].sort_values('radius', ascending=False)
 
 
@@ -348,6 +466,7 @@ tooltip = {
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Dog Friendly:</b> {is_dog_friendly_display}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
+        <b>Has Blackout Dates:</b> {blackout_has_display}<br>
         <!-- <b>Indy Resort Page:</b> {indy_page}<br> -->
         <!-- <b>Website:</b> {website}<br> -->
     """,
@@ -453,6 +572,7 @@ col_names_map = {
     'color': 'Color',
     'indy_page': 'Indy Page',
     'website': 'Website',
+    'blackout_dates_display': 'Blackout Dates',
 }
 display_cols = [
     'Resort',
@@ -475,6 +595,7 @@ display_cols = [
     'Dog Friendly',
     'Snowshoeing',
     'Allied',
+    'Blackout Dates',
     'Indy Page',
     'Website',
 ]
