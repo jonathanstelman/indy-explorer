@@ -227,6 +227,7 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     """
     Parses the resort page and extracts the following data:
     - name
+    - region
     - description
     - trails
     - acres
@@ -243,6 +244,8 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     resort_data['id'] = resort_id
     resort_data['slug'] = resort_slug
     resort_data['name'] = soup.find('title').text.split('|')[0].strip()
+    region_tag = soup.select_one('div.tag.tag-subtitle')
+    resort_data['region'] = region_tag.get_text(strip=True) if region_tag else None
     description_meta = soup.find('meta', {'name': 'description'})
     resort_data['description'] = description_meta['content'] if description_meta else ''
     button_div = soup.find('div', class_='grid-inner-full d-flex jc-center buttons')

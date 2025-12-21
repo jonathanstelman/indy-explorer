@@ -135,6 +135,7 @@ cols = [
     'name',
     'location_name',
     'description',
+    'region',
     'city',
     'state',
     'country',
