@@ -2,6 +2,7 @@
     "id": "101",
     "slug": "magic-mountain",
     "name": "Magic Mountain",
+    "region": "East",
     "description": "Big mountain terrain meets old school with an intimate ski area vibe. The relaxed, friendly, laid-back ski community mingles with some of the most interesting and challenging trails and glades in nearby southern Vermont. New friends will be made both on and off the slopes.",
     "website": "https://www.magicmtn.com",
     "trails": 50,

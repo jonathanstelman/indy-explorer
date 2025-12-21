@@ -24,6 +24,27 @@ COLORS = {
 }
 MIN_POINT_RADIUS = 5_000
 MAX_POINT_RADIUS = 50_000
+MAP_HEIGHT = 800
+REGION_ORDER = [
+    'Midwest',
+    'East',
+    'Japan',
+    'Mid-Atlantic',
+    'Europe',
+    'Canada',
+    'West',
+    'Rockies',
+]
+REGION_ZOOM = {
+    'Midwest': 4.8,
+    'East': 5.7,
+    'Japan': 4.4,
+    'Mid-Atlantic': 5.2,
+    'Europe': 3.6,
+    'Canada': 3.7,
+    'West': 4.3,
+    'Rockies': 4.4,
+}
 
 
 # Functions for plotting and search
@@ -64,7 +85,13 @@ def get_search_terms(resort):
     """
     Concatenates relevant fields for search
     """
-    search_fields = [resort['name'], resort['city'], resort['state'], resort['country']]
+    search_fields = [
+        resort['name'],
+        resort.get('region'),
+        resort['city'],
+        resort['state'],
+        resort['country'],
+    ]
     search_terms = [f for f in search_fields if isinstance(f, str)]
     return ' '.join(search_terms).lower()
 
@@ -272,6 +299,14 @@ search_query = st.sidebar.text_input(
     label='Search for a resort:',
     help='Enter the name of a resort, city, state/region, or country.',
 )
+if 'region' in resorts.columns:
+    available_regions = sorted({r for r in resorts.region.dropna().unique() if r})
+    ordered_regions = [r for r in REGION_ORDER if r in available_regions]
+    ordered_regions.extend(sorted(set(available_regions) - set(REGION_ORDER)))
+    region = st.sidebar.selectbox('Region', options=['All Resorts'] + ordered_regions)
+    region_filter = True if region == 'All Resorts' else resorts.region == region
+else:
+    region_filter = True
 country = st.sidebar.selectbox(
     'Country', options=['All'] + sorted(resorts.country.dropna().unique())
 )
@@ -404,6 +439,7 @@ else:
 
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower()))
+    & (region_filter)
     & (resorts.country.isin(selected_countries))
     & (resorts.state.isin(selected_states_regions))
     & (resorts.vertical.between(min_vertical, max_vertical) | resorts.vertical.isnull())
@@ -472,7 +508,25 @@ tooltip = {
 }
 
 # Create the Pydeck map view with initial zoom centered on the US
-view_state = pdk.ViewState(latitude=44, longitude=-95, zoom=3, pitch=0)
+if 'map_view_state' not in st.session_state:
+    st.session_state.map_view_state = pdk.ViewState(latitude=44, longitude=-95, zoom=3, pitch=0)
+if 'map_view_region' not in st.session_state:
+    st.session_state.map_view_region = None
+
+region_changed = ('region' in locals()) and (region != st.session_state.map_view_region)
+if region_changed and ('region' in resorts.columns):
+    region_view = resorts if region == 'All Resorts' else resorts[resorts.region == region]
+    if region_view.empty:
+        view_state = pdk.ViewState(latitude=44, longitude=-95, zoom=3, pitch=0)
+    else:
+        view_state = pdk.data_utils.compute_view(region_view[['longitude', 'latitude']])
+        if region != 'All Resorts':
+            view_state.zoom = REGION_ZOOM.get(region, view_state.zoom)
+        view_state.pitch = 0
+    st.session_state.map_view_state = view_state
+    st.session_state.map_view_region = region
+
+view_state = st.session_state.map_view_state
 
 
 # Render the map
@@ -483,39 +537,56 @@ deck = pdk.Deck(
     api_keys={"mapbox": MAPBOX_TOKEN},
     map_style="mapbox://styles/mapbox/light-v11",
 )
-st.pydeck_chart(deck, height=800)
 
-# Add a legend
-# TODO: parameterize the markdown to map colors and other values from constants
+# Map legend overlay
 st.markdown(
-    """
+    f"""
     <style>
-        .legend {
+        .map-legend-wrap {{
             position: relative;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
+            height: 0;
+            --map-height: {MAP_HEIGHT}px;
+        }}
+        .map-legend {{
+            position: absolute;
+            top: calc(-1 * var(--map-height) + 16px);
+            left: 16px;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 10px 12px;
+            border-radius: 8px;
             font-family: Arial, sans-serif;
             font-size: 14px;
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-        }
-        .legend-item {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+        }}
+        .legend-item {{
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
-        }
-        .legend-color {
-            width: 15px;
-            height: 15px;
+            margin-bottom: 6px;
+        }}
+        .legend-item:last-child {{
+            margin-bottom: 0;
+        }}
+        .legend-color {{
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            margin-right: 10px;
-        }
-        .red { background: rgba(197, 42, 28, 200); }
-        .blue { background: rgba(0, 10, 200, 160); }
-        .purple { background: rgba(128, 0, 128, 160); }
-        .grey { background: rgba(30, 30, 30, 160); }
+            margin-right: 8px;
+        }}
+        .red {{ background: rgba(197, 42, 28, 200); }}
+        .blue {{ background: rgba(0, 10, 200, 160); }}
+        .purple {{ background: rgba(128, 0, 128, 160); }}
+        .grey {{ background: rgba(30, 30, 30, 160); }}
     </style>
-    <div class="legend">
+    """,
+    unsafe_allow_html=True,
+)
+st.pydeck_chart(deck, height=MAP_HEIGHT)
+st.markdown(
+    """
+    <div class="map-legend-wrap">
+    <div class="map-legend">
         <div class="legend-item">
             <div class="legend-color red"></div>
             Alpine
@@ -533,6 +604,7 @@ st.markdown(
             Allied Resort
         </div>
     </div>
+    </div>
     """,
     unsafe_allow_html=True,
 )
@@ -542,6 +614,7 @@ col_names_map = {
     'name': 'Resort',
     'location_name': 'Location Name',
     'city': 'City',
+    'region': 'Region',
     'state': 'State / Region',
     'country': 'Country',
     'latitude': 'Latitude',
@@ -569,6 +642,7 @@ col_names_map = {
 display_cols = [
     'Resort',
     'City',
+    'Region',
     'State / Region',
     'Country',
     'Latitude',
@@ -591,6 +665,8 @@ display_cols = [
     'Indy Page',
     'Website',
 ]
+if 'region' not in resorts.columns:
+    display_cols = [col for col in display_cols if col != 'Region']
 display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
 
 
