@@ -8,7 +8,12 @@ import pandas as pd
 import numpy as np
 import os
 
-from location_utils import get_normalized_location, generate_resort_locations_csv
+from blackout import (
+    get_blackout_dates_from_google_sheets,
+    parse_blackout_sheet,
+    merge_blackout_into_resorts,
+)
+from utils import get_normalized_location, generate_resort_locations_csv
 
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
@@ -27,7 +32,7 @@ with open('data/resorts_raw.json', 'r', encoding='utf-8') as json_file:
 # Add data from resort-specific pages
 for _id, resort_data in resorts_dict.items():
     resort_slug = resort_data['href'].split('/')[-1]
-    with open(f'data/{resort_slug}.json', 'r', encoding='utf-8') as json_file:
+    with open(f'data/resort_page_extracts/{resort_slug}.json', 'r', encoding='utf-8') as json_file:
         resort_page = json.load(json_file)
         resorts_dict[_id].update(resort_page)
 
@@ -170,7 +175,15 @@ cols = [
     'vertical_tt',
     'num_trails_tt',
     'num_lifts_tt',
+    'blackout_named_ranges',
+    'blackout_additional_dates',
+    'blackout_all_dates',
+    'blackout_count',
 ]
 
+# Merge blackout data (fail fast if anything goes wrong)
+blackout_df = pd.read_csv('data/blackout_dates_raw.csv')
+blackout_map = parse_blackout_sheet(blackout_df)
+resorts = merge_blackout_into_resorts(resorts, blackout_map)
 resorts = resorts[cols]
 resorts.to_csv('data/resorts.csv', index_label='index')

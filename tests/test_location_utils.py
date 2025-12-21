@@ -1,5 +1,5 @@
 import types
-from src import location_utils
+from src import utils as location_utils
 
 
 class _MockGMClient:

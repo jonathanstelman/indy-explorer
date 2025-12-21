@@ -5,10 +5,11 @@ Scrapes data from resorts from general resorts page and resort-specific pages
 import json
 import re
 import requests
+
 from bs4 import BeautifulSoup
 
-
 CACHE_DIRECTORY = 'cache/'
+OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
 
 
 def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
@@ -337,9 +338,6 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     return resort_data
 
 
-OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
-
-
 def cache_our_resorts_page(read_mode='live') -> str:
     """
     Fetches and caches the 'our resorts' page HTML.
@@ -348,7 +346,7 @@ def cache_our_resorts_page(read_mode='live') -> str:
     return get_page_html(OUR_RESORTS_URL, read_mode=read_mode)
 
 
-def parse_and_save_our_resorts(page_html: str, output_path='data/resorts_raw.json') -> dict:
+def parse_and_save_our_resorts(page_html: str, output_path='data/our_resorts_raw.json') -> dict:
     """
     Parses the 'our resorts' HTML and saves the parsed data to JSON.
     Returns the parsed resorts dict.
@@ -359,7 +357,9 @@ def parse_and_save_our_resorts(page_html: str, output_path='data/resorts_raw.jso
     return resorts
 
 
-def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir='data'):
+def cache_and_parse_resort(
+    resort_id, resort_href, read_mode='live', output_dir='data/resort_page_extracts'
+) -> dict:
     """
     Fetches, caches, parses, and saves a single resort's page.
     """
@@ -375,12 +375,12 @@ def cache_and_parse_resort(resort_id, resort_href, read_mode='live', output_dir=
 
 def main():
     # 1. Cache and parse the "our resorts" page
-    our_resorts_html = cache_our_resorts_page(read_mode='live')
+    our_resorts_html = cache_our_resorts_page(read_mode='cache')
     resorts = parse_and_save_our_resorts(our_resorts_html)
 
     # 2. Iterate over all resorts and retrieve resort details
     for _id, resort in resorts.items():
-        cache_and_parse_resort(_id, resort["href"], read_mode='live')
+        cache_and_parse_resort(_id, resort["href"], read_mode='cache')
 
 
 if __name__ == '__main__':

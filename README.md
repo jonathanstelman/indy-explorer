@@ -59,8 +59,8 @@ To update all resort data (recommended about once per year), follow these steps:
 
 1. **Backup your web cache and resort data (optional but recommended):**
     ```sh
-    cp -r cache cache_backup_$(date +%Y%m%d_%H%M%S)
-    cp -r data data_backup_$(date +%Y%m%d_%H%M%S)
+    cp -r cache backups/cache_backup_$(date +%Y%m%d_%H%M%S)
+    cp -r data backups/data_backup_$(date +%Y%m%d_%H%M%S)
     ```
 
 2. **Remove the old cache and data folders:**
@@ -104,6 +104,31 @@ To update all resort data (recommended about once per year), follow these steps:
     cp data/resort_locations.csv data_backup_$(date +%Y%m%d_%H%M%S)_resort_locations.csv
     ```
 - If you add new resorts or change location names, you may need to manually review or update `data/resort_locations.csv`.
+
+## Blackout Dates
+
+Blackout dates are sourced from a published Google Sheet and merged into the resort data.
+
+### Refreshing blackout data
+
+1. Fetch the latest sheet data and print QA output:
+    ```sh
+    poetry run python src/blackout.py
+    ```
+    This writes `data/blackout_dates_raw.csv`.
+
+2. Run the prep script to merge blackout dates into `data/resorts.csv`:
+    ```sh
+    poetry run python src/prep_resort_data.py
+    ```
+
+### QA / troubleshooting
+
+- Print the raw sheet and name-mismatch diagnostics:
+  ```sh
+  poetry run python src/blackout.py
+  ```
+- If blackout resort names don’t match `data/resorts.csv`, update `BLACKOUT_RESORT_NAME_MAP` in `src/blackout.py`.
 
 ## Contributing
 
@@ -172,7 +197,7 @@ Black configuration lives in `pyproject.toml` (we set `skip-string-normalization
 
 ### Notes for maintainers
 
-- `src/location_utils.py` now avoids creating the `googlemaps.Client` at import time when `GOOGLE_MAPS_API_KEY` is missing, which prevents import failures in CI and local environments without the key. Tests monkeypatch `location_utils.gmaps` when needed.
+- `src/utils.py` now avoids creating the `googlemaps.Client` at import time when `GOOGLE_MAPS_API_KEY` is missing, which prevents import failures in CI and local environments without the key. Tests monkeypatch `utils.gmaps` when needed.
 - `beautifulsoup4` is declared in `pyproject.toml` so `bs4` is available in CI.
 
 ---

@@ -170,9 +170,6 @@ poetry.lock
 # Streamlit
 .streamlit/secrets.toml
 
-# Page Cache Data
+# Page Cache and Data Backups
 cache/
-cache_backup_*/
-
-# Data backups
-data_backup_*/
+backups/
