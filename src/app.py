@@ -24,6 +24,7 @@ COLORS = {
 }
 MIN_POINT_RADIUS = 5_000
 MAX_POINT_RADIUS = 50_000
+MAP_HEIGHT = 800
 REGION_ORDER = [
     'Midwest',
     'East',
@@ -536,39 +537,56 @@ deck = pdk.Deck(
     api_keys={"mapbox": MAPBOX_TOKEN},
     map_style="mapbox://styles/mapbox/light-v11",
 )
-st.pydeck_chart(deck, height=800)
 
-# Add a legend
-# TODO: parameterize the markdown to map colors and other values from constants
+# Map legend overlay
 st.markdown(
-    """
+    f"""
     <style>
-        .legend {
+        .map-legend-wrap {{
             position: relative;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
+            height: 0;
+            --map-height: {MAP_HEIGHT}px;
+        }}
+        .map-legend {{
+            position: absolute;
+            top: calc(-1 * var(--map-height) + 16px);
+            left: 16px;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 10px 12px;
+            border-radius: 8px;
             font-family: Arial, sans-serif;
             font-size: 14px;
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-        }
-        .legend-item {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+        }}
+        .legend-item {{
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
-        }
-        .legend-color {
-            width: 15px;
-            height: 15px;
+            margin-bottom: 6px;
+        }}
+        .legend-item:last-child {{
+            margin-bottom: 0;
+        }}
+        .legend-color {{
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            margin-right: 10px;
-        }
-        .red { background: rgba(197, 42, 28, 200); }
-        .blue { background: rgba(0, 10, 200, 160); }
-        .purple { background: rgba(128, 0, 128, 160); }
-        .grey { background: rgba(30, 30, 30, 160); }
+            margin-right: 8px;
+        }}
+        .red {{ background: rgba(197, 42, 28, 200); }}
+        .blue {{ background: rgba(0, 10, 200, 160); }}
+        .purple {{ background: rgba(128, 0, 128, 160); }}
+        .grey {{ background: rgba(30, 30, 30, 160); }}
     </style>
-    <div class="legend">
+    """,
+    unsafe_allow_html=True,
+)
+st.pydeck_chart(deck, height=MAP_HEIGHT)
+st.markdown(
+    """
+    <div class="map-legend-wrap">
+    <div class="map-legend">
         <div class="legend-item">
             <div class="legend-color red"></div>
             Alpine
@@ -585,6 +603,7 @@ st.markdown(
             <div class="legend-color grey"></div>
             Allied Resort
         </div>
+    </div>
     </div>
     """,
     unsafe_allow_html=True,
