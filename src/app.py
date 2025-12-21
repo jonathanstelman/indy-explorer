@@ -97,10 +97,7 @@ def parse_blackout_dates(value: str) -> List[str]:
 
 def date_range_strings(start: date, end: date) -> List[str]:
     days = (end - start).days
-    return [
-        (start + timedelta(days=offset)).strftime('%Y-%m-%d')
-        for offset in range(days + 1)
-    ]
+    return [(start + timedelta(days=offset)).strftime('%Y-%m-%d') for offset in range(days + 1)]
 
 
 def parse_iso_date(value: str) -> Optional[date]:
@@ -108,6 +105,7 @@ def parse_iso_date(value: str) -> Optional[date]:
         return datetime.strptime(value, '%Y-%m-%d').date()
     except (TypeError, ValueError):
         return None
+
 
 def create_elevation_plot(base, summit, vertical):
     """Make a plot to display the resort elevation"""
@@ -235,9 +233,7 @@ resorts = resorts[resorts.latitude.notnull()]
 
 # Blackout display helpers
 if 'blackout_all_dates' in resorts.columns:
-    resorts['blackout_dates_display'] = resorts['blackout_all_dates'].apply(
-        format_blackout_dates
-    )
+    resorts['blackout_dates_display'] = resorts['blackout_all_dates'].apply(format_blackout_dates)
     resorts['blackout_dates_list'] = resorts['blackout_all_dates'].apply(parse_blackout_dates)
 else:
     resorts['blackout_dates_display'] = ''
@@ -431,11 +427,7 @@ filtered_data = resorts[
     )
     & (
         (not filter_blackout_date_active)
-        | (
-            resorts.blackout_dates_list.apply(
-                lambda dates: range_dates.isdisjoint(dates)
-            )
-        )
+        | (resorts.blackout_dates_list.apply(lambda dates: range_dates.isdisjoint(dates)))
     )
 ].sort_values('radius', ascending=False)
 
