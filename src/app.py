@@ -5,11 +5,18 @@ Streamlit app to display Indy Pass resorts in an interactive map and table
 from datetime import date, datetime, timedelta
 import json
 from typing import List, Optional
+import importlib
+import os
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
+import streamlit_antd_components as sac
+
+import map_config
+if os.getenv("MAP_CONFIG_RELOAD", "").lower() in ("1", "true", "yes"):
+    importlib.reload(map_config)
 
 MAPBOX_TOKEN = st.secrets["MAPBOX_TOKEN"]
 
@@ -45,6 +52,7 @@ REGION_ZOOM = {
     'West': 4.3,
     'Rockies': 4.4,
 }
+MAX_AUTO_ZOOM = 8.0
 
 
 # Functions for plotting and search
@@ -299,25 +307,81 @@ search_query = st.sidebar.text_input(
     label='Search for a resort:',
     help='Enter the name of a resort, city, state/region, or country.',
 )
+
 if 'region' in resorts.columns:
     available_regions = sorted({r for r in resorts.region.dropna().unique() if r})
     ordered_regions = [r for r in REGION_ORDER if r in available_regions]
     ordered_regions.extend(sorted(set(available_regions) - set(REGION_ORDER)))
-    region = st.sidebar.selectbox('Region', options=['All Resorts'] + ordered_regions)
-    region_filter = True if region == 'All Resorts' else resorts.region == region
+    region_items = [{'label': r, 'value': r} for r in ordered_regions]
+    with st.sidebar:
+        region_selection = sac.cascader(
+            items=region_items,
+            label="Region",
+            multiple=True,
+            search=True,
+            clear=True,
+        )
+    if region_selection:
+        if isinstance(region_selection[0], list):
+            selected_regions = [path[-1] for path in region_selection]
+        else:
+            selected_regions = region_selection
+    else:
+        selected_regions = []
+    region_filter = True if not selected_regions else resorts.region.isin(selected_regions)
+    region_subset = resorts if not selected_regions else resorts[resorts.region.isin(selected_regions)]
 else:
+    selected_regions = []
     region_filter = True
-country = st.sidebar.selectbox(
-    'Country', options=['All'] + sorted(resorts.country.dropna().unique())
-)
-selected_countries = resorts.country.unique() if country == 'All' else [country]
-states_regions = (
-    resorts['state'].dropna().unique()
-    if country == 'All'
-    else resorts[resorts.country == country]['state'].dropna().unique()
-)
-state_region = st.sidebar.selectbox('State / Region', options=['All'] + sorted(states_regions))
-selected_states_regions = resorts.state.unique() if state_region == 'All' else [state_region]
+    region_subset = resorts
+country_options = sorted(region_subset.country.dropna().unique())
+country_items = [{'label': c, 'value': c} for c in country_options]
+with st.sidebar:
+    country_selection = sac.cascader(
+        items=country_items,
+        label="Country",
+        multiple=True,
+        search=True,
+        clear=True,
+    )
+if country_selection:
+    if isinstance(country_selection[0], list):
+        selected_countries = [path[-1] for path in country_selection]
+    else:
+        selected_countries = country_selection
+else:
+    selected_countries = country_options
+if selected_countries:
+    selected_countries = [c for c in selected_countries if c in country_options]
+    country_subset = region_subset[region_subset.country.isin(selected_countries)]
+else:
+    country_subset = region_subset
+states_regions = country_subset['state'].dropna().unique()
+state_region_options = sorted(states_regions)
+state_items = [{'label': s, 'value': s} for s in state_region_options]
+with st.sidebar:
+    state_selection = sac.cascader(
+        items=state_items,
+        label="State / Region",
+        multiple=True,
+        search=True,
+        clear=True,
+    )
+if state_selection:
+    if isinstance(state_selection[0], list):
+        selected_states_regions = [path[-1] for path in state_selection]
+    else:
+        selected_states_regions = state_selection
+    state_selection_active = True
+else:
+    selected_states_regions = []
+    state_selection_active = False
+if selected_states_regions:
+    selected_states_regions = [s for s in selected_states_regions if s in state_region_options]
+if not selected_countries:
+    selected_countries = country_options
+if not selected_states_regions:
+    selected_states_regions = state_region_options
 
 min_vertical, max_vertical = st.sidebar.slider(
     ":mountain: Vertical (ft)",
@@ -437,6 +501,7 @@ else:
     range_dates = set()
 
 
+# Apply filters
 filtered_data = resorts[
     (resorts.search_terms.str.contains(search_query.lower()))
     & (region_filter)
@@ -466,6 +531,70 @@ filtered_data = resorts[
         | (resorts.blackout_dates_list.apply(lambda dates: range_dates.isdisjoint(dates)))
     )
 ].sort_values('radius', ascending=False)
+
+##### Main Page Content #####
+# Prep resorts table
+col_names_map = {
+    'name': 'Resort',
+    'location_name': 'Location Name',
+    'city': 'City',
+    'region': 'Region',
+    'state': 'State / Region',
+    'country': 'Country',
+    'latitude': 'Latitude',
+    'longitude': 'Longitude',
+    'acres': 'Area (acres)',
+    'vertical': 'Vertical (ft)',
+    'vertical_meters': 'Vertical (m)',
+    'has_alpine': 'Alpine',
+    'has_cross_country': 'Cross-Country',
+    'is_allied': 'Allied',
+    'num_trails': 'Trails',
+    'trail_length_mi': 'Trail Length (mi)',
+    'trail_length_km': 'Trail Length (km)',
+    'num_lifts': 'Lifts',
+    'has_night_skiing': 'Nights',
+    'has_terrain_parks': 'Terrain Parks',
+    'is_dog_friendly': 'Dog Friendly',
+    'has_snowshoeing': 'Snowshoeing',
+    'radius': 'Radius',
+    'color': 'Color',
+    'indy_page': 'Indy Page',
+    'website': 'Website',
+    'blackout_dates_display': 'Blackout Dates',
+}
+display_cols = [
+    'Resort',
+    'City',
+    'Region',
+    'State / Region',
+    'Country',
+    'Latitude',
+    'Longitude',
+    'Area (acres)',
+    'Vertical (ft)',
+    'Vertical (m)',
+    'Alpine',
+    'Cross-Country',
+    'Trails',
+    'Trail Length (mi)',
+    'Trail Length (km)',
+    'Lifts',
+    'Nights',
+    'Terrain Parks',
+    'Dog Friendly',
+    'Snowshoeing',
+    'Allied',
+    'Blackout Dates',
+    'Indy Page',
+    'Website',
+]
+if 'region' not in resorts.columns:
+    display_cols = [col for col in display_cols if col != 'Region']
+display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
+
+st.markdown('## Resorts')
+st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
 
 
 # PyDeck Map
@@ -512,19 +641,55 @@ if 'map_view_state' not in st.session_state:
     st.session_state.map_view_state = pdk.ViewState(latitude=44, longitude=-95, zoom=3, pitch=0)
 if 'map_view_region' not in st.session_state:
     st.session_state.map_view_region = None
+if 'map_view_country' not in st.session_state:
+    st.session_state.map_view_country = None
+if 'map_view_state_region' not in st.session_state:
+    st.session_state.map_view_state_region = None
 
-region_changed = ('region' in locals()) and (region != st.session_state.map_view_region)
-if region_changed and ('region' in resorts.columns):
-    region_view = resorts if region == 'All Resorts' else resorts[resorts.region == region]
-    if region_view.empty:
+region_selection = tuple(sorted(selected_regions))
+country_selection = tuple(sorted(selected_countries))
+state_selection = tuple(sorted(selected_states_regions))
+region_changed = region_selection != st.session_state.map_view_region
+country_changed = country_selection != st.session_state.map_view_country
+state_changed = state_selection != st.session_state.map_view_state_region
+view_changed = region_changed or country_changed or state_changed
+if view_changed:
+    view_subset = resorts
+    if ('region' in resorts.columns) and selected_regions:
+        view_subset = view_subset[view_subset.region.isin(selected_regions)]
+    if selected_countries:
+        view_subset = view_subset[view_subset.country.isin(selected_countries)]
+    if selected_states_regions:
+        view_subset = view_subset[view_subset.state.isin(selected_states_regions)]
+    if view_subset.empty:
         view_state = pdk.ViewState(latitude=44, longitude=-95, zoom=3, pitch=0)
     else:
-        view_state = pdk.data_utils.compute_view(region_view[['longitude', 'latitude']])
-        if region != 'All Resorts':
-            view_state.zoom = REGION_ZOOM.get(region, view_state.zoom)
+        view_state = pdk.data_utils.compute_view(view_subset[['longitude', 'latitude']])
+        if view_state.zoom > MAX_AUTO_ZOOM:
+            view_state.zoom = MAX_AUTO_ZOOM
+        if len(view_subset) == 1:
+            state_zoom = (
+                map_config.STATE_ZOOM.get(selected_states_regions[0])
+                if state_selection_active and len(selected_states_regions) == 1
+                else None
+            )
+            if state_zoom is not None:
+                view_state.zoom = state_zoom
+            elif len(selected_countries) == 1:
+                view_state.zoom = map_config.COUNTRY_ZOOM.get(
+                    selected_countries[0], view_state.zoom
+                )
+        if (
+            len(selected_regions) == 1
+            and len(selected_countries) == len(country_options)
+            and len(selected_states_regions) == len(state_region_options)
+        ):
+            view_state.zoom = REGION_ZOOM.get(selected_regions[0], view_state.zoom)
         view_state.pitch = 0
     st.session_state.map_view_state = view_state
-    st.session_state.map_view_region = region
+    st.session_state.map_view_region = region_selection
+    st.session_state.map_view_country = country_selection
+    st.session_state.map_view_state_region = state_selection
 
 view_state = st.session_state.map_view_state
 
@@ -609,69 +774,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Display resorts table
-col_names_map = {
-    'name': 'Resort',
-    'location_name': 'Location Name',
-    'city': 'City',
-    'region': 'Region',
-    'state': 'State / Region',
-    'country': 'Country',
-    'latitude': 'Latitude',
-    'longitude': 'Longitude',
-    'acres': 'Area (acres)',
-    'vertical': 'Vertical (ft)',
-    'vertical_meters': 'Vertical (m)',
-    'has_alpine': 'Alpine',
-    'has_cross_country': 'Cross-Country',
-    'is_allied': 'Allied',
-    'num_trails': 'Trails',
-    'trail_length_mi': 'Trail Length (mi)',
-    'trail_length_km': 'Trail Length (km)',
-    'num_lifts': 'Lifts',
-    'has_night_skiing': 'Nights',
-    'has_terrain_parks': 'Terrain Parks',
-    'is_dog_friendly': 'Dog Friendly',
-    'has_snowshoeing': 'Snowshoeing',
-    'radius': 'Radius',
-    'color': 'Color',
-    'indy_page': 'Indy Page',
-    'website': 'Website',
-    'blackout_dates_display': 'Blackout Dates',
-}
-display_cols = [
-    'Resort',
-    'City',
-    'Region',
-    'State / Region',
-    'Country',
-    'Latitude',
-    'Longitude',
-    'Area (acres)',
-    'Vertical (ft)',
-    'Vertical (m)',
-    'Alpine',
-    'Cross-Country',
-    'Trails',
-    'Trail Length (mi)',
-    'Trail Length (km)',
-    'Lifts',
-    'Nights',
-    'Terrain Parks',
-    'Dog Friendly',
-    'Snowshoeing',
-    'Allied',
-    'Blackout Dates',
-    'Indy Page',
-    'Website',
-]
-if 'region' not in resorts.columns:
-    display_cols = [col for col in display_cols if col != 'Region']
-display_df = filtered_data.rename(columns=col_names_map)[display_cols].sort_values('Resort')
-
-
-st.markdown('## Resorts')
-st.markdown(f'Found {len(display_df)} {'resort' if len(display_df) == 1 else 'resorts'}...')
 st.markdown('Click the checkbox next to a resort to see more details.')
 resorts_table = st.dataframe(
     display_df,
@@ -773,6 +875,7 @@ def get_resort_snowfall_markdown(resort: dict) -> str:
         return ''
     snowfall_barplot = create_snowfall_barplot(snow_avg, snow_max)
     st.pyplot(snowfall_barplot)
+    return ''
 
 
 def get_resort_difficulty_markdown(resort: dict) -> str:
