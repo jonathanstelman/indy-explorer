@@ -185,7 +185,9 @@ def print_blackout_name_mismatches(blackouts_df_raw: pd.DataFrame) -> None:
 
     resorts_set = {str(name).strip() for name in resorts_df['name'].tolist() if name}
     blackout_raw_list = [
-        str(name).strip() for name in blackouts_df_raw['Resort'].tolist() if name and str(name).strip()
+        str(name).strip()
+        for name in blackouts_df_raw['Resort'].tolist()
+        if name and str(name).strip()
     ]
     blackout_raw_set = set(blackout_raw_list)
 
