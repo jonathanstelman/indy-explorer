@@ -119,7 +119,9 @@ def build_reservation_records(
     return records
 
 
-def build_reservation_map(parsed_data: Dict[str, List[Dict[str, Optional[str]]]]) -> Dict[str, Dict[str, str]]:
+def build_reservation_map(
+    parsed_data: Dict[str, List[Dict[str, Optional[str]]]]
+) -> Dict[str, Dict[str, str]]:
     """Build a resort-name keyed map for merging into the resorts dataset."""
     reservation_map: Dict[str, Dict[str, Optional[str]]] = {}
 
