@@ -373,7 +373,7 @@
         "is_allied": false,
         "num_trails": null,
         "num_lifts": 5,
-        "is_open_nights": false,
+        "is_open_nights": true,
         "has_terrain_parks": false,
         "href": "/our-resorts/bjorkliden"
     },
@@ -906,7 +906,7 @@
             "longitude": -90.3963733
         },
         "location_name": "Galena, IL, USA",
-        "vertical": 600,
+        "vertical": 475,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
@@ -1103,7 +1103,7 @@
             "latitude": 45.0742088,
             "longitude": -72.2962595
         },
-        "location_name": "Masonville, QC",
+        "location_name": "Mansonville, QC",
         "vertical": 1770,
         "is_nordic": false,
         "is_alpine_xc": false,
@@ -1529,24 +1529,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/hatley-pointe"
     },
-    "319": {
-        "name": "Hickory Ski Center",
-        "coordinates": {
-            "latitude": 43.476208724561,
-            "longitude": -73.816881816156
-        },
-        "location_name": "Warrensburg, NY",
-        "vertical": 1200,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 18,
-        "num_lifts": 4,
-        "is_open_nights": true,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/hickory-ski-center"
-    },
     "283": {
         "name": "High Point XC Ski Center",
         "coordinates": {
@@ -1636,6 +1618,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/hockley-valley-resort"
+    },
+    "471": {
+        "name": "Hodaigi Mountain Resort",
+        "coordinates": {
+            "latitude": 36.8372869,
+            "longitude": 139.0782966
+        },
+        "location_name": "Tone-gun, Gunma",
+        "vertical": 1869,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 16,
+        "num_lifts": 7,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/hodaigi-mountain-resort"
     },
     "368": {
         "name": "Hoedown Hill",
@@ -1890,7 +1890,7 @@
         "href": "/our-resorts/kaunertaler-gletscher"
     },
     "464": {
-        "name": "Kaya Palazzo Kartalkaya Ski & Mountain Resort.",
+        "name": "Kaya Palazzo Kartalkaya Ski & Mountain Resort",
         "coordinates": {
             "latitude": 40.5919522,
             "longitude": 31.8039221
@@ -2033,6 +2033,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/leukerbad-torrent-ski-resort-gemmi-resort"
     },
+    "466": {
+        "name": "Levi, Finland",
+        "coordinates": {
+            "latitude": 67.8040628,
+            "longitude": 24.8082752
+        },
+        "location_name": "Kittil\u00e4, Finland",
+        "vertical": 1066,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 44,
+        "num_lifts": 26,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/levi-finland"
+    },
     "426": {
         "name": "Little Ski Hill",
         "coordinates": {
@@ -2041,8 +2059,8 @@
         },
         "location_name": "McCall, ID",
         "vertical": 374,
-        "is_nordic": true,
-        "is_alpine_xc": true,
+        "is_nordic": false,
+        "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
         "num_trails": 14,
@@ -2101,7 +2119,7 @@
         "is_allied": false,
         "num_trails": 20,
         "num_lifts": null,
-        "is_open_nights": false,
+        "is_open_nights": true,
         "has_terrain_parks": false,
         "href": "/our-resorts/loge-glacier"
     },
@@ -2195,24 +2213,6 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/lutsen-mountains"
     },
-    "100": {
-        "name": "Madarao Ski Resort",
-        "coordinates": {
-            "latitude": 36.8524572,
-            "longitude": 138.2880255
-        },
-        "location_name": "Myoko Kogen, Nagano",
-        "vertical": 1443,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 32,
-        "num_lifts": 10,
-        "is_open_nights": false,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/madarao-ski-resort"
-    },
     "101": {
         "name": "Magic Mountain",
         "coordinates": {
@@ -2232,7 +2232,7 @@
         "href": "/our-resorts/magic-mountain"
     },
     "463": {
-        "name": "Magic Mountain",
+        "name": "Magic Mountain Idaho",
         "coordinates": {
             "latitude": 42.1894229,
             "longitude": -114.2853163
@@ -2247,7 +2247,7 @@
         "num_lifts": 4,
         "is_open_nights": false,
         "has_terrain_parks": false,
-        "href": "/our-resorts/magic-mountain-0"
+        "href": "/our-resorts/magic-mountain-idaho"
     },
     "353": {
         "name": "Maiko Resort",
@@ -2735,6 +2735,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/mount-kato"
     },
+    "169": {
+        "name": "Mount Racey Ski Resort",
+        "coordinates": {
+            "latitude": 43.0503785,
+            "longitude": 141.9688449
+        },
+        "location_name": "Yubari, Hokkaido",
+        "vertical": 1326,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 18,
+        "num_lifts": 4,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mount-racey-ski-resort"
+    },
     "399": {
         "name": "Mount Washington Alpine Resort Nordic Centre at Raven Lodge",
         "coordinates": {
@@ -2860,24 +2878,6 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/mt-hood-meadows"
-    },
-    "169": {
-        "name": "Mt. Racey Ski Resort",
-        "coordinates": {
-            "latitude": 43.0503785,
-            "longitude": 141.9688449
-        },
-        "location_name": "Yubari, Hokkaido",
-        "vertical": 1326,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 18,
-        "num_lifts": 4,
-        "is_open_nights": false,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/mt-racey-ski-resort"
     },
     "116": {
         "name": "Mt. Shasta",
@@ -3300,7 +3300,7 @@
             "longitude": 10.8688513
         },
         "location_name": "Mittelberg, Austria",
-        "vertical": 5774,
+        "vertical": 8498,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
@@ -3767,7 +3767,7 @@
             "latitude": 47.4787937,
             "longitude": 12.2008647
         },
-        "location_name": "Kufstein, Austria",
+        "location_name": "S\u00f6ll, Austria",
         "vertical": 4098,
         "is_nordic": false,
         "is_alpine_xc": false,
@@ -4117,7 +4117,7 @@
         "is_allied": false,
         "num_trails": 53,
         "num_lifts": 4,
-        "is_open_nights": true,
+        "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/tenney-mountain"
     },
@@ -4427,6 +4427,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/white-pass"
     },
+    "167": {
+        "name": "White Pine Resort",
+        "coordinates": {
+            "latitude": 42.9736669,
+            "longitude": -109.7824737
+        },
+        "location_name": "Pinedale, WY, USA",
+        "vertical": 1100,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 29,
+        "num_lifts": 2,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/white-pine-resort"
+    },
     "308": {
         "name": "White Pine Touring Nordic Center",
         "coordinates": {
@@ -4481,24 +4499,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/whitepia-takasu"
     },
-    "167": {
-        "name": "Whitepine Mountain Resort",
-        "coordinates": {
-            "latitude": 42.9736669,
-            "longitude": -109.7824737
-        },
-        "location_name": "Pinedale, WY, USA",
-        "vertical": 1100,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 29,
-        "num_lifts": 2,
-        "is_open_nights": false,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/whitepine-mountain-resort"
-    },
     "309": {
         "name": "Williams Lake Cross Country Ski Club",
         "coordinates": {
@@ -4523,8 +4523,8 @@
             "latitude": 37.93049274977,
             "longitude": -78.939293866598
         },
-        "location_name": "",
-        "vertical": null,
+        "location_name": "Nellysford, VA",
+        "vertical": 1003,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,

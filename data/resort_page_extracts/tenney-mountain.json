@@ -14,7 +14,7 @@
     "is_dog_friendly": false,
     "has_snowshoeing": false,
     "terrain_parks": true,
-    "night_skiing": true,
+    "night_skiing": false,
     "vertical_base_ft": 649,
     "vertical_summit_ft": 2149,
     "vertical_elevation_ft": 1500,
