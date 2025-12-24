@@ -154,7 +154,7 @@ def convert_date_string_format(date_string: str):
     day_str = month_day[1]
     month = datetime.strptime(month_str, '%b').month
     day = int(day_str)
-    year = 2026 if month in [1, 2, 3, 4, 5] else 2025
+    year = 2025 if month in [7, 8, 9, 10, 11, 12] else 2026
     return f'{year}-{month:02d}-{day:02d}'
 
 

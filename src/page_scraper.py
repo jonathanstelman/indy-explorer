@@ -2,6 +2,7 @@
 Scrapes data from resorts from general resorts page and resort-specific pages
 """
 
+import argparse
 import json
 import re
 import requests
@@ -376,14 +377,23 @@ def cache_and_parse_resort(
     return resort_dict
 
 
-def main():
+def main() -> None:
+    parser = argparse.ArgumentParser(description='Scrape Indy Pass resort data.')
+    parser.add_argument(
+        '--read-mode',
+        choices=['cache', 'live'],
+        default='cache',
+        help='Use cached HTML or fetch live pages (default: cache).',
+    )
+    args = parser.parse_args()
+
     # 1. Cache and parse the "our resorts" page
-    our_resorts_html = cache_our_resorts_page(read_mode='cache')
+    our_resorts_html = cache_our_resorts_page(read_mode=args.read_mode)
     resorts = parse_and_save_our_resorts(our_resorts_html)
 
     # 2. Iterate over all resorts and retrieve resort details
     for _id, resort in resorts.items():
-        cache_and_parse_resort(_id, resort["href"], read_mode='cache')
+        cache_and_parse_resort(_id, resort["href"], read_mode=args.read_mode)
 
 
 if __name__ == '__main__':

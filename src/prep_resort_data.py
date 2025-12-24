@@ -2,7 +2,9 @@
 Prepare raw resorts data to produce a prepared file for use with Streamlit
 """
 
+import argparse
 import json
+import logging
 from typing import Tuple
 import pandas as pd
 import numpy as np
@@ -16,6 +18,26 @@ from blackout import (
 from utils import get_normalized_location, generate_resort_locations_csv
 
 
+parser = argparse.ArgumentParser(description='Prepare resort data for the app.')
+parser.add_argument(
+    '--refresh-blackout',
+    action='store_true',
+    help='Force re-download of blackout dates even if the CSV exists.',
+)
+parser.add_argument(
+    '--log-level',
+    default='INFO',
+    help='Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).',
+)
+args = parser.parse_args()
+
+log_level = getattr(logging, args.log_level.upper(), None)
+if not isinstance(log_level, int):
+    raise ValueError(f'Invalid log level: {args.log_level}')
+logging.basicConfig(level=log_level, format='%(levelname)s: %(message)s')
+logger = logging.getLogger(__name__)
+
+
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
     """
     Gets the city, state, and country from Indy's "city" field using Google Map's Geocoding API
@@ -24,28 +46,36 @@ def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
     return location_json['city'], location_json['state'], location_json['country']
 
 
+logger.info('Loading raw resort data...')
 # Get resort data from main page
 with open('data/resorts_raw.json', 'r', encoding='utf-8') as json_file:
     resorts_dict = json.load(json_file)
+logger.debug('Loaded %d resorts from data/resorts_raw.json.', len(resorts_dict))
 
 
+logger.info('Merging resort page extracts...')
 # Add data from resort-specific pages
 for _id, resort_data in resorts_dict.items():
     resort_slug = resort_data['href'].split('/')[-1]
     with open(f'data/resort_page_extracts/{resort_slug}.json', 'r', encoding='utf-8') as json_file:
         resort_page = json.load(json_file)
         resorts_dict[_id].update(resort_page)
+logger.debug('Merged %d resort page extracts.', len(resorts_dict))
 
 # Get location data, generating if needed
 if not os.path.exists('data/resort_locations.csv'):
-    print("data/resort_locations.csv not found. Generating...")
+    logger.info('data/resort_locations.csv not found. Generating...')
     generate_resort_locations_csv()
 
 # Add cached location data
+logger.info('Loading cached location data...')
 locations = pd.read_csv('data/resort_locations.csv')
+logger.debug('Loaded %d location rows.', len(locations))
 
 # Create DataFrame
+logger.info('Building resorts DataFrame...')
 resorts = pd.DataFrame(resorts_dict).transpose()
+logger.debug('Resorts DataFrame rows: %d.', len(resorts))
 
 # Webpage URL
 resorts['indy_page'] = resorts['href'].apply(
@@ -79,6 +109,9 @@ resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude')
 resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
 # resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
 resorts = pd.merge(resorts, locations, left_on='name', right_on='name', how='left')
+missing_locations = resorts['city'].isna().sum()
+if missing_locations:
+    logger.warning('Missing location data for %d resorts after merge.', missing_locations)
 
 
 # Formatting and units
@@ -183,8 +216,25 @@ cols = [
 ]
 
 # Merge blackout data (fail fast if anything goes wrong)
-blackout_df = pd.read_csv('data/blackout_dates_raw.csv')
+logger.info('Processing blackout dates...')
+blackout_path = 'data/blackout_dates_raw.csv'
+if args.refresh_blackout or not os.path.exists(blackout_path):
+    if args.refresh_blackout:
+        logger.info('Refreshing blackout dates from Google Sheets...')
+    else:
+        logger.info('%s not found. Fetching latest blackout dates...', blackout_path)
+    blackout_df = get_blackout_dates_from_google_sheets(read_mode='live', cache_path=blackout_path)
+    blackout_df.to_csv(blackout_path, index=False)
+else:
+    logger.info('Loading blackout dates from %s...', blackout_path)
+    blackout_df = pd.read_csv(blackout_path)
+logger.debug('Loaded %d blackout rows.', len(blackout_df))
 blackout_map = parse_blackout_sheet(blackout_df)
+if not blackout_map:
+    logger.warning('Blackout map is empty. Check blackout sheet parsing.')
+else:
+    logger.debug('Parsed blackout data for %d resorts.', len(blackout_map))
 resorts = merge_blackout_into_resorts(resorts, blackout_map)
 resorts = resorts[cols]
 resorts.to_csv('data/resorts.csv', index_label='index')
+logger.info('Prepared resort data written to data/resorts.csv')
