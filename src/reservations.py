@@ -84,7 +84,7 @@ def normalize_reservation_name(name: str) -> str:
 
 
 def build_reservation_records(
-    parsed_data: Dict[str, List[Dict[str, Optional[str]]]]
+    parsed_data: Dict[str, List[Dict[str, Optional[str]]]],
 ) -> List[Dict[str, Optional[str]]]:
     """Build reservation records with normalized resort names."""
     records: List[Dict[str, Optional[str]]] = []
@@ -120,7 +120,7 @@ def build_reservation_records(
 
 
 def build_reservation_map(
-    parsed_data: Dict[str, List[Dict[str, Optional[str]]]]
+    parsed_data: Dict[str, List[Dict[str, Optional[str]]]],
 ) -> Dict[str, Dict[str, str]]:
     """Build a resort-name keyed map for merging into the resorts dataset."""
     reservation_map: Dict[str, Dict[str, Optional[str]]] = {}
