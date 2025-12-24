@@ -569,9 +569,9 @@ col_names_map = {
 display_cols = [
     'Resort',
     'City',
-    'Region',
     'State / Territory',
     'Country',
+    'Region',
     'Latitude',
     'Longitude',
     'Area (acres)',
