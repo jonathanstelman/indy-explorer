@@ -570,7 +570,7 @@ display_cols = [
     'Resort',
     'City',
     'Region',
-    'State / Region',
+    'State / Territory',
     'Country',
     'Latitude',
     'Longitude',
