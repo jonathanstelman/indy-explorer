@@ -4,6 +4,7 @@ Scrapes data from resorts from general resorts page and resort-specific pages
 
 import argparse
 import json
+import logging
 import re
 import requests
 
@@ -11,6 +12,8 @@ from bs4 import BeautifulSoup
 
 CACHE_DIRECTORY = 'cache/'
 OUR_RESORTS_URL = 'https://www.indyskipass.com/our-resorts'
+
+logger = logging.getLogger(__name__)
 
 
 def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
@@ -22,20 +25,20 @@ def get_page_html(page_url: str, read_mode: str, cache_page=True) -> str:
 
     if read_mode == 'live':
         # Load page from URL
-        print(f'Fetching contents from web page: "{page_url}"')
+        logger.info('Fetching contents from web page: "%s"', page_url)
         page = requests.get(page_url, timeout=5)
         page_html = page.text
 
         if cache_page:
-            print(f'Caching web page to file: "{cache_file}"')
+            logger.info('Caching web page to file: "%s"', cache_file)
             try:
                 with open(cache_file, 'x', encoding='utf-8') as f:
                     f.write(page_html)
             except FileExistsError:
-                print(f'Cache file already exists: "{cache_file}"')
+                logger.info('Cache file already exists: "%s"', cache_file)
 
     else:  # read_mode == 'cache'
-        print(f'Fetching contents from cached file: "{cache_file}"')
+        logger.info('Fetching contents from cached file: "%s"', cache_file)
         with open(cache_file, 'r', encoding='utf-8') as f:
             page_html: str = f.read()
 
@@ -89,7 +92,7 @@ def get_class_value(page_body, class_name: str) -> str:
     try:
         return page_body.find(class_=class_name)[0]
     except Exception:
-        print(f'Could not get value for class: "{class_name}"')
+        logger.warning('Could not get value for class: "%s"', class_name)
 
 
 def parse_our_resorts_page(page_html: str) -> dict:
@@ -98,14 +101,15 @@ def parse_our_resorts_page(page_html: str) -> dict:
     """
 
     soup = BeautifulSoup(page_html, 'html.parser')
-    print(f'Page title: "{soup.title}"')
+    logger.info('Page title: "%s"', soup.title)
 
     page_body = soup.find(id='main-content')
     resort_node_class = 'node--type-resort'
     resort_nodes = page_body.find_all(class_=resort_node_class)
-    print(
-        f'{len(resort_nodes)} Resort Card ({resort_node_class}) objects found',
-        end='\n\n',
+    logger.info(
+        '%d Resort Card (%s) objects found',
+        len(resort_nodes),
+        resort_node_class,
     )
 
     resort_node_list = list(resort_nodes)
@@ -117,7 +121,7 @@ def parse_our_resorts_page(page_html: str) -> dict:
         try:
             _id = resort_node['data-history-node-id']
         except KeyError:
-            print('Resort missing ID! Skipping')
+            logger.warning('Resort missing ID! Skipping')
             failed_count += 1
 
         name = None
@@ -147,55 +151,55 @@ def parse_our_resorts_page(page_html: str) -> dict:
             vert_str = resort_node.select_one("li:nth-child(1) .value").get_text(strip=True)
             vertical = parse_vertical(vert_str)
         except KeyError:
-            print(f'Could not get vertical for resort ID: {_id}')
+            logger.warning('Could not get vertical for resort ID: %s', _id)
         except ValueError:
-            print(f'Could not parse vertical "{vert_str}" for resort ID {_id}')
+            logger.warning('Could not parse vertical "%s" for resort ID %s', vert_str, _id)
 
         try:
             trails = resort_node.select_one("li:nth-child(2) .value").get_text(strip=True)
             num_trails = int(trails)
         except KeyError:
-            print(f'Could not get trails for resort ID: {_id}')
+            logger.warning('Could not get trails for resort ID: %s', _id)
         except ValueError:
-            print(f'Could not parse trail number "{trails}" for resort ID {_id}')
+            logger.warning('Could not parse trail number "%s" for resort ID %s', trails, _id)
 
         try:
             lifts = resort_node.select_one("li:nth-child(3) .value").get_text(strip=True)
             num_lifts = int(lifts)
         except KeyError:
-            print(f'Could not get lifts for resort ID: {_id}')
+            logger.warning('Could not get lifts for resort ID: %s', _id)
         except ValueError:
-            print(f'Could not parse lift number "{lifts}" for resort ID {_id}')
+            logger.warning('Could not parse lift number "%s" for resort ID %s', lifts, _id)
 
         try:
             coordinates = parse_lat_long(resort_node['data-location'])
         except KeyError:
-            print(f'Could not get coordinate location for resort ID: {_id}')
+            logger.warning('Could not get coordinate location for resort ID: %s', _id)
 
         try:
             is_nordic = to_boolean(resort_node['data-isnordic'])
         except KeyError:
-            print(f'Could not get is_nordic for resort ID: {_id}')
+            logger.warning('Could not get is_nordic for resort ID: %s', _id)
 
         try:
             is_alpine_xc = to_boolean(resort_node['data-isalpinexc'])
         except KeyError:
-            print(f'Could not get is_alpine_xc for resort ID: {_id}')
+            logger.warning('Could not get is_alpine_xc for resort ID: %s', _id)
 
         try:
             is_xc_only = to_boolean(resort_node['data-isxconly'])
         except KeyError:
-            print(f'Could not get is_xc_only for resort ID: {_id}')
+            logger.warning('Could not get is_xc_only for resort ID: %s', _id)
 
         try:
             is_allied = to_boolean(resort_node['data-isallied'])
         except KeyError:
-            print(f'Could not get is_allied for resort ID: {_id}')
+            logger.warning('Could not get is_allied for resort ID: %s', _id)
 
         try:
             href = resort_node['href']
         except KeyError:
-            print(f'Could not get href for resort ID: {_id}')
+            logger.warning('Could not get href for resort ID: %s', _id)
 
         resorts[_id] = {
             'name': name,
@@ -215,8 +219,9 @@ def parse_our_resorts_page(page_html: str) -> dict:
         success_count += 1
 
     # pprint(resorts, indent=4)
-    print(f'Parsed {success_count} resorts')
-    print(f'Failed to parse {failed_count} resorts')
+    logger.info('Parsed %d resorts', success_count)
+    if failed_count:
+        logger.warning('Failed to parse %d resorts', failed_count)
 
     with open('data/resorts_raw.json', 'w', encoding='utf-8') as json_file:
         json.dump(resorts, json_file, indent=4)
@@ -373,11 +378,12 @@ def cache_and_parse_resort(
     resort_dict = parse_resort_page(page_html, resort_id=resort_id, resort_slug=slug)
     with open(f'{output_dir}/{slug}.json', 'w', encoding='utf-8') as f:
         json.dump(resort_dict, f, indent=4)
-    print(f'Parsed resort: "{resort_dict["name"]}"')
+    logger.info('Parsed resort: "%s"', resort_dict["name"])
     return resort_dict
 
 
 def main() -> None:
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     parser = argparse.ArgumentParser(description='Scrape Indy Pass resort data.')
     parser.add_argument(
         '--read-mode',

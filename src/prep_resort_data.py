@@ -15,6 +15,7 @@ from blackout import (
     parse_blackout_sheet,
     merge_blackout_into_resorts,
 )
+from reservations import build_reservation_map, merge_reservations_into_resorts
 from utils import get_normalized_location, generate_resort_locations_csv
 
 
@@ -174,6 +175,8 @@ cols = [
     'country',
     'indy_page',
     'website',
+    'reservation_status',
+    'reservation_url',
     'latitude',
     'longitude',
     'vertical',
@@ -235,6 +238,19 @@ if not blackout_map:
 else:
     logger.debug('Parsed blackout data for %d resorts.', len(blackout_map))
 resorts = merge_blackout_into_resorts(resorts, blackout_map)
+
+logger.info('Processing reservations...')
+reservations_path = 'data/reservations_raw.json'
+if os.path.exists(reservations_path):
+    with open(reservations_path, 'r', encoding='utf-8') as json_file:
+        reservations_raw = json.load(json_file)
+    reservation_map = build_reservation_map(reservations_raw)
+    resorts = merge_reservations_into_resorts(resorts, reservation_map)
+else:
+    logger.warning('Reservations data missing at %s. Using defaults.', reservations_path)
+    resorts['reservation_status'] = 'Not Required'
+    resorts['reservation_url'] = ''
+
 resorts = resorts[cols]
 resorts.to_csv('data/resorts.csv', index_label='index')
 logger.info('Prepared resort data written to data/resorts.csv')

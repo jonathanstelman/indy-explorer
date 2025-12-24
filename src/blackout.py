@@ -18,6 +18,7 @@ This module relies on helpers from `src.utils` for date parsing and expansion.
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 from typing import Dict, List, Optional, Tuple
@@ -42,6 +43,8 @@ except ModuleNotFoundError:
 # BLACKOUT_DATES_AND_RESERVATIONS_URL = 'https://www.indyskipass.com/blackout-dates-reservations'
 # BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
 BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1762546441&single=true&output=csv'
+
+logger = logging.getLogger(__name__)
 
 
 BLACKOUT_RESORT_NAME_MAP = {
@@ -97,10 +100,10 @@ def get_blackout_dates_from_google_sheets(
     url = sheet_url
 
     if read_mode == 'cache' and os.path.exists(cache_path):
-        print(f'Loading blackout dates from cached CSV file: {cache_path}')
+        logger.info('Loading blackout dates from cached CSV file: %s', cache_path)
         return pd.read_csv(cache_path)
 
-    print(f'Fetching blackout dates from Google Sheets URL: {url}')
+    logger.info('Fetching blackout dates from Google Sheets URL: %s', url)
     return pd.read_csv(url)
 
 
@@ -206,26 +209,26 @@ def print_blackout_name_mismatches(blackouts_df_raw: pd.DataFrame) -> None:
     missing_in_resorts = sorted(set(blackout_mapped) - resorts_set)
     missing_in_blackout = sorted(resorts_set - set(blackout_mapped))
 
-    print('Blackout name QA summary')
-    print('-' * 30)
-    print(f'Resorts in resorts_raw.json: {len(resorts_set)}')
-    print(f'Raw blackout sheet resort names: {len(blackout_raw_set)}')
-    print(f'Names used after mapping: {len(set(blackout_mapped))}')
+    logger.info('Blackout name QA summary')
+    logger.info('%s', '-' * 30)
+    logger.info('Resorts in resorts_raw.json: %d', len(resorts_set))
+    logger.info('Raw blackout sheet resort names: %d', len(blackout_raw_set))
+    logger.info('Names used after mapping: %d', len(set(blackout_mapped)))
 
     if ignored_names:
-        print('\nIgnored names (explicitly mapped to None):')
+        logger.info('Ignored names (explicitly mapped to None):')
         for name in sorted(ignored_names):
-            print(f'- {name}')
+            logger.info('- %s', name)
 
     if remapped:
-        print('\nRemapped names (sheet -> resorts_raw.json):')
+        logger.info('Remapped names (sheet -> resorts_raw.json):')
         for raw_name, mapped_name in sorted(remapped, key=lambda t: t[0].lower()):
-            print(f'- {raw_name} -> {mapped_name}')
+            logger.info('- %s -> %s', raw_name, mapped_name)
 
     if missing_in_resorts:
-        print('\nBlackout-only names (after mapping, not in resorts_raw.json):')
+        logger.info('Blackout-only names (after mapping, not in resorts_raw.json):')
         for name in missing_in_resorts:
-            print(f'- {name}')
+            logger.info('- %s', name)
 
     # if missing_in_blackout:
     #     print('\nResorts missing blackout entries (in resorts.csv, not in sheet):')
@@ -233,7 +236,7 @@ def print_blackout_name_mismatches(blackouts_df_raw: pd.DataFrame) -> None:
     #         print(f'- {name}')
 
     if not ignored_names and not remapped and not missing_in_resorts and not missing_in_blackout:
-        print('\nBlackout and resort names are in sync.')
+        logger.info('Blackout and resort names are in sync.')
 
 
 def _parse_named_ranges(df: pd.DataFrame) -> Dict[str, Dict]:
@@ -454,14 +457,15 @@ def merge_blackout_into_resorts(
 
     missing_in_resorts = sorted(set(blackout_map.keys()) - set(resorts_df["name"]))
     if missing_in_resorts:
-        print('Blackout resorts missing from resorts_df:')
+        logger.warning('Blackout resorts missing from resorts_df:')
         for name in missing_in_resorts:
-            print(f'- {name}')
+            logger.warning('- %s', name)
 
     return resorts_df
 
 
 def main() -> None:
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     blackout_date_df = get_blackout_dates_from_google_sheets(read_mode='cache')
     # blackout_date_df.to_csv('data/blackout_dates_raw.csv', index=False)
     blackout_date_df = blackout_date_df.rename(columns={" ": "Resort"})
@@ -469,8 +473,8 @@ def main() -> None:
     # print_blackout_name_mismatches(blackout_date_df)
     blackout_map = parse_blackout_sheet(blackout_date_df)
 
-    print(f'Parsed blackout info for {len(blackout_map)} resorts.')
-    print(json.dumps(blackout_map, indent=2))
+    logger.info('Parsed blackout info for %d resorts.', len(blackout_map))
+    logger.info('%s', json.dumps(blackout_map, indent=2))
 
 
 if __name__ == '__main__':

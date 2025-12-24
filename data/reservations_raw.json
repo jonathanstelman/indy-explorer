@@ -1,0 +1,64 @@
+{
+  "resorts": [
+    {
+      "name": "Berkshire East Mountain Resort",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/berkshire-east-mountain-resort"
+    },
+    {
+      "name": "Brundage Mountain Resort",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/brundage-mountain-resort"
+    },
+    {
+      "name": "Cannon Mountain",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/cannon-mountain"
+    },
+    {
+      "name": "Catamount Mountain Resort",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/catamount-mountain-resort"
+    },
+    {
+      "name": "Detroit Mountain",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/detroit-mountain"
+    },
+    {
+      "name": "Greek Peak Mountain Resort",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/greek-peak-mountain-resort"
+    },
+    {
+      "name": "Magic Mountain",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/magic-mountain"
+    },
+    {
+      "name": "Mission Ridge",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/mission-ridge"
+    },
+    {
+      "name": "Pats Peak",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/pats-peak"
+    },
+    {
+      "name": "White Pass",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/white-pass"
+    },
+    {
+      "name": "Blacktail Mountain Resort",
+      "reservation_status": "Optional",
+      "reservation_url": "https://estore.blacktailmountain.com/marketing/products/indy-pass-redemption-20252026"
+    },
+    {
+      "name": "Saddleback Mountain",
+      "reservation_status": "Optional",
+      "reservation_url": "https://www.saddlebackmaine.com/indy-pass/"
+    }
+  ]
+}

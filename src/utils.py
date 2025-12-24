@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import os
 import json
+import logging
 from typing import Optional, Dict
 
 from dotenv import load_dotenv
@@ -9,6 +10,7 @@ import pandas as pd
 
 load_dotenv()
 
+logger = logging.getLogger(__name__)
 
 API_KEY: Optional[str] = os.getenv("GOOGLE_MAPS_API_KEY")
 # Initialize client lazily and safely: if no API key is provided (e.g., in CI), don't
@@ -19,7 +21,7 @@ if API_KEY:
         gmaps = googlemaps.Client(key=API_KEY)
     except Exception as e:
         # Fail gracefully in environments without an API key; tests will monkeypatch `gmaps`.
-        print(f"Could not initialize googlemaps client: {e}")
+        logger.warning("Could not initialize googlemaps client: %s", e)
         gmaps = None
 
 
@@ -55,7 +57,7 @@ def get_normalized_location(location_name: str) -> Dict[str, Optional[str]]:
         return {"city": city, "state": state, "country": country}
 
     except Exception as e:
-        print(f"Error fetching data for {location_name}: {e}")
+        logger.warning("Error fetching data for %s: %s", location_name, e)
         return {"city": city, "state": state, "country": country}
 
 
@@ -85,7 +87,7 @@ def generate_resort_locations_csv(
     # Fetch normalized locations
     rows = []
     for name, location_name in unique_locations:
-        print(f"Retrieving location for: {name} / {location_name}")
+        logger.info("Retrieving location for: %s / %s", name, location_name)
         loc = get_normalized_location(location_name)
         rows.append(
             {
@@ -99,7 +101,7 @@ def generate_resort_locations_csv(
     # Save to CSV
     df = pd.DataFrame(rows)
     df.to_csv(output_csv_path, index=False)
-    print(f"Wrote {output_csv_path}")
+    logger.info("Wrote %s", output_csv_path)
 
 
 # Date Utilities
