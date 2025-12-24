@@ -102,7 +102,18 @@ To update all resort data (recommended about once per year), follow these steps:
     - To increase verbosity, add `--log-level DEBUG`.
     - You can still use `src/blackout.py` to fetch the sheet and print QA output if you want to inspect it.
 
-7. **Prepare the final CSV for the Streamlit app:**
+7. **Fetch reservation requirements (optional):**
+    - Cache the HTML page:
+        ```sh
+        poetry run python src/cache_blackout_reservations.py --read-mode live
+        ```
+    - Parse the cached reservations list into JSON:
+        ```sh
+        poetry run python src/reservations.py --read-mode cache
+        ```
+    - This produces `data/reservations_raw.json`.
+
+8. **Prepare the final CSV for the Streamlit app:**
     ```sh
     poetry run python src/prep_resort_data.py
     ```
@@ -112,7 +123,7 @@ To update all resort data (recommended about once per year), follow these steps:
     - Produce `data/resorts.csv` for the Streamlit app.
 
 
-8. **Run the Streamlit app:**
+9. **Run the Streamlit app:**
     ```sh
     poetry run streamlit run src/app.py
     ```

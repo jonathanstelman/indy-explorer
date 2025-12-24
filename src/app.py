@@ -280,6 +280,15 @@ resorts['blackout_has_display'] = resorts['blackout_count'].apply(
     lambda c: 'Yes' if c and int(c) > 0 else 'No'
 )
 
+if 'reservation_status' not in resorts.columns:
+    resorts['reservation_status'] = 'Not Required'
+resorts['reservation_status'] = resorts['reservation_status'].replace('', 'Not Required')
+if 'reservation_url' not in resorts.columns:
+    resorts['reservation_url'] = ''
+resorts['reservation_url_display'] = resorts['reservation_url'].apply(
+    lambda v: v if isinstance(v, str) and v else 'n/a'
+)
+
 all_blackout_dates = sorted(
     {d for dates in resorts['blackout_dates_list'] for d in dates if isinstance(d, str)}
 )
@@ -462,6 +471,16 @@ is_allied = st.sidebar.segmented_control(
     default=boolean_map.keys(),
     selection_mode="multi",
 )
+reservation_required = st.sidebar.segmented_control(
+    key='reservation_required',
+    label=':ticket: Reservations Required',
+    options=['Yes', 'No'],
+    default=['Yes', 'No'],
+    selection_mode='multi',
+)
+reservation_required_selected = 'Yes' in reservation_required
+reservation_not_required_selected = 'No' in reservation_required
+
 blackout_presence = st.sidebar.segmented_control(
     key='blackout_presence',
     label=':heavy_multiplication_x: Blackout Dates',
@@ -530,6 +549,21 @@ filtered_data = resorts[
         | (no_blackout_selected and (resorts.blackout_count == 0))
     )
     & (
+        (
+            reservation_required_selected
+            and reservation_not_required_selected
+            and resorts.reservation_status.isin(['Required', 'Optional', 'Not Required'])
+        )
+        | (
+            reservation_required_selected
+            and resorts.reservation_status.isin(['Required', 'Optional'])
+        )
+        | (
+            reservation_not_required_selected
+            and resorts.reservation_status.isin(['Not Required', 'Optional'])
+        )
+    )
+    & (
         (not filter_blackout_date_active)
         | (resorts.blackout_dates_list.apply(lambda dates: range_dates.isdisjoint(dates)))
     )
@@ -564,6 +598,8 @@ col_names_map = {
     'color': 'Color',
     'indy_page': 'Indy Page',
     'website': 'Website',
+    'reservation_status': 'Reservation Status',
+    'reservation_url': 'Reservation Page',
     'blackout_dates_display': 'Blackout Dates',
 }
 display_cols = [
@@ -589,6 +625,8 @@ display_cols = [
     'Snowshoeing',
     'Allied',
     'Blackout Dates',
+    'Reservation Status',
+    'Reservation Page',
     'Indy Page',
     'Website',
 ]
@@ -626,6 +664,7 @@ tooltip = {
         <b>Terrain Park:</b> {has_terrain_parks_display}<br>
         <b>Dog Friendly:</b> {is_dog_friendly_display}<br>
         <b>Indy Allied:</b> {is_allied_display}<br>
+        <b>Reservations:</b> {reservation_status}<br>
         <b>Has Blackout Dates:</b> {blackout_has_display}<br>
         <!-- <b>Indy Resort Page:</b> {indy_page}<br> -->
         <!-- <b>Website:</b> {website}<br> -->
@@ -781,6 +820,7 @@ st.markdown('Click the checkbox next to a resort to see more details.')
 resorts_table = st.dataframe(
     display_df,
     column_config={
+        "Reservation Page": st.column_config.LinkColumn("Reservation Page"),
         "Indy Page": st.column_config.LinkColumn("Indy Page"),
         "Website": st.column_config.LinkColumn("Website"),
     },
@@ -799,10 +839,19 @@ else:
 
 
 def get_resort_header_markdown(resort: dict) -> str:
+    reservation_url = resort.get('reservation_url')
+    reservation_status = resort.get('reservation_status')
+    if reservation_status == 'Required' and reservation_url:
+        reservation_link = f" → [Make a reservation]({reservation_url})"
+    elif reservation_status == 'Optional' and reservation_url:
+        reservation_link = f" → [Make a reservation]({reservation_url}) _(optional)_"
+    else:
+        reservation_link = " → No reservation required"
     return f"""
         # {resort['name']}
         **{resort['city']}, {resort['state']} {resort['country']}**  
         [Indy Page]({resort['indy_page']}) | [Resort Website]({resort['website']})  
+        {reservation_link}  
 
         *{resort['description']}*
     """

@@ -22,13 +22,16 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Black
+      - name: Install Poetry
         run: |
           python -m pip install --upgrade pip
-          pip install black
+          pip install poetry
+
+      - name: Install dependencies
+        run: poetry install --no-interaction
 
       - name: Check formatting
-        run: black --check .
+        run: poetry run black --check .
 
   test:
     name: Test suite
