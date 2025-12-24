@@ -822,7 +822,7 @@ if st.session_state.selected_resort:
 # Footer
 st.markdown(
     """
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of September 20, 2025.  
+    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 23, 2025.  
     
     ---
     Help improve this app:

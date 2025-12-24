@@ -40,24 +40,43 @@ except ModuleNotFoundError:
     )
 
 # BLACKOUT_DATES_AND_RESERVATIONS_URL = 'https://www.indyskipass.com/blackout-dates-reservations'
-BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
+# BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
+BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1762546441&single=true&output=csv'
+
 
 BLACKOUT_RESORT_NAME_MAP = {
-    '49Â° North': '49 Degrees North',
+    '49° North': '49 Degrees North',
+    '49° North Mountain Resort': '49 Degrees North',
     'Bear Valley': 'Bear Valley Mountain Resort',
     'Beaver Mountain Ski Area': 'Beaver Mountain',
     'Brundage Mountain': 'Brundage Mountain Resort',
+    'Crystal Mountain, MI': 'Crystal Mountain',
+    'Detroit Mountain Recreation Area': 'Detroit Mountain',
+    'Dodge Ridge Mountain Resort': 'Dodge Ridge',
+    'Hochzeiger Pitztal': 'Hochzeiger Bergbahnen Pitztal AG',
+    'Hoodoo Ski Area': 'Hoodoo',
+    'Hyland Hills Ski Area': 'Hyland Hills',
+    'Kelly Canyon Resort': 'Kelly Canyon',
+    'Levi Ski Resort': 'Levi, Finland',
     'Manning Park Resort': 'Manning Park',
     'Manning Park Resort Nordic Centre': 'Manning Park XC',
     'Meadowlark Ski Lodge': 'Meadowlark Ski Resort',
     'Mohawk Mountain Ski Area': 'Mohawk Mountain',
-    'Mount Shasta Ski Park': 'Mt. Shasta',
+    'Mont Ripley': 'Mont Ripley Ski Area',
+    'Mountain High Resort': 'Mountain High',
+    'Mt. La Crosse': 'Mt La Crosse',
+    'Mt. Shasta Ski Park': 'Mt. Shasta',
+    'Mt. Washington Alpine Resort': 'Mt. Washington',
     "Nub's Nob Ski Area": 'Nubs Nob',
+    "Owl's Head": 'Destination Owls Head',
+    "Peek'n Peak Resort": 'Peek ‘n Peak',
+    'Ragged Mountain Resort': 'Ragged Mountain',
     'Schuss Mountain Shanty Creek': 'Schuss Mountain at Shanty Creek',
     'Shawnee Mountain': 'Shawnee Mountain Ski Area',
     'Ski Big Bear at Masthope Mountain': 'Ski Big Bear',
     'Sundown Mountain Resort': 'Sundown Mountain',
     'Terry Peak Ski Area': 'Terry Peak',
+    'Tree Tops Ski Resort': 'Treetops Resort',
     'Tussey Mountain Ski Area': 'Tussey Mountain',
     'Waterville Valley': 'Waterville Valley Resort',
     'White Pass Ski Area': 'White Pass',
@@ -85,39 +104,134 @@ def get_blackout_dates_from_google_sheets(
     return pd.read_csv(url)
 
 
-def print_blackout_name_mismatches(
-    df_raw: pd.DataFrame, resorts_df: Optional[pd.DataFrame] = None
-) -> None:
-    """Print QA summary for blackout sheet resort names vs resorts.csv."""
-    if resorts_df is None:
-        resorts_df = pd.read_csv('data/resorts.csv')
+def _normalize_blackout_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Normalize blackout sheet columns, ensuring the resort column is named 'Resort'."""
+    normalized = []
+    for col in df.columns:
+        col_str = '' if col is None else str(col).strip()
+        if not col_str or (isinstance(col, float) and pd.isna(col)):
+            normalized.append('Resort')
+        else:
+            normalized.append(col_str)
+    out = df.copy()
+    out.columns = normalized
+    return out
+
+
+def _numeric_date_has_year(date_str: str) -> bool:
+    return len(date_str.split('/')) == 3
+
+
+def _parse_numeric_date(date_str: str, default_year: Optional[int] = None) -> Optional[str]:
+    date_str = date_str.strip()
+    parts = date_str.split('/')
+    if len(parts) < 2:
+        return None
+    try:
+        month = int(parts[0])
+        day = int(parts[1])
+        if len(parts) == 3:
+            year = int(parts[2])
+            if year < 100:
+                year += 2000
+        else:
+            if default_year is not None:
+                year = default_year
+            else:
+                year = 2025 if month in [7, 8, 9, 10, 11, 12] else 2026
+        return f'{year:04d}-{month:02d}-{day:02d}'
+    except ValueError:
+        return None
+
+
+def _expand_numeric_part(part: str) -> List[str]:
+    cleaned = part.split('.', 1)[0].strip()
+    if not cleaned:
+        return []
+
+    range_match = re.match(
+        r'^(\d{1,2}/\d{1,2}(?:/\d{2,4})?)\s*-\s*(\d{1,2}/\d{1,2}(?:/\d{2,4})?)$',
+        cleaned,
+    )
+    if range_match:
+        start_raw, end_raw = range_match.groups()
+        end_date = _parse_numeric_date(end_raw)
+        if not end_date:
+            return []
+        end_year = int(end_date.split('-', 1)[0])
+        start_year = end_year if not _numeric_date_has_year(start_raw) else None
+        start_date = _parse_numeric_date(start_raw, default_year=start_year)
+        if not start_date:
+            return []
+        return get_all_dates_in_range(start_date, end_date)
+
+    single_date = _parse_numeric_date(cleaned)
+    return [single_date] if single_date else []
+
+
+def print_blackout_name_mismatches(blackouts_df_raw: pd.DataFrame) -> None:
+    """Print QA summary for blackout sheet resort names vs resorts_raw.json.
+
+    Output includes:
+    - Names ignored by mapping (explicitly None)
+    - Names remapped to match resorts_raw.json
+    - Blackout-only names (after mapping)
+    - Resorts missing blackout entries
+    """
+    with open('data/resorts_raw.json', 'r', encoding='utf-8') as json_file:
+        resorts_dict = json.load(json_file)
+    resorts_df = pd.DataFrame(resorts_dict).transpose()
+    blackouts_df_raw = _normalize_blackout_columns(blackouts_df_raw)
 
     resorts_set = {str(name).strip() for name in resorts_df['name'].tolist() if name}
-    blackout_raw = [
-        str(name).strip() for name in df_raw['Resort'].tolist() if name and str(name).strip()
+    blackout_raw_list = [
+        str(name).strip() for name in blackouts_df_raw['Resort'].tolist() if name and str(name).strip()
     ]
+    blackout_raw_set = set(blackout_raw_list)
+
     blackout_mapped = []
-    for name in blackout_raw:
+    ignored_names = []
+    remapped = []
+    for name in blackout_raw_set:
         mapped = BLACKOUT_RESORT_NAME_MAP.get(name, name)
         if mapped is None:
+            ignored_names.append(name)
             continue
+        if mapped != name:
+            remapped.append((name, mapped))
         blackout_mapped.append(mapped)
 
     missing_in_resorts = sorted(set(blackout_mapped) - resorts_set)
     missing_in_blackout = sorted(resorts_set - set(blackout_mapped))
 
+    print('Blackout name QA summary')
+    print('-' * 30)
+    print(f'Resorts in resorts_raw.json: {len(resorts_set)}')
+    print(f'Raw blackout sheet resort names: {len(blackout_raw_set)}')
+    print(f'Names used after mapping: {len(set(blackout_mapped))}')
+
+    if ignored_names:
+        print('\nIgnored names (explicitly mapped to None):')
+        for name in sorted(ignored_names):
+            print(f'- {name}')
+
+    if remapped:
+        print('\nRemapped names (sheet -> resorts_raw.json):')
+        for raw_name, mapped_name in sorted(remapped, key=lambda t: t[0].lower()):
+            print(f'- {raw_name} -> {mapped_name}')
+
     if missing_in_resorts:
-        print('Blackout-only resort names (after mapping):')
+        print('\nBlackout-only names (after mapping, not in resorts_raw.json):')
         for name in missing_in_resorts:
             print(f'- {name}')
 
-    if missing_in_blackout:
-        print('Resorts missing blackout entries:')
-        for name in missing_in_blackout:
-            print(f'- {name}')
+    # if missing_in_blackout:
+    #     print('\nResorts missing blackout entries (in resorts.csv, not in sheet):')
+    #     for name in missing_in_blackout:
+    #         print(f'- {name}')
 
-    if not missing_in_resorts and not missing_in_blackout:
-        print('Blackout and resort names are in sync.')
+    if not ignored_names and not remapped and not missing_in_resorts and not missing_in_blackout:
+        print('\nBlackout and resort names are in sync.')
 
 
 def _parse_named_ranges(df: pd.DataFrame) -> Dict[str, Dict]:
@@ -125,6 +239,7 @@ def _parse_named_ranges(df: pd.DataFrame) -> Dict[str, Dict]:
 
     Returns a mapping of named_range -> {'raw_text': str, 'dates': [YYYY-MM-DD,...]}
     """
+    df = _normalize_blackout_columns(df)
 
     def _split_header(header: str) -> Optional[Tuple[str, str]]:
         if "\n" in header:
@@ -142,6 +257,7 @@ def _parse_named_ranges(df: pd.DataFrame) -> Dict[str, Dict]:
         if not split_header:
             continue
         name, date_range = split_header
+        date_range = re.sub(r'\s*-\s*', ' - ', date_range.strip())
         start_date, end_date = split_date_range(date_range)
         dates = get_all_dates_in_range(start_date, end_date)
 
@@ -179,7 +295,8 @@ def normalize_additional_dates(
     raw = str(text).strip()
     if not raw:
         return []
-    if "weekend" in raw.lower():
+    raw_lower = raw.lower()
+    if "weekend" in raw_lower or "saturday" in raw_lower or "sunday" in raw_lower:
         if season_start and season_end:
             return _season_weekend_dates(season_start, season_end)
         return []
@@ -191,6 +308,14 @@ def normalize_additional_dates(
     month_re = re.compile(r'^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b')
 
     for part in parts:
+        part = part.split('.', 1)[0].strip()
+        if not part:
+            continue
+
+        if "/" in part:
+            out.extend(_expand_numeric_part(part))
+            continue
+
         month_match = month_re.search(part)
         if not month_match and last_month:
             if "-" in part:
@@ -234,6 +359,7 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
     }
     """
 
+    df_raw = _normalize_blackout_columns(df_raw)
     named_ranges = _parse_named_ranges(df_raw)
 
     def _header_name(header: str) -> str:
@@ -271,9 +397,11 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
                 cell = row.get(name)
             except Exception:
                 cell = None
-            if isinstance(cell, str) and cell.strip().upper() == "X":
-                named_applied.append(name)
-                all_dates.update(info["dates"])
+            if isinstance(cell, str):
+                cell_value = cell.strip().upper()
+                if cell_value == "X" or cell_value.startswith("PARTIAL"):
+                    named_applied.append(name)
+                    all_dates.update(info["dates"])
 
         additional = normalize_additional_dates(
             row.get("Additional Blackout Dates"),
@@ -333,7 +461,10 @@ def merge_blackout_into_resorts(
 
 def main() -> None:
     blackout_date_df = get_blackout_dates_from_google_sheets(read_mode='cache')
-    print_blackout_name_mismatches(blackout_date_df)
+    # blackout_date_df.to_csv('data/blackout_dates_raw.csv', index=False)
+    blackout_date_df = blackout_date_df.rename(columns={" ": "Resort"})
+
+    # print_blackout_name_mismatches(blackout_date_df)
     blackout_map = parse_blackout_sheet(blackout_date_df)
 
     print(f'Parsed blackout info for {len(blackout_map)} resorts.')

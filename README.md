@@ -10,7 +10,7 @@ Indy Explorer is a [Streamlit](https://streamlit.io/) app designed to help you n
 
 ## Data Source
 
-Data is sourced from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 14, 2024.
+Data is sourced from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 23, 2025.
 
 ## Installation
 
@@ -63,23 +63,46 @@ To update all resort data (recommended about once per year), follow these steps:
     cp -r data backups/data_backup_$(date +%Y%m%d_%H%M%S)
     ```
 
-2. **Remove the old cache and data folders:**
+2. **Remove the old cache and data folders (optional, for a clean refresh):**
     ```sh
     rm -rf cache
     rm -rf data
     ```
 
-3. **Fetch and cache the latest resort data:**
+3. **Recreate required directories:**
+    ```sh
+    mkdir -p cache data/resort_page_extracts
+    ```
+
+4. **Fetch and cache the latest resort data:**
     ```sh
     poetry run python src/page_scraper.py
     ```
     This will:
     - Download and cache the latest "our resorts" page.
     - Parse and save `data/resorts_raw.json`.
-    - Download, cache, and parse each individual resort page, saving to `data/<resort>.json`.
+    - Download, cache, and parse each individual resort page, saving to `data/resort_page_extracts/<slug>.json`.
 
+    Notes:
+    - Use live mode to re-download everything:
+        ```sh
+        poetry run python src/page_scraper.py --read-mode live
+        ```
+    - Cached HTML files are not overwritten (the scraper uses `open(..., 'x')`). Delete `cache/*.html` if you want to re-fetch.
 
-4. **Prepare the final CSV for the Streamlit app:**
+5. **Placeholder: update blackout date handling (next task):**
+    - The blackout Google Sheet format has changed; revisit and update the blackout pipeline here.
+
+6. **Fetch blackout dates (optional):**
+    - `src/prep_resort_data.py` will auto-fetch `data/blackout_dates_raw.csv` if it is missing.
+    - To force a refresh, run:
+        ```sh
+        poetry run python src/prep_resort_data.py --refresh-blackout
+        ```
+    - To increase verbosity, add `--log-level DEBUG`.
+    - You can still use `src/blackout.py` to fetch the sheet and print QA output if you want to inspect it.
+
+7. **Prepare the final CSV for the Streamlit app:**
     ```sh
     poetry run python src/prep_resort_data.py
     ```
@@ -89,7 +112,7 @@ To update all resort data (recommended about once per year), follow these steps:
     - Produce `data/resorts.csv` for the Streamlit app.
 
 
-5. **Run the Streamlit app:**
+8. **Run the Streamlit app:**
     ```sh
     poetry run streamlit run src/app.py
     ```
@@ -115,7 +138,7 @@ Blackout dates are sourced from a published Google Sheet and merged into the res
     ```sh
     poetry run python src/blackout.py
     ```
-    This writes `data/blackout_dates_raw.csv`.
+    This currently prints QA output only (it does not write `data/blackout_dates_raw.csv`).
 
 2. Run the prep script to merge blackout dates into `data/resorts.csv`:
     ```sh
