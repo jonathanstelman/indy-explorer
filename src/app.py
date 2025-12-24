@@ -15,6 +15,7 @@ import streamlit as st
 import streamlit_antd_components as sac
 
 import map_config
+
 if os.getenv("MAP_CONFIG_RELOAD", "").lower() in ("1", "true", "yes"):
     importlib.reload(map_config)
 
@@ -329,7 +330,9 @@ if 'region' in resorts.columns:
     else:
         selected_regions = []
     region_filter = True if not selected_regions else resorts.region.isin(selected_regions)
-    region_subset = resorts if not selected_regions else resorts[resorts.region.isin(selected_regions)]
+    region_subset = (
+        resorts if not selected_regions else resorts[resorts.region.isin(selected_regions)]
+    )
 else:
     selected_regions = []
     region_filter = True
@@ -362,7 +365,7 @@ state_items = [{'label': s, 'value': s} for s in state_region_options]
 with st.sidebar:
     state_selection = sac.cascader(
         items=state_items,
-        label="State / Region",
+        label="State / Territory",
         multiple=True,
         search=True,
         clear=True,
@@ -539,7 +542,7 @@ col_names_map = {
     'location_name': 'Location Name',
     'city': 'City',
     'region': 'Region',
-    'state': 'State / Region',
+    'state': 'State / Territory',
     'country': 'Country',
     'latitude': 'Latitude',
     'longitude': 'Longitude',
