@@ -157,7 +157,7 @@ def create_elevation_plot(base, summit, vertical):
         [4, SUMMIT_HEIGHT],
         [6, BASE_HEIGHT],
     ]
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(3, 3))
     mountain = plt.Polygon(
         mountain_coords,
         closed=True,
@@ -221,17 +221,19 @@ def create_difficulty_chart(beginner, intermediate, advanced):
     ]
     colors = [rgba_to_hex(c) for c in [COLORS['pale-blue'], COLORS['blue'], COLORS['purple']]]
 
-    fig, ax = plt.subplots(figsize=(1, 1))
+    fig, ax = plt.subplots(figsize=(2, 2))
     ax.pie(
         levels,
-        radius=7,
+        radius=1,
         colors=colors,
         wedgeprops={"linewidth": 2, "edgecolor": "white"},
         labels=labels,
         labeldistance=0.3,
+        textprops={'fontsize': 6},
     )
 
     ax.axis('off')
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
     return fig
 
 
@@ -239,24 +241,28 @@ def create_snowfall_barplot(snowfall_avg, snowfall_max):
     """
     Create a barplot to display the average and maximum annual snowfall.
     """
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(3, 2))
     categories = ['Average Snowfall', 'Maximum Snowfall']
     values = [snowfall_avg, snowfall_max]
     colors = [rgba_to_hex(COLORS['pale-blue']), rgba_to_hex(COLORS['pale-blue'])]
 
     ax.bar(categories, values, color=colors)
-    # ax.set_ylabel('Snowfall (inches)')
 
     for i, v in enumerate(values):
-        ax.text(i, v + 5, f'{int(v)} in', ha='center', color='black')
+        ax.text(i, v + 5, f'{int(v)} in', ha='center', color='black', fontsize=6)
 
-    # Hide the border and horizontal ticks
+    # Horizontal gridlines
+    ax.yaxis.grid(True, linestyle='-', linewidth=0.5, alpha=0.3)
+    ax.set_axisbelow(True)
+
+    # Hide border except bottom baseline
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_visible(False)
-    ax.spines['bottom'].set_visible(False)
-    ax.tick_params(axis='x', which='both', bottom=False, top=False)
-    ax.tick_params(axis='y', which='both', left=True, right=False)
+    ax.spines['bottom'].set_linewidth(1)
+    ax.spines['bottom'].set_color('grey')
+    ax.tick_params(axis='x', which='both', bottom=False, top=False, labelsize=6)
+    ax.tick_params(axis='y', which='both', left=False, right=False, labelsize=6)
 
     return fig
 
@@ -1071,7 +1077,7 @@ def get_resort_elevation_markdown(resort: dict) -> str:
     if not (pd.notnull(base) and pd.notnull(summit) and pd.notnull(vertical)):
         return ''
     elevation_plot = create_elevation_plot(base, summit, vertical)
-    st.pyplot(elevation_plot)
+    st.pyplot(elevation_plot, width='content')
     return ''
 
 
@@ -1081,7 +1087,7 @@ def get_resort_snowfall_markdown(resort: dict) -> str:
     if not (pd.notnull(snow_avg) and pd.notnull(snow_max)):
         return ''
     snowfall_barplot = create_snowfall_barplot(snow_avg, snow_max)
-    st.pyplot(snowfall_barplot)
+    st.pyplot(snowfall_barplot, width='content')
     return ''
 
 
@@ -1100,7 +1106,7 @@ def get_resort_difficulty_markdown(resort: dict) -> str:
     if not (beginner and intermediate and advanced):
         return 'Not available'
     difficulty_pie_chart = create_difficulty_chart(beginner, intermediate, advanced)
-    st.pyplot(difficulty_pie_chart)
+    st.pyplot(difficulty_pie_chart, width='content')
     return ''
 
 
