@@ -15,6 +15,7 @@ matplotlib = "^3.10.0"
 streamlit = "^1.49.1"
 beautifulsoup4 = "^4.13.5"
 streamlit-antd-components = "^0.3.2"
+streamlit-nej-datepicker = "^1.0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.3"
