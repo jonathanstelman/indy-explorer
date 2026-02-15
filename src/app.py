@@ -1198,14 +1198,26 @@ if st.session_state.selected_resort:
     display_resort_modal()
 
 # Footer
+_metadata_path = 'data/pipeline_metadata.json'
+if os.path.exists(_metadata_path):
+    with open(_metadata_path, 'r', encoding='utf-8') as _f:
+        _pipeline_metadata = json.load(_f)
+    _last_run_dt = datetime.fromisoformat(_pipeline_metadata['last_run'])
+    _last_run_str = _last_run_dt.strftime('%B %-d, %Y')
+else:
+    _last_run_str = 'unknown'
+
 st.markdown(
-    """
-    Data from [indyskipass.com](https://www.indyskipass.com/our-resorts) as of December 23, 2025.  
-    
+    f"""
+    Data sourced from [indyskipass.com](https://www.indyskipass.com/our-resorts),
+    [peakrankings.com](https://peakrankings.com), and the
+    [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding).
+    Last updated {_last_run_str}.
+
     ---
     Help improve this app:
     - [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+%3CShort+description%3E)
     - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D+%3CShort+description%3E)
-    - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)  
+    - [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)
     """
 )

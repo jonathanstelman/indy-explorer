@@ -1,0 +1,12 @@
+{
+  "last_run": "2026-02-15T16:02:49.863666+00:00",
+  "mode": "incremental",
+  "steps_run": [
+    "scrape_resorts",
+    "scrape_reservations",
+    "fetch_blackout_dates",
+    "fetch_peak_rankings",
+    "geocode",
+    "prep"
+  ]
+}

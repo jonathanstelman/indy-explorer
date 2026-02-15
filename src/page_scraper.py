@@ -6,6 +6,7 @@ import argparse
 import json
 import logging
 import re
+import time
 import requests
 
 from bs4 import BeautifulSoup
@@ -149,7 +150,10 @@ def parse_our_resorts_page(page_html: str) -> dict:
 
         try:
             vert_str = resort_node.select_one("li:nth-child(1) .value").get_text(strip=True)
-            vertical = parse_vertical(vert_str)
+            if vert_str.strip() == '- -':
+                logger.debug('No vertical data for resort ID %s (value: "- -")', _id)
+            else:
+                vertical = parse_vertical(vert_str)
         except KeyError:
             logger.warning('Could not get vertical for resort ID: %s', _id)
         except ValueError:
@@ -157,7 +161,10 @@ def parse_our_resorts_page(page_html: str) -> dict:
 
         try:
             trails = resort_node.select_one("li:nth-child(2) .value").get_text(strip=True)
-            num_trails = int(trails)
+            if trails.strip() == '- -':
+                logger.debug('No trail data for resort ID %s (value: "- -")', _id)
+            else:
+                num_trails = int(trails)
         except KeyError:
             logger.warning('Could not get trails for resort ID: %s', _id)
         except ValueError:
@@ -165,7 +172,10 @@ def parse_our_resorts_page(page_html: str) -> dict:
 
         try:
             lifts = resort_node.select_one("li:nth-child(3) .value").get_text(strip=True)
-            num_lifts = int(lifts)
+            if lifts.strip() == '- -':
+                logger.debug('No lift data for resort ID %s (value: "- -")', _id)
+            else:
+                num_lifts = int(lifts)
         except KeyError:
             logger.warning('Could not get lifts for resort ID: %s', _id)
         except ValueError:
@@ -400,6 +410,8 @@ def main() -> None:
     # 2. Iterate over all resorts and retrieve resort details
     for _id, resort in resorts.items():
         cache_and_parse_resort(_id, resort["href"], read_mode=args.read_mode)
+        if args.read_mode == 'live':
+            time.sleep(0.5)
 
 
 if __name__ == '__main__':
