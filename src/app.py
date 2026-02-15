@@ -280,6 +280,13 @@ resorts['blackout_has_display'] = resorts['blackout_count'].apply(
     lambda c: 'Yes' if c and int(c) > 0 else 'No'
 )
 
+if 'pr_total_tt' not in resorts.columns:
+    resorts['pr_total_tt'] = '---'
+if 'pr_total' in resorts.columns:
+    resorts['has_peak_rankings'] = resorts['pr_total'].notnull()
+else:
+    resorts['has_peak_rankings'] = False
+
 if 'reservation_status' not in resorts.columns:
     resorts['reservation_status'] = 'Not Required'
 resorts['reservation_status'] = resorts['reservation_status'].replace('', 'Not Required')
@@ -492,6 +499,67 @@ selected_presence = [option for option in blackout_presence]
 has_blackout_selected = 'Yes' in selected_presence
 no_blackout_selected = 'No' in selected_presence
 
+has_peak_rankings_filter = st.sidebar.segmented_control(
+    key='has_peak_rankings',
+    label=':trophy: Has Peak Rankings Data',
+    options=['Yes', 'No'],
+    default=['Yes', 'No'],
+    selection_mode='multi',
+)
+has_pr_yes_selected = 'Yes' in has_peak_rankings_filter
+has_pr_no_selected = 'No' in has_peak_rankings_filter
+
+with st.sidebar.expander(':bar_chart: Peak Rankings Filters', expanded=False):
+    pr_score_min, pr_score_max = st.slider(
+        'Total Score',
+        0,
+        100,
+        (0, 100),
+        key='pr_total_slider',
+    )
+    pr_score_filters = {}
+    for label, col in [
+        ('Snow', 'pr_snow'),
+        ('Resiliency', 'pr_resiliency'),
+        ('Size', 'pr_size'),
+        ('Terrain Diversity', 'pr_terrain_diversity'),
+        ('Challenge', 'pr_challenge'),
+        ('Lifts', 'pr_lifts'),
+        ('Crowd Flow', 'pr_crowd_flow'),
+        ('Facilities', 'pr_facilities'),
+        ('Navigation', 'pr_navigation'),
+        ('Mountain Aesthetic', 'pr_mountain_aesthetic'),
+    ]:
+        lo, hi = st.slider(label, 0, 10, (0, 10), key=f'{col}_slider')
+        pr_score_filters[col] = (lo, hi)
+
+    pr_lodging_options = ['yes', 'limited', 'no']
+    pr_lodging_selected = st.multiselect(
+        'Lodging', pr_lodging_options, default=pr_lodging_options, key='pr_lodging_filter'
+    )
+    pr_apres_options = ['extensive', 'moderate', 'limited']
+    pr_apres_selected = st.multiselect(
+        'Apres Ski', pr_apres_options, default=pr_apres_options, key='pr_apres_filter'
+    )
+    pr_access_options = ['good', 'acceptable', 'fair', 'poor']
+    pr_access_selected = st.multiselect(
+        'Access Road', pr_access_options, default=pr_access_options, key='pr_access_filter'
+    )
+    pr_ability_low_options = ['beginner', 'intermediate', 'advanced']
+    pr_ability_low_selected = st.multiselect(
+        'Ability Range Low',
+        pr_ability_low_options,
+        default=pr_ability_low_options,
+        key='pr_ability_low_filter',
+    )
+    pr_ability_high_options = ['beginner', 'intermediate', 'advanced', 'expert', 'extreme']
+    pr_ability_high_selected = st.multiselect(
+        'Ability Range High',
+        pr_ability_high_options,
+        default=pr_ability_high_options,
+        key='pr_ability_high_filter',
+    )
+
 filter_blackout_date = st.sidebar.checkbox(
     'Filter by date range',
     value=False,
@@ -567,6 +635,50 @@ filtered_data = resorts[
         (not filter_blackout_date_active)
         | (resorts.blackout_dates_list.apply(lambda dates: range_dates.isdisjoint(dates)))
     )
+    & (
+        (has_pr_yes_selected and has_pr_no_selected)
+        | (has_pr_yes_selected and resorts.has_peak_rankings)
+        | (has_pr_no_selected and ~resorts.has_peak_rankings)
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | (resorts.pr_total.between(pr_score_min, pr_score_max) | resorts.pr_total.isnull())
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | pd.concat(
+            [
+                resorts[col].between(lo, hi) | resorts[col].isnull()
+                for col, (lo, hi) in pr_score_filters.items()
+            ],
+            axis=1,
+        ).all(axis=1)
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | resorts.pr_lodging.isin(pr_lodging_selected)
+        | resorts.pr_lodging.isnull()
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | resorts.pr_apres_ski.isin(pr_apres_selected)
+        | resorts.pr_apres_ski.isnull()
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | resorts.pr_access_road.isin(pr_access_selected)
+        | resorts.pr_access_road.isnull()
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | resorts.pr_ability_low.isin(pr_ability_low_selected)
+        | resorts.pr_ability_low.isnull()
+    )
+    & (
+        ~resorts.has_peak_rankings
+        | resorts.pr_ability_high.isin(pr_ability_high_selected)
+        | resorts.pr_ability_high.isnull()
+    )
 ].sort_values('radius', ascending=False)
 
 ##### Main Page Content #####
@@ -601,6 +713,27 @@ col_names_map = {
     'reservation_status': 'Reservation Status',
     'reservation_url': 'Reservation Page',
     'blackout_dates_display': 'Blackout Dates',
+    'pr_total': 'Peak Score',
+    'pr_overall_rank': 'Peak Rank',
+    'pr_regional_rank': 'Peak Regional Rank',
+    'pr_region': 'Peak Region',
+    'pr_snow': 'PR Snow',
+    'pr_resiliency': 'PR Resiliency',
+    'pr_size': 'PR Size',
+    'pr_terrain_diversity': 'PR Terrain Diversity',
+    'pr_challenge': 'PR Challenge',
+    'pr_lifts': 'PR Lifts',
+    'pr_crowd_flow': 'PR Crowd Flow',
+    'pr_facilities': 'PR Facilities',
+    'pr_navigation': 'PR Navigation',
+    'pr_mountain_aesthetic': 'PR Mountain Aesthetic',
+    'pr_lodging': 'PR Lodging',
+    'pr_apres_ski': 'PR Apres Ski',
+    'pr_access_road': 'PR Access Road',
+    'pr_ability_low': 'PR Ability Low',
+    'pr_ability_high': 'PR Ability High',
+    'pr_nearest_cities': 'PR Nearest Cities',
+    'pr_pass_affiliation': 'PR Pass Affiliation',
 }
 display_cols = [
     'Resort',
@@ -624,6 +757,27 @@ display_cols = [
     'Dog Friendly',
     'Snowshoeing',
     'Allied',
+    'Peak Score',
+    'Peak Rank',
+    'Peak Regional Rank',
+    'Peak Region',
+    'PR Snow',
+    'PR Resiliency',
+    'PR Size',
+    'PR Terrain Diversity',
+    'PR Challenge',
+    'PR Lifts',
+    'PR Crowd Flow',
+    'PR Facilities',
+    'PR Navigation',
+    'PR Mountain Aesthetic',
+    'PR Lodging',
+    'PR Apres Ski',
+    'PR Access Road',
+    'PR Ability Low',
+    'PR Ability High',
+    'PR Nearest Cities',
+    'PR Pass Affiliation',
     'Blackout Dates',
     'Reservation Status',
     'Reservation Page',
@@ -666,6 +820,7 @@ tooltip = {
         <b>Indy Allied:</b> {is_allied_display}<br>
         <b>Reservations:</b> {reservation_status}<br>
         <b>Has Blackout Dates:</b> {blackout_has_display}<br>
+        <b>Peak Ranking:</b> {pr_total_tt}<br>
         <!-- <b>Indy Resort Page:</b> {indy_page}<br> -->
         <!-- <b>Website:</b> {website}<br> -->
     """,
@@ -949,6 +1104,72 @@ def get_resort_difficulty_markdown(resort: dict) -> str:
     return ''
 
 
+def get_resort_peak_rankings_markdown(resort: dict) -> str:
+    """Render Peak Rankings scores and extras in the modal."""
+    total = resort.get('pr_total')
+    if pd.isnull(total):
+        st.markdown('_No Peak Rankings data available for this resort._')
+        return ''
+
+    overall_rank = resort.get('pr_overall_rank')
+    regional_rank = resort.get('pr_regional_rank')
+    region = resort.get('pr_region', '')
+
+    rank_str = f"#{int(overall_rank)}" if pd.notnull(overall_rank) else '--'
+    regional_str = (
+        f"#{int(regional_rank)} ({region})" if pd.notnull(regional_rank) and region else '--'
+    )
+
+    st.markdown(
+        f"""
+        **Total Score:** {int(total)} | **Overall Rank:** {rank_str} | **Regional Rank:** {regional_str}
+    """
+    )
+
+    # Category scores in columns
+    score_fields = [
+        ('Snow', 'pr_snow'),
+        ('Resiliency', 'pr_resiliency'),
+        ('Size', 'pr_size'),
+        ('Terrain Diversity', 'pr_terrain_diversity'),
+        ('Challenge', 'pr_challenge'),
+        ('Lifts', 'pr_lifts'),
+        ('Crowd Flow', 'pr_crowd_flow'),
+        ('Facilities', 'pr_facilities'),
+        ('Navigation', 'pr_navigation'),
+        ('Mountain Aesthetic', 'pr_mountain_aesthetic'),
+    ]
+    col1, col2 = st.columns(2)
+    for i, (label, key) in enumerate(score_fields):
+        val = resort.get(key)
+        display_val = int(val) if pd.notnull(val) else '--'
+        target = col1 if i % 2 == 0 else col2
+        target.markdown(f'**{label}:** {display_val}/10')
+
+    # Extras
+    extras = []
+    for label, key in [
+        ('Lodging', 'pr_lodging'),
+        ('Apres Ski', 'pr_apres_ski'),
+        ('Access Road', 'pr_access_road'),
+        ('Nearest Cities', 'pr_nearest_cities'),
+        ('Pass Affiliation', 'pr_pass_affiliation'),
+    ]:
+        val = resort.get(key)
+        if pd.notnull(val) and str(val).strip():
+            extras.append(f'**{label}:** {val}')
+
+    ability_low = resort.get('pr_ability_low')
+    ability_high = resort.get('pr_ability_high')
+    if pd.notnull(ability_low) and pd.notnull(ability_high):
+        extras.append(f'**Ability Range:** {ability_low} – {ability_high}')
+
+    if extras:
+        st.markdown('  \n'.join(extras))
+
+    return ''
+
+
 @st.dialog('Resort Details', width='large')
 def display_resort_modal():
     """
@@ -969,6 +1190,8 @@ def display_resort_modal():
         st.markdown(get_resort_snowfall_markdown(resort))
     with st.expander('Difficulty', expanded=False, icon='😰'):
         st.markdown(get_resort_difficulty_markdown(resort))
+    with st.expander('Peak Rankings', expanded=False, icon='🏆'):
+        st.markdown(get_resort_peak_rankings_markdown(resort))
 
 
 if st.session_state.selected_resort:
