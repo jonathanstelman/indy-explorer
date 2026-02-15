@@ -173,3 +173,10 @@ poetry.lock
 # Page Cache and Data Backups
 cache/
 backups/
+
+# AI coding assistants
+CLAUDE.md
+.claude/
+.cursor/
+.aider*
+.copilot/
