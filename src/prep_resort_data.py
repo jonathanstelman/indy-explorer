@@ -16,6 +16,12 @@ from blackout import (
     merge_blackout_into_resorts,
 )
 from reservations import build_reservation_map, merge_reservations_into_resorts
+from peak_rankings import (
+    fetch_peak_rankings_csv,
+    build_peak_rankings_map,
+    merge_peak_rankings_into_resorts,
+    PR_COLUMNS,
+)
 from utils import get_normalized_location, generate_resort_locations_csv
 
 
@@ -216,6 +222,28 @@ cols = [
     'blackout_additional_dates',
     'blackout_all_dates',
     'blackout_count',
+    'pr_snow',
+    'pr_resiliency',
+    'pr_size',
+    'pr_terrain_diversity',
+    'pr_challenge',
+    'pr_lifts',
+    'pr_crowd_flow',
+    'pr_facilities',
+    'pr_navigation',
+    'pr_mountain_aesthetic',
+    'pr_total',
+    'pr_overall_rank',
+    'pr_regional_rank',
+    'pr_region',
+    'pr_lodging',
+    'pr_apres_ski',
+    'pr_access_road',
+    'pr_ability_low',
+    'pr_ability_high',
+    'pr_nearest_cities',
+    'pr_pass_affiliation',
+    'pr_total_tt',
 ]
 
 # Merge blackout data (fail fast if anything goes wrong)
@@ -250,6 +278,27 @@ else:
     logger.warning('Reservations data missing at %s. Using defaults.', reservations_path)
     resorts['reservation_status'] = 'Not Required'
     resorts['reservation_url'] = ''
+
+logger.info('Processing Peak Rankings...')
+peak_rankings_path = 'data/peak_rankings_raw.csv'
+if os.path.exists(peak_rankings_path):
+    peak_rankings_df = pd.read_csv(peak_rankings_path)
+    peak_rankings_map = build_peak_rankings_map(peak_rankings_df)
+    resorts = merge_peak_rankings_into_resorts(resorts, peak_rankings_map)
+else:
+    logger.warning('Peak Rankings data missing at %s. Using defaults.', peak_rankings_path)
+    for col in PR_COLUMNS:
+        resorts[col] = np.nan
+
+# Peak Rankings tooltip field
+resorts['pr_total_tt'] = resorts.apply(
+    lambda r: (
+        f"Score: {int(r.pr_total)} (Rank #{int(r.pr_overall_rank)})"
+        if pd.notnull(r.get('pr_total')) and pd.notnull(r.get('pr_overall_rank'))
+        else '---'
+    ),
+    axis=1,
+)
 
 resorts = resorts[cols]
 resorts.to_csv('data/resorts.csv', index_label='index')
