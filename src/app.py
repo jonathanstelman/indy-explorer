@@ -2,9 +2,9 @@
 Streamlit app to display Indy Pass resorts in an interactive map and table
 """
 
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 import json
-from typing import List, Optional
+from typing import List
 import importlib
 import os
 
@@ -13,6 +13,7 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 import streamlit_antd_components as sac
+from streamlit_nej_datepicker import datepicker_component, Config
 
 import map_config
 
@@ -129,18 +130,6 @@ def parse_blackout_dates(value: str) -> List[str]:
         return json.loads(value) if isinstance(value, str) else value
     except json.JSONDecodeError:
         return []
-
-
-def date_range_strings(start: date, end: date) -> List[str]:
-    days = (end - start).days
-    return [(start + timedelta(days=offset)).strftime('%Y-%m-%d') for offset in range(days + 1)]
-
-
-def parse_iso_date(value: str) -> Optional[date]:
-    try:
-        return datetime.strptime(value, '%Y-%m-%d').date()
-    except (TypeError, ValueError):
-        return None
 
 
 def create_elevation_plot(base, summit, vertical):
@@ -306,8 +295,8 @@ all_blackout_dates = sorted(
     {d for dates in resorts['blackout_dates_list'] for d in dates if isinstance(d, str)}
 )
 if all_blackout_dates:
-    min_blackout_date = parse_iso_date(all_blackout_dates[0]) or date.today()
-    max_blackout_date = parse_iso_date(all_blackout_dates[-1]) or date.today()
+    min_blackout_date = datetime.strptime(all_blackout_dates[0], '%Y-%m-%d').date()
+    max_blackout_date = datetime.strptime(all_blackout_dates[-1], '%Y-%m-%d').date()
 else:
     min_blackout_date = date.today()
     max_blackout_date = date.today()
@@ -326,202 +315,243 @@ st.title("Indy Explorer")
 # Sidebar filters
 st.sidebar.header("Filter Resorts")
 
+if st.sidebar.button('Reset all filters', use_container_width=False):
+    st.session_state['filter_reset_version'] = st.session_state.get('filter_reset_version', 0) + 1
+    st.rerun()
+filter_reset_version = st.session_state.get('filter_reset_version', 0)
+
+
+def filter_key(base: str) -> str:
+    return f'{base}_{filter_reset_version}'
+
+
 search_query = st.sidebar.text_input(
     label='Search for a resort:',
     help='Enter the name of a resort, city, state/region, or country.',
+    key=filter_key('search_query'),
 )
 
-if 'region' in resorts.columns:
-    available_regions = sorted({r for r in resorts.region.dropna().unique() if r})
-    ordered_regions = [r for r in REGION_ORDER if r in available_regions]
-    ordered_regions.extend(sorted(set(available_regions) - set(REGION_ORDER)))
-    region_items = [{'label': r, 'value': r} for r in ordered_regions]
-    with st.sidebar:
+with st.sidebar.expander(':round_pushpin: Location', expanded=True):
+
+    if 'region' in resorts.columns:
+        available_regions = sorted({r for r in resorts.region.dropna().unique() if r})
+        ordered_regions = [r for r in REGION_ORDER if r in available_regions]
+        ordered_regions.extend(sorted(set(available_regions) - set(REGION_ORDER)))
+        region_items = [{'label': r, 'value': r} for r in ordered_regions]
         region_selection = sac.cascader(
             items=region_items,
             label="Region",
             multiple=True,
             search=True,
             clear=True,
+            key=filter_key('region_selection'),
         )
-    if region_selection:
-        if isinstance(region_selection[0], list):
-            selected_regions = [path[-1] for path in region_selection]
+        if region_selection:
+            if isinstance(region_selection[0], list):
+                selected_regions = [path[-1] for path in region_selection]
+            else:
+                selected_regions = region_selection
         else:
-            selected_regions = region_selection
+            selected_regions = []
+        region_filter = True if not selected_regions else resorts.region.isin(selected_regions)
+        region_subset = (
+            resorts if not selected_regions else resorts[resorts.region.isin(selected_regions)]
+        )
     else:
         selected_regions = []
-    region_filter = True if not selected_regions else resorts.region.isin(selected_regions)
-    region_subset = (
-        resorts if not selected_regions else resorts[resorts.region.isin(selected_regions)]
-    )
-else:
-    selected_regions = []
-    region_filter = True
-    region_subset = resorts
-country_options = sorted(region_subset.country.dropna().unique())
-country_items = [{'label': c, 'value': c} for c in country_options]
-with st.sidebar:
+        region_filter = True
+        region_subset = resorts
+    country_options = sorted(region_subset.country.dropna().unique())
+    country_items = [{'label': c, 'value': c} for c in country_options]
     country_selection = sac.cascader(
         items=country_items,
         label="Country",
         multiple=True,
         search=True,
         clear=True,
+        key=filter_key('country_selection'),
     )
-if country_selection:
-    if isinstance(country_selection[0], list):
-        selected_countries = [path[-1] for path in country_selection]
+    if country_selection:
+        if isinstance(country_selection[0], list):
+            selected_countries = [path[-1] for path in country_selection]
+        else:
+            selected_countries = country_selection
     else:
-        selected_countries = country_selection
-else:
-    selected_countries = country_options
-if selected_countries:
-    selected_countries = [c for c in selected_countries if c in country_options]
-    country_subset = region_subset[region_subset.country.isin(selected_countries)]
-else:
-    country_subset = region_subset
-states_regions = country_subset['state'].dropna().unique()
-state_region_options = sorted(states_regions)
-state_items = [{'label': s, 'value': s} for s in state_region_options]
-with st.sidebar:
+        selected_countries = country_options
+    if selected_countries:
+        selected_countries = [c for c in selected_countries if c in country_options]
+        country_subset = region_subset[region_subset.country.isin(selected_countries)]
+    else:
+        country_subset = region_subset
+    states_regions = country_subset['state'].dropna().unique()
+    state_region_options = sorted(states_regions)
+    state_items = [{'label': s, 'value': s} for s in state_region_options]
     state_selection = sac.cascader(
         items=state_items,
         label="State / Territory",
         multiple=True,
         search=True,
         clear=True,
+        key=filter_key('state_selection'),
     )
-if state_selection:
-    if isinstance(state_selection[0], list):
-        selected_states_regions = [path[-1] for path in state_selection]
+    if state_selection:
+        if isinstance(state_selection[0], list):
+            selected_states_regions = [path[-1] for path in state_selection]
+        else:
+            selected_states_regions = state_selection
+        state_selection_active = True
     else:
-        selected_states_regions = state_selection
-    state_selection_active = True
-else:
-    selected_states_regions = []
-    state_selection_active = False
-if selected_states_regions:
-    selected_states_regions = [s for s in selected_states_regions if s in state_region_options]
-if not selected_countries:
-    selected_countries = country_options
-if not selected_states_regions:
-    selected_states_regions = state_region_options
+        selected_states_regions = []
+        state_selection_active = False
+    if selected_states_regions:
+        selected_states_regions = [s for s in selected_states_regions if s in state_region_options]
+    if not selected_countries:
+        selected_countries = country_options
+    if not selected_states_regions:
+        selected_states_regions = state_region_options
 
-min_vertical, max_vertical = st.sidebar.slider(
-    ":mountain: Vertical (ft)",
-    0,
-    int(resorts.vertical.max()),
-    (0, int(resorts.vertical.max())),
-)
-min_trails, max_trails = st.sidebar.slider(
-    ":wavy_dash: Number of Trails",
-    0,
-    int(resorts.num_trails.max()),
-    (0, int(resorts.num_trails.max())),
-)
-min_trail_length, max_trail_length = st.sidebar.slider(
-    ":straight_ruler: Trail Length (mi)",
-    0,
-    int(resorts.trail_length_mi.max()),
-    (0, int(resorts.trail_length_mi.max())),
-)
-min_lifts, max_lifts = st.sidebar.slider(
-    ":aerial_tramway: Number of Lifts",
-    0,
-    int(resorts.num_lifts.max()),
-    (0, int(resorts.num_lifts.max())),
-)
+with st.sidebar.expander(':control_knobs: Resort Features', expanded=True):
+    st.markdown("Adjust the sliders below to filter resorts based on their features.")
+    min_vertical, max_vertical = st.slider(
+        ":mountain: Vertical (ft)",
+        0,
+        int(resorts.vertical.max()),
+        (0, int(resorts.vertical.max())),
+        key=filter_key('vertical_slider'),
+    )
+    min_trails, max_trails = st.slider(
+        ":wavy_dash: Number of Trails",
+        0,
+        int(resorts.num_trails.max()),
+        (0, int(resorts.num_trails.max())),
+        key=filter_key('trails_slider'),
+    )
+    min_trail_length, max_trail_length = st.slider(
+        ":straight_ruler: Trail Length (mi)",
+        0,
+        int(resorts.trail_length_mi.max()),
+        (0, int(resorts.trail_length_mi.max())),
+        key=filter_key('trail_length_slider'),
+    )
+    min_lifts, max_lifts = st.slider(
+        ":aerial_tramway: Number of Lifts",
+        0,
+        int(resorts.num_lifts.max()),
+        (0, int(resorts.num_lifts.max())),
+        key=filter_key('lifts_slider'),
+    )
 
+    boolean_map = {'Yes': True, 'No': False}
+    has_alpine = st.segmented_control(
+        key=filter_key('alpine'),
+        label=':mountain_snow: Alpine',
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    has_cross_country = st.segmented_control(
+        key=filter_key('xc'),
+        label=':turtle: Cross-Country',
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    has_night_skiing = st.segmented_control(
+        key=filter_key('night'),
+        label=':last_quarter_moon_with_face: Nights',
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    has_terrain_parks = st.segmented_control(
+        key=filter_key('park'),
+        label=':snowboarder: Terrain Parks',
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    is_dog_friendly = st.segmented_control(
+        key=filter_key('dog'),
+        label=":dog: Dog Friendly",
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    has_snowshoeing = st.segmented_control(
+        key=filter_key('snowshoe'),
+        label=":hiking_boot: Snowshoeing",
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    is_allied = st.segmented_control(
+        key=filter_key('allied'),
+        label=':handshake: Allied Resorts',
+        options=boolean_map.keys(),
+        default=boolean_map.keys(),
+        selection_mode="multi",
+    )
+    reservation_required = st.segmented_control(
+        key=filter_key('reservation_required'),
+        label=':ticket: Reservations Required',
+        options=['Yes', 'No'],
+        default=['Yes', 'No'],
+        selection_mode='multi',
+    )
+    reservation_required_selected = 'Yes' in reservation_required
+    reservation_not_required_selected = 'No' in reservation_required
 
-boolean_map = {'Yes': True, 'No': False}
-has_alpine = st.sidebar.segmented_control(
-    key='alpine',
-    label=':mountain_snow: Alpine',
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-has_cross_country = st.sidebar.segmented_control(
-    key='xc',
-    label=':turtle: Cross-Country',
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-has_night_skiing = st.sidebar.segmented_control(
-    key='night',
-    label=':last_quarter_moon_with_face: Nights',
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-has_terrain_parks = st.sidebar.segmented_control(
-    key='park',
-    label=':snowboarder: Terrain Parks',
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-is_dog_friendly = st.sidebar.segmented_control(
-    key='dog',
-    label=":dog: Dog Friendly",
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-has_snowshoeing = st.sidebar.segmented_control(
-    key='snowshoe',
-    label=":hiking_boot: Snowshoeing",
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-is_allied = st.sidebar.segmented_control(
-    key='allied',
-    label=':handshake: Allied Resorts',
-    options=boolean_map.keys(),
-    default=boolean_map.keys(),
-    selection_mode="multi",
-)
-reservation_required = st.sidebar.segmented_control(
-    key='reservation_required',
-    label=':ticket: Reservations Required',
-    options=['Yes', 'No'],
-    default=['Yes', 'No'],
-    selection_mode='multi',
-)
-reservation_required_selected = 'Yes' in reservation_required
-reservation_not_required_selected = 'No' in reservation_required
+with st.sidebar.expander(':spiral_calendar: Blackout Dates', expanded=False):
+    blackout_presence = st.segmented_control(
+        key=filter_key('blackout_presence'),
+        label=':heavy_multiplication_x: Blackout Dates',
+        options=['Yes', 'No'],
+        default=['Yes', 'No'],
+        selection_mode='multi',
+    )
+    selected_presence = [option for option in blackout_presence]
+    has_blackout_selected = 'Yes' in selected_presence
+    no_blackout_selected = 'No' in selected_presence
 
-blackout_presence = st.sidebar.segmented_control(
-    key='blackout_presence',
-    label=':heavy_multiplication_x: Blackout Dates',
-    options=['Yes', 'No'],
-    default=['Yes', 'No'],
-    selection_mode='multi',
-)
-selected_presence = [option for option in blackout_presence]
-has_blackout_selected = 'Yes' in selected_presence
-no_blackout_selected = 'No' in selected_presence
+    st.caption(
+        'Select dates you plan to ski. Resorts with blackout dates on your selected days will be hidden.'
+    )
 
-has_peak_rankings_filter = st.sidebar.segmented_control(
-    key='has_peak_rankings',
-    label=':trophy: Has Peak Rankings Data',
-    options=['Yes', 'No'],
-    default=['Yes', 'No'],
-    selection_mode='multi',
-)
-has_pr_yes_selected = 'Yes' in has_peak_rankings_filter
-has_pr_no_selected = 'No' in has_peak_rankings_filter
+    blackout_picker_config = Config(
+        selection_mode='multiple',
+        minimum_date=min_blackout_date,
+        maximum_date=max_blackout_date,
+        should_highlight_weekends=False,
+        always_open=True,
+        color_primary=rgba_to_hex(COLORS['red']),
+        color_primary_light=rgba_to_hex(COLORS['pale-grey']),
+    )
+    selected_blackout_raw = datepicker_component(
+        config=blackout_picker_config,
+        key=filter_key('blackout_picker'),
+    )
+    if selected_blackout_raw and isinstance(selected_blackout_raw, list):
+        selected_dates = {d.strftime('%Y-%m-%d') for d in selected_blackout_raw}
+    else:
+        selected_dates = set()
 
-with st.sidebar.expander(':bar_chart: Peak Rankings Filters', expanded=False):
+with st.sidebar.expander(':trophy: Peak Rankings', expanded=False):
+    has_peak_rankings_filter = st.segmented_control(
+        key=filter_key('has_peak_rankings'),
+        label=':trophy: Has Peak Rankings Data',
+        options=['Yes', 'No'],
+        default=['Yes', 'No'],
+        selection_mode='multi',
+    )
+    has_pr_yes_selected = 'Yes' in has_peak_rankings_filter
+    has_pr_no_selected = 'No' in has_peak_rankings_filter
+
     pr_score_min, pr_score_max = st.slider(
         'Total Score',
         0,
         100,
         (0, 100),
-        key='pr_total_slider',
+        key=filter_key('pr_total_slider'),
     )
     pr_score_filters = {}
     for label, col in [
@@ -536,65 +566,44 @@ with st.sidebar.expander(':bar_chart: Peak Rankings Filters', expanded=False):
         ('Navigation', 'pr_navigation'),
         ('Mountain Aesthetic', 'pr_mountain_aesthetic'),
     ]:
-        lo, hi = st.slider(label, 0, 10, (0, 10), key=f'{col}_slider')
+        lo, hi = st.slider(label, 0, 10, (0, 10), key=filter_key(f'{col}_slider'))
         pr_score_filters[col] = (lo, hi)
 
     pr_lodging_options = ['yes', 'limited', 'no']
     pr_lodging_selected = st.multiselect(
-        'Lodging', pr_lodging_options, default=pr_lodging_options, key='pr_lodging_filter'
+        'Lodging',
+        pr_lodging_options,
+        default=pr_lodging_options,
+        key=filter_key('pr_lodging_filter'),
     )
     pr_apres_options = ['extensive', 'moderate', 'limited']
     pr_apres_selected = st.multiselect(
-        'Apres Ski', pr_apres_options, default=pr_apres_options, key='pr_apres_filter'
+        'Apres Ski',
+        pr_apres_options,
+        default=pr_apres_options,
+        key=filter_key('pr_apres_filter'),
     )
     pr_access_options = ['good', 'acceptable', 'fair', 'poor']
     pr_access_selected = st.multiselect(
-        'Access Road', pr_access_options, default=pr_access_options, key='pr_access_filter'
+        'Access Road',
+        pr_access_options,
+        default=pr_access_options,
+        key=filter_key('pr_access_filter'),
     )
     pr_ability_low_options = ['beginner', 'intermediate', 'advanced']
     pr_ability_low_selected = st.multiselect(
         'Ability Range Low',
         pr_ability_low_options,
         default=pr_ability_low_options,
-        key='pr_ability_low_filter',
+        key=filter_key('pr_ability_low_filter'),
     )
     pr_ability_high_options = ['beginner', 'intermediate', 'advanced', 'expert', 'extreme']
     pr_ability_high_selected = st.multiselect(
         'Ability Range High',
         pr_ability_high_options,
         default=pr_ability_high_options,
-        key='pr_ability_high_filter',
+        key=filter_key('pr_ability_high_filter'),
     )
-
-filter_blackout_date = st.sidebar.checkbox(
-    'Filter by date range',
-    value=False,
-    help=(
-        'When enabled, only resorts with NO blackout dates in the selected range are '
-        'shown. This filters out any resort blacked out on ANY day in the range.'
-    ),
-)
-today = date.today()
-default_start = max(min_blackout_date, min(today, max_blackout_date))
-blackout_date_range = st.sidebar.date_input(
-    'Date range',
-    value=(default_start, default_start),
-    min_value=min_blackout_date,
-    max_value=max_blackout_date,
-    disabled=not filter_blackout_date,
-    help='Select a start and end date for the blackout filter.',
-)
-
-filter_blackout_date_active = (
-    filter_blackout_date
-    and isinstance(blackout_date_range, tuple)
-    and len(blackout_date_range) == 2
-)
-if filter_blackout_date_active:
-    start_date, end_date = blackout_date_range
-    range_dates = set(date_range_strings(start_date, end_date))
-else:
-    range_dates = set()
 
 
 # Apply filters
@@ -638,8 +647,8 @@ filtered_data = resorts[
         )
     )
     & (
-        (not filter_blackout_date_active)
-        | (resorts.blackout_dates_list.apply(lambda dates: range_dates.isdisjoint(dates)))
+        (len(selected_dates) == 0)
+        | (resorts.blackout_dates_list.apply(lambda dates: selected_dates.isdisjoint(dates)))
     )
     & (
         (has_pr_yes_selected and has_pr_no_selected)
