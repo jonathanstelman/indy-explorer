@@ -1535,7 +1535,7 @@
             "latitude": 41.30625,
             "longitude": -74.6733403
         },
-        "location_name": "Millford, NJ, USA",
+        "location_name": "Sussex, NJ, USA",
         "vertical": 400,
         "is_nordic": true,
         "is_alpine_xc": false,
@@ -4439,7 +4439,7 @@
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 29,
+        "num_trails": 27,
         "num_lifts": 2,
         "is_open_nights": false,
         "has_terrain_parks": true,
