@@ -43,7 +43,7 @@ REGION_ORDER = [
     'Canada',
     'Europe',
     'Japan',
-    'South America'
+    'South America',
 ]
 REGION_ZOOM = {
     'Midwest': 4.8,
