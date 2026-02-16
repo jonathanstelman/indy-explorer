@@ -35,14 +35,15 @@ MIN_POINT_RADIUS = 5_000
 MAX_POINT_RADIUS = 50_000
 MAP_HEIGHT = 800
 REGION_ORDER = [
-    'Midwest',
-    'East',
-    'Japan',
-    'Mid-Atlantic',
-    'Europe',
-    'Canada',
-    'West',
     'Rockies',
+    'West',
+    'East',
+    'Midwest',
+    'Mid-Atlantic',
+    'Canada',
+    'Europe',
+    'Japan',
+    'South America',
 ]
 REGION_ZOOM = {
     'Midwest': 4.8,
