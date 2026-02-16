@@ -275,6 +275,28 @@ resorts['blackout_has_display'] = resorts['blackout_count'].apply(
     lambda c: 'Yes' if c and int(c) > 0 else 'No'
 )
 
+# LTT display helpers
+if 'ltt_blackout_all_dates' in resorts.columns:
+    resorts['ltt_dates_list'] = resorts['ltt_blackout_all_dates'].apply(parse_blackout_dates)
+else:
+    resorts['ltt_dates_list'] = [[] for _ in range(len(resorts))]
+if 'ltt_blackout_count' not in resorts.columns:
+    resorts['ltt_blackout_count'] = 0
+if 'ltt_available' not in resorts.columns:
+    resorts['ltt_available'] = False
+else:
+    resorts['ltt_available'] = resorts['ltt_available'].fillna(False).astype(bool)
+
+all_ltt_dates = sorted(
+    {d for dates in resorts['ltt_dates_list'] for d in dates if isinstance(d, str)}
+)
+if all_ltt_dates:
+    min_ltt_date = datetime.strptime(all_ltt_dates[0], '%Y-%m-%d').date()
+    max_ltt_date = datetime.strptime(all_ltt_dates[-1], '%Y-%m-%d').date()
+else:
+    min_ltt_date = date.today()
+    max_ltt_date = date.today()
+
 if 'pr_total_tt' not in resorts.columns:
     resorts['pr_total_tt'] = '---'
 if 'pr_total' in resorts.columns:
@@ -535,6 +557,39 @@ with st.sidebar.expander(':spiral_calendar: Blackout Dates', expanded=False):
     else:
         selected_dates = set()
 
+with st.sidebar.expander(':ski: LTT Pass', expanded=False):
+    ltt_availability = st.segmented_control(
+        key=filter_key('ltt_availability'),
+        label=':ski: LTT Available',
+        options=['Yes', 'No'],
+        default=['Yes', 'No'],
+        selection_mode='multi',
+    )
+    ltt_available_selected = 'Yes' in ltt_availability
+    ltt_not_available_selected = 'No' in ltt_availability
+
+    st.caption(
+        'Select dates you plan to ski. Resorts with LTT blackout dates on your selected days will be hidden.'
+    )
+
+    ltt_picker_config = Config(
+        selection_mode='multiple',
+        minimum_date=min_ltt_date,
+        maximum_date=max_ltt_date,
+        should_highlight_weekends=False,
+        always_open=True,
+        color_primary=rgba_to_hex(COLORS['red']),
+        color_primary_light=rgba_to_hex(COLORS['pale-grey']),
+    )
+    selected_ltt_raw = datepicker_component(
+        config=ltt_picker_config,
+        key=filter_key('ltt_picker'),
+    )
+    if selected_ltt_raw and isinstance(selected_ltt_raw, list):
+        selected_ltt_dates = {d.strftime('%Y-%m-%d') for d in selected_ltt_raw}
+    else:
+        selected_ltt_dates = set()
+
 with st.sidebar.expander(':trophy: Peak Rankings', expanded=False):
     has_peak_rankings_filter = st.segmented_control(
         key=filter_key('has_peak_rankings'),
@@ -649,6 +704,15 @@ filtered_data = resorts[
     & (
         (len(selected_dates) == 0)
         | (resorts.blackout_dates_list.apply(lambda dates: selected_dates.isdisjoint(dates)))
+    )
+    & (
+        (ltt_available_selected and ltt_not_available_selected)
+        | (ltt_available_selected and resorts.ltt_available)
+        | (ltt_not_available_selected and ~resorts.ltt_available)
+    )
+    & (
+        (len(selected_ltt_dates) == 0)
+        | (resorts.ltt_dates_list.apply(lambda dates: selected_ltt_dates.isdisjoint(dates)))
     )
     & (
         (has_pr_yes_selected and has_pr_no_selected)

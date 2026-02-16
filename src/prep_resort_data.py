@@ -15,6 +15,11 @@ from blackout import (
     parse_blackout_sheet,
     merge_blackout_into_resorts,
 )
+from ltt_blackout import (
+    get_ltt_dates_from_google_sheets,
+    parse_ltt_sheet,
+    merge_ltt_into_resorts,
+)
 from reservations import build_reservation_map, merge_reservations_into_resorts
 from peak_rankings import (
     fetch_peak_rankings_csv,
@@ -62,7 +67,7 @@ def nan_to_text(value, replace_text='---'):
         return value
 
 
-def main(refresh_blackout=False):
+def main(refresh_blackout=False, refresh_ltt=False):
     logger.info('Loading raw resort data...')
     # Get resort data from main page
     with open('data/resorts_raw.json', 'r', encoding='utf-8') as json_file:
@@ -201,6 +206,9 @@ def main(refresh_blackout=False):
         'blackout_additional_dates',
         'blackout_all_dates',
         'blackout_count',
+        'ltt_available',
+        'ltt_blackout_all_dates',
+        'ltt_blackout_count',
         'pr_snow',
         'pr_resiliency',
         'pr_size',
@@ -248,6 +256,26 @@ def main(refresh_blackout=False):
         logger.debug('Parsed blackout data for %d resorts.', len(blackout_map))
     resorts = merge_blackout_into_resorts(resorts, blackout_map)
 
+    logger.info('Processing LTT blackout dates...')
+    ltt_path = 'data/ltt_dates_raw.csv'
+    if refresh_ltt or not os.path.exists(ltt_path):
+        if refresh_ltt:
+            logger.info('Refreshing LTT dates from Google Sheets...')
+        else:
+            logger.info('%s not found. Fetching latest LTT dates...', ltt_path)
+        ltt_df = get_ltt_dates_from_google_sheets(read_mode='live', cache_path=ltt_path)
+        ltt_df.to_csv(ltt_path, index=False)
+    else:
+        logger.info('Loading LTT dates from %s...', ltt_path)
+        ltt_df = pd.read_csv(ltt_path)
+    logger.debug('Loaded %d LTT rows.', len(ltt_df))
+    ltt_map = parse_ltt_sheet(ltt_df)
+    if not ltt_map:
+        logger.warning('LTT map is empty. Check LTT sheet parsing.')
+    else:
+        logger.debug('Parsed LTT data for %d resorts.', len(ltt_map))
+    resorts = merge_ltt_into_resorts(resorts, ltt_map)
+
     logger.info('Processing reservations...')
     reservations_path = 'data/reservations_raw.json'
     if os.path.exists(reservations_path):
@@ -294,6 +322,11 @@ if __name__ == '__main__':
         help='Force re-download of blackout dates even if the CSV exists.',
     )
     parser.add_argument(
+        '--refresh-ltt',
+        action='store_true',
+        help='Force re-download of LTT blackout dates even if the CSV exists.',
+    )
+    parser.add_argument(
         '--log-level',
         default='INFO',
         help='Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).',
@@ -305,4 +338,4 @@ if __name__ == '__main__':
         raise ValueError(f'Invalid log level: {args.log_level}')
     logging.basicConfig(level=log_level, format='%(levelname)s: %(message)s')
 
-    main(refresh_blackout=args.refresh_blackout)
+    main(refresh_blackout=args.refresh_blackout, refresh_ltt=args.refresh_ltt)

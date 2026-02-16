@@ -123,6 +123,19 @@ def step_fetch_blackout_dates(full: bool) -> None:
     logger.info('Wrote %s (%d rows).', output_path, len(df))
 
 
+def step_fetch_ltt_dates(full: bool) -> None:
+    """
+    Fetch LTT blackout dates from Google Sheets. Always fetches fresh (no caching).
+    """
+    from ltt_blackout import get_ltt_dates_from_google_sheets
+
+    output_path = DATA_DIR / 'ltt_dates_raw.csv'
+    logger.info('Fetching LTT blackout dates from Google Sheets (always live)...')
+    df = get_ltt_dates_from_google_sheets(read_mode='live', cache_path=str(output_path))
+    df.to_csv(output_path, index=False)
+    logger.info('Wrote %s (%d rows).', output_path, len(df))
+
+
 def step_fetch_peak_rankings(full: bool) -> None:
     """
     Fetch Peak Rankings from Google Sheets. Always fetches fresh (no caching).
@@ -173,6 +186,7 @@ STEPS = [
     ('scrape_resorts', step_scrape_resorts, 'Scrape Indy Pass resort pages'),
     ('scrape_reservations', step_scrape_reservations, 'Scrape reservation requirements'),
     ('fetch_blackout_dates', step_fetch_blackout_dates, 'Fetch blackout dates from Google Sheets'),
+    ('fetch_ltt_dates', step_fetch_ltt_dates, 'Fetch LTT blackout dates from Google Sheets'),
     ('fetch_peak_rankings', step_fetch_peak_rankings, 'Fetch Peak Rankings from Google Sheets'),
     ('geocode', step_geocode, 'Geocode resort locations via Google Maps'),
     ('prep', step_prep, 'Merge all data into resorts.csv'),
