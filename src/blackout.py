@@ -338,7 +338,10 @@ def normalize_additional_dates(
             start, end = split_date_range(part)
             out.extend(get_all_dates_in_range(start, end))
         else:
-            converted = convert_date_string_format(part)
+            try:
+                converted = convert_date_string_format(part)
+            except (ValueError, IndexError):
+                converted = None
             if converted:
                 out.append(converted)
 

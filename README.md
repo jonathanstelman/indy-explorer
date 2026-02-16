@@ -6,6 +6,8 @@ Indy Explorer is a [Streamlit](https://streamlit.io/) app designed to help you n
 
 - **Resort Data Extraction**: Uses [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) to scrape data from the Indy Pass resort pages.
 - **Location Normalization**: Utilizes the [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding) to normalize location data.
+- **Blackout Date Filtering**: Filter resorts by blackout dates for both the standard Indy Pass and the Learn To Turn (LTT) pass.
+- **LTT Pass Support**: Filter for resorts that participate in the Learn To Turn program, with their own separate blackout date calendar.
 - **Peak Rankings Integration**: Includes resort quality scores from [peakrankings.com](https://peakrankings.com).
 - **Interactive UI**: Built with Streamlit for greater interactivity with resort information.
 
@@ -16,6 +18,7 @@ Resort data is aggregated from multiple sources:
 | Source | What it provides |
 |--------|-----------------|
 | [indyskipass.com](https://www.indyskipass.com/our-resorts) | Resort details, stats, coordinates, blackout dates, reservation requirements |
+| [Indy Pass LTT Google Sheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pubhtml?gid=484077440&single=true) | Learn To Turn participating resorts and their blackout dates |
 | [peakrankings.com](https://peakrankings.com) | Resort quality scores and rankings |
 | [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding) | Normalized city, state, and country for each resort |
 
@@ -90,6 +93,7 @@ Available steps (run in this order):
 | `scrape_resorts` | Scrape Indy Pass resort pages |
 | `scrape_reservations` | Scrape reservation requirements |
 | `fetch_blackout_dates` | Fetch blackout dates from Google Sheets |
+| `fetch_ltt_dates` | Fetch LTT pass blackout dates from Google Sheets |
 | `fetch_peak_rankings` | Fetch Peak Rankings from Google Sheets |
 | `geocode` | Geocode resort locations via Google Maps |
 | `prep` | Merge all data into `data/resorts.csv` |
@@ -114,6 +118,8 @@ cp -r data backups/data_backup_$(date +%Y%m%d_%H%M%S)
 - The Google Maps API key is only needed if `data/resort_locations.csv` is missing or you run with `--full`. Geocoding costs API quota, so the pipeline skips it by default.
 - Individual pipeline scripts can still be run directly for debugging (e.g., `poetry run python src/page_scraper.py --read-mode cache`).
 - If blackout resort names don't match `data/resorts.csv`, update `BLACKOUT_RESORT_NAME_MAP` in `src/blackout.py`.
+- If LTT resort names don't match `data/resorts.csv`, update `LTT_RESORT_NAME_MAP` in `src/ltt_blackout.py`. Run `print_ltt_name_mismatches()` for a QA report.
+- The `--refresh-ltt` flag on `prep_resort_data.py` forces a re-download of LTT data even when the cache exists.
 
 ---
 
