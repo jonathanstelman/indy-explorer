@@ -334,6 +334,18 @@ resorts["search_terms"] = resorts.apply(get_search_terms, axis=1)
 st.set_page_config(page_title="Indy Explorer", layout="wide")
 # st.image('img/indy-pass-logo.png', width=200)
 st.title("Indy Explorer")
+with st.expander('How to use...', expanded=True):
+    st.markdown(
+        """
+        - On mobile, tap the **>>** arrow in the top-left corner to open the filter sidebar.
+        - Use the filters in the sidebar to narrow down resorts by location, features, blackout dates, and more.
+        - Scroll down past the map to browse all resorts in a table.
+        - Click a row in the table to see full resort details.
+        - Table columns can be sorted by clicking the column headers.
+        - Use the horizontal scrollbar to see all columns.
+        - Hover over a column header to show additional options (e.g., hide columns, download, or search the data).
+        """
+    )
 
 # Sidebar filters
 st.sidebar.header("Filter Resorts")
@@ -354,7 +366,7 @@ search_query = st.sidebar.text_input(
     key=filter_key('search_query'),
 )
 
-with st.sidebar.expander(':round_pushpin: Location', expanded=True):
+with st.sidebar.expander(':round_pushpin: Location', expanded=False):
 
     if 'region' in resorts.columns:
         available_regions = sorted({r for r in resorts.region.dropna().unique() if r})
@@ -433,7 +445,7 @@ with st.sidebar.expander(':round_pushpin: Location', expanded=True):
     if not selected_states_regions:
         selected_states_regions = state_region_options
 
-with st.sidebar.expander(':control_knobs: Resort Features', expanded=True):
+with st.sidebar.expander(':control_knobs: Resort Features', expanded=False):
     st.markdown("Adjust the sliders below to filter resorts based on their features.")
     min_vertical, max_vertical = st.slider(
         ":mountain: Vertical (ft)",
@@ -1051,7 +1063,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown('Click the checkbox next to a resort to see more details.')
 resorts_table = st.dataframe(
     display_df,
     column_config={
