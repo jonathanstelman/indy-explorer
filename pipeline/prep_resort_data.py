@@ -5,6 +5,7 @@ Prepare raw resorts data to produce a prepared file for use with Streamlit
 import argparse
 import json
 import logging
+import uuid
 from typing import Tuple
 import pandas as pd
 import numpy as np
@@ -31,6 +32,45 @@ from utils import get_normalized_location, generate_resort_locations_csv
 
 
 logger = logging.getLogger(__name__)
+
+ID_MAP_PATH = 'data/resort_id_map.csv'
+
+
+def assign_resort_ids(resorts: pd.DataFrame) -> pd.DataFrame:
+    """Assign stable UUID resort_ids using the id map, generating new ones for new resorts."""
+    try:
+        id_map = pd.read_csv(ID_MAP_PATH)
+        existing = dict(zip(zip(id_map['source'], id_map['source_id']), id_map['resort_id']))
+    except FileNotFoundError:
+        existing = {}
+
+    new_rows = []
+    resort_ids = []
+
+    for _, row in resorts.iterrows():
+        slug = str(row.get('indy_page', '')).rstrip('/').split('/')[-1]
+        key = ('indy', slug)
+        if key in existing:
+            resort_ids.append(existing[key])
+        else:
+            new_id = str(uuid.uuid4())
+            resort_ids.append(new_id)
+            new_rows.append({'resort_id': new_id, 'source': 'indy', 'source_id': slug})
+            logger.info('Generated new resort_id for %s (%s)', row.get('name', ''), slug)
+
+    resorts = resorts.copy()
+    resorts.insert(0, 'resort_id', resort_ids)
+
+    if new_rows:
+        try:
+            id_map = pd.read_csv(ID_MAP_PATH)
+        except FileNotFoundError:
+            id_map = pd.DataFrame(columns=['resort_id', 'source', 'source_id'])
+        id_map = pd.concat([id_map, pd.DataFrame(new_rows)], ignore_index=True)
+        id_map.to_csv(ID_MAP_PATH, index=False)
+        logger.info('Wrote %d new entries to %s', len(new_rows), ID_MAP_PATH)
+
+    return resorts
 
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
@@ -156,6 +196,7 @@ def main(refresh_blackout=False, refresh_ltt=False):
 
     # Clean up
     cols = [
+        'resort_id',
         'name',
         'location_name',
         'description',
@@ -309,8 +350,9 @@ def main(refresh_blackout=False, refresh_ltt=False):
         axis=1,
     )
 
+    resorts = assign_resort_ids(resorts)
     resorts = resorts[cols]
-    resorts.to_csv('data/resorts.csv', index_label='index')
+    resorts.to_csv('data/resorts.csv', index=False)
     logger.info('Prepared resort data written to data/resorts.csv')
 
 
