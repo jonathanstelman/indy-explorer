@@ -17,14 +17,12 @@ This repo is structured as a monorepo undergoing a rewrite from Streamlit to Rea
 │   ├── reservations.py
 │   ├── prep_resort_data.py
 │   └── utils.py (+ others)
-├── streamlit/        # Legacy Streamlit app (live during transition)
-│   ├── app.py
-│   └── map_config.py
+├── app.py            # Legacy Streamlit app (live during transition)
 ├── data/             # Committed CSV data consumed by the app
 └── tests/            # Test suite
 ```
 
-The Streamlit app at [streamlit/app.py](streamlit/app.py) remains live on Streamlit Community Cloud during the transition. The pipeline in `pipeline/` feeds `data/resorts.csv`, which is committed to the repo and read at startup by both the Streamlit app and (eventually) the FastAPI backend.
+The Streamlit app at [app.py](app.py) remains live on Streamlit Community Cloud during the transition. The pipeline in `pipeline/` feeds `data/resorts.csv`, which is committed to the repo and read at startup by both the Streamlit app and (eventually) the FastAPI backend.
 
 ## Features
 
@@ -60,7 +58,7 @@ The Streamlit app at [streamlit/app.py](streamlit/app.py) remains live on Stream
 
 3. Run the Streamlit app:
     ```sh
-    poetry run streamlit run streamlit/app.py
+    poetry run streamlit run app.py
     ```
 
 The app ships with pre-built data in `data/resorts.csv` — no pipeline run needed.
