@@ -1,12 +1,12 @@
 import json
 import pandas as pd
 
-from src.blackout import (
+from blackout import (
     normalize_additional_dates,
     parse_blackout_sheet,
     merge_blackout_into_resorts,
 )
-from src.utils import filter_dates_for_weekday, get_all_dates_in_range
+from utils import filter_dates_for_weekday, get_all_dates_in_range
 
 
 def test_normalize_additional_dates():
