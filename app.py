@@ -5,7 +5,6 @@ Streamlit app to display Indy Pass resorts in an interactive map and table
 from datetime import date, datetime
 import json
 from typing import List
-import importlib
 import os
 
 import matplotlib.pyplot as plt
@@ -14,11 +13,6 @@ import pydeck as pdk
 import streamlit as st
 import streamlit_antd_components as sac
 from streamlit_nej_datepicker import datepicker_component, Config
-
-import map_config
-
-if os.getenv("MAP_CONFIG_RELOAD", "").lower() in ("1", "true", "yes"):
-    importlib.reload(map_config)
 
 MAPBOX_TOKEN = st.secrets["MAPBOX_TOKEN"]
 
@@ -56,6 +50,180 @@ REGION_ZOOM = {
     'Rockies': 4.4,
 }
 MAX_AUTO_ZOOM = 8.0
+COUNTRY_ZOOM = {
+    "Austria": 5.6,
+    "Canada": 3.7,
+    "Chile": 3.5,
+    "Czechia": 5.2,
+    "Finland": 4.2,
+    "Italy": 5.0,
+    "Japan": 4.6,
+    "Norway": 4.2,
+    "Slovenia": 5.6,
+    "Spain": 4.8,
+    "Sweden": 4.2,
+    "Switzerland": 5.3,
+    "Türkiye": 4.2,
+    "United Kingdom": 4.0,
+    "United States": 3.3,
+}
+_US_STATES = [
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming",
+]
+_CANADA_PROVINCES = [
+    "Alberta",
+    "British Columbia",
+    "Manitoba",
+    "New Brunswick",
+    "Newfoundland and Labrador",
+    "Northwest Territories",
+    "Nova Scotia",
+    "Nunavut",
+    "Ontario",
+    "Prince Edward Island",
+    "Quebec",
+    "Saskatchewan",
+    "Yukon",
+]
+_JAPAN_PREFECTURES = [
+    "Aichi",
+    "Akita",
+    "Aomori",
+    "Chiba",
+    "Ehime",
+    "Fukui",
+    "Fukuoka",
+    "Fukushima",
+    "Gifu",
+    "Gunma",
+    "Hiroshima",
+    "Hokkaido",
+    "Hyogo",
+    "Ibaraki",
+    "Ishikawa",
+    "Iwate",
+    "Kagawa",
+    "Kagoshima",
+    "Kanagawa",
+    "Kochi",
+    "Kumamoto",
+    "Kyoto",
+    "Mie",
+    "Miyagi",
+    "Miyazaki",
+    "Nagano",
+    "Nagasaki",
+    "Nara",
+    "Niigata",
+    "Oita",
+    "Okayama",
+    "Okinawa",
+    "Osaka",
+    "Saga",
+    "Saitama",
+    "Shiga",
+    "Shimane",
+    "Shizuoka",
+    "Tochigi",
+    "Tokushima",
+    "Tokyo",
+    "Tottori",
+    "Toyama",
+    "Wakayama",
+    "Yamagata",
+    "Yamaguchi",
+    "Yamanashi",
+]
+STATE_ZOOM = {s: 6.2 for s in _US_STATES}
+STATE_ZOOM.update(
+    {
+        "Alaska": 3.4,
+        "Arizona": 5.7,
+        "California": 5.2,
+        "Colorado": 5.8,
+        "Idaho": 5.9,
+        "Maine": 6.4,
+        "Massachusetts": 7.2,
+        "Montana": 5.4,
+        "Nevada": 5.6,
+        "New Hampshire": 6.8,
+        "New Mexico": 5.8,
+        "New York": 6.2,
+        "Oregon": 6.0,
+        "Texas": 5.0,
+        "Vermont": 6.8,
+        "Washington": 6.0,
+        "Wyoming": 5.9,
+    }
+)
+STATE_ZOOM.update({p: 5.2 for p in _CANADA_PROVINCES})
+STATE_ZOOM.update(
+    {
+        "British Columbia": 5.0,
+        "Manitoba": 5.0,
+        "New Brunswick": 6.0,
+        "Newfoundland and Labrador": 5.6,
+        "Northwest Territories": 4.5,
+        "Nova Scotia": 6.0,
+        "Nunavut": 4.0,
+        "Ontario": 4.8,
+        "Prince Edward Island": 6.6,
+        "Quebec": 4.8,
+        "Saskatchewan": 5.0,
+        "Yukon": 4.5,
+    }
+)
+STATE_ZOOM.update({p: 6.6 for p in _JAPAN_PREFECTURES})
+STATE_ZOOM.update({"Hokkaido": 5.8, "Okinawa": 6.0})
 
 
 # Functions for plotting and search
@@ -958,16 +1126,14 @@ if view_changed:
             view_state.zoom = MAX_AUTO_ZOOM
         if len(view_subset) == 1:
             state_zoom = (
-                map_config.STATE_ZOOM.get(selected_states_regions[0])
+                STATE_ZOOM.get(selected_states_regions[0])
                 if state_selection_active and len(selected_states_regions) == 1
                 else None
             )
             if state_zoom is not None:
                 view_state.zoom = state_zoom
             elif len(selected_countries) == 1:
-                view_state.zoom = map_config.COUNTRY_ZOOM.get(
-                    selected_countries[0], view_state.zoom
-                )
+                view_state.zoom = COUNTRY_ZOOM.get(selected_countries[0], view_state.zoom)
         if (
             len(selected_regions) == 1
             and len(selected_countries) == len(country_options)
