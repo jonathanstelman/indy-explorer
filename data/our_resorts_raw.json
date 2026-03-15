@@ -83,7 +83,7 @@
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 30,
+        "num_trails": 40,
         "num_lifts": 3,
         "is_open_nights": false,
         "has_terrain_parks": true,
@@ -269,6 +269,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/beaver-mountain"
     },
+    "490": {
+        "name": "Bergbahnen Hohsaas",
+        "coordinates": {
+            "latitude": 46.128190405173,
+            "longitude": 7.938434
+        },
+        "location_name": "Saas-Grund, Switzerland",
+        "vertical": 5577,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 13,
+        "num_lifts": 8,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/bergbahnen-hohsaas"
+    },
     "51": {
         "name": "Berkshire East Mountain Resort",
         "coordinates": {
@@ -286,6 +304,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/berkshire-east-mountain-resort"
+    },
+    "486": {
+        "name": "Bethel Village Trails",
+        "coordinates": {
+            "latitude": 44.402601867725,
+            "longitude": -70.790433284656
+        },
+        "location_name": "Bethel, ME",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 33,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/bethel-village-trails"
     },
     "337": {
         "name": "Big Moose",
@@ -516,7 +552,7 @@
         "is_xc_only": false,
         "is_allied": false,
         "num_trails": 22,
-        "num_lifts": 7,
+        "num_lifts": 4,
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/bousquet-mountain-0"
@@ -870,12 +906,12 @@
             "longitude": -75.9341479
         },
         "location_name": "Wakefield, QC",
-        "vertical": 509,
+        "vertical": 466,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 18,
+        "num_trails": 29,
         "num_lifts": 4,
         "is_open_nights": true,
         "has_terrain_parks": true,
@@ -1349,6 +1385,42 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/fairmont-hot-springs"
     },
+    "494": {
+        "name": "Fort Kent Outdoor Center",
+        "coordinates": {
+            "latitude": 47.2327378,
+            "longitude": -68.593596
+        },
+        "location_name": "Fort Kent, Maine",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/fort-kent-outdoor-center"
+    },
+    "475": {
+        "name": "Franconia Village XC Ski Area",
+        "coordinates": {
+            "latitude": 44.195448380995,
+            "longitude": -71.752643847597
+        },
+        "location_name": "Franconia, NH",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 12,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/franconia-village-xc-ski-area"
+    },
     "281": {
         "name": "Garnet Hill XC",
         "coordinates": {
@@ -1475,6 +1547,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/great-bear-ski-valley"
     },
+    "478": {
+        "name": "Great Glen Trails Outdoor Center",
+        "coordinates": {
+            "latitude": 44.289387359085,
+            "longitude": -71.224139801848
+        },
+        "location_name": "Gorham, NH",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 22,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/great-glen-trails-outdoor-center"
+    },
     "86": {
         "name": "Greek Peak Mountain Resort",
         "coordinates": {
@@ -1528,6 +1618,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/hatley-pointe"
+    },
+    "487": {
+        "name": "Haymaker Nordic Center",
+        "coordinates": {
+            "latitude": 40.425160547501,
+            "longitude": -106.81490644233
+        },
+        "location_name": "Steamboat Springs, CO",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 4,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/haymaker-nordic-center"
     },
     "283": {
         "name": "High Point XC Ski Center",
@@ -1979,24 +2087,6 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/kiroro-snow-world"
     },
-    "442": {
-        "name": "Kurohime Kogen",
-        "coordinates": {
-            "latitude": 36.8262564,
-            "longitude": 138.1597281
-        },
-        "location_name": "Nagano, Japan",
-        "vertical": 1640,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 11,
-        "num_lifts": 6,
-        "is_open_nights": true,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/kurohime-kogen"
-    },
     "288": {
         "name": "Leavenworth Winter Sports Club",
         "coordinates": {
@@ -2014,6 +2104,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/leavenworth-winter-sports-club"
+    },
+    "485": {
+        "name": "Les 7 Laux",
+        "coordinates": {
+            "latitude": 45.255736172501,
+            "longitude": 5.9932362171904
+        },
+        "location_name": "Les Adrets, France",
+        "vertical": 3444,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 53,
+        "num_lifts": 22,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/les-7-laux"
     },
     "437": {
         "name": "Leukerbad Torrent Ski Resort & Gemmi Resort",
@@ -2130,12 +2238,12 @@
             "longitude": -113.9546482
         },
         "location_name": "Darby , MT, USA",
-        "vertical": 1200,
+        "vertical": 1800,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 68,
+        "num_trails": 69,
         "num_lifts": 8,
         "is_open_nights": false,
         "has_terrain_parks": true,
@@ -2933,6 +3041,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/muica-snow-resort"
     },
+    "474": {
+        "name": "Murray Ridge Ski Area",
+        "coordinates": {
+            "latitude": 54.517959030604,
+            "longitude": -124.21054207271
+        },
+        "location_name": "Fort St. James, BC",
+        "vertical": 1675,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 23,
+        "num_lifts": 2,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/murray-ridge-ski-area"
+    },
     "354": {
         "name": "Nayoro Piyashiri Ski Resort",
         "coordinates": {
@@ -3040,6 +3166,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/norefjell-ski-resort"
+    },
+    "476": {
+        "name": "Northern Maine Community Trails",
+        "coordinates": {
+            "latitude": 46.730138440524,
+            "longitude": -67.929594342329
+        },
+        "location_name": "Presque-Isle, ME",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 16,
+        "num_lifts": null,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/northern-maine-community-trails"
     },
     "386": {
         "name": "Norway Mountain",
@@ -3202,6 +3346,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/paul-bunyan-ski-hill"
+    },
+    "481": {
+        "name": "Pebble Creek Ski Area",
+        "coordinates": {
+            "latitude": 42.778690971368,
+            "longitude": -112.15926907116
+        },
+        "location_name": "Inkom, ID",
+        "vertical": 2200,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 51,
+        "num_lifts": 4,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pebble-creek-ski-area"
     },
     "123": {
         "name": "Peek \u2018n Peak",
@@ -3913,8 +4075,8 @@
         },
         "location_name": "Duluth, MN, USA",
         "vertical": 700,
-        "is_nordic": false,
-        "is_alpine_xc": false,
+        "is_nordic": true,
+        "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
         "num_trails": 22,
@@ -3922,6 +4084,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/spirit-mountain"
+    },
+    "488": {
+        "name": "Steamboat Ski Touring Center",
+        "coordinates": {
+            "latitude": 40.469528881788,
+            "longitude": -106.80399822884
+        },
+        "location_name": "Steamboat Springs, CO",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 7,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/steamboat-ski-touring-center"
     },
     "447": {
         "name": "Steinplatte",
@@ -3940,6 +4120,42 @@
         "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/steinplatte"
+    },
+    "491": {
+        "name": "St\u00f6ten i S\u00e4len",
+        "coordinates": {
+            "latitude": 61.266541791552,
+            "longitude": 12.888674110216
+        },
+        "location_name": "S\u00e4len, Sweden",
+        "vertical": 1329,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 53,
+        "num_lifts": 23,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/stoten-i-salen"
+    },
+    "484": {
+        "name": "Stranda Ski Resort",
+        "coordinates": {
+            "latitude": 62.291150196395,
+            "longitude": 6.840549457671
+        },
+        "location_name": "Stranda, Norway",
+        "vertical": 2296,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 20,
+        "num_lifts": 7,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/stranda-ski-resort"
     },
     "448": {
         "name": "Sunburst Ski Area",
@@ -4157,6 +4373,42 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/the-krvavec-ski-resort"
     },
+    "477": {
+        "name": "The Loppet",
+        "coordinates": {
+            "latitude": 44.991568437757,
+            "longitude": -93.326250413494
+        },
+        "location_name": "Minneapolis, MN",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 16,
+        "num_lifts": null,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/the-loppet"
+    },
+    "480": {
+        "name": "Thrill Hills",
+        "coordinates": {
+            "latitude": 46.532118370626,
+            "longitude": -97.935577242329
+        },
+        "location_name": "Fort Ransom, ND",
+        "vertical": 290,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 10,
+        "num_lifts": 3,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/thrill-hills"
+    },
     "157": {
         "name": "Titus Mountain",
         "coordinates": {
@@ -4318,6 +4570,24 @@
         "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/val-direne"
+    },
+    "489": {
+        "name": "Valmorel Ski Resort",
+        "coordinates": {
+            "latitude": 45.462299198862,
+            "longitude": 6.4448444957838
+        },
+        "location_name": "Les Avanchers-Valmorel, France",
+        "vertical": 4265,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 103,
+        "num_lifts": 46,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/valmorel-ski-resort"
     },
     "364": {
         "name": "Washigatake Ski Resort",
