@@ -79,7 +79,7 @@ jobs:
           CI: true
         run: |
           mkdir -p reports
-          poetry run pytest --junitxml=reports/junit.xml --cov=src --cov-report=xml:reports/coverage.xml -q
+          poetry run pytest --junitxml=reports/junit.xml --cov=pipeline --cov-report=xml:reports/coverage.xml -q
 
       - name: Upload test report to GitHub checks
         uses: dorny/test-reporter@v2
@@ -101,3 +101,25 @@ jobs:
         with:
           files: reports/coverage.xml
           fail_ci_if_error: false
+
+  test-backend:
+    name: Backend test suite
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Run backend tests
+        working-directory: backend
+        run: pytest tests/ -q
