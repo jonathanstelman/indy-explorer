@@ -426,7 +426,7 @@ def create_snowfall_barplot(snowfall_avg, snowfall_max):
 
 
 # Load resort data
-resorts = pd.read_csv('data/resorts.csv', index_col='index', na_values=[''], keep_default_na=False)
+resorts = pd.read_csv('data/resorts.csv', na_values=[''], keep_default_na=False)
 
 # Drop resorts that don't have coordinate data (cannot be mapped)
 resorts = resorts[resorts.latitude.notnull()]
