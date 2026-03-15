@@ -16,8 +16,8 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Add src/ to sys.path so bare imports (e.g. "from page_scraper import ...") work
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Add pipeline/ to sys.path so bare imports (e.g. "from page_scraper import ...") work
+sys.path.insert(0, os.path.dirname(__file__))
 
 logger = logging.getLogger(__name__)
 

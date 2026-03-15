@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import pytest
 
-from src.ltt_blackout import (
+from ltt_blackout import (
     parse_ltt_sheet,
     merge_ltt_into_resorts,
     _fix_cross_year_numeric_ranges,

@@ -1,181 +1,128 @@
 # Indy Explorer
 
-Indy Explorer is a [Streamlit](https://streamlit.io/) app designed to help you navigate resorts in the [Indy Pass](https://www.indyskipass.com/) product with ease.
+Indy Explorer helps you navigate resorts in the [Indy Pass](https://www.indyskipass.com/) with ease — filter by region, blackout dates, reservation requirements, and more.
+
+## Architecture
+
+This repo is structured as a monorepo undergoing a rewrite from Streamlit to React + FastAPI:
+
+```
+/
+├── backend/          # FastAPI app (in progress)
+├── frontend/         # Vite + React app (in progress)
+├── pipeline/         # Data pipeline (scraping, geocoding, merging)
+│   ├── pipeline.py   # Pipeline orchestrator
+│   ├── page_scraper.py
+│   ├── blackout.py
+│   ├── reservations.py
+│   ├── prep_resort_data.py
+│   └── utils.py (+ others)
+├── streamlit/        # Legacy Streamlit app (live during transition)
+│   ├── app.py
+│   └── map_config.py
+├── data/             # Committed CSV data consumed by the app
+└── tests/            # Test suite
+```
+
+The Streamlit app at [streamlit/app.py](streamlit/app.py) remains live on Streamlit Community Cloud during the transition. The pipeline in `pipeline/` feeds `data/resorts.csv`, which is committed to the repo and read at startup by both the Streamlit app and (eventually) the FastAPI backend.
 
 ## Features
 
-- **Resort Data Extraction**: Uses [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) to scrape data from the Indy Pass resort pages.
-- **Location Normalization**: Utilizes the [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding) to normalize location data.
-- **Blackout Date Filtering**: Filter resorts by blackout dates for both the standard Indy Pass and the Learn To Turn (LTT) pass.
-- **LTT Pass Support**: Filter for resorts that participate in the Learn To Turn program, with their own separate blackout date calendar.
-- **Peak Rankings Integration**: Includes resort quality scores from [peakrankings.com](https://peakrankings.com).
-- **Interactive UI**: Built with Streamlit for greater interactivity with resort information.
+- **Resort Data Extraction**: Scrapes resort pages from [indyskipass.com](https://www.indyskipass.com/our-resorts) with BeautifulSoup.
+- **Location Normalization**: Google Maps Geocoding API normalizes city, state, and country.
+- **Blackout Date Filtering**: Filter by blackout dates for both standard Indy Pass and Learn To Turn (LTT).
+- **LTT Pass Support**: Filter for resorts in the Learn To Turn program with their own blackout calendar.
+- **Peak Rankings Integration**: Resort quality scores from [peakrankings.com](https://peakrankings.com).
+- **Interactive Map**: Pydeck/Mapbox map with filterable table (Streamlit); deck.gl (React, in progress).
 
 ## Data Sources
-
-Resort data is aggregated from multiple sources:
 
 | Source | What it provides |
 |--------|-----------------|
 | [indyskipass.com](https://www.indyskipass.com/our-resorts) | Resort details, stats, coordinates, blackout dates, reservation requirements |
-| [Indy Pass LTT Google Sheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pubhtml?gid=484077440&single=true) | Learn To Turn participating resorts and their blackout dates |
+| [Indy Pass LTT Google Sheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pubhtml?gid=484077440&single=true) | Learn To Turn participating resorts and blackout dates |
 | [peakrankings.com](https://peakrankings.com) | Resort quality scores and rankings |
-| [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding) | Normalized city, state, and country for each resort |
+| [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding) | Normalized city, state, and country |
 
-## Quick Start
+## Quick Start (Streamlit)
 
-1. Clone the repository:
+1. Clone the repo and install dependencies:
     ```sh
     git clone https://github.com/jonathanstelman/indy-explorer.git
     cd indy-explorer
+    pipx install poetry && poetry install
     ```
 
-2. Install [Poetry](https://python-poetry.org/docs/#installation):
+2. Add your Mapbox token to `.streamlit/secrets.toml`:
+    ```toml
+    MAPBOX_TOKEN = "your_mapbox_token_here"
+    ```
+
+3. Run the Streamlit app:
     ```sh
-    pipx install poetry
+    poetry run streamlit run streamlit/app.py
     ```
 
-3. Install the required dependencies:
-    ```sh
-    poetry install
-    ```
-
-4. **Set up your Mapbox API token** (required for map rendering):
-    - Sign up for a free [Mapbox account](https://account.mapbox.com/auth/signup/).
-    - Create an access token in your Mapbox account dashboard.
-    - Add your token to `.streamlit/secrets.toml`:
-        ```toml
-        MAPBOX_TOKEN = "your_mapbox_token_here"
-        ```
-
-5. Run the Streamlit app:
-    ```sh
-    poetry run streamlit run src/app.py
-    ```
-
-The app ships with pre-built data in `data/resorts.csv`, so you can run it immediately without refreshing data.
+The app ships with pre-built data in `data/resorts.csv` — no pipeline run needed.
 
 ## Refreshing Resort Data
 
-A single pipeline script handles the entire data refresh process. It scrapes resort pages, fetches blackout dates and rankings from Google Sheets, geocodes locations, and merges everything into `data/resorts.csv`.
-
-### Incremental refresh (default)
+The pipeline orchestrator handles scraping, geocoding, blackout dates, rankings, and merging.
 
 ```sh
-poetry run python pipeline.py
+# Incremental refresh (uses cached HTML, fetches new resorts only)
+poetry run python pipeline/pipeline.py
+
+# Full refresh (re-scrape all pages, regenerate geocoded locations)
+poetry run python pipeline/pipeline.py --full
+
+# Run specific steps only
+poetry run python pipeline/pipeline.py --steps fetch_peak_rankings,prep
 ```
 
-This will:
-- Fetch the main resorts page live (to detect added or dropped resorts)
-- Use cached HTML for existing resort pages (only fetch new/missing ones)
-- Always fetch fresh data from Google Sheets (blackout dates, Peak Rankings)
-- Skip geocoding if `data/resort_locations.csv` already exists
-- Merge everything into `data/resorts.csv`
-
-### Full refresh
-
-```sh
-poetry run python pipeline.py --full
-```
-
-This will re-scrape all resort HTML pages (with a polite 0.5s delay between requests), regenerate geocoded locations, and rebuild everything from scratch.
-
-### Running specific steps
-
-```sh
-poetry run python pipeline.py --steps fetch_peak_rankings,prep
-```
-
-Available steps (run in this order):
+Available pipeline steps (run in order):
 
 | Step | Description |
 |------|-------------|
 | `scrape_resorts` | Scrape Indy Pass resort pages |
 | `scrape_reservations` | Scrape reservation requirements |
 | `fetch_blackout_dates` | Fetch blackout dates from Google Sheets |
-| `fetch_ltt_dates` | Fetch LTT pass blackout dates from Google Sheets |
+| `fetch_ltt_dates` | Fetch LTT blackout dates from Google Sheets |
 | `fetch_peak_rankings` | Fetch Peak Rankings from Google Sheets |
 | `geocode` | Geocode resort locations via Google Maps |
 | `prep` | Merge all data into `data/resorts.csv` |
 
-### Backing up data
-
-Before a full refresh, it's recommended to back up your current data:
-```sh
-cp -r cache backups/cache_backup_$(date +%Y%m%d_%H%M%S)
-cp -r data backups/data_backup_$(date +%Y%m%d_%H%M%S)
-```
-
-### Environment variables
+### Environment Variables
 
 | Variable | Location | Required for |
 |----------|----------|-------------|
-| `MAPBOX_TOKEN` | `.streamlit/secrets.toml` | Map rendering in the Streamlit app |
-| `GOOGLE_MAPS_API_KEY` | `.env` | Geocoding (only needed when regenerating `data/resort_locations.csv`) |
+| `MAPBOX_TOKEN` | `.streamlit/secrets.toml` | Map rendering in Streamlit |
+| `GOOGLE_MAPS_API_KEY` | `.env` | Geocoding (only when regenerating `data/resort_locations.csv`) |
 
-### Notes
-
-- The Google Maps API key is only needed if `data/resort_locations.csv` is missing or you run with `--full`. Geocoding costs API quota, so the pipeline skips it by default.
-- Individual pipeline scripts can still be run directly for debugging (e.g., `poetry run python src/page_scraper.py --read-mode cache`).
-- If blackout resort names don't match `data/resorts.csv`, update `BLACKOUT_RESORT_NAME_MAP` in `src/blackout.py`.
-- If LTT resort names don't match `data/resorts.csv`, update `LTT_RESORT_NAME_MAP` in `src/ltt_blackout.py`. Run `print_ltt_name_mismatches()` for a QA report.
-- The `--refresh-ltt` flag on `prep_resort_data.py` forces a re-download of LTT data even when the cache exists.
-
----
-
-## Testing & Continuous Integration
-
-### Running tests locally
+## Testing & CI
 
 ```sh
-poetry install              # install dependencies
 poetry run pytest            # run the full test suite
+poetry run black --check .   # check formatting
+poetry run black .           # fix formatting
 ```
 
-To generate JUnit + coverage reports (matches CI):
-```sh
-mkdir -p reports
-poetry run pytest --junitxml=reports/junit.xml --cov=src --cov-report=xml:reports/coverage.xml -q
-```
-
-### Formatting
-
-We use [Black](https://black.readthedocs.io/) for code formatting (configured in `pyproject.toml` with `skip-string-normalization = true`):
-
-```sh
-poetry run black --check .   # check
-poetry run black .           # fix
-```
-
-### CI details
-
-GitHub Actions runs tests and checks formatting on push/PRs:
-- Runs `pytest` and generates `reports/junit.xml` and `reports/coverage.xml`
-- Uploads a test artifact named `test-reports`
-- Publishes a GitHub Check Run summary using `dorny/test-reporter@v2`
-- Optionally uploads coverage to Codecov if `CODECOV_TOKEN` is set in repository secrets
+GitHub Actions runs tests and Black checks on push/PRs. Coverage is optionally uploaded to Codecov.
 
 ## Contributing
 
-We welcome contributions! Please follow these steps:
-
 1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a new Pull Request.
+2. Create a new branch (`git checkout -b feature/my-change`).
+3. Make your changes and run tests.
+4. Open a Pull Request.
 
-## Reporting Issues
-
-Help improve this app:
 - [Report a Bug](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+%3CShort+description%3E)
 - [Suggest a Feature](https://github.com/jonathanstelman/indy-explorer/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFEATURE%5D+%3CShort+description%3E)
-- [Kanban Board](https://github.com/users/jonathanstelman/projects/2/views/1)
+- [Project Board](https://github.com/users/jonathanstelman/projects/2/views/1)
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
 
 ## Acknowledgements
 

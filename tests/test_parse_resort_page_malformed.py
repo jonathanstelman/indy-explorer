@@ -1,5 +1,5 @@
 import os
-from src.page_scraper import parse_resort_page
+from page_scraper import parse_resort_page
 
 
 def load_fixture(name: str) -> str:
