@@ -2,6 +2,29 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class ResortSummary(BaseModel):
+    """Lean projection returned by GET /resorts — fields needed for the map and table."""
+
+    resort_id: str
+    name: str
+    region: str
+    city: Optional[str] = None
+    state: Optional[str] = None
+    country: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    reservation_status: str
+    indy_page: str
+    website: Optional[str] = None
+    is_allied: Optional[bool] = None
+    has_alpine: Optional[bool] = None
+    has_cross_country: Optional[bool] = None
+    vertical: Optional[float] = None
+    acres: Optional[float] = None
+    num_trails: Optional[float] = None
+    num_lifts: Optional[float] = None
+
+
 class Resort(BaseModel):
     resort_id: str
     name: str
