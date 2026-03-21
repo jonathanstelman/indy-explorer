@@ -19,10 +19,15 @@ class ResortSummary(BaseModel):
     is_allied: Optional[bool] = None
     has_alpine: Optional[bool] = None
     has_cross_country: Optional[bool] = None
+    has_night_skiing: Optional[bool] = None
+    has_terrain_parks: Optional[bool] = None
+    is_dog_friendly: Optional[bool] = None
+    has_snowshoeing: Optional[bool] = None
     vertical: Optional[float] = None
     acres: Optional[float] = None
     num_trails: Optional[float] = None
     num_lifts: Optional[float] = None
+    trail_length_mi: Optional[float] = None
 
 
 class Resort(BaseModel):
