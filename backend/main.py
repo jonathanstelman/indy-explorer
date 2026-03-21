@@ -1,17 +1,18 @@
+import json
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Query
 from typing import Optional
 
 from data import load_resorts
-from models import ResortSummary
+from models import Resort, ResortSummary
 
-_resorts: list[ResortSummary] = []
+_resorts: list[Resort] = []
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global _resorts
-    _resorts = [ResortSummary(**r.model_dump()) for r in load_resorts()]
+    _resorts = load_resorts()
     yield
 
 
@@ -21,6 +22,16 @@ app = FastAPI(title="Indy Explorer API", lifespan=lifespan)
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+def _parse_date_list(value: Optional[str]) -> set[str]:
+    """Parse a JSON-encoded date array from the CSV into a set of date strings."""
+    if not value:
+        return set()
+    try:
+        return set(json.loads(value))
+    except (json.JSONDecodeError, TypeError):
+        return set()
 
 
 @app.get("/resorts", response_model=list[ResortSummary])
@@ -37,6 +48,7 @@ def get_resorts(
     is_dog_friendly: Optional[bool] = Query(default=None),
     has_snowshoeing: Optional[bool] = Query(default=None),
     is_allied: Optional[bool] = Query(default=None),
+    ltt_available: Optional[bool] = Query(default=None),
     reservation_required: Optional[bool] = Query(default=None),
     # Numeric range filters (inclusive)
     min_vertical: Optional[float] = Query(default=None),
@@ -47,6 +59,9 @@ def get_resorts(
     max_lifts: Optional[float] = Query(default=None),
     min_trail_length: Optional[float] = Query(default=None),
     max_trail_length: Optional[float] = Query(default=None),
+    # Blackout date filters (comma-separated YYYY-MM-DD dates)
+    blackout_dates: Optional[str] = Query(default=None),
+    ltt_dates: Optional[str] = Query(default=None),
 ):
     results = _resorts
 
@@ -73,7 +88,7 @@ def get_resorts(
         s = state.lower()
         results = [r for r in results if (r.state or '').lower() == s]
 
-    # Boolean feature flags — only filter when explicitly set to True
+    # Boolean feature flags
     bool_filters = [
         ('has_alpine', has_alpine),
         ('has_cross_country', has_cross_country),
@@ -82,6 +97,7 @@ def get_resorts(
         ('is_dog_friendly', is_dog_friendly),
         ('has_snowshoeing', has_snowshoeing),
         ('is_allied', is_allied),
+        ('ltt_available', ltt_available),
     ]
     for field, value in bool_filters:
         if value is not None:
@@ -93,7 +109,7 @@ def get_resorts(
         else:
             results = [r for r in results if r.reservation_status != 'Required']
 
-    # Numeric range filters (skip resorts with no data for the field)
+    # Numeric range filters (resorts with null values are excluded)
     range_filters = [
         ('vertical', min_vertical, max_vertical),
         ('num_trails', min_trails, max_trails),
@@ -110,4 +126,17 @@ def get_resorts(
                 r for r in results if getattr(r, field) is not None and getattr(r, field) <= hi
             ]
 
-    return results
+    # Blackout date filters — exclude resorts blacked out on any of the given dates
+    if blackout_dates:
+        selected = {d.strip() for d in blackout_dates.split(',')}
+        results = [
+            r for r in results if selected.isdisjoint(_parse_date_list(r.blackout_all_dates))
+        ]
+
+    if ltt_dates:
+        selected = {d.strip() for d in ltt_dates.split(',')}
+        results = [
+            r for r in results if selected.isdisjoint(_parse_date_list(r.ltt_blackout_all_dates))
+        ]
+
+    return [ResortSummary(**r.model_dump()) for r in results]
