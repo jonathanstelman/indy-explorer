@@ -8,10 +8,10 @@ from fastapi.testclient import TestClient
 from unittest.mock import patch
 
 from main import app
-from models import ResortSummary
+from models import Resort
 
 FAKE_RESORTS = [
-    ResortSummary(
+    Resort(
         resort_id='id-1',
         name='Alpine Peak',
         region='West',
@@ -32,7 +32,7 @@ FAKE_RESORTS = [
         num_lifts=15.0,
         trail_length_mi=80.0,
     ),
-    ResortSummary(
+    Resort(
         resort_id='id-2',
         name='Nordic Valley',
         region='Northeast',
@@ -53,7 +53,7 @@ FAKE_RESORTS = [
         num_lifts=5.0,
         trail_length_mi=30.0,
     ),
-    ResortSummary(
+    Resort(
         resort_id='id-3',
         name='Mid Mountain',
         region='West',

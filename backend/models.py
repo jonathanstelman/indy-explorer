@@ -23,6 +23,7 @@ class ResortSummary(BaseModel):
     has_terrain_parks: Optional[bool] = None
     is_dog_friendly: Optional[bool] = None
     has_snowshoeing: Optional[bool] = None
+    ltt_available: Optional[bool] = None
     vertical: Optional[float] = None
     acres: Optional[float] = None
     num_trails: Optional[float] = None
