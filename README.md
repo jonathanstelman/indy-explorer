@@ -67,6 +67,13 @@ The app ships with pre-built data in `data/resorts.csv` — no pipeline run need
 
 The pipeline orchestrator handles scraping, geocoding, blackout dates, rankings, and merging.
 
+### Before refreshing: back up existing data
+
+```sh
+cp -r cache/ backups/cache_backup_$(date +%Y%m%d_%H%M%S)
+cp -r data/ backups/data_backup_$(date +%Y%m%d_%H%M%S)
+```
+
 ```sh
 # Incremental refresh (uses cached HTML, fetches new resorts only)
 poetry run python pipeline/pipeline.py
