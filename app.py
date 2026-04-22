@@ -1459,7 +1459,7 @@ _metadata_path = 'data/pipeline_metadata.json'
 if os.path.exists(_metadata_path):
     with open(_metadata_path, 'r', encoding='utf-8') as _f:
         _pipeline_metadata = json.load(_f)
-    _last_run_dt = datetime.fromisoformat(_pipeline_metadata['last_run'])
+    _last_run_dt = datetime.fromisoformat(_pipeline_metadata['last_run']).astimezone()
     _last_run_str = _last_run_dt.strftime('%B %-d, %Y')
 else:
     _last_run_str = 'unknown'
