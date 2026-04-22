@@ -719,6 +719,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/camden-snow-bowl"
     },
+    "501": {
+        "name": "Camp 10 Ski Area",
+        "coordinates": {
+            "latitude": 45.549325653827,
+            "longitude": -89.502865198152
+        },
+        "location_name": "Rhinelander, WI",
+        "vertical": 230,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 15,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/camp-10-ski-area"
+    },
     "367": {
         "name": "Camp Fortune",
         "coordinates": {
@@ -808,6 +826,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/cape-smokey"
+    },
+    "496": {
+        "name": "Carters XC Ski Center",
+        "coordinates": {
+            "latitude": 44.4664271,
+            "longitude": -70.7861293
+        },
+        "location_name": "Bethel, Maine",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/carters-xc-ski-center"
     },
     "265": {
         "name": "Castle Mountain Resort",
@@ -988,6 +1024,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/christie-mountain"
+    },
+    "503": {
+        "name": "Coffee Mill Ski Area",
+        "coordinates": {
+            "latitude": 44.363733823488,
+            "longitude": -92.043365486506
+        },
+        "location_name": "Wabasha, Minnesota",
+        "vertical": 425,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 14,
+        "num_lifts": 3,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/coffee-mill-ski-area"
     },
     "74": {
         "name": "Cooper Spur Ski Area",
@@ -1204,6 +1258,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/dog-creek-lodge-nordic-center"
+    },
+    "495": {
+        "name": "Domaine skiable des Contamines",
+        "coordinates": {
+            "latitude": 45.8115586,
+            "longitude": 6.7232087
+        },
+        "location_name": "",
+        "vertical": 4265,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 120,
+        "num_lifts": 25,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/domaine-skiable-des-contamines"
     },
     "462": {
         "name": "Donner Ski Ranch",
@@ -2573,24 +2645,6 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/meadowlark-ski-resort"
     },
-    "292": {
-        "name": "Methow Trails XC",
-        "coordinates": {
-            "latitude": 48.4681634,
-            "longitude": -120.1825961
-        },
-        "location_name": "Winthrop, WA, USA",
-        "vertical": 2250,
-        "is_nordic": true,
-        "is_alpine_xc": false,
-        "is_xc_only": true,
-        "is_allied": false,
-        "num_trails": 64,
-        "num_lifts": null,
-        "is_open_nights": false,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/methow-trails-xc"
-    },
     "348": {
         "name": "Middlebury Snowbowl",
         "coordinates": {
@@ -3167,6 +3221,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/norefjell-ski-resort"
     },
+    "493": {
+        "name": "North Cascade Heli",
+        "coordinates": {
+            "latitude": 48.5963259,
+            "longitude": -120.4426602
+        },
+        "location_name": "Winthrop, WA",
+        "vertical": null,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/north-cascade-heli"
+    },
     "476": {
         "name": "Northern Maine Community Trails",
         "coordinates": {
@@ -3275,6 +3347,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/okunakayama-kogen"
     },
+    "498": {
+        "name": "Onikoube Ski Resort",
+        "coordinates": {
+            "latitude": 38.787074284168,
+            "longitude": 140.63959801906
+        },
+        "location_name": "Narukoonsen Onikobe, Osaki Japan",
+        "vertical": 2345,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 9,
+        "num_lifts": 7,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/onikoube-ski-resort"
+    },
     "352": {
         "name": "Palcall Tsumagoi Resort",
         "coordinates": {
@@ -3336,14 +3426,14 @@
             "longitude": -88.524082142113
         },
         "location_name": "Lakewood, WI",
-        "vertical": null,
+        "vertical": 150,
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
-        "is_allied": true,
-        "num_trails": 10,
+        "is_allied": false,
+        "num_trails": 14,
         "num_lifts": 6,
-        "is_open_nights": false,
+        "is_open_nights": true,
         "has_terrain_parks": false,
         "href": "/our-resorts/paul-bunyan-ski-hill"
     },
@@ -3472,6 +3562,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/pitztaler-gletscherbahn"
+    },
+    "500": {
+        "name": "Pizol",
+        "coordinates": {
+            "latitude": 47.017833560236,
+            "longitude": 9.4734660286697
+        },
+        "location_name": "Bad Ragaz, Switzerland",
+        "vertical": 7726,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 36,
+        "num_lifts": 12,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/pizol"
     },
     "452": {
         "name": "Plain Valley Ski Trails",
@@ -4571,24 +4679,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/val-direne"
     },
-    "489": {
-        "name": "Valmorel Ski Resort",
-        "coordinates": {
-            "latitude": 45.462299198862,
-            "longitude": 6.4448444957838
-        },
-        "location_name": "Les Avanchers-Valmorel, France",
-        "vertical": 4265,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 103,
-        "num_lifts": 46,
-        "is_open_nights": false,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/valmorel-ski-resort"
-    },
     "364": {
         "name": "Washigatake Ski Resort",
         "coordinates": {
@@ -4732,6 +4822,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/white-pine-touring-nordic-center"
+    },
+    "497": {
+        "name": "Whitecap Mountains Resort",
+        "coordinates": {
+            "latitude": 46.4069352,
+            "longitude": -90.3969777
+        },
+        "location_name": "Upson, WI",
+        "vertical": 400,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 48,
+        "num_lifts": 7,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/whitecap-mountains-resort"
     },
     "378": {
         "name": "Whitehorse Nordic Centre",
