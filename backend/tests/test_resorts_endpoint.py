@@ -124,12 +124,24 @@ def test_filter_by_country(client):
     assert data[0]['name'] == 'Tremblant'
 
 
+def test_filter_multiple_countries(client):
+    response = client.get('/resorts?country=Canada&country=USA')
+    assert response.status_code == 200
+    assert len(response.json()) == 3
+
+
 def test_filter_by_state(client):
     response = client.get('/resorts?state=CO')
     assert response.status_code == 200
     data = response.json()
     assert len(data) == 1
     assert data[0]['name'] == 'Vail'
+
+
+def test_filter_multiple_states(client):
+    response = client.get('/resorts?state=CO&state=VT')
+    assert response.status_code == 200
+    assert len(response.json()) == 2
 
 
 def test_combined_filters(client):

@@ -80,8 +80,8 @@ def get_resort(resort_id: str):
 def get_resorts(
     search: Optional[str] = Query(default=None),
     region: list[str] = Query(default=[]),
-    country: Optional[str] = Query(default=None),
-    state: Optional[str] = Query(default=None),
+    country: list[str] = Query(default=[]),
+    state: list[str] = Query(default=[]),
     # Boolean feature flags
     has_alpine: Optional[bool] = Query(default=None),
     has_cross_country: Optional[bool] = Query(default=None),
@@ -153,12 +153,12 @@ def get_resorts(
         results = [r for r in results if (r.region or '').lower() in region_set]
 
     if country:
-        c = country.lower()
-        results = [r for r in results if (r.country or '').lower() == c]
+        country_set = {v.lower() for v in country}
+        results = [r for r in results if (r.country or '').lower() in country_set]
 
     if state:
-        s = state.lower()
-        results = [r for r in results if (r.state or '').lower() == s]
+        state_set = {v.lower() for v in state}
+        results = [r for r in results if (r.state or '').lower() in state_set]
 
     # Boolean feature flags
     bool_filters = [
