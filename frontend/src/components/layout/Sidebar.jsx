@@ -1,5 +1,6 @@
-import { Layout } from 'antd'
+import { Divider, Layout } from 'antd'
 import LocationFilters from '@/components/filters/LocationFilters'
+import ResortFeatureFilters from '@/components/filters/ResortFeatureFilters'
 
 export default function AppSidebar({ meta, allResorts }) {
   return (
@@ -15,6 +16,8 @@ export default function AppSidebar({ meta, allResorts }) {
     >
       <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 24 }}>
         <LocationFilters meta={meta} allResorts={allResorts ?? []} />
+        <Divider style={{ margin: 0 }} />
+        <ResortFeatureFilters meta={meta} />
       </div>
     </Layout.Sider>
   )
