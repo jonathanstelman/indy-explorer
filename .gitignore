@@ -164,8 +164,8 @@ cython_debug/
 # Mac
 .DS_Store
 
-# Poetry
-poetry.lock
+# Poetry (root-level only; submodule lockfiles are committed for reproducibility)
+/poetry.lock
 
 # Streamlit
 .streamlit/secrets.toml
@@ -183,6 +183,9 @@ dist/
 .env.local
 .env.*.local
 *.tsbuildinfo
+
+# Planning / design docs
+planning/
 
 # AI coding assistants
 CLAUDE.md
