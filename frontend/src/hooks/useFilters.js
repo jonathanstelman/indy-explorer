@@ -4,12 +4,41 @@ import { useCallback } from 'react'
 export function useFilters() {
   const [searchParams, setSearchParams] = useSearchParams()
 
+  function getNum(key) {
+    const v = searchParams.get(key)
+    return v !== null ? Number(v) : undefined
+  }
+
+  function getBool(key) {
+    const v = searchParams.get(key)
+    if (v === 'true') return true    // yes only
+    if (v === 'false') return false  // no only
+    return undefined                 // absent = both active = no filter
+  }
+
   const filters = {
     // Location
     region: searchParams.getAll('region'),
     country: searchParams.getAll('country'),
     state: searchParams.getAll('state'),
-    // Feature filters, range filters, date filters added in subsequent issues
+    // Numeric range filters
+    min_vertical: getNum('min_vertical'),
+    max_vertical: getNum('max_vertical'),
+    min_trails: getNum('min_trails'),
+    max_trails: getNum('max_trails'),
+    min_lifts: getNum('min_lifts'),
+    max_lifts: getNum('max_lifts'),
+    min_trail_length: getNum('min_trail_length'),
+    max_trail_length: getNum('max_trail_length'),
+    // Boolean feature toggles
+    has_alpine: getBool('has_alpine'),
+    has_cross_country: getBool('has_cross_country'),
+    has_night_skiing: getBool('has_night_skiing'),
+    has_terrain_parks: getBool('has_terrain_parks'),
+    is_dog_friendly: getBool('is_dog_friendly'),
+    has_snowshoeing: getBool('has_snowshoeing'),
+    is_allied: getBool('is_allied'),
+    reservation_required: getBool('reservation_required'),
   }
 
   function applyUpdates(next, updates) {
