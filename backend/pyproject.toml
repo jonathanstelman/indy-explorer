@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "indy-explorer-backend"
+version = "0.1.0"
+description = "Indy Explorer FastAPI backend"
+authors = ["Jon Stelman <jon@jonstelman.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.12"
+uvicorn = {extras = ["standard"], version = "^0.34.0"}
+pandas = "^2.2.3"
+pydantic = "^2.12.5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+httpx = "^0.28.1"
+
+[tool.black]
+skip-string-normalization = true
+line-length = 100
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

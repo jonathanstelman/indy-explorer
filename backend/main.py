@@ -1,6 +1,6 @@
 import json
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 from typing import Optional
 
 from data import load_resorts
@@ -32,6 +32,14 @@ def _parse_date_list(value: Optional[str]) -> set[str]:
         return set(json.loads(value))
     except (json.JSONDecodeError, TypeError):
         return set()
+
+
+@app.get("/resorts/{resort_id}", response_model=Resort)
+def get_resort(resort_id: str):
+    for r in _resorts:
+        if r.resort_id == resort_id:
+            return r
+    raise HTTPException(status_code=404, detail="Resort not found")
 
 
 @app.get("/resorts", response_model=list[ResortSummary])
