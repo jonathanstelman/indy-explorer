@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException, Query
 from typing import Optional
 
 from data import load_resorts
-from models import Resort, ResortSummary
+from models import Resort, ResortSummary, MetaResponse, RangeField, DateRangeField
 
 _resorts: list[Resort] = []
 
@@ -32,6 +32,40 @@ def _parse_date_list(value: Optional[str]) -> set[str]:
         return set(json.loads(value))
     except (json.JSONDecodeError, TypeError):
         return set()
+
+
+@app.get("/meta", response_model=MetaResponse)
+def get_meta():
+    def _range(field: str) -> RangeField:
+        vals = [v for r in _resorts if (v := getattr(r, field)) is not None]
+        return RangeField(min=min(vals) if vals else None, max=max(vals) if vals else None)
+
+    def _date_range(field: str) -> DateRangeField:
+        dates = {d for r in _resorts for d in _parse_date_list(getattr(r, field))}
+        return DateRangeField(min=min(dates) if dates else None, max=max(dates) if dates else None)
+
+    return MetaResponse(
+        regions=sorted({r.region for r in _resorts if r.region}),
+        countries=sorted({r.country for r in _resorts if r.country}),
+        states=sorted({r.state for r in _resorts if r.state}),
+        vertical=_range('vertical'),
+        num_trails=_range('num_trails'),
+        num_lifts=_range('num_lifts'),
+        trail_length_mi=_range('trail_length_mi'),
+        pr_total=_range('pr_total'),
+        pr_snow=_range('pr_snow'),
+        pr_resiliency=_range('pr_resiliency'),
+        pr_size=_range('pr_size'),
+        pr_terrain_diversity=_range('pr_terrain_diversity'),
+        pr_challenge=_range('pr_challenge'),
+        pr_lifts=_range('pr_lifts'),
+        pr_crowd_flow=_range('pr_crowd_flow'),
+        pr_facilities=_range('pr_facilities'),
+        pr_navigation=_range('pr_navigation'),
+        pr_mountain_aesthetic=_range('pr_mountain_aesthetic'),
+        blackout_date_range=_date_range('blackout_all_dates'),
+        ltt_date_range=_date_range('ltt_blackout_all_dates'),
+    )
 
 
 @app.get("/resorts/{resort_id}", response_model=Resort)
