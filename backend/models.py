@@ -2,6 +2,39 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class RangeField(BaseModel):
+    min: Optional[float] = None
+    max: Optional[float] = None
+
+
+class DateRangeField(BaseModel):
+    min: Optional[str] = None  # ISO date string YYYY-MM-DD
+    max: Optional[str] = None
+
+
+class MetaResponse(BaseModel):
+    regions: list[str]
+    countries: list[str]
+    states: list[str]
+    vertical: RangeField
+    num_trails: RangeField
+    num_lifts: RangeField
+    trail_length_mi: RangeField
+    pr_total: RangeField
+    pr_snow: RangeField
+    pr_resiliency: RangeField
+    pr_size: RangeField
+    pr_terrain_diversity: RangeField
+    pr_challenge: RangeField
+    pr_lifts: RangeField
+    pr_crowd_flow: RangeField
+    pr_facilities: RangeField
+    pr_navigation: RangeField
+    pr_mountain_aesthetic: RangeField
+    blackout_date_range: DateRangeField
+    ltt_date_range: DateRangeField
+
+
 class ResortSummary(BaseModel):
     """Lean projection returned by GET /resorts — fields needed for the map and table."""
 
