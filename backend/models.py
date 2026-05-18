@@ -64,6 +64,7 @@ class ResortSummary(BaseModel):
     trail_length_mi: Optional[float] = None
     pr_total: Optional[float] = None
     pr_overall_rank: Optional[float] = None
+    blackout_count: Optional[int] = None
 
 
 class Resort(BaseModel):
