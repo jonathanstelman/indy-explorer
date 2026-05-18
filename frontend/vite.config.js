@@ -11,6 +11,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  optimizeDeps: {
+    include: [
+      '@deck.gl/core',
+      '@deck.gl/layers',
+      '@deck.gl/react',
+      '@deck.gl/widgets',
+      '@deck.gl/extensions',
+      '@deck.gl/mesh-layers',
+    ],
+  },
   server: {
     proxy: {
       '/api': {

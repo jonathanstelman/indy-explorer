@@ -7,6 +7,7 @@ import AppHeader from '@/components/layout/Header'
 import AppSidebar from '@/components/layout/Sidebar'
 import AppFooter from '@/components/layout/Footer'
 import ResortToolbar from '@/components/ResortToolbar'
+import ResortMap from '@/components/ResortMap'
 
 const themeConfig = {
   algorithm: antdTheme.defaultAlgorithm,
@@ -66,10 +67,13 @@ export default function App() {
         <Layout>
           <AppSidebar meta={meta} allResorts={allResorts} />
           <Layout>
-            <Layout.Content style={{ overflow: 'auto', padding: 24 }}>
-              <ResortToolbar count={resorts.length} loading={loading} />
-              <div style={{ height: 200, background: '#f0f0f0', borderRadius: 4, marginBottom: 16 }} />
-              <div style={{ height: 400, background: '#f0f0f0', borderRadius: 4 }} />
+            <Layout.Content style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div style={{ padding: '12px 24px' }}>
+                <ResortToolbar count={resorts.length} loading={loading} />
+              </div>
+              <div style={{ flex: 1, position: 'relative' }}>
+                <ResortMap resorts={resorts} />
+              </div>
             </Layout.Content>
             <AppFooter />
           </Layout>
