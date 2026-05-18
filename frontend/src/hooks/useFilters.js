@@ -17,6 +17,8 @@ export function useFilters() {
   }
 
   const filters = {
+    // Search
+    search: searchParams.get('search'),
     // Location
     region: searchParams.getAll('region'),
     country: searchParams.getAll('country'),
@@ -39,6 +41,41 @@ export function useFilters() {
     has_snowshoeing: getBool('has_snowshoeing'),
     is_allied: getBool('is_allied'),
     reservation_required: getBool('reservation_required'),
+    ltt_available: getBool('ltt_available'),
+    // Blackout date range filters (YYYY-MM-DD strings)
+    blackout_date_from: searchParams.get('blackout_date_from'),
+    blackout_date_to: searchParams.get('blackout_date_to'),
+    ltt_date_from: searchParams.get('ltt_date_from'),
+    ltt_date_to: searchParams.get('ltt_date_to'),
+    // Peak Rankings score range filters
+    pr_total_min: getNum('pr_total_min'),
+    pr_total_max: getNum('pr_total_max'),
+    pr_snow_min: getNum('pr_snow_min'),
+    pr_snow_max: getNum('pr_snow_max'),
+    pr_resiliency_min: getNum('pr_resiliency_min'),
+    pr_resiliency_max: getNum('pr_resiliency_max'),
+    pr_size_min: getNum('pr_size_min'),
+    pr_size_max: getNum('pr_size_max'),
+    pr_terrain_diversity_min: getNum('pr_terrain_diversity_min'),
+    pr_terrain_diversity_max: getNum('pr_terrain_diversity_max'),
+    pr_challenge_min: getNum('pr_challenge_min'),
+    pr_challenge_max: getNum('pr_challenge_max'),
+    pr_lifts_min: getNum('pr_lifts_min'),
+    pr_lifts_max: getNum('pr_lifts_max'),
+    pr_crowd_flow_min: getNum('pr_crowd_flow_min'),
+    pr_crowd_flow_max: getNum('pr_crowd_flow_max'),
+    pr_facilities_min: getNum('pr_facilities_min'),
+    pr_facilities_max: getNum('pr_facilities_max'),
+    pr_navigation_min: getNum('pr_navigation_min'),
+    pr_navigation_max: getNum('pr_navigation_max'),
+    pr_mountain_aesthetic_min: getNum('pr_mountain_aesthetic_min'),
+    pr_mountain_aesthetic_max: getNum('pr_mountain_aesthetic_max'),
+    // Peak Rankings categorical filters
+    pr_lodging: searchParams.getAll('pr_lodging'),
+    pr_apres_ski: searchParams.getAll('pr_apres_ski'),
+    pr_access_road: searchParams.getAll('pr_access_road'),
+    pr_ability_low: searchParams.getAll('pr_ability_low'),
+    pr_ability_high: searchParams.getAll('pr_ability_high'),
   }
 
   function applyUpdates(next, updates) {

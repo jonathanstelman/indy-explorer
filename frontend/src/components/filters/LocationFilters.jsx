@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Select, Typography } from 'antd'
+import { Select } from 'antd'
 import { useFilters } from '@/hooks/useFilters'
 
 function toOptions(values) {
@@ -57,13 +57,6 @@ export default function LocationFilters({ meta, allResorts }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <Typography.Text
-        type="secondary"
-        style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em' }}
-      >
-        Location
-      </Typography.Text>
-
       <Select
         mode="multiple"
         allowClear
