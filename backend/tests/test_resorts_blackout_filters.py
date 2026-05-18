@@ -62,12 +62,12 @@ def client():
     return TestClient(app)
 
 
-# --- blackout_dates ---
+# --- blackout date range ---
 
 
-def test_blackout_dates_excludes_blacked_out_resorts(client):
-    # Christmas day blacks out Alpine Peak
-    response = client.get('/resorts?blackout_dates=2025-12-25')
+def test_blackout_date_range_excludes_resort_with_date_in_range(client):
+    # Christmas day is in Alpine Peak's blackout list
+    response = client.get('/resorts?blackout_date_from=2025-12-25&blackout_date_to=2025-12-25')
     assert response.status_code == 200
     names = {r['name'] for r in response.json()}
     assert 'Alpine Peak' not in names
@@ -75,50 +75,61 @@ def test_blackout_dates_excludes_blacked_out_resorts(client):
     assert 'Powder Ridge' in names
 
 
-def test_blackout_dates_multiple_dates(client):
-    # Dec 26 hits Alpine Peak; Feb 14 hits Nordic Valley
-    response = client.get('/resorts?blackout_dates=2025-12-26,2026-02-14')
+def test_blackout_date_range_spanning_multiple_resorts(client):
+    # Dec 26 – Feb 14 spans Alpine Peak (Dec 26) and Nordic Valley (Feb 14)
+    response = client.get('/resorts?blackout_date_from=2025-12-26&blackout_date_to=2026-02-14')
     names = {r['name'] for r in response.json()}
     assert names == {'Powder Ridge'}
 
 
-def test_blackout_dates_no_overlap_returns_all(client):
-    response = client.get('/resorts?blackout_dates=2025-07-04')
+def test_blackout_date_range_no_overlap_returns_all(client):
+    response = client.get('/resorts?blackout_date_from=2025-07-04&blackout_date_to=2025-07-04')
     assert len(response.json()) == 3
 
 
-def test_blackout_dates_ignores_whitespace(client):
-    response = client.get('/resorts?blackout_dates=2025-12-25, 2026-02-14')
+def test_blackout_date_from_only_acts_as_open_ended_lower_bound(client):
+    # from=2026-02-14 with no to — should exclude Nordic Valley (Feb 14, 15)
+    response = client.get('/resorts?blackout_date_from=2026-02-14')
     names = {r['name'] for r in response.json()}
-    assert names == {'Powder Ridge'}
+    assert 'Nordic Valley' not in names
+    assert 'Alpine Peak' in names
+    assert 'Powder Ridge' in names
 
 
-def test_blackout_dates_resort_with_empty_list_always_passes(client):
-    response = client.get('/resorts?blackout_dates=2025-12-25')
+def test_blackout_date_to_only_acts_as_open_ended_upper_bound(client):
+    # to=2025-12-25 with no from — should exclude Alpine Peak (Dec 25)
+    response = client.get('/resorts?blackout_date_to=2025-12-25')
+    names = {r['name'] for r in response.json()}
+    assert 'Alpine Peak' not in names
+    assert 'Nordic Valley' in names
+
+
+def test_blackout_date_range_resort_with_empty_list_always_passes(client):
+    response = client.get('/resorts?blackout_date_from=2025-12-25&blackout_date_to=2025-12-25')
     names = {r['name'] for r in response.json()}
     assert 'Powder Ridge' in names
 
 
-# --- ltt_dates ---
+# --- ltt date range ---
 
 
-def test_ltt_dates_excludes_ltt_blacked_out_resorts(client):
+def test_ltt_date_range_excludes_resort_with_date_in_range(client):
     # Dec 25 is in Alpine Peak's LTT blackout list
-    response = client.get('/resorts?ltt_dates=2025-12-25')
+    response = client.get('/resorts?ltt_date_from=2025-12-25&ltt_date_to=2025-12-25')
     names = {r['name'] for r in response.json()}
     assert 'Alpine Peak' not in names
     assert 'Nordic Valley' in names
     assert 'Powder Ridge' in names
 
 
-def test_ltt_dates_no_overlap_returns_all(client):
-    response = client.get('/resorts?ltt_dates=2025-07-04')
+def test_ltt_date_range_no_overlap_returns_all(client):
+    response = client.get('/resorts?ltt_date_from=2025-07-04&ltt_date_to=2025-07-04')
     assert len(response.json()) == 3
 
 
-def test_ltt_dates_resort_with_empty_ltt_blackout_always_passes(client):
-    # Nordic Valley has empty ltt_blackout — should never be excluded by ltt_dates
-    response = client.get('/resorts?ltt_dates=2025-12-25')
+def test_ltt_date_range_resort_with_empty_ltt_blackout_always_passes(client):
+    # Nordic Valley has empty ltt_blackout — should never be excluded
+    response = client.get('/resorts?ltt_date_from=2025-12-25&ltt_date_to=2025-12-25')
     names = {r['name'] for r in response.json()}
     assert 'Nordic Valley' in names
 
@@ -146,27 +157,32 @@ def test_ltt_available_in_response_shape(client):
 # --- composability ---
 
 
-def test_ltt_available_and_ltt_dates_combined(client):
+def test_ltt_available_and_ltt_date_range_combined(client):
     # Only LTT resorts, but not blacked out on Dec 25
-    response = client.get('/resorts?ltt_available=true&ltt_dates=2025-12-25')
+    response = client.get(
+        '/resorts?ltt_available=true&ltt_date_from=2025-12-25&ltt_date_to=2025-12-25'
+    )
     names = {r['name'] for r in response.json()}
-    # Alpine Peak is LTT but blacked out on Dec 25 via ltt_dates
+    # Alpine Peak is LTT but blacked out Dec 25 via ltt_date_from/to
     assert names == {'Nordic Valley'}
 
 
-def test_blackout_and_ltt_dates_combined(client):
-    response = client.get('/resorts?blackout_dates=2025-12-25&ltt_dates=2025-12-25')
+def test_blackout_and_ltt_date_range_combined(client):
+    response = client.get(
+        '/resorts?blackout_date_from=2025-12-25&blackout_date_to=2025-12-25'
+        '&ltt_date_from=2025-12-25&ltt_date_to=2025-12-25'
+    )
     names = {r['name'] for r in response.json()}
     assert names == {'Nordic Valley', 'Powder Ridge'}
 
 
 def test_all_filter_types_combined(client):
-    # LTT available, not blacked out on Dec 25 (regular), not blacked out on Feb 14 (LTT)
     response = client.get(
-        '/resorts?ltt_available=true&blackout_dates=2025-12-25&ltt_dates=2026-02-14'
+        '/resorts?ltt_available=true'
+        '&blackout_date_from=2025-12-25&blackout_date_to=2025-12-25'
+        '&ltt_date_from=2026-02-14&ltt_date_to=2026-02-14'
     )
-    # Alpine Peak: LTT available ✓, but blacked out Dec 25 via blackout_dates ✗
-    # Nordic Valley: LTT available ✓, not blacked out Dec 25 ✓, but Feb 14 is only in
-    #   its regular blackout list (not ltt_blackout) — so ltt_dates=2026-02-14 passes ✓
+    # Alpine Peak: LTT ✓, blacked out Dec 25 (regular) ✗
+    # Nordic Valley: LTT ✓, not blacked out Dec 25 ✓, Feb 14 not in ltt_blackout ✓
     names = {r['name'] for r in response.json()}
     assert names == {'Nordic Valley'}

@@ -1,6 +1,7 @@
-import { Layout, Typography } from 'antd'
+import { Layout, Typography, theme } from 'antd'
 
 export default function AppFooter({ lastUpdated }) {
+  const { token } = theme.useToken()
   return (
     <Layout.Footer
       style={{
@@ -14,9 +15,11 @@ export default function AppFooter({ lastUpdated }) {
     >
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
         Data sourced from{' '}
-        <Typography.Link href="https://www.indyskipass.com" target="_blank">
-          Indy Pass
-        </Typography.Link>
+        <Typography.Link style={{ color: token.colorError }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
+        {', '}
+        <Typography.Link style={{ color: token.colorError }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
+        {', and the '}
+        <Typography.Link style={{ color: token.colorError }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps Geocoding API</Typography.Link>
       </Typography.Text>
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
         Last updated: {lastUpdated ?? '—'}

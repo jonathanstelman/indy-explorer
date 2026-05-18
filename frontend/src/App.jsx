@@ -6,6 +6,7 @@ import { fetchResorts, fetchMeta } from '@/api/resorts'
 import AppHeader from '@/components/layout/Header'
 import AppSidebar from '@/components/layout/Sidebar'
 import AppFooter from '@/components/layout/Footer'
+import ResortToolbar from '@/components/ResortToolbar'
 
 const themeConfig = {
   algorithm: antdTheme.defaultAlgorithm,
@@ -66,6 +67,7 @@ export default function App() {
           <AppSidebar meta={meta} allResorts={allResorts} />
           <Layout>
             <Layout.Content style={{ overflow: 'auto', padding: 24 }}>
+              <ResortToolbar count={resorts.length} loading={loading} />
               <div style={{ height: 200, background: '#f0f0f0', borderRadius: 4, marginBottom: 16 }} />
               <div style={{ height: 400, background: '#f0f0f0', borderRadius: 4 }} />
             </Layout.Content>

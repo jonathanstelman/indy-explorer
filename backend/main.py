@@ -131,9 +131,11 @@ def get_resorts(
     pr_access_road: list[str] = Query(default=[]),
     pr_ability_low: list[str] = Query(default=[]),
     pr_ability_high: list[str] = Query(default=[]),
-    # Blackout date filters (comma-separated YYYY-MM-DD dates)
-    blackout_dates: Optional[str] = Query(default=None),
-    ltt_dates: Optional[str] = Query(default=None),
+    # Blackout date range filters (YYYY-MM-DD; show resorts with no blackouts in the range)
+    blackout_date_from: Optional[str] = Query(default=None),
+    blackout_date_to: Optional[str] = Query(default=None),
+    ltt_date_from: Optional[str] = Query(default=None),
+    ltt_date_to: Optional[str] = Query(default=None),
 ):
     results = _resorts
 
@@ -228,17 +230,23 @@ def get_resorts(
             value_set = {v.lower() for v in values}
             results = [r for r in results if (getattr(r, field) or '').lower() in value_set]
 
-    # Blackout date filters — exclude resorts blacked out on any of the given dates
-    if blackout_dates:
-        selected = {d.strip() for d in blackout_dates.split(',')}
+    # Blackout date range filters — exclude resorts with any blackout within [from, to]
+    if blackout_date_from or blackout_date_to:
+        lo = blackout_date_from or '0000-01-01'
+        hi = blackout_date_to or '9999-12-31'
         results = [
-            r for r in results if selected.isdisjoint(_parse_date_list(r.blackout_all_dates))
+            r
+            for r in results
+            if not any(lo <= d <= hi for d in _parse_date_list(r.blackout_all_dates))
         ]
 
-    if ltt_dates:
-        selected = {d.strip() for d in ltt_dates.split(',')}
+    if ltt_date_from or ltt_date_to:
+        lo = ltt_date_from or '0000-01-01'
+        hi = ltt_date_to or '9999-12-31'
         results = [
-            r for r in results if selected.isdisjoint(_parse_date_list(r.ltt_blackout_all_dates))
+            r
+            for r in results
+            if not any(lo <= d <= hi for d in _parse_date_list(r.ltt_blackout_all_dates))
         ]
 
     return [ResortSummary(**r.model_dump()) for r in results]
