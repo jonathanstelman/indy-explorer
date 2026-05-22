@@ -5,6 +5,7 @@ import { ScatterplotLayer } from '@deck.gl/layers'
 import Map from 'react-map-gl/mapbox'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useFilters } from '@/hooks/useFilters'
+import { COLORS, FONTS, MAP_DOT_COLORS } from '@/theme'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
@@ -50,25 +51,18 @@ const COUNTRY_ZOOM = {
 const MIN_RADIUS = 5000
 const MAX_RADIUS = 50000
 
-const DOT_COLORS = {
-  alpine: [255, 0, 110, 200],
-  xc:     [0, 245, 255, 200],
-  both:   [57, 255, 20, 200],
-  allied: [128, 128, 128, 180],
-}
-
 const LEGEND_ITEMS = [
-  { color: DOT_COLORS.alpine, label: 'Alpine' },
-  { color: DOT_COLORS.xc,     label: 'Cross-country' },
-  { color: DOT_COLORS.both,   label: 'Alpine + XC' },
-  { color: DOT_COLORS.allied, label: 'Allied resort' },
+  { color: MAP_DOT_COLORS.alpine, label: 'Alpine' },
+  { color: MAP_DOT_COLORS.xc,     label: 'Cross-country' },
+  { color: MAP_DOT_COLORS.both,   label: 'Alpine + XC' },
+  { color: MAP_DOT_COLORS.allied, label: 'Allied resort' },
 ]
 
 function getDotColor(r) {
-  if (r.is_allied) return DOT_COLORS.allied
-  if (r.has_cross_country && !r.has_alpine) return DOT_COLORS.xc
-  if (r.has_alpine && r.has_cross_country) return DOT_COLORS.both
-  return DOT_COLORS.alpine
+  if (r.is_allied) return MAP_DOT_COLORS.allied
+  if (r.has_cross_country && !r.has_alpine) return MAP_DOT_COLORS.xc
+  if (r.has_alpine && r.has_cross_country) return MAP_DOT_COLORS.both
+  return MAP_DOT_COLORS.alpine
 }
 
 function getDotRadius(r) {
@@ -131,7 +125,7 @@ function MapLegend() {
         position: 'absolute',
         bottom: 32,
         left: 16,
-        background: 'rgba(0,0,0,0.75)',
+        background: COLORS.bgOverlay,
         borderRadius: 4,
         padding: '8px 12px',
         display: 'flex',
@@ -151,7 +145,7 @@ function MapLegend() {
               flexShrink: 0,
             }}
           />
-          <span style={{ color: '#fff', fontSize: 11, fontFamily: "'Space Mono', monospace" }}>
+          <span style={{ color: COLORS.bgBase, fontSize: 11, fontFamily: FONTS.mono }}>
             {label}
           </span>
         </div>
@@ -186,14 +180,14 @@ function formatTooltip(r) {
     ['Peak score',     r.pr_total != null ? r.pr_total : '—'],
   ]
   const html = rows
-    .map(([label, value]) => `<tr><td style="padding:2px 8px 2px 0;color:#666;white-space:nowrap">${label}</td><td style="padding:2px 0;font-weight:500">${value}</td></tr>`)
+    .map(([label, value]) => `<tr><td style="padding:2px 8px 2px 0;color:${COLORS.textMuted};white-space:nowrap">${label}</td><td style="padding:2px 0;font-weight:500">${value}</td></tr>`)
     .join('')
   return {
-    html: `<table style="border-collapse:collapse;font-size:12px;font-family:'Space Mono',monospace">${html}</table>`,
+    html: `<table style="border-collapse:collapse;font-size:12px;font-family:${FONTS.mono}">${html}</table>`,
     style: {
-      backgroundColor: 'white',
-      color: '#0d0d0d',
-      border: '1px solid #e0e0e0',
+      backgroundColor: COLORS.bgBase,
+      color: COLORS.text,
+      border: `1px solid ${COLORS.border}`,
       borderRadius: '4px',
       padding: '10px 12px',
       boxShadow: '0 2px 8px rgba(0,0,0,0.15)',

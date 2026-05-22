@@ -52,7 +52,7 @@ pipx install poetry && poetry install
 poetry run streamlit run app.py
 
 # Run FastAPI backend (serves on localhost:8000)
-cd backend && pip install -r requirements.txt && uvicorn main:app --reload
+cd backend && poetry run uvicorn main:app --reload
 # or via Docker:
 # docker build -t indy-explorer-backend backend/ && docker run -p 8000:8000 indy-explorer-backend
 
@@ -104,6 +104,10 @@ poetry run python pipeline/prep_resort_data.py                      # merge all 
 
 - Black with `line-length = 100` and `skip-string-normalization = true` (preserves single quotes)
 - Pre-commit hook runs Black automatically
+
+## Branch Naming Convention
+
+`feature/<issue-numbers>-<short-description>` — e.g. `feature/72-73-74-75-resort-table-and-detail`. Use kebab-case for the description. List all issue numbers covered by the branch.
 
 ## Working from GitHub Issues
 

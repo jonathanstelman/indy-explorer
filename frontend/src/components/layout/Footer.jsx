@@ -5,8 +5,8 @@ export default function AppFooter({ lastUpdated }) {
   return (
     <Layout.Footer
       style={{
-        background: '#ffffff',
-        borderTop: '1px solid #e0e0e0',
+        background: token.colorBgContainer,
+        borderTop: `1px solid ${token.colorBorder}`,
         padding: '8px 24px',
         display: 'flex',
         justifyContent: 'space-between',

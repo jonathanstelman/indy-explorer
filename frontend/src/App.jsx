@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ConfigProvider, Layout, theme as antdTheme } from 'antd'
+import { ConfigProvider, Layout } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 import { useFilters } from '@/hooks/useFilters'
 import { fetchResorts, fetchMeta } from '@/api/resorts'
@@ -8,27 +8,7 @@ import AppSidebar from '@/components/layout/Sidebar'
 import AppFooter from '@/components/layout/Footer'
 import ResortToolbar from '@/components/ResortToolbar'
 import ResortMap from '@/components/ResortMap'
-
-const themeConfig = {
-  algorithm: antdTheme.defaultAlgorithm,
-  token: {
-    colorPrimary: '#00f5ff',
-    colorSuccess: '#39ff14',
-    colorWarning: '#ffdd00',
-    colorError: '#ff006e',
-    colorInfo: '#00f5ff',
-    colorPrimaryBorder: '#00b8c8',
-    colorPrimaryHover: '#00d9e8',
-    colorPrimaryActive: '#0099a8',
-    colorBgBase: '#ffffff',
-    colorBgContainer: '#ffffff',
-    colorBgLayout: '#f5f5f5',
-    colorTextBase: '#0d0d0d',
-    colorBorder: '#e0e0e0',
-    borderRadius: 2,
-    fontFamily: "'Space Mono', monospace",
-  },
-}
+import { themeConfig } from '@/theme'
 
 export default function App() {
   const [searchParams] = useSearchParams()
