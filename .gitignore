@@ -188,7 +188,6 @@ dist/
 planning/
 
 # AI coding assistants
-CLAUDE.md
 .claude/
 .cursor/
 .aider*
