@@ -1,4 +1,4 @@
-import { Button, Collapse, Layout } from 'antd'
+import { Button, Collapse, Layout, theme } from 'antd'
 import LocationFilters from '@/components/filters/LocationFilters'
 import StatsFilters from '@/components/filters/StatsFilters'
 import FeatureFilters from '@/components/filters/FeatureFilters'
@@ -10,6 +10,7 @@ const ALL_KEYS = ['location']
 
 export default function AppSidebar({ meta, allResorts }) {
   const { resetFilters } = useFilters()
+  const { token } = theme.useToken()
 
   const items = [
     {
@@ -45,8 +46,8 @@ export default function AppSidebar({ meta, allResorts }) {
       collapsedWidth="0"
       width={280}
       style={{
-        background: '#fafafa',
-        borderRight: '1px solid #e0e0e0',
+        background: token.colorBgLayout,
+        borderRight: `1px solid ${token.colorBorder}`,
         overflow: 'auto',
       }}
     >

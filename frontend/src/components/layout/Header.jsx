@@ -1,13 +1,15 @@
-import { Layout, Typography } from 'antd'
+import { Layout, Typography, theme } from 'antd'
+import { FONTS } from '@/theme'
 
 export default function AppHeader() {
+  const { token } = theme.useToken()
   return (
     <Layout.Header
       style={{
         display: 'flex',
         alignItems: 'center',
-        background: '#ffffff',
-        borderBottom: '1px solid #e0e0e0',
+        background: token.colorBgContainer,
+        borderBottom: `1px solid ${token.colorBorder}`,
         padding: '0 24px',
         height: 56,
         lineHeight: '56px',
@@ -17,9 +19,9 @@ export default function AppHeader() {
         level={3}
         style={{
           margin: 0,
-          fontFamily: "'Bebas Neue', sans-serif",
+          fontFamily: FONTS.display,
           letterSpacing: '0.05em',
-          color: '#0d0d0d',
+          color: token.colorTextBase,
         }}
       >
         Indy Explorer

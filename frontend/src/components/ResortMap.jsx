@@ -5,6 +5,7 @@ import { ScatterplotLayer } from '@deck.gl/layers'
 import Map from 'react-map-gl/mapbox'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useFilters } from '@/hooks/useFilters'
+import { COLORS, FONTS, MAP_DOT_COLORS } from '@/theme'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
@@ -50,25 +51,18 @@ const COUNTRY_ZOOM = {
 const MIN_RADIUS = 5000
 const MAX_RADIUS = 50000
 
-const DOT_COLORS = {
-  alpine: [255, 0, 110, 200],
-  xc:     [0, 245, 255, 200],
-  both:   [57, 255, 20, 200],
-  allied: [128, 128, 128, 180],
-}
-
 const LEGEND_ITEMS = [
-  { color: DOT_COLORS.alpine, label: 'Alpine' },
-  { color: DOT_COLORS.xc,     label: 'Cross-country' },
-  { color: DOT_COLORS.both,   label: 'Alpine + XC' },
-  { color: DOT_COLORS.allied, label: 'Allied resort' },
+  { color: MAP_DOT_COLORS.alpine, label: 'Alpine' },
+  { color: MAP_DOT_COLORS.xc,     label: 'Cross-country' },
+  { color: MAP_DOT_COLORS.both,   label: 'Alpine + XC' },
+  { color: MAP_DOT_COLORS.allied, label: 'Allied resort' },
 ]
 
 function getDotColor(r) {
-  if (r.is_allied) return DOT_COLORS.allied
-  if (r.has_cross_country && !r.has_alpine) return DOT_COLORS.xc
-  if (r.has_alpine && r.has_cross_country) return DOT_COLORS.both
-  return DOT_COLORS.alpine
+  if (r.is_allied) return MAP_DOT_COLORS.allied
+  if (r.has_cross_country && !r.has_alpine) return MAP_DOT_COLORS.xc
+  if (r.has_alpine && r.has_cross_country) return MAP_DOT_COLORS.both
+  return MAP_DOT_COLORS.alpine
 }
 
 function getDotRadius(r) {
@@ -124,6 +118,56 @@ function fitViewToResorts(resorts, width, height, filters) {
   }
 }
 
+function MapTooltip({ info }) {
+  const { resort: r, x, y, flipX, flipY } = info
+  const location = [r.city, r.state, r.country].filter(Boolean).join(', ')
+  const rows = [
+    ['Resort',         r.name],
+    ['Location',       location || '—'],
+    ['Acres',          r.acres != null ? r.acres.toLocaleString() : '—'],
+    ['Vertical',       r.vertical != null ? `${r.vertical.toLocaleString()} ft` : '—'],
+    ['Trails',         r.num_trails != null ? r.num_trails : '—'],
+    ['Lifts',          r.num_lifts != null ? r.num_lifts : '—'],
+    ['Alpine',         yesNo(r.has_alpine)],
+    ['Cross-country',  yesNo(r.has_cross_country)],
+    ['Night skiing',   yesNo(r.has_night_skiing)],
+    ['Terrain parks',  yesNo(r.has_terrain_parks)],
+    ['Dog friendly',   yesNo(r.is_dog_friendly)],
+    ['Reservations',   r.reservation_status ?? '—'],
+    ['Blackout dates', r.blackout_count > 0 ? 'Yes' : 'No'],
+    ['Peak score',     r.pr_total != null ? r.pr_total : '—'],
+  ]
+  return (
+    <div style={{
+      position: 'absolute',
+      pointerEvents: 'none',
+      zIndex: 1,
+      ...(flipX ? { right: `calc(100% - ${x - 8}px)` } : { left: x + 8 }),
+      ...(flipY ? { bottom: `calc(100% - ${y - 8}px)` } : { top: y + 8 }),
+      backgroundColor: COLORS.bgBase,
+      color: COLORS.text,
+      border: `1px solid ${COLORS.border}`,
+      borderRadius: 4,
+      padding: '10px 12px',
+      boxShadow: `0 2px 8px ${COLORS.shadow}`,
+      fontSize: 12,
+      fontFamily: FONTS.mono,
+      whiteSpace: 'nowrap',
+    }}>
+      <table style={{ borderCollapse: 'collapse' }}>
+        <tbody>
+          {rows.map(([label, value]) => (
+            <tr key={label}>
+              <td style={{ padding: '2px 8px 2px 0', color: COLORS.textMuted }}>{label}</td>
+              <td style={{ padding: '2px 0', fontWeight: 500 }}>{value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function MapLegend() {
   return (
     <div
@@ -131,7 +175,7 @@ function MapLegend() {
         position: 'absolute',
         bottom: 32,
         left: 16,
-        background: 'rgba(0,0,0,0.75)',
+        background: COLORS.bgOverlay,
         borderRadius: 4,
         padding: '8px 12px',
         display: 'flex',
@@ -151,7 +195,7 @@ function MapLegend() {
               flexShrink: 0,
             }}
           />
-          <span style={{ color: '#fff', fontSize: 11, fontFamily: "'Space Mono', monospace" }}>
+          <span style={{ color: COLORS.bgBase, fontSize: 11, fontFamily: FONTS.mono }}>
             {label}
           </span>
         </div>
@@ -166,45 +210,13 @@ function yesNo(val) {
   return '—'
 }
 
-function formatTooltip(r) {
-  if (!r) return null
-  const location = [r.city, r.state, r.country].filter(Boolean).join(', ')
-  const rows = [
-    ['Resort',         r.name],
-    ['Location',       location || '—'],
-    ['Acres',          r.acres != null ? r.acres.toLocaleString() : '—'],
-    ['Vertical',       r.vertical != null ? `${r.vertical.toLocaleString()} ft` : '—'],
-    ['Trails',         r.num_trails != null ? r.num_trails : '—'],
-    ['Lifts',          r.num_lifts != null ? r.num_lifts : '—'],
-    ['Alpine',         yesNo(r.has_alpine)],
-    ['Cross-country',  yesNo(r.has_cross_country)],
-    ['Night skiing',   yesNo(r.has_night_skiing)],
-    ['Terrain parks',  yesNo(r.has_terrain_parks)],
-    ['Dog friendly',   yesNo(r.is_dog_friendly)],
-    ['Reservations',   r.reservation_status ?? '—'],
-    ['Blackout dates', r.blackout_count > 0 ? 'Yes' : 'No'],
-    ['Peak score',     r.pr_total != null ? r.pr_total : '—'],
-  ]
-  const html = rows
-    .map(([label, value]) => `<tr><td style="padding:2px 8px 2px 0;color:#666;white-space:nowrap">${label}</td><td style="padding:2px 0;font-weight:500">${value}</td></tr>`)
-    .join('')
-  return {
-    html: `<table style="border-collapse:collapse;font-size:12px;font-family:'Space Mono',monospace">${html}</table>`,
-    style: {
-      backgroundColor: 'white',
-      color: '#0d0d0d',
-      border: '1px solid #e0e0e0',
-      borderRadius: '4px',
-      padding: '10px 12px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-    },
-  }
-}
 
 export default function ResortMap({ resorts = [], onResortClick }) {
   const containerRef = useRef()
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE)
+  const [tooltipInfo, setTooltipInfo] = useState(null)
   const { filters } = useFilters()
+
 
   // Track the location key we last zoomed to — only re-fit when location filters actually change
   const lastZoomedLocationKey = useRef(null)
@@ -235,7 +247,12 @@ export default function ResortMap({ resorts = [], onResortClick }) {
     getRadius: getDotRadius,
     getFillColor: getDotColor,
     radiusUnits: 'meters',
-    onClick: info => onResortClick?.(info.object),
+    onClick: ({ object }) => onResortClick?.(object),
+    onHover: ({ object, x, y }) => {
+      if (!object) { setTooltipInfo(null); return }
+      const { width, height } = containerRef.current?.getBoundingClientRect() ?? {}
+      setTooltipInfo({ resort: object, x, y, flipX: x > width / 2, flipY: y > height / 2 })
+    },
   })
 
   return (
@@ -246,7 +263,6 @@ export default function ResortMap({ resorts = [], onResortClick }) {
         onViewStateChange={({ viewState: vs }) => setViewState(vs)}
         controller
         layers={[layer]}
-        getTooltip={({ object }) => formatTooltip(object)}
         style={{ width: '100%', height: '100%' }}
       >
         <Map
@@ -256,6 +272,7 @@ export default function ResortMap({ resorts = [], onResortClick }) {
         />
       </DeckGL>
       <MapLegend />
+      {tooltipInfo && <MapTooltip info={tooltipInfo} />}
     </div>
   )
 }

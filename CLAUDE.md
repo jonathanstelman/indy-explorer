@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Indy Explorer is a Python/Streamlit app that scrapes, geocodes, and visualizes Indy Pass ski resorts. Data flows through a pipeline: scrape HTML → parse resort pages → geocode locations → merge into CSV → render in Streamlit with pydeck/Mapbox maps.
 
-**A React + FastAPI rewrite is in progress.** GitHub issues #51–#77 track the full planned work. Issues #51–#55 are complete (monorepo, FastAPI scaffold, React frontend scaffold, deployment config, resort data model). The Streamlit app at `app.py` remains live on Streamlit Community Cloud during the transition. Do not assume Streamlit is the long-term target.
+**A React + FastAPI rewrite is in progress.** GitHub issues #51–#77 track the full planned work. Issues #51–#55, #72–#75 are complete. The Streamlit app at `app.py` remains live on Streamlit Community Cloud during the transition. Do not assume Streamlit is the long-term target.
 
 ## Architecture
 
@@ -26,7 +26,14 @@ Indy Explorer is a Python/Streamlit app that scrapes, geocodes, and visualizes I
 - `_tt` suffix: tooltip-ready display fields
 - `_meters` suffix: metric unit conversions (e.g., `vertical_meters`)
 
-### Key Design Patterns
+### Frontend Architecture (React)
+
+- **`src/theme.js`** — Single source of truth for all colors (`COLORS`), fonts (`FONTS`), map dot colors (`MAP_DOT_COLORS`), Ant Design theme config, and the `withAlpha(hex, alpha)` utility. **All color values in `.jsx` and `.css` files must reference named tokens from `COLORS` — no hardcoded hex or rgba strings anywhere in `src/`.**
+- **`src/App.jsx`** — Top-level layout. Owns table state: `gridRef` (forwarded to AG Grid), `tablePanelRef` (fullscreen target), column visibility, and toolbar button handlers. The drag handle row contains the collapse toggle (left) and table controls (right): Select Columns popover, Download CSV, Full screen.
+- **`src/components/ResortTable.jsx`** — AG Grid wrapper. A `forwardRef` component that forwards `ref` to `<AgGridReact>`. Exports `COLUMN_DEFS`, `HEADER_BY_FIELD`, `COL_GROUPS` for use by App.jsx's column-visibility popover. No internal toolbar — all controls live in App.jsx's drag handle.
+- **`src/components/ResortTable.css`** — AG Grid header overrides only. Colors are set as CSS custom properties via `GRID_THEME_VARS` in ResortTable.jsx (e.g. `--indy-header-bg`) so the CSS file stays free of hardcoded values.
+
+### Key Design Patterns (Pipeline)
 
 - **Cache-first scraping**: HTML pages written with `open(..., 'x')` to prevent overwrites. Delete `cache/*.html` to re-fetch.
 - **Defensive parsing**: `get_numbers()` extracts integers safely, returns `None` on malformed input.
@@ -52,7 +59,7 @@ pipx install poetry && poetry install
 poetry run streamlit run app.py
 
 # Run FastAPI backend (serves on localhost:8000)
-cd backend && pip install -r requirements.txt && uvicorn main:app --reload
+cd backend && poetry run uvicorn main:app --reload
 # or via Docker:
 # docker build -t indy-explorer-backend backend/ && docker run -p 8000:8000 indy-explorer-backend
 
@@ -105,6 +112,10 @@ poetry run python pipeline/prep_resort_data.py                      # merge all 
 - Black with `line-length = 100` and `skip-string-normalization = true` (preserves single quotes)
 - Pre-commit hook runs Black automatically
 
+## Branch Naming Convention
+
+`feature/<issue-numbers>-<short-description>` — e.g. `feature/72-73-74-75-resort-table-and-detail`. Use kebab-case for the description. List all issue numbers covered by the branch.
+
 ## Working from GitHub Issues
 
 When assigned a GitHub issue to implement, always fetch the full issue including comments before starting:
@@ -119,7 +130,11 @@ The project board is: https://github.com/users/jonathanstelman/projects/2
 
 ## Session Documentation
 
-After completing any non-trivial task, append a summary to [`docs/decisions.md`](docs/decisions.md). If the file doesn't exist, create it. Keep entries terse — this is a trail, not a journal.
+**At the start of every session**, read [`docs/planning.md`](docs/planning.md) to orient yourself — it records the current branch, what's done, what's next, and any open polish items.
+
+**During and at the end of every session**, keep `docs/planning.md` up to date: mark completed items, add newly discovered tasks, and update "Up next" so the next session can pick up without re-deriving state from git history.
+
+After completing any non-trivial task, add a summary to [`docs/decisions.md`](docs/decisions.md). Keep entries terse — this is a trail, not a journal. **Always insert entries in chronological order by date** — do not append blindly to the end if that would be out of order.
 
 ```
 ## YYYY-MM-DD — Short description
