@@ -123,7 +123,7 @@ export const COLUMN_DEFS = [
 export const HEADER_BY_FIELD = Object.fromEntries(COLUMN_DEFS.map(c => [c.field, c.headerName]))
 
 export const COL_GROUPS = [
-  { label: 'Location',      fields: ['name', 'city', 'state', 'country', 'region', 'location_name'] },
+  { label: 'Location',      fields: ['city', 'state', 'country', 'region', 'location_name'] },
   { label: 'Elevation',     fields: ['vertical', 'vertical_summit_ft', 'vertical_base_ft', 'vertical_meters'] },
   { label: 'Size',          fields: ['acres', 'num_trails', 'num_lifts', 'trail_length_mi', 'trail_length_km'] },
   { label: 'Difficulty',    fields: ['difficulty_beginner', 'difficulty_intermediate', 'difficulty_advanced'] },
