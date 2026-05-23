@@ -28,6 +28,8 @@ Indy Explorer is a Python/Streamlit app that scrapes, geocodes, and visualizes I
 
 ### Frontend Architecture (React)
 
+The aesthetic direction, dark mode token config, glow effects, and open design questions are documented in [`docs/design.md`](docs/design.md).
+
 - **`src/theme.js`** — Single source of truth for all colors (`COLORS`), fonts (`FONTS`), map dot colors (`MAP_DOT_COLORS`), Ant Design theme config, and the `withAlpha(hex, alpha)` utility. **All color values in `.jsx` and `.css` files must reference named tokens from `COLORS` — no hardcoded hex or rgba strings anywhere in `src/`.**
 - **`src/App.jsx`** — Top-level layout. Owns table state: `gridRef` (forwarded to AG Grid), `tablePanelRef` (fullscreen target), column visibility, and toolbar button handlers. The drag handle row contains the collapse toggle (left) and table controls (right): Select Columns popover, Download CSV, Full screen.
 - **`src/components/ResortTable.jsx`** — AG Grid wrapper. A `forwardRef` component that forwards `ref` to `<AgGridReact>`. Exports `COLUMN_DEFS`, `HEADER_BY_FIELD`, `COL_GROUPS` for use by App.jsx's column-visibility popover. No internal toolbar — all controls live in App.jsx's drag handle.
