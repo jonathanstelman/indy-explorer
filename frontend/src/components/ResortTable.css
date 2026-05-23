@@ -1,18 +1,18 @@
 .ag-theme-quartz .ag-header-cell,
 .ag-theme-quartz .ag-header-group-cell {
-  background-color: #505050;
+  background-color: var(--indy-header-bg);
 }
 
 .ag-theme-quartz .ag-header-cell:hover,
 .ag-theme-quartz .ag-header-group-cell:hover {
-  background-color: #808080 !important;
+  background-color: var(--indy-header-hover) !important;
 }
 
 .ag-theme-quartz .ag-header-cell-text {
   font-weight: 700;
-  color: #ffffff;
+  color: var(--indy-header-text);
 }
 
 .ag-theme-quartz .ag-sort-indicator-icon {
-  color: #ffffff;
+  color: var(--indy-header-text);
 }

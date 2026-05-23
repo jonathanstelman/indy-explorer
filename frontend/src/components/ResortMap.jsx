@@ -190,7 +190,7 @@ function formatTooltip(r) {
       border: `1px solid ${COLORS.border}`,
       borderRadius: '4px',
       padding: '10px 12px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+      boxShadow: `0 2px 8px ${COLORS.shadow}`,
     },
   }
 }

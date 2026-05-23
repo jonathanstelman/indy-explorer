@@ -199,7 +199,7 @@ export default function App() {
                       <Button
                         size="small"
                         onClick={onToggleFullscreen}
-                        style={{ borderColor: COLORS.accent, color: COLORS.accent }}
+                        style={{ borderColor: COLORS.primary, color: COLORS.primary }}
                       >
                         {isFullscreen ? 'Exit full screen' : 'Full screen'}
                       </Button>

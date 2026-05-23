@@ -54,8 +54,14 @@ Format for new entries:
 **Follow-up:** Revisit if CSV size or update frequency becomes a problem.
 
 ---
-## 2026-05-22 — Resort detail modal and blackout calendar
+## 2026-05-17 — Filter state
+**Issue:** #64  
+**Decision:** URL query params.  
+**Rationale:** Users can save and share search results by copying the URL — no auth or saved-search feature needed.  
+**Follow-up:** Implement before Issues #14–#18. Ensure filter params are kept clean and human-readable (e.g., `?pass=ikon&region=northeast`).
 
+---
+## 2026-05-22 — Resort detail modal and blackout calendar
 **Issue:** #73  
 **Decision:** Resort detail opens in an antd `Modal` (600px wide). Blackout dates render in an antd `Calendar` with `fullCellRender` — colored circles over each date (standard=magenta, LTT=cyan, both=diagonal split gradient). Today gets a border ring only (transparent fill so blackout color shows through). Out-of-month dates fade to 10% opacity. Month state persists across modal opens via a module-level variable (`sharedCalendarMonth`) that survives `destroyOnClose` unmounting. All three navigation paths (dropdowns, prev/next buttons, clicking an out-of-month date) route through the same `setMonth()` setter, which also updates the shared variable.  
 **Rationale:** `fullCellRender` replaces the entire cell (vs. `cellRender` which appends below the date number, causing double rendering). Module-level variable chosen over context/localStorage to avoid prop drilling with no persistence requirement across page reloads. Color pair (magenta + cyan) selected for sufficient contrast against each other and against white text/dark text respectively.  
@@ -63,15 +69,28 @@ Format for new entries:
 
 ---
 ## 2026-05-22 — Resort detail charts and Peak Rankings (#74, #75)
-
-**Issue:** #74, #75
-**Decision:** Added three chart/stat sections to the resort detail modal. Elevation shown as a vertical stat stack (Summit/Drop/Base) with a cyan left-border accent — no chart, since any bar would imply proportionality from sea level that's visually misleading. Trail difficulty uses a Recharts PieChart with the legend to the left; colors borrow from ski trail convention bent toward the app theme (bright green #00C44F / cyan / graphite #555). Snowfall is a simple two-bar Recharts BarChart (average vs. max). Peak Rankings (#75) is pure data: total score + ranks prominently at top, 10 category scores in a 5-column grid with mini progress bars (0–10 scale), and an extras grid for lodging, après, access road, ability range, nearest cities, and pass affiliation. Recharts added as a dependency.
-**Rationale:** Elevation chart approaches (stacked bar, waterfall) all imply sea-level proportionality; stat boxes are unambiguous. Difficulty colors chosen for colorblind accessibility — green/cyan/graphite separate by both hue and value. Peak Rankings section hidden entirely when pr_total is null.
-**Follow-up:** Row alignment between ElevationStats and DifficultyChart legend is imperfect (tracked as a polish task).
+**Issue:** #74, #75  
+**Decision:** Added three chart/stat sections to the resort detail modal. Elevation shown as a vertical stat stack (Summit/Drop/Base) with a cyan left-border accent — no chart, since any bar would imply proportionality from sea level that's visually misleading. Trail difficulty uses a Recharts PieChart with the legend to the left; colors follow ski trail convention (green `COLORS.difficultyBeginner` / cyan / graphite `COLORS.textMuted`). Snowfall is a simple two-bar Recharts BarChart (average vs. max). Peak Rankings (#75) is pure data: total score + ranks prominently at top, 10 category scores in a 5-column grid with mini progress bars (0–10 scale), and an extras grid for lodging, après, access road, ability range, nearest cities, and pass affiliation. Recharts added as a dependency.  
+**Rationale:** Elevation chart approaches (stacked bar, waterfall) all imply sea-level proportionality; stat boxes are unambiguous. Difficulty colors chosen for colorblind accessibility — green/cyan/graphite separate by both hue and value. Peak Rankings section hidden entirely when pr_total is null.  
+**Follow-up:** None — settled.
 
 ---
-## 2026-05-17 — Filter state
-**Issue:** #64  
-**Decision:** URL query params.  
-**Rationale:** Users can save and share search results by copying the URL — no auth or saved-search feature needed.  
-**Follow-up:** Implement before Issues #14–#18. Ensure filter params are kept clean and human-readable (e.g., `?pass=ikon&region=northeast`).
+## 2026-05-23 — Resort data table implementation (#72)
+**Issue:** #72  
+**Decision:** AG Grid Community Edition (v35) with explicit `width` on every column in `COLUMN_DEFS`. No auto-sizing.  
+**Rationale:** `autoSizeAllColumns()` is unreliable in v35 — inflates columns with long headers disproportionately to data density. `maxWidth` in `defaultColDef` initializes all columns to that value rather than acting as a ceiling. Explicit widths tuned per-column are the only reliable approach at this version.  
+**Follow-up:** Revisit auto-sizing if AG Grid fixes the behavior in a future release.
+
+---
+## 2026-05-23 — Table toolbar lifted to App.jsx drag handle
+**Issue:** #72  
+**Decision:** Table controls (Select Columns popover, Download CSV, Full screen) live in App.jsx's drag handle row, not inside ResortTable. ResortTable is a `forwardRef` component; App.jsx holds `gridRef` and calls AG Grid APIs directly. `COLUMN_DEFS`, `HEADER_BY_FIELD`, and `COL_GROUPS` are named exports from ResortTable.jsx.  
+**Rationale:** Consolidating the drag handle and toolbar into one row eliminates a redundant UI strip and removes duplicate search bars (the table quick-filter conflicted with the sidebar search). The `forwardRef` pattern keeps ResortTable a pure grid renderer with no toolbar concerns.  
+**Follow-up:** None — settled.
+
+---
+## 2026-05-23 — Centralized color system in theme.js
+**Issue:** #72 (polish)  
+**Decision:** All color values in `frontend/src/` must reference named tokens from `COLORS` in `src/theme.js`. No hardcoded hex or rgba strings in `.jsx` or `.css` files. CSS files bridge to theme values via CSS custom properties set in `GRID_THEME_VARS` (e.g. `--indy-header-bg`). The `withAlpha(hex, alpha)` utility generates rgba strings from theme hex values.  
+**Rationale:** One audit found `COLORS.accent` (undefined), two unique greens, and three similar greys scattered across components. Centralizing prevents drift and makes visual changes a single-file edit.  
+**Follow-up:** When adding new colors, add to `COLORS` in theme.js first, then reference by name.

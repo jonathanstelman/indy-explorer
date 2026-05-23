@@ -48,9 +48,9 @@ const PR_CATEGORIES = [
 ]
 
 const DIFFICULTY_COLORS = {
-  Beginner:     '#00C44F',
+  Beginner:     COLORS.difficultyBeginner,
   Intermediate: COLORS.primary,
-  Advanced:     '#555555',
+  Advanced:     COLORS.textMuted,
 }
 
 function fmt(value, unit) {

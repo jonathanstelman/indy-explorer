@@ -1,7 +1,7 @@
 import { forwardRef, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
-import { COLORS, FONTS } from '@/theme'
+import { COLORS, FONTS, withAlpha } from '@/theme'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-quartz.css'
 import './ResortTable.css'
@@ -138,11 +138,14 @@ export const COL_GROUPS = [
 const GRID_THEME_VARS = {
   '--ag-font-family':                   FONTS.mono,
   '--ag-font-size':                     '12px',
-  '--ag-row-hover-color':               'rgba(0, 245, 255, 0.06)',
-  '--ag-selected-row-background-color': 'rgba(0, 245, 255, 0.12)',
+  '--ag-row-hover-color':               withAlpha(COLORS.primary, 0.06),
+  '--ag-selected-row-background-color': withAlpha(COLORS.primary, 0.12),
   '--ag-border-color':                  COLORS.border,
   '--ag-header-column-separator-color': COLORS.border,
   '--ag-cell-horizontal-padding':       '8px',
+  '--indy-header-bg':                   COLORS.bgHeader,
+  '--indy-header-hover':                COLORS.neutral,
+  '--indy-header-text':                 COLORS.bgBase,
 }
 
 const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick }, ref) {
