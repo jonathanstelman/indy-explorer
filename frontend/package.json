@@ -19,6 +19,8 @@
     "@deck.gl/widgets": "^9.3.2",
     "@fontsource/bebas-neue": "^5.2.7",
     "@fontsource/space-mono": "^5.2.9",
+    "ag-grid-community": "^35.3.0",
+    "ag-grid-react": "^35.3.0",
     "antd": "^6.4.2",
     "mapbox-gl": "^3.23.1",
     "react": "^19.2.4",

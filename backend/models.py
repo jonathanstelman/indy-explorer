@@ -36,7 +36,7 @@ class MetaResponse(BaseModel):
 
 
 class ResortSummary(BaseModel):
-    """Lean projection returned by GET /resorts — fields needed for the map and table."""
+    """Full projection returned by GET /resorts — used by both the map and data table."""
 
     resort_id: str
     name: str
@@ -44,9 +44,11 @@ class ResortSummary(BaseModel):
     city: Optional[str] = None
     state: Optional[str] = None
     country: Optional[str] = None
+    location_name: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     reservation_status: str
+    reservation_url: Optional[str] = None
     indy_page: str
     website: Optional[str] = None
     is_allied: Optional[bool] = None
@@ -58,13 +60,42 @@ class ResortSummary(BaseModel):
     has_snowshoeing: Optional[bool] = None
     ltt_available: Optional[bool] = None
     vertical: Optional[float] = None
+    vertical_meters: Optional[float] = None
+    vertical_base_ft: Optional[float] = None
+    vertical_summit_ft: Optional[float] = None
     acres: Optional[float] = None
     num_trails: Optional[float] = None
     num_lifts: Optional[float] = None
     trail_length_mi: Optional[float] = None
+    trail_length_km: Optional[float] = None
+    difficulty_beginner: Optional[float] = None
+    difficulty_intermediate: Optional[float] = None
+    difficulty_advanced: Optional[float] = None
+    snowfall_average_in: Optional[float] = None
+    snowfall_high_in: Optional[float] = None
+    blackout_count: Optional[int] = None
+    ltt_blackout_count: Optional[int] = None
     pr_total: Optional[float] = None
     pr_overall_rank: Optional[float] = None
-    blackout_count: Optional[int] = None
+    pr_regional_rank: Optional[float] = None
+    pr_region: Optional[str] = None
+    pr_snow: Optional[float] = None
+    pr_resiliency: Optional[float] = None
+    pr_size: Optional[float] = None
+    pr_terrain_diversity: Optional[float] = None
+    pr_challenge: Optional[float] = None
+    pr_lifts: Optional[float] = None
+    pr_crowd_flow: Optional[float] = None
+    pr_facilities: Optional[float] = None
+    pr_navigation: Optional[float] = None
+    pr_mountain_aesthetic: Optional[float] = None
+    pr_lodging: Optional[str] = None
+    pr_apres_ski: Optional[str] = None
+    pr_access_road: Optional[str] = None
+    pr_ability_low: Optional[str] = None
+    pr_ability_high: Optional[str] = None
+    pr_nearest_cities: Optional[str] = None
+    pr_pass_affiliation: Optional[str] = None
 
 
 class Resort(BaseModel):
