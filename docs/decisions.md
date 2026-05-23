@@ -54,6 +54,14 @@ Format for new entries:
 **Follow-up:** Revisit if CSV size or update frequency becomes a problem.
 
 ---
+## 2026-05-22 — Resort detail modal and blackout calendar
+
+**Issue:** #73  
+**Decision:** Resort detail opens in an antd `Modal` (600px wide). Blackout dates render in an antd `Calendar` with `fullCellRender` — colored circles over each date (standard=magenta, LTT=cyan, both=diagonal split gradient). Today gets a border ring only (transparent fill so blackout color shows through). Out-of-month dates fade to 10% opacity. Month state persists across modal opens via a module-level variable (`sharedCalendarMonth`) that survives `destroyOnClose` unmounting. All three navigation paths (dropdowns, prev/next buttons, clicking an out-of-month date) route through the same `setMonth()` setter, which also updates the shared variable.  
+**Rationale:** `fullCellRender` replaces the entire cell (vs. `cellRender` which appends below the date number, causing double rendering). Module-level variable chosen over context/localStorage to avoid prop drilling with no persistence requirement across page reloads. Color pair (magenta + cyan) selected for sufficient contrast against each other and against white text/dark text respectively.  
+**Follow-up:** None — settled.
+
+---
 ## 2026-05-17 — Filter state
 **Issue:** #64  
 **Decision:** URL query params.  

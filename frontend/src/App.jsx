@@ -8,6 +8,7 @@ import AppSidebar from '@/components/layout/Sidebar'
 import AppFooter from '@/components/layout/Footer'
 import ResortToolbar from '@/components/ResortToolbar'
 import ResortMap from '@/components/ResortMap'
+import ResortDetailModal from '@/components/ResortDetailModal'
 import { themeConfig } from '@/theme'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
   const [meta, setMeta] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [selectedResortId, setSelectedResortId] = useState(null)
 
   // Fetch meta and full unfiltered resort list once on mount
   useEffect(() => {
@@ -52,13 +54,20 @@ export default function App() {
                 <ResortToolbar count={resorts.length} loading={loading} />
               </div>
               <div style={{ flex: 1, position: 'relative' }}>
-                <ResortMap resorts={resorts} />
+                <ResortMap
+                  resorts={resorts}
+                  onResortClick={r => setSelectedResortId(r.resort_id)}
+                />
               </div>
             </Layout.Content>
             <AppFooter />
           </Layout>
         </Layout>
       </Layout>
+      <ResortDetailModal
+        resortId={selectedResortId}
+        onClose={() => setSelectedResortId(null)}
+      />
     </ConfigProvider>
   )
 }
