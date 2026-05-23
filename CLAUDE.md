@@ -123,7 +123,11 @@ The project board is: https://github.com/users/jonathanstelman/projects/2
 
 ## Session Documentation
 
-After completing any non-trivial task, append a summary to [`docs/decisions.md`](docs/decisions.md). If the file doesn't exist, create it. Keep entries terse — this is a trail, not a journal.
+**At the start of every session**, read [`docs/planning.md`](docs/planning.md) to orient yourself — it records the current branch, what's done, what's next, and any open polish items.
+
+**During and at the end of every session**, keep `docs/planning.md` up to date: mark completed items, add newly discovered tasks, and update "Up next" so the next session can pick up without re-deriving state from git history.
+
+After completing any non-trivial task, append a summary to [`docs/decisions.md`](docs/decisions.md). If the file doesn't exist, create it. Keep entries terse — this is a trail, not a journal. Always append to the end of the file — do not insert entries mid-file.
 
 ```
 ## YYYY-MM-DD — Short description
