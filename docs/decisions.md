@@ -62,6 +62,14 @@ Format for new entries:
 **Follow-up:** None — settled.
 
 ---
+## 2026-05-22 — Resort detail charts and Peak Rankings (#74, #75)
+
+**Issue:** #74, #75
+**Decision:** Added three chart/stat sections to the resort detail modal. Elevation shown as a vertical stat stack (Summit/Drop/Base) with a cyan left-border accent — no chart, since any bar would imply proportionality from sea level that's visually misleading. Trail difficulty uses a Recharts PieChart with the legend to the left; colors borrow from ski trail convention bent toward the app theme (bright green #00C44F / cyan / graphite #555). Snowfall is a simple two-bar Recharts BarChart (average vs. max). Peak Rankings (#75) is pure data: total score + ranks prominently at top, 10 category scores in a 5-column grid with mini progress bars (0–10 scale), and an extras grid for lodging, après, access road, ability range, nearest cities, and pass affiliation. Recharts added as a dependency.
+**Rationale:** Elevation chart approaches (stacked bar, waterfall) all imply sea-level proportionality; stat boxes are unambiguous. Difficulty colors chosen for colorblind accessibility — green/cyan/graphite separate by both hue and value. Peak Rankings section hidden entirely when pr_total is null.
+**Follow-up:** Row alignment between ElevationStats and DifficultyChart legend is imperfect (tracked as a polish task).
+
+---
 ## 2026-05-17 — Filter state
 **Issue:** #64  
 **Decision:** URL query params.  
