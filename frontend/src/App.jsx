@@ -30,9 +30,7 @@ export default function App() {
   const [tableHeight, setTableHeight] = useState(DEFAULT_TABLE_HEIGHT)
   const [tableCollapsed, setTableCollapsed] = useState(false)
 
-  const tableRef      = useRef()
-  const tablePanelRef = useRef()
-  const [isFullscreen,  setIsFullscreen]  = useState(false)
+  const tableRef = useRef()
   const [colsOpen,      setColsOpen]      = useState(false)
   const [colVisibility, setColVisibility] = useState(
     () => Object.fromEntries(COLUMN_DEFS.map(c => [c.field, true]))
@@ -58,19 +56,8 @@ export default function App() {
       .finally(() => setLoading(false))
   }, [searchParams.toString()])
 
-  useEffect(() => {
-    function onFsChange() { setIsFullscreen(!!document.fullscreenElement) }
-    document.addEventListener('fullscreenchange', onFsChange)
-    return () => document.removeEventListener('fullscreenchange', onFsChange)
-  }, [])
-
   function onDownloadCsv() {
     tableRef.current?.api.exportDataAsCsv({ fileName: 'indy-resorts.csv' })
-  }
-
-  function onToggleFullscreen() {
-    if (!document.fullscreenElement) tablePanelRef.current?.requestFullscreen()
-    else document.exitFullscreen()
   }
 
   function toggleColumn(field) {
@@ -159,7 +146,7 @@ export default function App() {
               </div>
 
               {/* Table panel */}
-              <div ref={tablePanelRef} style={{ flexShrink: 0 }}>
+              <div style={{ flexShrink: 0 }}>
                 {/* Drag handle */}
                 <div
                   onMouseDown={tableCollapsed ? undefined : startDrag}
@@ -196,13 +183,6 @@ export default function App() {
                         <Button size="small">Select Columns</Button>
                       </Popover>
                       <Button size="small" onClick={onDownloadCsv}>Download CSV</Button>
-                      <Button
-                        size="small"
-                        onClick={onToggleFullscreen}
-                        style={{ borderColor: COLORS.primary, color: COLORS.primary }}
-                      >
-                        {isFullscreen ? 'Exit full screen' : 'Full screen'}
-                      </Button>
                     </div>
                   )}
                 </div>
