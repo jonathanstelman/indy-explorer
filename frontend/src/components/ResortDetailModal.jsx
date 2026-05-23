@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import dayjs from 'dayjs'
 import {
   Bar, BarChart, Cell, Pie, PieChart,
-  ResponsiveContainer, Tooltip, XAxis,
+  ResponsiveContainer, XAxis,
 } from 'recharts'
 import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Tag, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
@@ -58,32 +58,6 @@ function fmt(value, unit) {
   return unit ? `${value.toLocaleString()} ${unit}` : value.toLocaleString()
 }
 
-function ElevationStats({ base, summit }) {
-  if (base == null && summit == null) return null
-  const drop = base != null && summit != null
-    ? Math.round(Number(summit) - Number(base))
-    : null
-  const rows = [
-    ['Summit', summit != null ? Number(summit).toLocaleString() : null],
-    ['Drop',   drop   != null ? drop.toLocaleString()           : null],
-    ['Base',   base   != null ? Number(base).toLocaleString()   : null],
-  ].filter(([, v]) => v != null)
-
-  return (
-    <div>
-      <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 8 }}>Elevation (ft)</Text>
-      <div style={{ borderLeft: `2px solid ${COLORS.primary}`, paddingLeft: 10, display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {rows.map(([label, value]) => (
-          <div key={label} style={{ height: 20, display: 'flex', alignItems: 'center' }}>
-            <Text type="secondary" style={{ fontSize: 12 }}>{label}: </Text>
-            <Text strong style={{ fontSize: 12 }}>{value}</Text>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 function DifficultyChart({ beginner, intermediate, advanced }) {
   if (beginner == null && intermediate == null && advanced == null) return null
   const data = [
@@ -95,22 +69,21 @@ function DifficultyChart({ beginner, intermediate, advanced }) {
   return (
     <div>
       <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 8 }}>Trail Difficulty</Text>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flexShrink: 0 }}>
-          {data.map(d => (
-            <span key={d.name} style={{ height: 20, fontSize: 12, display: 'flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'auto auto', columnGap: 8, rowGap: 4, flexShrink: 0 }}>
+          {data.flatMap(d => [
+            <span key={`${d.name}-l`} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: DIFFICULTY_COLORS[d.name], flexShrink: 0 }} />
-              <Text type="secondary" style={{ fontSize: 12 }}>{d.name}: </Text>
-              <Text strong style={{ fontSize: 12 }}>{d.value}%</Text>
-            </span>
-          ))}
+              <Text type="secondary" style={{ fontSize: 12 }}>{d.name}</Text>
+            </span>,
+            <Text key={`${d.name}-v`} strong style={{ fontSize: 12 }}>{d.value}%</Text>,
+          ])}
         </div>
-        <ResponsiveContainer width="100%" height={90}>
+        <ResponsiveContainer width="100%" height={70}>
           <PieChart>
-            <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={40} isAnimationActive={false}>
+            <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={30} isAnimationActive={false}>
               {data.map(entry => <Cell key={entry.name} fill={DIFFICULTY_COLORS[entry.name]} />)}
             </Pie>
-            <Tooltip formatter={(v, name) => [`${v}%`, name]} />
           </PieChart>
         </ResponsiveContainer>
       </div>
@@ -126,10 +99,10 @@ function SnowfallChart({ avg, high }) {
   ].filter(d => d.inches != null)
   if (data.length === 0) return null
   return (
-    <div>
+    <div style={{ maxWidth: 210 }}>
       <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 4 }}>Snowfall (in)</Text>
       <ResponsiveContainer width="100%" height={90}>
-        <BarChart data={data} margin={{ top: 16, right: 0, bottom: 0, left: 0 }}>
+        <BarChart data={data} margin={{ top: 16, right: 0, bottom: 0, left: -10 }}>
           <XAxis dataKey="label" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
           <Bar dataKey="inches" fill={COLORS.primary} isAnimationActive={false}
             label={{ position: 'top', fontSize: 11 }} />
@@ -350,7 +323,6 @@ export default function ResortDetailModal({ resortId, onClose }) {
     : null
 
   const hasCharts = resort && (
-    (resort.vertical_base_ft != null && resort.vertical_summit_ft != null) ||
     (resort.difficulty_beginner != null || resort.difficulty_intermediate != null || resort.difficulty_advanced != null) ||
     (resort.snowfall_average_in != null || resort.snowfall_high_in != null)
   )
@@ -406,37 +378,45 @@ export default function ResortDetailModal({ resortId, onClose }) {
 
           {/* Size */}
           <Text strong>Size</Text>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 24px', marginTop: 8 }}>
-            {[
-              ['Vertical',     fmt(resort.vertical,        'ft')],
-              ['Acreage',      fmt(resort.acres,           'ac')],
-              ['Trails',       fmt(resort.num_trails)],
-              ['Lifts',        fmt(resort.num_lifts)],
-              ['Trail length', fmt(resort.trail_length_mi, 'mi')],
-            ].map(([label, value]) => (
-              <div key={label}>
-                <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>
-                <div><Text>{value}</Text></div>
-              </div>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 24, marginTop: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {[
+                ['Lifts',             fmt(resort.num_lifts)],
+                ['Trails',            fmt(resort.num_trails)],
+                ['Trail length (mi)', fmt(resort.trail_length_mi)],
+                ['Acreage (ac)',      fmt(resort.acres)],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>
+                  <div><Text>{value}</Text></div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {[
+                ['Summit (ft)',   fmt(resort.vertical_summit_ft)],
+                ['Vertical (ft)', fmt(resort.vertical)],
+                ['Base (ft)',     fmt(resort.vertical_base_ft)],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>
+                  <div><Text>{value}</Text></div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {hasCharts && (
             <>
               <Divider />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 32px', alignItems: 'start' }}>
-                <ElevationStats base={resort.vertical_base_ft} summit={resort.vertical_summit_ft} />
                 <DifficultyChart
                   beginner={resort.difficulty_beginner}
                   intermediate={resort.difficulty_intermediate}
                   advanced={resort.difficulty_advanced}
                 />
+                <SnowfallChart avg={resort.snowfall_average_in} high={resort.snowfall_high_in} />
               </div>
-              {(resort.snowfall_average_in != null || resort.snowfall_high_in != null) && (
-                <div style={{ marginTop: 16, maxWidth: 200 }}>
-                  <SnowfallChart avg={resort.snowfall_average_in} high={resort.snowfall_high_in} />
-                </div>
-              )}
             </>
           )}
 
