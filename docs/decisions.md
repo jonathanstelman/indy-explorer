@@ -89,6 +89,13 @@ Format for new entries:
 **Follow-up:** None — settled.
 
 ---
+## 2026-05-24 — Pipeline backup strategy and data deployment approach
+**Issue:** #76, #77
+**Decision:** Pipeline backs up `resorts.csv`, `resort_id_map.csv`, and `pipeline_metadata.json` to `backups/YYYY-MM-DDTHH-MM-SS/` before any steps run, keeping the 10 most recent. Cache HTML is excluded (large, regenerable). Naming convention uses ISO 8601 with hyphens replacing colons. Automated pipeline (#77) will open a PR rather than auto-committing to main — human reviews the data diff before merging. Pre-PR sanity check runs `load_resorts()` against the new CSV; requires #83 (Pydantic validation) first.
+**Rationale:** App seasonality means bad data could go unnoticed for months. PR-based promotion gives a human gate without requiring a staging environment. Backup-before-run gives a fast local restore path without touching git history.
+**Follow-up:** #83 must be completed before #77's validation step is implemented.
+
+---
 ## 2026-05-23 — Centralized color system in theme.js
 **Issue:** #72 (polish)  
 **Decision:** All color values in `frontend/src/` must reference named tokens from `COLORS` in `src/theme.js`. No hardcoded hex or rgba strings in `.jsx` or `.css` files. CSS files bridge to theme values via CSS custom properties set in `GRID_THEME_VARS` (e.g. `--indy-header-bg`). The `withAlpha(hex, alpha)` utility generates rgba strings from theme hex values.  
