@@ -5,10 +5,13 @@ WORKDIR /app
 RUN pip install --no-cache-dir poetry==2.1.3 && \
     poetry config virtualenvs.create false
 
-COPY pyproject.toml poetry.lock ./
+# Copy dependency files first for layer caching
+COPY backend/pyproject.toml backend/poetry.lock ./
 RUN poetry install --only main --no-interaction
 
-COPY . .
+# Copy backend source and data (built from repo root)
+COPY backend/ .
+COPY data/ /data/
 
 EXPOSE 8000
 
