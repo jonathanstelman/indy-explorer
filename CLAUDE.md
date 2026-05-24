@@ -68,7 +68,7 @@ A personal ops runbook lives at `docs/ops-runbook.md` (git-ignored; the user kee
 - **Backend:** `https://indy-explorer-backend.fly.dev` (Fly.io, region: ewr)
   - Deploy from repo root: `flyctl deploy --config backend/fly.toml`
   - Docker image bakes in `data/` at build time — redeploy after pipeline data updates
-- **Frontend:** Vercel (URL TBD — update this once deployed)
+- **Frontend:** `https://indy-explorer.vercel.app` (Vercel, auto-deploys from `main`)
 
 ## Commands
 
