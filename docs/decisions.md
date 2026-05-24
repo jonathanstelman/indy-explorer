@@ -101,3 +101,10 @@ Format for new entries:
 **Decision:** All color values in `frontend/src/` must reference named tokens from `COLORS` in `src/theme.js`. No hardcoded hex or rgba strings in `.jsx` or `.css` files. CSS files bridge to theme values via CSS custom properties set in `GRID_THEME_VARS` (e.g. `--indy-header-bg`). The `withAlpha(hex, alpha)` utility generates rgba strings from theme hex values.  
 **Rationale:** One audit found `COLORS.accent` (undefined), two unique greens, and three similar greys scattered across components. Centralizing prevents drift and makes visual changes a single-file edit.  
 **Follow-up:** When adding new colors, add to `COLORS` in theme.js first, then reference by name.
+
+---
+## 2026-05-24 — Deployment: Fly.io + Vercel split
+**Issue:** #100  
+**Decision:** Backend on Fly.io (`indy-explorer-backend`, region `ewr`), frontend on Vercel. Frontend proxies `/api/:path*` → `https://indy-explorer-backend.fly.dev/:path*` via `vercel.json` rewrite — no CORS config needed. Docker image built from repo root so `data/` is baked in at deploy time (not read from a volume).  
+**Rationale:** Vercel is purpose-built for static SPAs (CDN, zero-config GitHub auto-deploy). Fly.io handles the containerized FastAPI. All-Fly.io was considered but requires nginx and has no global CDN equivalent. Baking `data/` into the image keeps the backend stateless and dead-simple to deploy; after a pipeline data update, redeploy the backend.  
+**Follow-up:** After a pipeline data update, both `data/resorts.csv` must be committed to main AND the backend must be redeployed (`flyctl deploy --config backend/fly.toml`) for new data to appear in the live app.
