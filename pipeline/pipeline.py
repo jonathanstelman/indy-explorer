@@ -11,6 +11,7 @@ import argparse
 import json
 import logging
 import os
+import shutil
 import sys
 import time
 from datetime import datetime, timezone
@@ -23,6 +24,35 @@ logger = logging.getLogger(__name__)
 
 CACHE_DIR = Path('cache')
 DATA_DIR = Path('data')
+BACKUP_DIR = Path('backups')
+BACKUP_KEEP = 10
+BACKUP_FILES = ['resorts.csv', 'resort_id_map.csv', 'pipeline_metadata.json']
+
+
+def _backup_data() -> None:
+    """Snapshot critical data files before pipeline steps run."""
+    BACKUP_DIR.mkdir(exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H-%M-%S')
+    dest = BACKUP_DIR / timestamp
+    dest.mkdir()
+
+    backed_up = []
+    for filename in BACKUP_FILES:
+        src = DATA_DIR / filename
+        if src.exists():
+            shutil.copy2(src, dest / filename)
+            backed_up.append(filename)
+
+    if backed_up:
+        logger.info('Backed up %d file(s) to %s/.', len(backed_up), dest)
+    else:
+        logger.info('No data files found to back up (first run?).')
+
+    # Rotate: remove oldest backups beyond BACKUP_KEEP
+    existing = sorted(BACKUP_DIR.glob('????-??-??T??-??-??'))
+    for old in existing[:-BACKUP_KEEP]:
+        shutil.rmtree(old)
+        logger.info('Removed old backup: %s', old.name)
 
 
 # ---- Step functions ----
@@ -237,6 +267,8 @@ def main() -> None:
     logger.info(
         'Running %d step(s): %s', len(steps_to_run), ', '.join(n for n, _, _ in steps_to_run)
     )
+
+    _backup_data()
 
     for i, (name, func, description) in enumerate(steps_to_run, 1):
         logger.info('')
