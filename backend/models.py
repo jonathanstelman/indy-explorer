@@ -13,6 +13,7 @@ class DateRangeField(BaseModel):
 
 
 class MetaResponse(BaseModel):
+    last_pipeline_run: Optional[str] = None  # ISO datetime from pipeline_metadata.json
     regions: list[str]
     countries: list[str]
     states: list[str]

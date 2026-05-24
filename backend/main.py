@@ -1,4 +1,5 @@
 import json
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query
 from typing import Optional
@@ -6,13 +7,25 @@ from typing import Optional
 from data import load_resorts
 from models import Resort, ResortSummary, MetaResponse, RangeField, DateRangeField
 
+_PIPELINE_METADATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'pipeline_metadata.json')
+
 _resorts: list[Resort] = []
+_last_pipeline_run: Optional[str] = None
+
+
+def _load_pipeline_metadata(path: str) -> Optional[str]:
+    try:
+        with open(path) as f:
+            return json.load(f).get('last_run')
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global _resorts
+    global _resorts, _last_pipeline_run
     _resorts = load_resorts()
+    _last_pipeline_run = _load_pipeline_metadata(_PIPELINE_METADATA_PATH)
     yield
 
 
@@ -45,6 +58,7 @@ def get_meta():
         return DateRangeField(min=min(dates) if dates else None, max=max(dates) if dates else None)
 
     return MetaResponse(
+        last_pipeline_run=_last_pipeline_run,
         regions=sorted({r.region for r in _resorts if r.region}),
         countries=sorted({r.country for r in _resorts if r.country}),
         states=sorted({r.state for r in _resorts if r.state}),

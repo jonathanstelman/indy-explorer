@@ -1,13 +1,14 @@
 import sys
 import os
 import json
+import tempfile
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from fastapi.testclient import TestClient
 from unittest.mock import patch
 
-from main import app
+from main import app, _load_pipeline_metadata
 from models import Resort
 
 FAKE_RESORTS = [
@@ -126,3 +127,46 @@ def test_meta_empty_resorts():
     assert data['regions'] == []
     assert data['vertical'] == {'min': None, 'max': None}
     assert data['blackout_date_range'] == {'min': None, 'max': None}
+
+
+def test_meta_last_pipeline_run_present():
+    ts = '2026-04-22T01:47:15.286723+00:00'
+    with patch('main._resorts', FAKE_RESORTS), patch('main._last_pipeline_run', ts):
+        response = client.get('/meta')
+    assert response.status_code == 200
+    assert response.json()['last_pipeline_run'] == ts
+
+
+def test_meta_last_pipeline_run_absent():
+    with patch('main._resorts', FAKE_RESORTS), patch('main._last_pipeline_run', None):
+        response = client.get('/meta')
+    assert response.status_code == 200
+    assert response.json()['last_pipeline_run'] is None
+
+
+# --- _load_pipeline_metadata unit tests ---
+
+def test_load_pipeline_metadata_reads_last_run():
+    metadata = {'last_run': '2026-04-22T01:47:15+00:00', 'mode': 'full'}
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        json.dump(metadata, f)
+        path = f.name
+    assert _load_pipeline_metadata(path) == '2026-04-22T01:47:15+00:00'
+
+
+def test_load_pipeline_metadata_missing_file():
+    assert _load_pipeline_metadata('/nonexistent/path/pipeline_metadata.json') is None
+
+
+def test_load_pipeline_metadata_malformed_json():
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        f.write('not valid json{{{')
+        path = f.name
+    assert _load_pipeline_metadata(path) is None
+
+
+def test_load_pipeline_metadata_missing_key():
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        json.dump({'mode': 'full'}, f)
+        path = f.name
+    assert _load_pipeline_metadata(path) is None

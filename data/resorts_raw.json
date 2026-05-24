@@ -1062,7 +1062,7 @@
         "href": "/our-resorts/cooper-spur-ski-area"
     },
     "401": {
-        "name": "Corralco Mountain Resort",
+        "name": "Corralco Resort de Monta\u00f1a",
         "coordinates": {
             "latitude": -38.4136519,
             "longitude": -71.5589333
@@ -1077,7 +1077,7 @@
         "num_lifts": 8,
         "is_open_nights": false,
         "has_terrain_parks": true,
-        "href": "/our-resorts/corralco-mountain-resort"
+        "href": "/our-resorts/corralco-resort-de-montana"
     },
     "277": {
         "name": "Crosscut Mountain Sports Center",

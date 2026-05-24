@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-04-22T01:47:15.286723+00:00",
-  "mode": "full",
+  "last_run": "2026-05-24T16:54:00.581536+00:00",
+  "mode": "incremental",
   "steps_run": [
     "scrape_resorts",
     "scrape_reservations",
