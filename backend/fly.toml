@@ -1,5 +1,5 @@
 app = "indy-explorer-backend"
-primary_region = "iad"
+primary_region = "ewr"
 
 [build]
   dockerfile = "backend/Dockerfile"
