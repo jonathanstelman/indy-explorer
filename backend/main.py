@@ -7,7 +7,9 @@ from typing import Optional
 from data import load_resorts
 from models import Resort, ResortSummary, MetaResponse, RangeField, DateRangeField
 
-_PIPELINE_METADATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'pipeline_metadata.json')
+_PIPELINE_METADATA_PATH = os.path.join(
+    os.path.dirname(__file__), '..', 'data', 'pipeline_metadata.json'
+)
 
 _resorts: list[Resort] = []
 _last_pipeline_run: Optional[str] = None

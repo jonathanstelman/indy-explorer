@@ -146,6 +146,7 @@ def test_meta_last_pipeline_run_absent():
 
 # --- _load_pipeline_metadata unit tests ---
 
+
 def test_load_pipeline_metadata_reads_last_run():
     metadata = {'last_run': '2026-04-22T01:47:15+00:00', 'mode': 'full'}
     with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
