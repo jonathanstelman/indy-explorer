@@ -67,12 +67,7 @@ The app ships with pre-built data in `data/resorts.csv` — no pipeline run need
 
 The pipeline orchestrator handles scraping, geocoding, blackout dates, rankings, and merging.
 
-### Before refreshing: back up existing data
-
-```sh
-cp -r cache/ backups/cache_backup_$(date +%Y%m%d_%H%M%S)
-cp -r data/ backups/data_backup_$(date +%Y%m%d_%H%M%S)
-```
+The pipeline automatically backs up `data/resorts.csv`, `data/resort_id_map.csv`, and `data/pipeline_metadata.json` to a timestamped directory under `backups/` before any steps run. The 10 most recent backups are kept; older ones are deleted. To restore, copy the desired files back to `data/`.
 
 ```sh
 # Incremental refresh (uses cached HTML, fetches new resorts only)

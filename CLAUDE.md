@@ -45,11 +45,30 @@ The aesthetic direction, dark mode token config, glow effects, and open design q
 
 Settled architectural and design decisions are documented in [`docs/decisions.md`](docs/decisions.md). Do not relitigate them without checking with the user. When completing any non-trivial task, append a new entry there — see the format specified in that file.
 
+## Ops Runbook
+
+A personal ops runbook lives at `docs/ops-runbook.md` (git-ignored; the user keeps a copy outside the repo). It covers:
+
+- Backend deploy commands (Fly.io) and how to verify a deploy
+- Frontend deploy (Vercel) and required env vars
+- Pipeline run commands and the backup/restore procedure
+- Secrets and credentials inventory
+- Common troubleshooting scenarios
+
+**When ops practices change** (new deploy steps, new secrets, new services, architecture changes), update `docs/ops-runbook.md` to match. If the file is missing (user hasn't placed it yet), note the relevant change so the user can add it manually.
+
 ## Environment & Secrets
 
-- `GOOGLE_MAPS_API_KEY` in `.env` — for geocoding (quota-sensitive; prefer cached `data/resort_locations.csv`). In production: `flyctl secrets set GOOGLE_MAPS_API_KEY=...`
+- `GOOGLE_MAPS_API_KEY` in `.env` — for geocoding (quota-sensitive; prefer cached `data/resort_locations.csv`). Not needed by the backend at runtime — pipeline only.
 - `MAPBOX_TOKEN` in `.streamlit/secrets.toml` — for map rendering in Streamlit
 - `VITE_MAPBOX_TOKEN` — for map rendering in the React frontend. Set in Vercel dashboard (build-time env var; `VITE_` prefix required for browser exposure)
+
+## Deployed Services
+
+- **Backend:** `https://indy-explorer-backend.fly.dev` (Fly.io, region: ewr)
+  - Deploy from repo root: `flyctl deploy --config backend/fly.toml`
+  - Docker image bakes in `data/` at build time — redeploy after pipeline data updates
+- **Frontend:** Vercel (URL TBD — update this once deployed)
 
 ## Commands
 
