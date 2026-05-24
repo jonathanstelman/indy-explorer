@@ -113,6 +113,7 @@ poetry run python pipeline/prep_resort_data.py                      # merge all 
 
 - Black with `line-length = 100` and `skip-string-normalization = true` (preserves single quotes)
 - Pre-commit hook runs Black automatically
+- **Always run `poetry run black --check .` before committing.** CI will fail if formatting is off. Fix with `poetry run black .`.
 
 ## Branch Naming Convention
 
