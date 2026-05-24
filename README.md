@@ -67,12 +67,7 @@ The app ships with pre-built data in `data/resorts.csv` — no pipeline run need
 
 The pipeline orchestrator handles scraping, geocoding, blackout dates, rankings, and merging.
 
-### Before refreshing: back up existing data
-
-```sh
-cp -r cache/ backups/cache_backup_$(date +%Y%m%d_%H%M%S)
-cp -r data/ backups/data_backup_$(date +%Y%m%d_%H%M%S)
-```
+The pipeline automatically backs up `data/resorts.csv`, `data/resort_id_map.csv`, and `data/pipeline_metadata.json` to a timestamped directory under `backups/` before any steps run. The 10 most recent backups are kept; older ones are deleted. To restore, copy the desired files back to `data/`.
 
 ```sh
 # Incremental refresh (uses cached HTML, fetches new resorts only)
@@ -116,33 +111,7 @@ GitHub Actions runs tests and Black checks on push/PRs. Coverage is optionally u
 
 ## Deployment
 
-The React frontend is hosted on Vercel and the FastAPI backend on Fly.io.
-
-### Frontend (Vercel)
-
-Vercel deploys automatically on push to `main` via GitHub integration.
-
-1. Install the Vercel CLI: `npm install -g vercel`
-2. Link the project: `cd frontend && vercel link`
-3. Set the Mapbox token as an environment variable in the Vercel dashboard:
-   - Key: `VITE_MAPBOX_TOKEN`
-   - Value: your Mapbox token
-   - Environment: Production (and Preview if desired)
-4. Deploy manually if needed: `vercel --prod`
-
-### Backend (Fly.io)
-
-1. Install the Fly CLI: `brew install flyctl`
-2. Authenticate: `flyctl auth login`
-3. Create the app (first time only): `cd backend && flyctl launch --no-deploy`
-4. Set secrets:
-   ```sh
-   flyctl secrets set GOOGLE_MAPS_API_KEY=your_key_here
-   ```
-5. Deploy: `flyctl deploy`
-6. Check health: `curl https://indy-explorer-backend.fly.dev/health`
-
-Subsequent deploys run automatically on push to `main` via the CI/CD pipeline (to be configured in a later issue).
+The FastAPI backend is hosted on [Fly.io](https://fly.io) and the React frontend on [Vercel](https://vercel.com). The frontend proxies all `/api/*` requests to the backend — no CORS configuration needed.
 
 ## Contributing
 

@@ -187,6 +187,9 @@ dist/
 # Planning / design docs
 planning/
 
+# Personal ops runbook
+docs/ops-runbook.md
+
 # AI coding assistants
 .claude/
 .cursor/

@@ -1,0 +1,13 @@
+# Allowlist: exclude everything, then explicitly re-include what the backend needs.
+# The backend image only needs the Python app (backend/) and the data CSVs (data/).
+
+*
+
+!backend/
+!data/
+
+# Exclude within the allowed directories
+data/resort_page_extracts/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
