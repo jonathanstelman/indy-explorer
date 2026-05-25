@@ -27,8 +27,15 @@ export default function App() {
   const [error, setError] = useState(null)
   const [selectedResortId, setSelectedResortId] = useState(null)
 
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => window.innerWidth < 768)
   const [sidebarWidth, setSidebarWidth] = useState(280)
+
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
 
   const [tableHeight, setTableHeight] = useState(DEFAULT_TABLE_HEIGHT)
   const [tableCollapsed, setTableCollapsed] = useState(false)
@@ -155,8 +162,10 @@ export default function App() {
             allResorts={allResorts}
             collapsed={sidebarCollapsed}
             width={sidebarWidth}
+            isMobile={isMobile}
+            onClose={() => setSidebarCollapsed(true)}
           />
-          {!sidebarCollapsed && (
+          {!isMobile && !sidebarCollapsed && (
             <div
               onMouseDown={startSidebarDrag}
               style={{
@@ -186,13 +195,15 @@ export default function App() {
                 <div
                   onMouseDown={tableCollapsed ? undefined : startDrag}
                   style={{
-                    height: 28,
+                    minHeight: 28,
                     background: COLORS.bgLayout,
                     borderTop: `1px solid ${COLORS.border}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0 16px',
+                    flexWrap: 'wrap',
+                    rowGap: 4,
+                    padding: '4px 16px',
                     cursor: tableCollapsed ? 'default' : 'ns-resize',
                     userSelect: 'none',
                   }}

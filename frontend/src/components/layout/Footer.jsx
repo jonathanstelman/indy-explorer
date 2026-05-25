@@ -11,6 +11,8 @@ export default function AppFooter({ lastUpdated }) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '4px 16px',
       }}
     >
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
