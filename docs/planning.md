@@ -6,9 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/103-104-105-mobile-layout` — mobile P0s: filter sidebar (#103), last updated date (#104), toolbar/footer layout (#105)
+`main` (no active feature branch)
 
-## Status (as of 2026-05-24)
+## Status (as of 2026-05-25)
 
 ### React rewrite — feature complete and deployed
 
@@ -37,7 +37,7 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #109 | UX: "How to use" first-load popover | P2 | |
 | #110 | UX: "Help improve this app" feedback section | P2 | |
 
-**Next up:** #103 and #104 (mobile P0s).
+**Next up:** #106 (cold start / keep Fly.io warm) or #83 (Pydantic data validation, blocks #77).
 
 **#77 revised scope:** Pipeline runs on a schedule and opens a PR against main rather than auto-committing. Human reviews the data diff before merging. Pre-PR sanity check runs `load_resorts()` against the new CSV — any Pydantic validation failures abort the job before a PR is opened. See issue for full acceptance criteria.
 
