@@ -234,7 +234,7 @@ export default function App() {
                 )}
               </div>
             </Layout.Content>
-            <AppFooter />
+            <AppFooter lastUpdated={meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : null} />
           </Layout>
         </Layout>
       </Layout>

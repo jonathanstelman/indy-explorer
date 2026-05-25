@@ -25,8 +25,8 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 
 | # | Description | Priority | Status |
 |---|---|---|---|
-| #103 | Mobile: filter sidebar inaccessible | P0 | |
-| #104 | Bug: "Last updated" not populating | P0 | |
+| #103 | Mobile: filter sidebar inaccessible | P0 | Done |
+| #104 | Bug: "Last updated" not populating | P0 | Done |
 | #105 | Mobile: toolbar and footer layout broken | P0 | |
 | #106 | Cold start: keep Fly.io machine warm | P1 | |
 | #83 | Data validation on Resort Pydantic model | P1 | Blocks #77 |
