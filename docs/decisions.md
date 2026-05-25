@@ -61,6 +61,13 @@ Format for new entries:
 **Follow-up:** Implement before Issues #14–#18. Ensure filter params are kept clean and human-readable (e.g., `?pass=ikon&region=northeast`).
 
 ---
+## 2026-05-25 — Mobile sidebar: Drawer overlay pattern
+**Issue:** #103, #105
+**Decision:** On mobile (< 768px), `AppSidebar` renders as an Ant Design `Drawer` overlay instead of a `Layout.Sider` push column. Desktop keeps the push layout with drag-to-resize. The `isMobile` flag is set on mount and updated on resize. The Drawer is `closable={false}`; the close affordance is a double-chevron SVG in the content header row. The same chevron (in the app header) toggles both desktop and mobile.
+**Rationale:** A layout column on mobile squeezed the content area to ~80px, making the footer and table unusable. Overlay keeps content full-width. Ant Design `Drawer` handles the backdrop, animation, and scroll-lock.
+**Follow-up:** Touch drag-to-resize on desktop sidebar not implemented (nice-to-have).
+
+---
 ## 2026-05-22 — Resort detail modal and blackout calendar
 **Issue:** #73  
 **Decision:** Resort detail opens in an antd `Modal` (600px wide). Blackout dates render in an antd `Calendar` with `fullCellRender` — colored circles over each date (standard=magenta, LTT=cyan, both=diagonal split gradient). Today gets a border ring only (transparent fill so blackout color shows through). Out-of-month dates fade to 10% opacity. Month state persists across modal opens via a module-level variable (`sharedCalendarMonth`) that survives `destroyOnClose` unmounting. All three navigation paths (dropdowns, prev/next buttons, clicking an out-of-month date) route through the same `setMonth()` setter, which also updates the shared variable.  

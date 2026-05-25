@@ -44,9 +44,6 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
   const content = (
     <>
       <div style={{ padding: '8px 16px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Button type="link" size="small" danger onClick={resetFilters} style={{ padding: 0 }}>
-          Reset all filters
-        </Button>
         {isMobile && (
           <button
             onClick={onClose}
@@ -58,6 +55,9 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
             </svg>
           </button>
         )}
+        <Button type="link" size="small" danger onClick={resetFilters} style={{ padding: 0, marginLeft: 'auto' }}>
+          Reset all filters
+        </Button>
       </div>
       <Collapse
         defaultActiveKey={ALL_KEYS}
