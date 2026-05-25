@@ -8,7 +8,7 @@ import { useFilters } from '@/hooks/useFilters'
 
 const ALL_KEYS = ['location']
 
-export default function AppSidebar({ meta, allResorts }) {
+export default function AppSidebar({ meta, allResorts, collapsed, width }) {
   const { resetFilters } = useFilters()
   const { token } = theme.useToken()
 
@@ -42,12 +42,11 @@ export default function AppSidebar({ meta, allResorts }) {
 
   return (
     <Layout.Sider
-      breakpoint="md"
-      collapsedWidth="0"
-      width={280}
+      collapsed={collapsed}
+      collapsedWidth={0}
+      width={width}
       style={{
         background: token.colorBgLayout,
-        borderRight: `1px solid ${token.colorBorder}`,
         overflow: 'auto',
       }}
     >

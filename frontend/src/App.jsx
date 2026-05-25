@@ -27,6 +27,9 @@ export default function App() {
   const [error, setError] = useState(null)
   const [selectedResortId, setSelectedResortId] = useState(null)
 
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => window.innerWidth < 768)
+  const [sidebarWidth, setSidebarWidth] = useState(280)
+
   const [tableHeight, setTableHeight] = useState(DEFAULT_TABLE_HEIGHT)
   const [tableCollapsed, setTableCollapsed] = useState(false)
 
@@ -110,6 +113,21 @@ export default function App() {
     </div>
   )
 
+  function startSidebarDrag(e) {
+    e.preventDefault()
+    const startX = e.clientX
+    const startW = sidebarWidth
+    function onMove(ev) {
+      setSidebarWidth(Math.max(200, Math.min(480, startW + (ev.clientX - startX))))
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+    }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+  }
+
   function startDrag(e) {
     e.preventDefault()
     const startY = e.clientY
@@ -130,9 +148,26 @@ export default function App() {
   return (
     <ConfigProvider theme={themeConfig}>
       <Layout style={{ height: '100%' }}>
-        <AppHeader />
+        <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} />
         <Layout>
-          <AppSidebar meta={meta} allResorts={allResorts} />
+          <AppSidebar
+            meta={meta}
+            allResorts={allResorts}
+            collapsed={sidebarCollapsed}
+            width={sidebarWidth}
+          />
+          {!sidebarCollapsed && (
+            <div
+              onMouseDown={startSidebarDrag}
+              style={{
+                width: 4,
+                flexShrink: 0,
+                cursor: 'ew-resize',
+                background: COLORS.border,
+                zIndex: 1,
+              }}
+            />
+          )}
           <Layout>
             <Layout.Content style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
               <div style={{ padding: '12px 24px' }}>
