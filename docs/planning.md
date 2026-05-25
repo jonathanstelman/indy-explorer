@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` (no active feature branch)
+`feature/103-104-105-mobile-layout` — mobile P0s: filter sidebar (#103), last updated date (#104), toolbar/footer layout (#105)
 
 ## Status (as of 2026-05-24)
 
@@ -25,9 +25,9 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 
 | # | Description | Priority | Status |
 |---|---|---|---|
-| #103 | Mobile: filter sidebar inaccessible | P0 | |
-| #104 | Mobile: toolbar and footer layout | P0 | |
-| #105 | Bug: "Last updated" not populating | P1 | |
+| #103 | Mobile: filter sidebar inaccessible | P0 | Done |
+| #104 | Bug: "Last updated" not populating | P0 | Done |
+| #105 | Mobile: toolbar and footer layout broken | P0 | Done |
 | #106 | Cold start: keep Fly.io machine warm | P1 | |
 | #83 | Data validation on Resort Pydantic model | P1 | Blocks #77 |
 | #77 | GitHub Actions scheduled pipeline | P1 | Depends on #83 |

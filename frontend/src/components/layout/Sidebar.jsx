@@ -1,4 +1,5 @@
-import { Button, Collapse, Layout, theme } from 'antd'
+import { Button, Collapse, Drawer, Layout, theme } from 'antd'
+import { COLORS } from '@/theme'
 import LocationFilters from '@/components/filters/LocationFilters'
 import StatsFilters from '@/components/filters/StatsFilters'
 import FeatureFilters from '@/components/filters/FeatureFilters'
@@ -8,7 +9,7 @@ import { useFilters } from '@/hooks/useFilters'
 
 const ALL_KEYS = ['location']
 
-export default function AppSidebar({ meta, allResorts }) {
+export default function AppSidebar({ meta, allResorts, collapsed, width, isMobile, onClose }) {
   const { resetFilters } = useFilters()
   const { token } = theme.useToken()
 
@@ -40,19 +41,21 @@ export default function AppSidebar({ meta, allResorts }) {
     },
   ]
 
-  return (
-    <Layout.Sider
-      breakpoint="md"
-      collapsedWidth="0"
-      width={280}
-      style={{
-        background: token.colorBgLayout,
-        borderRight: `1px solid ${token.colorBorder}`,
-        overflow: 'auto',
-      }}
-    >
-      <div style={{ padding: '12px 16px 4px', display: 'flex', justifyContent: 'flex-end' }}>
-        <Button type="link" size="small" danger onClick={resetFilters} style={{ padding: 0 }}>
+  const content = (
+    <>
+      <div style={{ padding: '8px 16px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {isMobile && (
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', color: COLORS.error }}
+          >
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ display: 'block', transform: 'translateY(-1px)' }}>
+              <path d="M13 2L9 6L13 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 2L4 6L8 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        )}
+        <Button type="link" size="small" danger onClick={resetFilters} style={{ padding: 0, marginLeft: 'auto' }}>
           Reset all filters
         </Button>
       </div>
@@ -62,6 +65,36 @@ export default function AppSidebar({ meta, allResorts }) {
         ghost
         style={{ padding: '8px 0' }}
       />
+    </>
+  )
+
+  if (isMobile) {
+    return (
+      <Drawer
+        title={null}
+        closable={false}
+        placement="left"
+        open={!collapsed}
+        onClose={onClose}
+        width={280}
+        styles={{ body: { padding: 0, background: token.colorBgLayout } }}
+      >
+        {content}
+      </Drawer>
+    )
+  }
+
+  return (
+    <Layout.Sider
+      collapsed={collapsed}
+      collapsedWidth={0}
+      width={width}
+      style={{
+        background: token.colorBgLayout,
+        overflow: 'auto',
+      }}
+    >
+      {content}
     </Layout.Sider>
   )
 }

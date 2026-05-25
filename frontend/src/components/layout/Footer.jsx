@@ -11,6 +11,8 @@ export default function AppFooter({ lastUpdated }) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '4px 16px',
       }}
     >
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
@@ -18,8 +20,8 @@ export default function AppFooter({ lastUpdated }) {
         <Typography.Link style={{ color: token.colorError }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
         {', '}
         <Typography.Link style={{ color: token.colorError }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
-        {', and the '}
-        <Typography.Link style={{ color: token.colorError }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps Geocoding API</Typography.Link>
+        {', and '}
+        <Typography.Link style={{ color: token.colorError }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
       </Typography.Text>
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
         Last updated: {lastUpdated ?? '—'}
