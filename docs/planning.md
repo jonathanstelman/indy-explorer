@@ -28,7 +28,7 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #103 | Mobile: filter sidebar inaccessible | P0 | Done |
 | #104 | Bug: "Last updated" not populating | P0 | Done |
 | #105 | Mobile: toolbar and footer layout broken | P0 | Done |
-| #106 | Cold start: keep Fly.io machine warm | P1 | |
+| #106 | Cold start: keep Fly.io machine warm | P1 | Done |
 | #83 | Data validation on Resort Pydantic model | P1 | Blocks #77 |
 | #77 | GitHub Actions scheduled pipeline | P1 | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | |
@@ -37,7 +37,7 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #109 | UX: "How to use" first-load popover | P2 | |
 | #110 | UX: "Help improve this app" feedback section | P2 | |
 
-**Next up:** #106 (cold start / keep Fly.io warm) or #83 (Pydantic data validation, blocks #77).
+**Next up:** #83 (Pydantic data validation, blocks #77).
 
 **#77 revised scope:** Pipeline runs on a schedule and opens a PR against main rather than auto-committing. Human reviews the data diff before merging. Pre-PR sanity check runs `load_resorts()` against the new CSV — any Pydantic validation failures abort the job before a PR is opened. See issue for full acceptance criteria.
 

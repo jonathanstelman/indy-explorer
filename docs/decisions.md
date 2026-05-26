@@ -115,3 +115,10 @@ Format for new entries:
 **Decision:** Backend on Fly.io (`indy-explorer-backend`, region `ewr`), frontend on Vercel. Frontend proxies `/api/:path*` → `https://indy-explorer-backend.fly.dev/:path*` via `vercel.json` rewrite — no CORS config needed. Docker image built from repo root so `data/` is baked in at deploy time (not read from a volume).  
 **Rationale:** Vercel is purpose-built for static SPAs (CDN, zero-config GitHub auto-deploy). Fly.io handles the containerized FastAPI. All-Fly.io was considered but requires nginx and has no global CDN equivalent. Baking `data/` into the image keeps the backend stateless and dead-simple to deploy; after a pipeline data update, redeploy the backend.  
 **Follow-up:** After a pipeline data update, both `data/resorts.csv` must be committed to main AND the backend must be redeployed (`flyctl deploy --config backend/fly.toml`) for new data to appear in the live app.
+
+---
+## 2026-05-25 — Keep Fly.io machine warm to eliminate cold starts
+**Issue:** #106
+**Decision:** Set `min_machines_running = 1` in `backend/fly.toml` (was 0). One machine runs continuously instead of spinning down on idle.
+**Rationale:** With `min_machines_running = 0`, the first request after any idle period incurred a ~2–3s cold start — bad first impression for Facebook link clicks. Cost is ~$3–4/month in prepaid Fly.io credits.
+**Follow-up:** None.
