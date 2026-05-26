@@ -30,14 +30,14 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #105 | Mobile: toolbar and footer layout broken | P0 | Done |
 | #106 | Cold start: keep Fly.io machine warm | P1 | Done |
 | #107 | Design: theme color pass | P2 | Done |
-| #109 | UX: Peak Rankings visual encoding | P2 | |
+| #109 | UX: Peak Rankings visual encoding | P2 | Done |
 | #108 | UX: "How to use" first-load popover | P2 | |
 | #110 | UX: "Help improve this app" feedback section | P2 | |
 | #83 | Data validation on Resort Pydantic model | P1 (deferred) | Blocks #77 |
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | |
 
-**Next up:** #109 (Peak Rankings visual encoding) or #108 ("How to use" popover).
+**Next up:** #108 ("How to use" first-load popover) or #110 ("Help improve this app" feedback section).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 
