@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Input, Typography } from 'antd'
 import { useFilters } from '@/hooks/useFilters'
+import { COLORS } from '@/theme'
 
 export default function ResortToolbar({ count, loading }) {
   const { filters, setFilter } = useFilters()
@@ -18,7 +19,7 @@ export default function ResortToolbar({ count, loading }) {
   }, [localSearch])
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
       <Input.Search
         placeholder="Search resorts..."
         value={localSearch}
@@ -27,7 +28,7 @@ export default function ResortToolbar({ count, loading }) {
         allowClear
         style={{ maxWidth: 360 }}
       />
-      <Typography.Text type="secondary" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>
+      <Typography.Text style={{ fontSize: 12, whiteSpace: 'nowrap', color: COLORS.success }}>
         {count} resort{count !== 1 ? 's' : ''} found
       </Typography.Text>
     </div>

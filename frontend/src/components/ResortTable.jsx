@@ -25,7 +25,7 @@ function LinkCell({ value }) {
       target="_blank"
       rel="noreferrer"
       onClick={e => e.stopPropagation()}
-      style={{ color: COLORS.success }}
+      style={{ color: COLORS.accentBlue }}
     >
       {value}
     </a>
@@ -143,7 +143,7 @@ const GRID_THEME_VARS = {
   '--ag-border-color':                  COLORS.border,
   '--ag-header-column-separator-color': COLORS.border,
   '--ag-cell-horizontal-padding':       '8px',
-  '--indy-header-bg':                   COLORS.bgHeader,
+  '--indy-header-bg':                   COLORS.bgMidtone,
   '--indy-header-hover':                COLORS.neutral,
   '--indy-header-text':                 COLORS.bgBase,
 }

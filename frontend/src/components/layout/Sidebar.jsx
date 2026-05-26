@@ -13,15 +13,24 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
   const { resetFilters } = useFilters()
   const { token } = theme.useToken()
 
+  function sectionLabel(text, color) {
+    return (
+      <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />
+        {text}
+      </span>
+    )
+  }
+
   const items = [
     {
       key: 'location',
-      label: 'Location',
+      label: sectionLabel('Location', COLORS.primary),
       children: <LocationFilters meta={meta} allResorts={allResorts ?? []} />,
     },
     {
       key: 'resort-filters',
-      label: 'Stats and Features',
+      label: sectionLabel('Stats and Features', COLORS.accentBlue),
       children: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <StatsFilters meta={meta} />
@@ -31,12 +40,12 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
     },
     {
       key: 'blackout',
-      label: 'Blackout Dates',
+      label: sectionLabel('Blackout Dates', COLORS.error),
       children: <BlackoutDateFilters />,
     },
     {
       key: 'peak-rankings',
-      label: 'Peak Rankings',
+      label: sectionLabel('Peak Rankings', COLORS.success),
       children: <PeakRankingsFilters meta={meta} />,
     },
   ]

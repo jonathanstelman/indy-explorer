@@ -175,7 +175,8 @@ function MapLegend() {
         position: 'absolute',
         bottom: 32,
         left: 16,
-        background: COLORS.bgOverlay,
+        background: COLORS.bgBase,
+        border: `2px solid ${COLORS.bgHeader}`,
         borderRadius: 4,
         padding: '8px 12px',
         display: 'flex',
@@ -195,7 +196,7 @@ function MapLegend() {
               flexShrink: 0,
             }}
           />
-          <span style={{ color: COLORS.bgBase, fontSize: 11, fontFamily: FONTS.mono }}>
+          <span style={{ color: COLORS.text, fontSize: 11, fontFamily: FONTS.mono }}>
             {label}
           </span>
         </div>

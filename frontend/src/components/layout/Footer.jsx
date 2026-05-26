@@ -19,9 +19,9 @@ export default function AppFooter({ lastUpdated }) {
         Data sourced from{' '}
         <Typography.Link style={{ color: token.colorError }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
         {', '}
-        <Typography.Link style={{ color: token.colorError }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
+        <Typography.Link style={{ color: token.colorSuccess }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
         {', and '}
-        <Typography.Link style={{ color: token.colorError }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
+        <Typography.Link style={{ color: token.colorPrimary }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
       </Typography.Text>
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
         Last updated: {lastUpdated ?? '—'}

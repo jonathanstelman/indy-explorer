@@ -1,24 +1,27 @@
 import { theme as antdTheme } from 'antd'
 
 export const COLORS = {
-  primary:             '#00f5ff',
-  success:             '#39ff14',
-  warning:             '#ffdd00',
-  error:               '#ff006e',
-  neutral:             '#808080',
-  primaryBorder:       '#00b8c8',
-  primaryHover:        '#00d9e8',
-  primaryActive:       '#0099a8',
-  text:                '#0d0d0d',
-  textMuted:           '#666666',
-  border:              '#e0e0e0',
-  bgBase:              '#ffffff',
-  bgLayout:            '#f5f5f5',
-  bgSidebar:           '#fafafa',
-  bgHeader:            '#505050',
-  bgOverlay:           'rgba(0,0,0,0.75)',
-  shadow:              'rgba(0,0,0,0.15)',
-  difficultyBeginner:  '#00C44F',
+  primary:       '#00c4d4',   // electric teal — UI accents, links, fills on dark
+  success:       '#b4f000',   // chartreuse — high scores, active features, beginner trails
+  warning:       '#ffc400',   // amber — mid scores, caution
+  error:         '#ff006e',   // hot pink — low scores, alpine dots, standard blackouts
+  neutral:       '#808080',
+  accentBlue:    '#3d52ff',
+  bgMidtone:        '#505050',   // charcoal — search band, table column headers, input borders
+  inputPlaceholder: '#888888',   // electric blue — XC dots, intermediate trails
+  accentPurple:  '#9b00e6',   // neon purple — Alpine+XC dots (pink + blue)
+  primaryBorder: '#00b8c8',
+  primaryHover:  '#00d9e8',
+  primaryActive: '#0099a8',
+  text:          '#0d0d0d',
+  textMuted:     '#666666',
+  border:        '#e0e0e0',
+  bgBase:        '#ffffff',
+  bgLayout:      '#f5f5f5',
+  bgSidebar:     '#fafafa',
+  bgHeader:      '#111111',   // near-black anchor — app header, table header, drag handle
+  bgOverlay:     'rgba(0,0,0,0.75)',
+  shadow:        'rgba(0,0,0,0.15)',
 }
 
 export function withAlpha(hex, alpha) {
@@ -42,10 +45,15 @@ export const FONTS = {
 
 // Deck.gl requires colors as [R, G, B, A] arrays (A: 0–255).
 export const MAP_DOT_COLORS = {
-  alpine: hexToRgba(COLORS.error,   200),
-  xc:     hexToRgba(COLORS.primary, 200),
-  both:   hexToRgba(COLORS.success, 200),
-  allied: hexToRgba(COLORS.neutral, 180),
+  alpine: hexToRgba(COLORS.error,        200),  // hot pink
+  xc:     hexToRgba(COLORS.accentBlue,   200),  // electric blue
+  both:   hexToRgba(COLORS.accentPurple, 200),  // purple = pink + blue
+  allied: hexToRgba(COLORS.neutral,      180),
+}
+
+const INPUT_TOKENS = {
+  colorBorder:          COLORS.bgMidtone,
+  colorTextPlaceholder: COLORS.inputPlaceholder,
 }
 
 export const themeConfig = {
@@ -66,5 +74,10 @@ export const themeConfig = {
     colorBorder:        COLORS.border,
     borderRadius:       2,
     fontFamily:         FONTS.mono,
+  },
+  components: {
+    Input:  INPUT_TOKENS,
+    Select: INPUT_TOKENS,
+    Button: { colorBorder: COLORS.bgMidtone },
   },
 }
