@@ -122,3 +122,10 @@ Format for new entries:
 **Decision:** Set `min_machines_running = 1` in `backend/fly.toml` (was 0). One machine runs continuously instead of spinning down on idle.
 **Rationale:** With `min_machines_running = 0`, the first request after any idle period incurred a ~2–3s cold start — bad first impression for Facebook link clicks. Cost is ~$3–4/month in prepaid Fly.io credits.
 **Follow-up:** None.
+
+---
+## 2026-05-25 — Theme color pass: 80s ski-punk palette
+**Issue:** #107
+**Decision:** Expanded color palette in `theme.js` with `accentBlue` (#3d52ff), `accentPurple` (#9b00e6), `bgMidtone` (#505050), deepened `primary` to #00c4d4 and `success` to #b4f000 (chartreuse). Map dots: pink=alpine, electric blue=XC, purple=both (pink+blue=purple). Difficulty pie chart: chartreuse=beginner, blue=intermediate, grey=advanced (matches real trail markers). PR bars colored by score value (green/yellow/pink). Dark anchor bands: near-black header, charcoal search band and table drag handle, charcoal table column headers. Features section redesigned as "Label: Yes/No" grid. Neon colors used on dark surfaces; functional colors carry semantic meaning throughout.
+**Rationale:** Original theme used only hot pink and pale cyan; neons were invisible on white. Key insight: neons only work on dark surfaces — structural dark bands provide the canvas. Color choices are functional (map dot mixing, trail marker convention, traffic-light PR scores) not purely decorative.
+**Follow-up:** Dark mode (future) will unlock full neon palette across the whole surface.

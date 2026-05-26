@@ -9,8 +9,7 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar }) {
         display: 'flex',
         alignItems: 'center',
         gap: 12,
-        background: token.colorBgContainer,
-        borderBottom: `1px solid ${token.colorBorder}`,
+        background: COLORS.bgHeader,
         padding: '0 24px',
         height: 56,
         lineHeight: '56px',
@@ -38,8 +37,12 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar }) {
         style={{
           margin: 0,
           fontFamily: FONTS.display,
-          letterSpacing: '0.05em',
-          color: token.colorTextBase,
+          letterSpacing: '0.08em',
+          color: COLORS.error,
+          fontWeight: 400,
+          fontSize: 28,
+          WebkitFontSmoothing: 'antialiased',
+          WebkitTextStroke: `0.5px ${COLORS.error}`,
         }}
       >
         Indy Explorer

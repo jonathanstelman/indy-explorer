@@ -179,7 +179,7 @@ export default function App() {
           )}
           <Layout>
             <Layout.Content style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-              <div style={{ padding: '12px 24px' }}>
+              <div style={{ padding: '8px 24px', borderBottom: `1px solid ${COLORS.bgHeader}`, background: COLORS.bgMidtone }}>
                 <ResortToolbar count={resorts.length} loading={loading} />
               </div>
               <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
@@ -196,8 +196,8 @@ export default function App() {
                   onMouseDown={tableCollapsed ? undefined : startDrag}
                   style={{
                     minHeight: 28,
-                    background: COLORS.bgLayout,
-                    borderTop: `1px solid ${COLORS.border}`,
+                    background: COLORS.bgHeader,
+                    borderTop: `1px solid ${COLORS.bgHeader}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -209,10 +209,11 @@ export default function App() {
                   }}
                 >
                   <Button
+                    type="primary"
+                    danger
                     size="small"
                     onMouseDown={e => e.stopPropagation()}
                     onClick={() => setTableCollapsed(c => !c)}
-                    style={{ borderColor: COLORS.error, color: COLORS.error }}
                   >
                     {tableCollapsed ? '▲ Expand data table' : '▼ Hide data table'}
                   </Button>
@@ -226,9 +227,9 @@ export default function App() {
                         onOpenChange={setColsOpen}
                         placement="bottomRight"
                       >
-                        <Button size="small">Select Columns</Button>
+                        <Button type="text" size="small" style={{ color: COLORS.success }}>Select Columns</Button>
                       </Popover>
-                      <Button size="small" onClick={onDownloadCsv}>Download CSV</Button>
+                      <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
                     </div>
                   )}
                 </div>

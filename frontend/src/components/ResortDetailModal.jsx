@@ -4,7 +4,7 @@ import {
   Bar, BarChart, Cell, Pie, PieChart,
   ResponsiveContainer, XAxis,
 } from 'recharts'
-import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Tag, Typography } from 'antd'
+import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
 import { classifyBlackoutDates } from '@/utils/blackout'
 import { COLORS } from '@/theme'
@@ -48,9 +48,23 @@ const PR_CATEGORIES = [
 ]
 
 const DIFFICULTY_COLORS = {
-  Beginner:     COLORS.difficultyBeginner,
-  Intermediate: COLORS.primary,
-  Advanced:     COLORS.textMuted,
+  Beginner:     COLORS.success,     // chartreuse — green circle trail marker
+  Intermediate: COLORS.accentBlue,  // electric blue — blue square trail marker
+  Advanced:     COLORS.neutral,     // medium grey — black diamond trail marker
+}
+
+function prBarColor(val) {
+  if (val >= 8) return COLORS.success
+  if (val >= 5) return COLORS.warning
+  return COLORS.error
+}
+
+function SectionHeader({ children, color }) {
+  return (
+    <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 8, marginBottom: 8 }}>
+      <Text strong>{children}</Text>
+    </div>
+  )
 }
 
 function fmt(value, unit) {
@@ -167,7 +181,7 @@ function PeakRankings({ resort }) {
               <div style={{ fontSize: 16, fontWeight: 600 }}>{val != null ? val : '—'}</div>
               <div style={{ height: 3, borderRadius: 1, background: COLORS.bgLayout, marginTop: 2 }}>
                 {val != null && (
-                  <div style={{ height: '100%', width: `${(val / 10) * 100}%`, background: COLORS.primary, borderRadius: 1 }} />
+                  <div style={{ height: '100%', width: `${(val / 10) * 100}%`, background: prBarColor(val), borderRadius: 1 }} />
                 )}
               </div>
             </div>
@@ -355,29 +369,27 @@ export default function ResortDetailModal({ resortId, onClose }) {
           <Divider />
 
           {/* Features */}
-          <Text strong>Features</Text>
-          <div style={{ marginTop: 8 }}>
-            <Space size={[8, 8]} wrap>
-              {FEATURES.map(({ key, label }) => {
-                const active = resort[key] === true
-                const unknown = resort[key] == null
-                return (
-                  <Tag
-                    key={key}
-                    color={active ? 'success' : undefined}
-                    style={{ opacity: unknown ? 0.4 : 1 }}
-                  >
-                    {label}
-                  </Tag>
-                )
-              })}
-            </Space>
+          <SectionHeader color={COLORS.primary}>Features</SectionHeader>
+          <div style={{ display: 'grid', gridTemplateColumns: 'auto auto 1fr auto auto 1fr auto auto', gap: '4px 4px', alignItems: 'baseline', marginTop: 8 }}>
+            {[FEATURES.slice(0, 3), FEATURES.slice(3)].flatMap((row, rowIdx) =>
+              row.flatMap(({ key, label }, colIdx) => {
+                const val = resort[key]
+                const cells = [
+                  <Text key={`${key}-l`} style={{ fontSize: 12 }}>{label}:</Text>,
+                  <Text key={`${key}-v`} style={{ fontSize: 12, fontWeight: 700, color: val === true ? COLORS.error : COLORS.textMuted, paddingRight: 4 }}>
+                    {val === true ? 'Yes' : val === false ? 'No' : '—'}
+                  </Text>,
+                ]
+                if (colIdx < 2) cells.push(<div key={`sp-${rowIdx}-${colIdx}`} />)
+                return cells
+              })
+            )}
           </div>
 
           <Divider />
 
           {/* Size */}
-          <Text strong>Size</Text>
+          <SectionHeader color={COLORS.accentBlue}>Size</SectionHeader>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 24, marginTop: 8 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {[
@@ -423,7 +435,7 @@ export default function ResortDetailModal({ resortId, onClose }) {
           <Divider />
 
           {/* Blackout Dates */}
-          <Text strong>Blackout Dates</Text>
+          <SectionHeader color={COLORS.error}>Blackout Dates</SectionHeader>
           <div style={{ marginTop: 8 }}>
             <BlackoutCalendar
               standardJson={resort.blackout_all_dates}
@@ -434,7 +446,7 @@ export default function ResortDetailModal({ resortId, onClose }) {
           <Divider />
 
           {/* Peak Rankings */}
-          <Text strong>Peak Rankings</Text>
+          <SectionHeader color={COLORS.success}>Peak Rankings</SectionHeader>
           <div style={{ marginTop: 8 }}>
             <PeakRankings resort={resort} />
           </div>
