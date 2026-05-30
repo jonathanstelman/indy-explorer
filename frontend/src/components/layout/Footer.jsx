@@ -1,6 +1,7 @@
 import { Layout, Typography, theme } from 'antd'
 
-export default function AppFooter({ lastUpdated }) {
+export default function AppFooter({ lastUpdated, isMobile }) {
+  if (isMobile) return null
   const { token } = theme.useToken()
   return (
     <Layout.Footer

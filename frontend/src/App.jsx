@@ -10,7 +10,7 @@ import ResortToolbar from '@/components/ResortToolbar'
 import ResortMap from '@/components/ResortMap'
 import ResortTable, { COLUMN_DEFS, HEADER_BY_FIELD, COL_GROUPS } from '@/components/ResortTable'
 import ResortDetailModal from '@/components/ResortDetailModal'
-import { themeConfig, COLORS } from '@/theme'
+import { themeConfig, COLORS, FONTS } from '@/theme'
 
 const DEFAULT_TABLE_HEIGHT = 260
 const MIN_TABLE_HEIGHT = 100
@@ -39,6 +39,8 @@ export default function App() {
 
   const [tableHeight, setTableHeight] = useState(DEFAULT_TABLE_HEIGHT)
   const [tableCollapsed, setTableCollapsed] = useState(false)
+  const [mobileTab, setMobileTab] = useState('map')
+  const [infoOpen, setInfoOpen] = useState(false)
 
   const tableRef = useRef()
   const [colsOpen,      setColsOpen]      = useState(false)
@@ -120,6 +122,29 @@ export default function App() {
     </div>
   )
 
+  const lastUpdated = meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : '—'
+  const attributionContent = (
+    <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
+      <div>
+        {'Data from '}
+        <a href="https://www.indyskipass.com" target="_blank" rel="noreferrer" style={{ color: COLORS.error }}>Indy Pass</a>
+        {', '}
+        <a href="https://peakrankings.com" target="_blank" rel="noreferrer" style={{ color: COLORS.success }}>Peak Rankings</a>
+        {', '}
+        <a href="https://developers.google.com/maps/documentation/geocoding" target="_blank" rel="noreferrer" style={{ color: COLORS.primary }}>Google Maps</a>
+      </div>
+      <div>
+        {'Map © '}
+        <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Mapbox</a>
+        {' © '}
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>OpenStreetMap</a>
+        {' · '}
+        <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Improve this map</a>
+      </div>
+      <div style={{ color: COLORS.textMuted, marginTop: 2 }}>Last updated: {lastUpdated}</div>
+    </div>
+  )
+
   function startSidebarDrag(e) {
     e.preventDefault()
     const startX = e.clientX
@@ -150,6 +175,132 @@ export default function App() {
     }
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mouseup', onUp)
+  }
+
+  if (isMobile) {
+    return (
+      <ConfigProvider theme={themeConfig}>
+        <Layout style={{ height: '100%' }}>
+          <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} />
+          <Layout>
+            <AppSidebar
+              meta={meta}
+              allResorts={allResorts}
+              collapsed={sidebarCollapsed}
+              width={sidebarWidth}
+              isMobile={isMobile}
+              onClose={() => setSidebarCollapsed(true)}
+            />
+            <Layout>
+              <Layout.Content style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <div style={{ padding: '8px 12px', borderBottom: `1px solid ${COLORS.bgHeader}`, background: COLORS.bgMidtone, flexShrink: 0 }}>
+                  <ResortToolbar count={resorts.length} loading={loading} />
+                </div>
+
+                <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+                  {mobileTab === 'map' && (
+                    <ResortMap
+                      resorts={resorts}
+                      onResortClick={r => setSelectedResortId(r.resort_id)}
+                    />
+                  )}
+                  {mobileTab === 'table' && (
+                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                      <div style={{ display: 'flex', gap: 8, padding: '4px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0 }}>
+                        <Popover
+                          content={colsContent}
+                          title="Show / hide columns"
+                          trigger="click"
+                          open={colsOpen}
+                          onOpenChange={setColsOpen}
+                          placement="topLeft"
+                        >
+                          <Button type="text" size="small" style={{ color: COLORS.success }}>Select Columns</Button>
+                        </Popover>
+                        <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
+                      </div>
+                      <div style={{ flex: 1, minHeight: 0 }}>
+                        <ResortTable
+                          ref={tableRef}
+                          resorts={resorts}
+                          onRowClick={setSelectedResortId}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ position: 'relative', flexShrink: 0 }}>
+                  {infoOpen && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 'calc(100% + 8px)',
+                      right: 8,
+                      maxWidth: 'calc(100% - 16px)',
+                      background: COLORS.bgBase,
+                      border: `2px solid ${COLORS.bgHeader}`,
+                      borderRadius: 4,
+                      padding: '8px 12px',
+                      zIndex: 10,
+                    }}>
+                      {attributionContent}
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', background: COLORS.bgHeader, borderTop: `1px solid ${COLORS.border}` }}>
+                    {['map', 'table'].map(tab => (
+                      <button
+                        key={tab}
+                        onClick={() => setMobileTab(tab)}
+                        style={{
+                          flex: 1,
+                          height: 48,
+                          background: 'transparent',
+                          border: 'none',
+                          borderTop: `2px solid ${mobileTab === tab ? COLORS.error : 'transparent'}`,
+                          color: mobileTab === tab ? COLORS.error : COLORS.textMuted,
+                          fontFamily: FONTS.mono,
+                          fontSize: 13,
+                          fontWeight: mobileTab === tab ? 700 : 400,
+                          cursor: 'pointer',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.08em',
+                        }}
+                      >
+                        {tab === 'map' ? 'Map' : 'Table'}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => setInfoOpen(o => !o)}
+                      style={{
+                        width: 44,
+                        height: 48,
+                        flexShrink: 0,
+                        background: 'transparent',
+                        border: 'none',
+                        borderTop: `2px solid ${infoOpen ? COLORS.primary : 'transparent'}`,
+                        color: infoOpen ? COLORS.primary : COLORS.textMuted,
+                        fontSize: 18,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      ⓘ
+                    </button>
+                  </div>
+                </div>
+              </Layout.Content>
+            </Layout>
+          </Layout>
+        </Layout>
+        <ResortDetailModal
+          resortId={selectedResortId}
+          onClose={() => setSelectedResortId(null)}
+          isMobile={isMobile}
+        />
+      </ConfigProvider>
+    )
   }
 
   return (
@@ -246,7 +397,7 @@ export default function App() {
                 )}
               </div>
             </Layout.Content>
-            <AppFooter lastUpdated={meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : null} />
+            <AppFooter lastUpdated={lastUpdated} isMobile={isMobile} />
           </Layout>
         </Layout>
       </Layout>
