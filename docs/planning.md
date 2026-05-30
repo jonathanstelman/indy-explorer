@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/polish-ui-for-mobile`
+`main` (no active feature branch)
 
 ## Status (as of 2026-05-30)
 
@@ -37,13 +37,13 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | |
 
-**PR open (#113):** feature/polish-ui-for-mobile — awaiting review + merge
+**#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar
 - Collapsible map legend (top-left, outside DeckGL, format_list_bulleted icon)
 - Modal: responsive features/PR grids, pie chart hidden on mobile
 - PR score bars: 5-color scale (prMid #8b6ab5, prTop #40b050)
 
-**Next up:** merge + deploy #113, then #108 or #110.
+**Next up:** #108 ("How to use" first-load popover) or #110 ("Help improve this app" feedback section).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 
