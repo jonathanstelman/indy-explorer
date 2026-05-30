@@ -43,6 +43,10 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 - Modal: responsive features/PR grids, pie chart hidden on mobile
 - PR score bars: 5-color scale (prMid #8b6ab5, prTop #40b050)
 
+**#114 merged (2026-05-30):**
+- Trail Difficulty legend always visible on mobile (pie chart hidden, legend shown)
+- Trail Difficulty + Snowfall always side-by-side (removed mobile single-column override)
+
 **Next up:** #108 ("How to use" first-load popover) or #110 ("Help improve this app" feedback section).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
