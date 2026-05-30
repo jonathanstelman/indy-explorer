@@ -37,15 +37,13 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | |
 
-**In progress (feature/polish-ui-for-mobile):** Additional mobile polish — committed, not yet merged/deployed:
-- Map/Table tab switcher replacing broken stacked layout
-- Footer hidden on mobile; attribution in ⓘ popover in tab bar
-- Mapbox attribution rendered outside DeckGL (fixes ⓘ collision + click)
-- Modal: responsive features grid, pie chart hidden, PR grid 4-col on mobile
-- PR score bars: 5-color scale; new prMid (#8b6ab5) and prTop (#40b050) tokens
-- Collapsible map legend deferred — user wants to be careful about the design
+**PR open (#113):** feature/polish-ui-for-mobile — awaiting review + merge
+- Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar
+- Collapsible map legend (top-left, outside DeckGL, format_list_bulleted icon)
+- Modal: responsive features/PR grids, pie chart hidden on mobile
+- PR score bars: 5-color scale (prMid #8b6ab5, prTop #40b050)
 
-**Next up:** PR + deploy for feature/polish-ui-for-mobile, then #108 or #110.
+**Next up:** merge + deploy #113, then #108 or #110.
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 
