@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Button, Checkbox, ConfigProvider, Layout, Popover, Typography } from 'antd'
+import { Button, Checkbox, ConfigProvider, Layout, Popover } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 import { useFilters } from '@/hooks/useFilters'
 import { fetchResorts, fetchMeta } from '@/api/resorts'
@@ -124,16 +124,24 @@ export default function App() {
 
   const lastUpdated = meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : '—'
   const attributionContent = (
-    <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.6 }}>
+    <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
       <div>
-        Data sourced from{' '}
-        <Typography.Link style={{ color: COLORS.error }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
+        {'Data from '}
+        <a href="https://www.indyskipass.com" target="_blank" rel="noreferrer" style={{ color: COLORS.error }}>Indy Pass</a>
         {', '}
-        <Typography.Link style={{ color: COLORS.success }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
-        {', and '}
-        <Typography.Link style={{ color: COLORS.primary }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
+        <a href="https://peakrankings.com" target="_blank" rel="noreferrer" style={{ color: COLORS.success }}>Peak Rankings</a>
+        {', '}
+        <a href="https://developers.google.com/maps/documentation/geocoding" target="_blank" rel="noreferrer" style={{ color: COLORS.primary }}>Google Maps</a>
       </div>
-      <div style={{ color: COLORS.textMuted, marginTop: 4 }}>Last updated: {lastUpdated}</div>
+      <div>
+        {'Map © '}
+        <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Mapbox</a>
+        {' © '}
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>OpenStreetMap</a>
+        {' · '}
+        <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Improve this map</a>
+      </div>
+      <div style={{ color: COLORS.textMuted, marginTop: 2 }}>Last updated: {lastUpdated}</div>
     </div>
   )
 
@@ -222,37 +230,47 @@ export default function App() {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', background: COLORS.bgHeader, borderTop: `1px solid ${COLORS.border}`, flexShrink: 0 }}>
-                  {['map', 'table'].map(tab => (
+                <div style={{ position: 'relative', flexShrink: 0 }}>
+                  {infoOpen && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 'calc(100% + 8px)',
+                      right: 8,
+                      maxWidth: 'calc(100% - 16px)',
+                      background: COLORS.bgBase,
+                      border: `2px solid ${COLORS.bgHeader}`,
+                      borderRadius: 4,
+                      padding: '8px 12px',
+                      zIndex: 10,
+                    }}>
+                      {attributionContent}
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', background: COLORS.bgHeader, borderTop: `1px solid ${COLORS.border}` }}>
+                    {['map', 'table'].map(tab => (
+                      <button
+                        key={tab}
+                        onClick={() => setMobileTab(tab)}
+                        style={{
+                          flex: 1,
+                          height: 48,
+                          background: 'transparent',
+                          border: 'none',
+                          borderTop: `2px solid ${mobileTab === tab ? COLORS.error : 'transparent'}`,
+                          color: mobileTab === tab ? COLORS.error : COLORS.textMuted,
+                          fontFamily: FONTS.mono,
+                          fontSize: 13,
+                          fontWeight: mobileTab === tab ? 700 : 400,
+                          cursor: 'pointer',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.08em',
+                        }}
+                      >
+                        {tab === 'map' ? 'Map' : 'Table'}
+                      </button>
+                    ))}
                     <button
-                      key={tab}
-                      onClick={() => setMobileTab(tab)}
-                      style={{
-                        flex: 1,
-                        height: 48,
-                        background: 'transparent',
-                        border: 'none',
-                        borderTop: `2px solid ${mobileTab === tab ? COLORS.error : 'transparent'}`,
-                        color: mobileTab === tab ? COLORS.error : COLORS.textMuted,
-                        fontFamily: FONTS.mono,
-                        fontSize: 13,
-                        fontWeight: mobileTab === tab ? 700 : 400,
-                        cursor: 'pointer',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.08em',
-                      }}
-                    >
-                      {tab === 'map' ? 'Map' : 'Table'}
-                    </button>
-                  ))}
-                  <Popover
-                    content={attributionContent}
-                    trigger="click"
-                    open={infoOpen}
-                    onOpenChange={setInfoOpen}
-                    placement="topRight"
-                  >
-                    <button
+                      onClick={() => setInfoOpen(o => !o)}
                       style={{
                         width: 44,
                         height: 48,
@@ -270,7 +288,7 @@ export default function App() {
                     >
                       ⓘ
                     </button>
-                  </Popover>
+                  </div>
                 </div>
               </Layout.Content>
             </Layout>
