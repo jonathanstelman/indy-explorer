@@ -75,7 +75,6 @@ function fmt(value, unit) {
 }
 
 function DifficultyChart({ beginner, intermediate, advanced, isMobile }) {
-  if (isMobile) return null
   if (beginner == null && intermediate == null && advanced == null) return null
   const data = [
     { name: 'Beginner',     value: Number(beginner     || 0) },
@@ -96,13 +95,15 @@ function DifficultyChart({ beginner, intermediate, advanced, isMobile }) {
             <Text key={`${d.name}-v`} strong style={{ fontSize: 12 }}>{d.value}%</Text>,
           ])}
         </div>
-        <ResponsiveContainer width="100%" height={70}>
-          <PieChart>
-            <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={30} isAnimationActive={false}>
-              {data.map(entry => <Cell key={entry.name} fill={DIFFICULTY_COLORS[entry.name]} />)}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+        {!isMobile && (
+          <ResponsiveContainer width="100%" height={70}>
+            <PieChart>
+              <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={30} isAnimationActive={false}>
+                {data.map(entry => <Cell key={entry.name} fill={DIFFICULTY_COLORS[entry.name]} />)}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </div>
   )
@@ -440,7 +441,7 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
           {hasCharts && (
             <>
               <Divider />
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0 32px', alignItems: 'start' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 32px', alignItems: 'start' }}>
                 <DifficultyChart
                   beginner={resort.difficulty_beginner}
                   intermediate={resort.difficulty_intermediate}
