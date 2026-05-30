@@ -84,6 +84,9 @@ cd backend && poetry run uvicorn main:app --reload
 # or via Docker:
 # docker build -t indy-explorer-backend backend/ && docker run -p 8000:8000 indy-explorer-backend
 
+# Run React frontend (serves on localhost:5173)
+cd frontend && npm run dev
+
 # Tests — always use poetry run; pytest lives in the poetry-managed venv
 poetry run pytest                    # run all tests (pytest.ini sets -q and testpaths=tests)
 poetry run pytest tests/test_blackout.py -k "test_name"  # run a single test

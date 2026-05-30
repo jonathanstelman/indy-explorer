@@ -20,6 +20,8 @@ export const COLORS = {
   bgLayout:      '#f5f5f5',
   bgSidebar:     '#fafafa',
   bgHeader:      '#111111',   // near-black anchor — app header, table header, drag handle
+  prMid:         '#8b6ab5',   // muted purple — middle tier (5–6) on PR score bars
+  prTop:         '#40b050',   // rich green — top tier (9–10) on PR score bars
   bgOverlay:     'rgba(0,0,0,0.75)',
   shadow:        'rgba(0,0,0,0.15)',
 }

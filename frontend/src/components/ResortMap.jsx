@@ -168,6 +168,29 @@ function MapTooltip({ info }) {
   )
 }
 
+function MapAttribution() {
+  const [expanded, setExpanded] = useState(false)
+  return (
+    <div style={{ position: 'absolute', top: 8, right: 8, zIndex: 10, fontFamily: FONTS.mono, fontSize: 11 }}>
+      {expanded ? (
+        <div style={{ background: 'rgba(255,255,255,0.9)', padding: '4px 8px', borderRadius: 2, display: 'flex', gap: 6, alignItems: 'center', whiteSpace: 'nowrap', boxShadow: `0 1px 4px ${COLORS.shadow}` }}>
+          <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>© Mapbox</a>
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>© OpenStreetMap</a>
+          <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Improve this map</a>
+          <button onClick={() => setExpanded(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 0 0 4px', color: COLORS.textMuted, fontSize: 13, lineHeight: 1 }}>✕</button>
+        </div>
+      ) : (
+        <button
+          onClick={() => setExpanded(true)}
+          style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, color: COLORS.text, boxShadow: `0 1px 4px ${COLORS.shadow}` }}
+        >
+          ⓘ
+        </button>
+      )}
+    </div>
+  )
+}
+
 function MapLegend() {
   return (
     <div
@@ -270,8 +293,10 @@ export default function ResortMap({ resorts = [], onResortClick }) {
           mapStyle="mapbox://styles/mapbox/light-v11"
           mapboxAccessToken={MAPBOX_TOKEN}
           projection="mercator"
+          attributionControl={false}
         />
       </DeckGL>
+      <MapAttribution />
       <MapLegend />
       {tooltipInfo && <MapTooltip info={tooltipInfo} />}
     </div>

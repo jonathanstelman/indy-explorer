@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Button, Checkbox, ConfigProvider, Layout, Popover } from 'antd'
+import { Button, Checkbox, ConfigProvider, Layout, Popover, Typography } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 import { useFilters } from '@/hooks/useFilters'
 import { fetchResorts, fetchMeta } from '@/api/resorts'
@@ -10,7 +10,7 @@ import ResortToolbar from '@/components/ResortToolbar'
 import ResortMap from '@/components/ResortMap'
 import ResortTable, { COLUMN_DEFS, HEADER_BY_FIELD, COL_GROUPS } from '@/components/ResortTable'
 import ResortDetailModal from '@/components/ResortDetailModal'
-import { themeConfig, COLORS } from '@/theme'
+import { themeConfig, COLORS, FONTS } from '@/theme'
 
 const DEFAULT_TABLE_HEIGHT = 260
 const MIN_TABLE_HEIGHT = 100
@@ -39,6 +39,8 @@ export default function App() {
 
   const [tableHeight, setTableHeight] = useState(DEFAULT_TABLE_HEIGHT)
   const [tableCollapsed, setTableCollapsed] = useState(false)
+  const [mobileTab, setMobileTab] = useState('map')
+  const [infoOpen, setInfoOpen] = useState(false)
 
   const tableRef = useRef()
   const [colsOpen,      setColsOpen]      = useState(false)
@@ -120,6 +122,21 @@ export default function App() {
     </div>
   )
 
+  const lastUpdated = meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : '—'
+  const attributionContent = (
+    <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.6 }}>
+      <div>
+        Data sourced from{' '}
+        <Typography.Link style={{ color: COLORS.error }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
+        {', '}
+        <Typography.Link style={{ color: COLORS.success }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
+        {', and '}
+        <Typography.Link style={{ color: COLORS.primary }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
+      </div>
+      <div style={{ color: COLORS.textMuted, marginTop: 4 }}>Last updated: {lastUpdated}</div>
+    </div>
+  )
+
   function startSidebarDrag(e) {
     e.preventDefault()
     const startX = e.clientX
@@ -150,6 +167,122 @@ export default function App() {
     }
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mouseup', onUp)
+  }
+
+  if (isMobile) {
+    return (
+      <ConfigProvider theme={themeConfig}>
+        <Layout style={{ height: '100%' }}>
+          <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} />
+          <Layout>
+            <AppSidebar
+              meta={meta}
+              allResorts={allResorts}
+              collapsed={sidebarCollapsed}
+              width={sidebarWidth}
+              isMobile={isMobile}
+              onClose={() => setSidebarCollapsed(true)}
+            />
+            <Layout>
+              <Layout.Content style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <div style={{ padding: '8px 12px', borderBottom: `1px solid ${COLORS.bgHeader}`, background: COLORS.bgMidtone, flexShrink: 0 }}>
+                  <ResortToolbar count={resorts.length} loading={loading} />
+                </div>
+
+                <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+                  {mobileTab === 'map' && (
+                    <ResortMap
+                      resorts={resorts}
+                      onResortClick={r => setSelectedResortId(r.resort_id)}
+                    />
+                  )}
+                  {mobileTab === 'table' && (
+                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                      <div style={{ display: 'flex', gap: 8, padding: '4px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0 }}>
+                        <Popover
+                          content={colsContent}
+                          title="Show / hide columns"
+                          trigger="click"
+                          open={colsOpen}
+                          onOpenChange={setColsOpen}
+                          placement="topLeft"
+                        >
+                          <Button type="text" size="small" style={{ color: COLORS.success }}>Select Columns</Button>
+                        </Popover>
+                        <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
+                      </div>
+                      <div style={{ flex: 1, minHeight: 0 }}>
+                        <ResortTable
+                          ref={tableRef}
+                          resorts={resorts}
+                          onRowClick={setSelectedResortId}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ display: 'flex', background: COLORS.bgHeader, borderTop: `1px solid ${COLORS.border}`, flexShrink: 0 }}>
+                  {['map', 'table'].map(tab => (
+                    <button
+                      key={tab}
+                      onClick={() => setMobileTab(tab)}
+                      style={{
+                        flex: 1,
+                        height: 48,
+                        background: 'transparent',
+                        border: 'none',
+                        borderTop: `2px solid ${mobileTab === tab ? COLORS.error : 'transparent'}`,
+                        color: mobileTab === tab ? COLORS.error : COLORS.textMuted,
+                        fontFamily: FONTS.mono,
+                        fontSize: 13,
+                        fontWeight: mobileTab === tab ? 700 : 400,
+                        cursor: 'pointer',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                      }}
+                    >
+                      {tab === 'map' ? 'Map' : 'Table'}
+                    </button>
+                  ))}
+                  <Popover
+                    content={attributionContent}
+                    trigger="click"
+                    open={infoOpen}
+                    onOpenChange={setInfoOpen}
+                    placement="topRight"
+                  >
+                    <button
+                      style={{
+                        width: 44,
+                        height: 48,
+                        flexShrink: 0,
+                        background: 'transparent',
+                        border: 'none',
+                        borderTop: `2px solid ${infoOpen ? COLORS.primary : 'transparent'}`,
+                        color: infoOpen ? COLORS.primary : COLORS.textMuted,
+                        fontSize: 18,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      ⓘ
+                    </button>
+                  </Popover>
+                </div>
+              </Layout.Content>
+            </Layout>
+          </Layout>
+        </Layout>
+        <ResortDetailModal
+          resortId={selectedResortId}
+          onClose={() => setSelectedResortId(null)}
+          isMobile={isMobile}
+        />
+      </ConfigProvider>
+    )
   }
 
   return (
@@ -246,7 +379,7 @@ export default function App() {
                 )}
               </div>
             </Layout.Content>
-            <AppFooter lastUpdated={meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : null} />
+            <AppFooter lastUpdated={lastUpdated} isMobile={isMobile} />
           </Layout>
         </Layout>
       </Layout>

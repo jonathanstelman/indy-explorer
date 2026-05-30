@@ -54,8 +54,10 @@ const DIFFICULTY_COLORS = {
 }
 
 function prBarColor(val) {
-  if (val >= 8) return COLORS.success
-  if (val >= 5) return COLORS.warning
+  if (val > 8)  return COLORS.prTop
+  if (val >= 7) return COLORS.primary
+  if (val >= 5) return COLORS.prMid
+  if (val >= 3) return COLORS.warning
   return COLORS.error
 }
 
@@ -72,7 +74,8 @@ function fmt(value, unit) {
   return unit ? `${value.toLocaleString()} ${unit}` : value.toLocaleString()
 }
 
-function DifficultyChart({ beginner, intermediate, advanced }) {
+function DifficultyChart({ beginner, intermediate, advanced, isMobile }) {
+  if (isMobile) return null
   if (beginner == null && intermediate == null && advanced == null) return null
   const data = [
     { name: 'Beginner',     value: Number(beginner     || 0) },
@@ -126,7 +129,7 @@ function SnowfallChart({ avg, high }) {
   )
 }
 
-function PeakRankings({ resort }) {
+function PeakRankings({ resort, isMobile }) {
   if (resort.pr_total == null) return <Text type="secondary">No Peak Rankings data.</Text>
 
   const abilityRange = resort.pr_ability_low && resort.pr_ability_high
@@ -172,7 +175,7 @@ function PeakRankings({ resort }) {
       </div>
 
       {/* 10-category grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px 8px', marginBottom: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(4, 1fr)' : 'repeat(5, 1fr)', gap: '10px 8px', marginBottom: 16 }}>
         {PR_CATEGORIES.map(({ key, label }) => {
           const val = resort[key]
           return (
@@ -319,7 +322,7 @@ function BlackoutCalendar({ standardJson, lttJson }) {
   )
 }
 
-export default function ResortDetailModal({ resortId, onClose }) {
+export default function ResortDetailModal({ resortId, onClose, isMobile = false }) {
   const [resort, setResort] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -370,21 +373,37 @@ export default function ResortDetailModal({ resortId, onClose }) {
 
           {/* Features */}
           <SectionHeader color={COLORS.primary}>Features</SectionHeader>
-          <div style={{ display: 'grid', gridTemplateColumns: 'auto auto 1fr auto auto 1fr auto auto', gap: '4px 4px', alignItems: 'baseline', marginTop: 8 }}>
-            {[FEATURES.slice(0, 3), FEATURES.slice(3)].flatMap((row, rowIdx) =>
-              row.flatMap(({ key, label }, colIdx) => {
+          {isMobile ? (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 8px', marginTop: 8 }}>
+              {FEATURES.map(({ key, label }) => {
                 const val = resort[key]
-                const cells = [
-                  <Text key={`${key}-l`} style={{ fontSize: 12 }}>{label}:</Text>,
-                  <Text key={`${key}-v`} style={{ fontSize: 12, fontWeight: 700, color: val === true ? COLORS.error : COLORS.textMuted, paddingRight: 4 }}>
-                    {val === true ? 'Yes' : val === false ? 'No' : '—'}
-                  </Text>,
-                ]
-                if (colIdx < 2) cells.push(<div key={`sp-${rowIdx}-${colIdx}`} />)
-                return cells
-              })
-            )}
-          </div>
+                return (
+                  <div key={key} style={{ display: 'flex', gap: 4, alignItems: 'baseline' }}>
+                    <Text style={{ fontSize: 12 }}>{label}:</Text>
+                    <Text style={{ fontSize: 12, fontWeight: 700, color: val === true ? COLORS.error : COLORS.textMuted }}>
+                      {val === true ? 'Yes' : val === false ? 'No' : '—'}
+                    </Text>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'auto auto 1fr auto auto 1fr auto auto', gap: '4px 4px', alignItems: 'baseline', marginTop: 8 }}>
+              {[FEATURES.slice(0, 3), FEATURES.slice(3)].flatMap((row, rowIdx) =>
+                row.flatMap(({ key, label }, colIdx) => {
+                  const val = resort[key]
+                  const cells = [
+                    <Text key={`${key}-l`} style={{ fontSize: 12 }}>{label}:</Text>,
+                    <Text key={`${key}-v`} style={{ fontSize: 12, fontWeight: 700, color: val === true ? COLORS.error : COLORS.textMuted, paddingRight: 4 }}>
+                      {val === true ? 'Yes' : val === false ? 'No' : '—'}
+                    </Text>,
+                  ]
+                  if (colIdx < 2) cells.push(<div key={`sp-${rowIdx}-${colIdx}`} />)
+                  return cells
+                })
+              )}
+            </div>
+          )}
 
           <Divider />
 
@@ -421,11 +440,12 @@ export default function ResortDetailModal({ resortId, onClose }) {
           {hasCharts && (
             <>
               <Divider />
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 32px', alignItems: 'start' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0 32px', alignItems: 'start' }}>
                 <DifficultyChart
                   beginner={resort.difficulty_beginner}
                   intermediate={resort.difficulty_intermediate}
                   advanced={resort.difficulty_advanced}
+                  isMobile={isMobile}
                 />
                 <SnowfallChart avg={resort.snowfall_average_in} high={resort.snowfall_high_in} />
               </div>
@@ -448,7 +468,7 @@ export default function ResortDetailModal({ resortId, onClose }) {
           {/* Peak Rankings */}
           <SectionHeader color={COLORS.success}>Peak Rankings</SectionHeader>
           <div style={{ marginTop: 8 }}>
-            <PeakRankings resort={resort} />
+            <PeakRankings resort={resort} isMobile={isMobile} />
           </div>
         </>
       )}
