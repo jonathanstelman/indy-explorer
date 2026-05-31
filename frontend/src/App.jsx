@@ -206,7 +206,7 @@ export default function App() {
                   )}
                   {mobileTab === 'table' && (
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                      <div style={{ display: 'flex', gap: 8, padding: '4px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0 }}>
+                      <div style={{ display: 'flex', gap: 8, padding: '4px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0, justifyContent: 'flex-end' }}>
                         <Popover
                           content={colsContent}
                           title="Show / hide columns"
@@ -369,7 +369,7 @@ export default function App() {
                     {tableCollapsed ? '▲ Expand data table' : '▼ Hide data table'}
                   </Button>
                   {!tableCollapsed && (
-                    <div style={{ display: 'flex', gap: 8 }} onMouseDown={e => e.stopPropagation()}>
+                    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }} onMouseDown={e => e.stopPropagation()}>
                       <Popover
                         content={colsContent}
                         title="Show / hide columns"

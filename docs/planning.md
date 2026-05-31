@@ -57,7 +57,9 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 Small tasks interspersed with larger feature work. Check off here and in the GitHub issue as completed.
 
 - [x] Simplify resort tooltips
-- [ ] Pinned filter section headers in sidebar
+- [x] Pinned filter section headers in sidebar
+- [x] Expand LTT → "Learn to Turn" throughout
+- [x] Sidebar: Planning section (blackout dates + reservation), has-blackouts toggle, Has Peak Rankings toggle
 - [ ] Align data table buttons
 - [ ] Reduce height of bar elements on mobile
 
