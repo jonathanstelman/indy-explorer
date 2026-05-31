@@ -181,7 +181,7 @@ export default function App() {
     return (
       <ConfigProvider theme={themeConfig}>
         <Layout style={{ height: '100%' }}>
-          <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} />
+          <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} isMobile />
           <Layout>
             <AppSidebar
               meta={meta}
@@ -193,7 +193,7 @@ export default function App() {
             />
             <Layout>
               <Layout.Content style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                <div style={{ padding: '8px 12px', borderBottom: `1px solid ${COLORS.bgHeader}`, background: COLORS.bgMidtone, flexShrink: 0 }}>
+                <div style={{ padding: '4px 12px', borderBottom: `1px solid ${COLORS.bgHeader}`, background: COLORS.bgMidtone, flexShrink: 0 }}>
                   <ResortToolbar count={resorts.length} loading={loading} />
                 </div>
 
@@ -206,7 +206,7 @@ export default function App() {
                   )}
                   {mobileTab === 'table' && (
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                      <div style={{ display: 'flex', gap: 8, padding: '4px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0, justifyContent: 'flex-end' }}>
+                      <div style={{ display: 'flex', gap: 8, padding: '2px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0, justifyContent: 'flex-end' }}>
                         <Popover
                           content={colsContent}
                           title="Show / hide columns"
@@ -253,7 +253,7 @@ export default function App() {
                         onClick={() => setMobileTab(tab)}
                         style={{
                           flex: 1,
-                          height: 48,
+                          height: 36,
                           background: 'transparent',
                           border: 'none',
                           borderTop: `2px solid ${mobileTab === tab ? COLORS.error : 'transparent'}`,
@@ -273,7 +273,7 @@ export default function App() {
                       onClick={() => setInfoOpen(o => !o)}
                       style={{
                         width: 44,
-                        height: 48,
+                        height: 36,
                         flexShrink: 0,
                         background: 'transparent',
                         border: 'none',
