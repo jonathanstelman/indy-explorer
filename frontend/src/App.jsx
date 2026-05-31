@@ -126,14 +126,6 @@ export default function App() {
   const attributionContent = (
     <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
       <div>
-        {'Data from '}
-        <a href="https://www.indyskipass.com" target="_blank" rel="noreferrer" style={{ color: COLORS.error }}>Indy Pass</a>
-        {', '}
-        <a href="https://peakrankings.com" target="_blank" rel="noreferrer" style={{ color: COLORS.success }}>Peak Rankings</a>
-        {', '}
-        <a href="https://developers.google.com/maps/documentation/geocoding" target="_blank" rel="noreferrer" style={{ color: COLORS.primary }}>Google Maps</a>
-      </div>
-      <div>
         {'Map © '}
         <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Mapbox</a>
         {' © '}
@@ -141,7 +133,15 @@ export default function App() {
         {' · '}
         <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Improve this map</a>
       </div>
-      <div style={{ color: COLORS.textMuted, marginTop: 2 }}>Last updated: {lastUpdated}</div>
+      <div>
+        {'Data from '}
+        <a href="https://www.indyskipass.com" target="_blank" rel="noreferrer" style={{ color: COLORS.error }}>Indy Pass</a>
+        {', '}
+        <a href="https://peakrankings.com" target="_blank" rel="noreferrer" style={{ color: COLORS.success }}>Peak Rankings</a>
+        {', '}
+        <a href="https://developers.google.com/maps/documentation/geocoding" target="_blank" rel="noreferrer" style={{ color: COLORS.primary }}>Google Maps</a>
+      </div>
+      <div style={{ color: COLORS.textMuted, marginTop: 2, textAlign: 'right' }}>Last updated: {lastUpdated}</div>
     </div>
   )
 
@@ -202,6 +202,7 @@ export default function App() {
                     <ResortMap
                       resorts={resorts}
                       onResortClick={r => setSelectedResortId(r.resort_id)}
+                      isMobile
                     />
                   )}
                   {mobileTab === 'table' && (

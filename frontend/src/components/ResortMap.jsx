@@ -5,7 +5,7 @@ import { ScatterplotLayer } from '@deck.gl/layers'
 import Map from 'react-map-gl/mapbox'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useFilters } from '@/hooks/useFilters'
-import { COLORS, FONTS, MAP_DOT_COLORS, withAlpha } from '@/theme'
+import { COLORS, FONTS, MAP_DOT_COLORS } from '@/theme'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
@@ -50,6 +50,19 @@ const COUNTRY_ZOOM = {
 
 const MIN_RADIUS = 5000
 const MAX_RADIUS = 50000
+
+const MAP_OVERLAY_BTN = {
+  width: 24,
+  height: 24,
+  borderRadius: '50%',
+  background: COLORS.bgLayout,
+  border: `1px solid ${COLORS.text}`,
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'auto',
+}
 
 const LEGEND_ITEMS = [
   { color: MAP_DOT_COLORS.alpine, label: 'Alpine' },
@@ -171,23 +184,9 @@ function MapLegend() {
     return (
       <button
         onClick={() => setOpen(true)}
-        style={{
-          position: 'absolute',
-          top: 8,
-          left: 8,
-          width: 32,
-          height: 32,
-          borderRadius: '50%',
-          background: withAlpha(COLORS.bgHeader, 0.75),
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'auto',
-        }}
+        style={{ position: 'absolute', top: 8, left: 8, ...MAP_OVERLAY_BTN }}
       >
-        <svg viewBox="0 0 24 24" width="18" height="18" fill={COLORS.bgBase}>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill={COLORS.text}>
           <path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z" />
         </svg>
       </button>
@@ -249,7 +248,55 @@ function MapLegend() {
 
 
 
-export default function ResortMap({ resorts = [], onResortClick }) {
+function MapAttribution() {
+  const [open, setOpen] = useState(false)
+  if (open) {
+    return (
+      <div style={{
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        background: COLORS.bgBase,
+        border: `2px solid ${COLORS.bgHeader}`,
+        borderRadius: 4,
+        padding: '8px 12px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 6,
+        pointerEvents: 'auto',
+      }}>
+        <button
+          onClick={() => setOpen(false)}
+          style={{ position: 'absolute', top: 3, right: 5, background: 'none', border: 'none', cursor: 'pointer', color: COLORS.textMuted, fontSize: 13, lineHeight: 1, padding: 0 }}
+        >
+          ×
+        </button>
+        {[
+          { href: 'https://www.mapbox.com/about/maps/', label: '© Mapbox' },
+          { href: 'https://www.openstreetmap.org/copyright', label: '© OpenStreetMap' },
+          { href: 'https://www.mapbox.com/map-feedback/', label: 'Improve this map' },
+        ].map(({ href, label }) => (
+          <a key={href} href={href} target="_blank" rel="noreferrer"
+            style={{ color: COLORS.text, fontSize: 11, fontFamily: FONTS.mono, textDecoration: 'none' }}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <button
+      onClick={() => setOpen(true)}
+      style={{ position: 'absolute', top: 8, right: 8, ...MAP_OVERLAY_BTN, color: COLORS.text, fontSize: 13, fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1 }}
+    >
+      i
+    </button>
+  )
+}
+
+export default function ResortMap({ resorts = [], onResortClick, isMobile }) {
   const containerRef = useRef()
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE)
   const [tooltipInfo, setTooltipInfo] = useState(null)
@@ -311,6 +358,7 @@ export default function ResortMap({ resorts = [], onResortClick }) {
         />
       </DeckGL>
       <MapLegend />
+      {!isMobile && <MapAttribution />}
       {tooltipInfo && <MapTooltip info={tooltipInfo} />}
     </div>
   )
