@@ -3,7 +3,7 @@ import { useFilters } from '@/hooks/useFilters'
 
 const { Text } = Typography
 
-function FeatureToggle({ label, filterKey }) {
+export function FeatureToggle({ label, filterKey }) {
   const { filters, setFilter } = useFilters()
   const current = filters[filterKey]
   const yesActive = current === undefined || current === true
@@ -38,7 +38,6 @@ const BOOLEAN_FILTERS = [
   { label: 'Dog friendly',         key: 'is_dog_friendly' },
   { label: 'Snowshoeing',          key: 'has_snowshoeing' },
   { label: 'Allied resort',        key: 'is_allied' },
-  { label: 'Reservation required', key: 'reservation_required' },
 ]
 
 export default function FeatureFilters() {

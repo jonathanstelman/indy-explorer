@@ -331,7 +331,7 @@ function BlackoutCalendar({ standardJson, lttJson }) {
           <>
             <Space size={6}>
               <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: COLORS.primary }} />
-              <Text style={{ fontSize: 11 }}>LTT</Text>
+              <Text style={{ fontSize: 11 }}>Learn to Turn</Text>
             </Space>
             <Space size={6}>
               <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: `linear-gradient(135deg, ${COLORS.error} 50%, ${COLORS.primary} 50%)` }} />

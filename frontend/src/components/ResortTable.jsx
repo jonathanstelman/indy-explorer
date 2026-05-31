@@ -79,12 +79,12 @@ export const COLUMN_DEFS = [
   { field: 'has_terrain_parks', headerName: 'Terrain Parks', width: 116, cellRenderer: BoolCell },
   { field: 'is_dog_friendly',   headerName: 'Dog Friendly',  width: 110, cellRenderer: BoolCell },
   { field: 'has_snowshoeing',   headerName: 'Snowshoeing',   width: 120, cellRenderer: BoolCell },
-  { field: 'ltt_available',     headerName: 'LTT',           width: 54,  cellRenderer: BoolCell },
+  { field: 'ltt_available',     headerName: 'Learn to Turn', width: 122, cellRenderer: BoolCell },
   { field: 'is_allied',         headerName: 'Allied',        width: 74,  cellRenderer: BoolCell },
 
   // Blackout
   { field: 'blackout_count',     headerName: 'Blackout Dates', width: 122, valueFormatter: numFmt },
-  { field: 'ltt_blackout_count', headerName: 'LTT Blackouts',  width: 120, valueFormatter: numFmt },
+  { field: 'ltt_blackout_count', headerName: 'Learn to Turn Blackouts', width: 180, valueFormatter: numFmt },
 
   // Reservations
   { field: 'reservation_status', headerName: 'Reservations',    width: 120 },

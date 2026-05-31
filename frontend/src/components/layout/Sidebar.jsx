@@ -22,15 +22,19 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
     )
   }
 
+  const stickyHeader = { position: 'sticky', top: 0, zIndex: 10, background: token.colorBgLayout }
+
   const items = [
     {
       key: 'location',
       label: sectionLabel('Location', COLORS.primary),
+      styles: { header: stickyHeader },
       children: <LocationFilters meta={meta} allResorts={allResorts ?? []} />,
     },
     {
       key: 'resort-filters',
       label: sectionLabel('Stats and Features', COLORS.accentBlue),
+      styles: { header: stickyHeader },
       children: (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <StatsFilters meta={meta} />
@@ -40,12 +44,14 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
     },
     {
       key: 'blackout',
-      label: sectionLabel('Blackout Dates', COLORS.error),
+      label: sectionLabel('Planning', COLORS.error),
+      styles: { header: stickyHeader },
       children: <BlackoutDateFilters />,
     },
     {
       key: 'peak-rankings',
       label: sectionLabel('Peak Rankings', COLORS.success),
+      styles: { header: stickyHeader },
       children: <PeakRankingsFilters meta={meta} />,
     },
   ]

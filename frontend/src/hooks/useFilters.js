@@ -42,6 +42,8 @@ export function useFilters() {
     is_allied: getBool('is_allied'),
     reservation_required: getBool('reservation_required'),
     ltt_available: getBool('ltt_available'),
+    has_peak_rankings: getBool('has_peak_rankings'),
+    has_blackouts: getBool('has_blackouts'),
     // Blackout date range filters (YYYY-MM-DD strings)
     blackout_date_from: searchParams.get('blackout_date_from'),
     blackout_date_to: searchParams.get('blackout_date_to'),

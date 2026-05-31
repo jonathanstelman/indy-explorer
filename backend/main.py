@@ -148,6 +148,7 @@ def get_resorts(
     pr_ability_low: list[str] = Query(default=[]),
     pr_ability_high: list[str] = Query(default=[]),
     # Blackout date range filters (YYYY-MM-DD; show resorts with no blackouts in the range)
+    has_blackouts: Optional[bool] = Query(default=None),
     blackout_date_from: Optional[str] = Query(default=None),
     blackout_date_to: Optional[str] = Query(default=None),
     ltt_date_from: Optional[str] = Query(default=None),
@@ -245,6 +246,12 @@ def get_resorts(
         if values:
             value_set = {v.lower() for v in values}
             results = [r for r in results if (getattr(r, field) or '').lower() in value_set]
+
+    if has_blackouts is not None:
+        if has_blackouts:
+            results = [r for r in results if (r.blackout_count or 0) > 0]
+        else:
+            results = [r for r in results if (r.blackout_count or 0) == 0]
 
     # Blackout date range filters — exclude resorts with any blackout within [from, to]
     if blackout_date_from or blackout_date_to:
