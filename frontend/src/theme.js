@@ -22,8 +22,26 @@ export const COLORS = {
   bgHeader:      '#111111',   // near-black anchor — app header, table header, drag handle
   prMid:         '#8b6ab5',   // muted purple — middle tier (5–6) on PR score bars
   prTop:         '#40b050',   // rich green — top tier (9–10) on PR score bars
+  prScore1:      '#c0001a',   // deep crimson — PR continuous scale bottom anchor (score 1)
+  prScore10:     '#78bc00',   // deep green   — PR continuous scale top anchor (score 10)
   bgOverlay:     'rgba(0,0,0,0.75)',
   shadow:        'rgba(0,0,0,0.15)',
+}
+
+export function hexToHsl(hex) {
+  let r = parseInt(hex.slice(1, 3), 16) / 255
+  let g = parseInt(hex.slice(3, 5), 16) / 255
+  let b = parseInt(hex.slice(5, 7), 16) / 255
+  const max = Math.max(r, g, b), min = Math.min(r, g, b)
+  const l = (max + min) / 2
+  if (max === min) return [0, 0, l * 100]
+  const d = max - min
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+  let h
+  if (max === r)      h = ((g - b) / d + (g < b ? 6 : 0)) / 6
+  else if (max === g) h = ((b - r) / d + 2) / 6
+  else                h = ((r - g) / d + 4) / 6
+  return [h * 360, s * 100, l * 100]
 }
 
 export function withAlpha(hex, alpha) {
