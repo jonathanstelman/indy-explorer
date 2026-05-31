@@ -60,8 +60,8 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - [x] Pinned filter section headers in sidebar
 - [x] Expand LTT → "Learn to Turn" throughout
 - [x] Sidebar: Planning section (blackout dates + reservation), has-blackouts toggle, Has Peak Rankings toggle
-- [ ] Align data table buttons
-- [ ] Reduce height of bar elements on mobile
+- [x] Align data table buttons
+- [x] Reduce height of bar elements on mobile
 
 **Next up:** #108 ("How to use" first-load popover) or #110 ("Help improve this app" feedback section).
 
