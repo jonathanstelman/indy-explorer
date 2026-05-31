@@ -7,7 +7,7 @@ import {
 import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
 import { classifyBlackoutDates } from '@/utils/blackout'
-import { COLORS } from '@/theme'
+import { COLORS, hexToHsl } from '@/theme'
 
 // Persists the user's last-viewed month across modal opens
 let sharedCalendarMonth = dayjs()
@@ -53,12 +53,33 @@ const DIFFICULTY_COLORS = {
   Advanced:     COLORS.neutral,     // medium grey — black diamond trail marker
 }
 
-function prBarColor(val) {
-  if (val > 8)  return COLORS.prTop
-  if (val >= 7) return COLORS.primary
-  if (val >= 5) return COLORS.prMid
-  if (val >= 3) return COLORS.warning
-  return COLORS.error
+const SCORE_COLOR_ANCHORS = [
+  [1, COLORS.prScore1],  // deep crimson
+  [4, COLORS.warning],   // amber
+  [7, COLORS.success],   // chartreuse
+  [9, COLORS.prScore10], // deep green
+]
+
+function scoreToColor(score) {
+  if (score > 10) return COLORS.primary
+  const s = Math.max(1, score)
+  const anchors = SCORE_COLOR_ANCHORS
+  let lo = anchors[0], hi = anchors[anchors.length - 1]
+  for (let i = 0; i < anchors.length - 1; i++) {
+    if (s >= anchors[i][0] && s <= anchors[i + 1][0]) {
+      lo = anchors[i]; hi = anchors[i + 1]; break
+    }
+  }
+  const t = (s - lo[0]) / (hi[0] - lo[0])
+  const [lh, ls, ll] = hexToHsl(lo[1])
+  const [hh, hs, hl] = hexToHsl(hi[1])
+  let dh = hh - lh
+  if (dh > 180) dh -= 360
+  if (dh < -180) dh += 360
+  const h = ((lh + t * dh) + 360) % 360
+  const sat = ls + t * (hs - ls)
+  const lit = ll + t * (hl - ll)
+  return `hsl(${h.toFixed(1)},${sat.toFixed(1)}%,${lit.toFixed(1)}%)`
 }
 
 function SectionHeader({ children, color }) {
@@ -185,7 +206,7 @@ function PeakRankings({ resort, isMobile }) {
               <div style={{ fontSize: 16, fontWeight: 600 }}>{val != null ? val : '—'}</div>
               <div style={{ height: 3, borderRadius: 1, background: COLORS.bgLayout, marginTop: 2 }}>
                 {val != null && (
-                  <div style={{ height: '100%', width: `${(val / 10) * 100}%`, background: prBarColor(val), borderRadius: 1 }} />
+                  <div style={{ height: '100%', width: `${(val / 10) * 100}%`, background: scoreToColor(val), borderRadius: 1 }} />
                 )}
               </div>
             </div>
