@@ -120,22 +120,17 @@ function fitViewToResorts(resorts, width, height, filters) {
 
 function MapTooltip({ info }) {
   const { resort: r, x, y, flipX, flipY } = info
-  const location = [r.city, r.state, r.country].filter(Boolean).join(', ')
+  const locationParts = r.country === 'United States'
+    ? [r.city, r.state]
+    : [r.city, r.state, r.country]
+  const location = locationParts.filter(Boolean).join(', ')
   const rows = [
-    ['Resort',         r.name],
-    ['Location',       location || '—'],
-    ['Acres',          r.acres != null ? r.acres.toLocaleString() : '—'],
-    ['Vertical',       r.vertical != null ? `${r.vertical.toLocaleString()} ft` : '—'],
-    ['Trails',         r.num_trails != null ? r.num_trails : '—'],
-    ['Lifts',          r.num_lifts != null ? r.num_lifts : '—'],
-    ['Alpine',         yesNo(r.has_alpine)],
-    ['Cross-country',  yesNo(r.has_cross_country)],
-    ['Night skiing',   yesNo(r.has_night_skiing)],
-    ['Terrain parks',  yesNo(r.has_terrain_parks)],
-    ['Dog friendly',   yesNo(r.is_dog_friendly)],
-    ['Reservations',   r.reservation_status ?? '—'],
-    ['Blackout dates', r.blackout_count > 0 ? 'Yes' : 'No'],
-    ['Peak score',     r.pr_total != null ? r.pr_total : '—'],
+    ['Resort',   r.name],
+    ['Location', location || '—'],
+    ['Acres',    r.acres != null ? r.acres.toLocaleString() : '—'],
+    ['Vertical', r.vertical != null ? `${r.vertical.toLocaleString()} ft` : '—'],
+    ['Trails',   r.num_trails != null ? r.num_trails : '—'],
+    ['Lifts',    r.num_lifts != null ? r.num_lifts : '—'],
   ]
   return (
     <div style={{
@@ -252,11 +247,6 @@ function MapLegend() {
   )
 }
 
-function yesNo(val) {
-  if (val === true) return 'Yes'
-  if (val === false) return 'No'
-  return '—'
-}
 
 
 export default function ResortMap({ resorts = [], onResortClick }) {
