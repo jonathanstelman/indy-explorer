@@ -14,6 +14,7 @@ from models import Resort
 
 # Helper to build a minimal Resort with the fields we care about
 def make_resort(resort_id, name, blackout_dates=None, ltt_blackout_dates=None, ltt_available=False):
+    dates = blackout_dates or []
     return Resort(
         resort_id=resort_id,
         name=name,
@@ -21,7 +22,8 @@ def make_resort(resort_id, name, blackout_dates=None, ltt_blackout_dates=None, l
         reservation_status='Not Required',
         indy_page=f'https://example.com/{resort_id}',
         ltt_available=ltt_available,
-        blackout_all_dates=json.dumps(blackout_dates or []),
+        blackout_all_dates=json.dumps(dates),
+        blackout_count=len(dates),
         ltt_blackout_all_dates=json.dumps(ltt_blackout_dates or []),
     )
 
@@ -186,3 +188,26 @@ def test_all_filter_types_combined(client):
     # Nordic Valley: LTT ✓, not blacked out Dec 25 ✓, Feb 14 not in ltt_blackout ✓
     names = {r['name'] for r in response.json()}
     assert names == {'Nordic Valley'}
+
+
+# --- has_blackouts ---
+
+
+def test_has_blackouts_true(client):
+    response = client.get('/resorts?has_blackouts=true')
+    assert response.status_code == 200
+    names = {r['name'] for r in response.json()}
+    assert names == {'Alpine Peak', 'Nordic Valley'}
+
+
+def test_has_blackouts_false(client):
+    response = client.get('/resorts?has_blackouts=false')
+    assert response.status_code == 200
+    names = {r['name'] for r in response.json()}
+    assert names == {'Powder Ridge'}
+
+
+def test_has_blackouts_combined_with_ltt_available(client):
+    response = client.get('/resorts?has_blackouts=false&ltt_available=false')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Powder Ridge'}

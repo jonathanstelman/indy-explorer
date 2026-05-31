@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Divider, Select, Slider, Typography, theme } from 'antd'
 import { useFilters } from '@/hooks/useFilters'
+import { FeatureToggle } from '@/components/filters/FeatureFilters'
 
 const { Text } = Typography
 
@@ -143,6 +144,7 @@ const CATEGORICAL_FILTERS = [
 export default function PeakRankingsFilters({ meta }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <FeatureToggle label="Has Peak Rankings" filterKey="has_peak_rankings" />
       {SCORE_SLIDERS.map(({ label, field }) => (
         <RangeSlider
           key={field}

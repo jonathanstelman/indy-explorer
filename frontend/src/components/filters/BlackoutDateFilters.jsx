@@ -1,8 +1,17 @@
-import { Button, DatePicker, Typography } from 'antd'
+import { DatePicker, Divider, Typography } from 'antd'
 import dayjs from 'dayjs'
 import { useFilters } from '@/hooks/useFilters'
+import { FeatureToggle } from '@/components/filters/FeatureFilters'
 
 const { Text } = Typography
+
+function SectionHeading({ children }) {
+  return (
+    <Divider orientation="left" orientationMargin={0} plain style={{ margin: '4px 0' }}>
+      <Text type="secondary" style={{ fontSize: 11 }}>{children}</Text>
+    </Divider>
+  )
+}
 
 function BlackoutRangePicker({ label, fromKey, toKey }) {
   const { filters, setFilters } = useFilters()
@@ -30,44 +39,21 @@ function BlackoutRangePicker({ label, fromKey, toKey }) {
   )
 }
 
-function LttAvailableToggle() {
-  const { filters, setFilter } = useFilters()
-  const current = filters.ltt_available
-  const yesActive = current === undefined || current === true
-  const noActive  = current === undefined || current === false
-
-  function toggleYes() {
-    if (current === true) setFilter('ltt_available', null)
-    else                  setFilter('ltt_available', true)
-  }
-
-  function toggleNo() {
-    if (current === false) setFilter('ltt_available', null)
-    else                   setFilter('ltt_available', false)
-  }
-
-  return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
-      <Text style={{ fontSize: 12, flex: 1 }}>LTT available</Text>
-      <Button.Group size="small">
-        <Button type={yesActive ? 'primary' : 'default'} onClick={toggleYes}>Yes</Button>
-        <Button type={noActive  ? 'primary' : 'default'} onClick={toggleNo}>No</Button>
-      </Button.Group>
-    </div>
-  )
-}
-
 export default function BlackoutDateFilters() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <FeatureToggle label="Reservation required" filterKey="reservation_required" />
+      <SectionHeading>Lift Ticket</SectionHeading>
+      <FeatureToggle label="Blackout dates" filterKey="has_blackouts" />
       <BlackoutRangePicker
-        label="Lift ticket available on"
+        label="Available on"
         fromKey="blackout_date_from"
         toKey="blackout_date_to"
       />
-      <LttAvailableToggle />
+      <SectionHeading>Learn to Turn</SectionHeading>
+      <FeatureToggle label="Offered" filterKey="ltt_available" />
       <BlackoutRangePicker
-        label="LTT available on"
+        label="Available on"
         fromKey="ltt_date_from"
         toKey="ltt_date_to"
       />

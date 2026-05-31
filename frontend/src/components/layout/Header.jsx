@@ -1,8 +1,9 @@
 import { Button, Divider, Layout, Typography, theme } from 'antd'
 import { COLORS, FONTS } from '@/theme'
 
-export default function AppHeader({ sidebarCollapsed, onToggleSidebar }) {
+export default function AppHeader({ sidebarCollapsed, onToggleSidebar, isMobile }) {
   const { token } = theme.useToken()
+  const height = isMobile ? 40 : 56
   return (
     <Layout.Header
       style={{
@@ -11,8 +12,8 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar }) {
         gap: 12,
         background: COLORS.bgHeader,
         padding: '0 24px',
-        height: 56,
-        lineHeight: '56px',
+        height,
+        lineHeight: `${height}px`,
       }}
     >
       <Button
@@ -40,7 +41,7 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar }) {
           letterSpacing: '0.08em',
           color: COLORS.error,
           fontWeight: 400,
-          fontSize: 28,
+          fontSize: isMobile ? 20 : 28,
           WebkitFontSmoothing: 'antialiased',
           WebkitTextStroke: `0.5px ${COLORS.error}`,
         }}

@@ -47,6 +47,22 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 - Trail Difficulty legend always visible on mobile (pie chart hidden, legend shown)
 - Trail Difficulty + Snowfall always side-by-side (removed mobile single-column override)
 
+**#115 merged (2026-05-31):**
+- Peak Rankings bars: continuous HSL color scale replacing 5-step discrete palette
+- Anchor stops at 1/4/7/9 (calibrated to actual score distribution, bell curve ~5–6)
+- Added `hexToHsl` helper and `prScore1`/`prScore10` tokens to theme.js
+
+### UI polish queue (#116)
+
+Small tasks interspersed with larger feature work. Check off here and in the GitHub issue as completed.
+
+- [x] Simplify resort tooltips
+- [x] Pinned filter section headers in sidebar
+- [x] Expand LTT → "Learn to Turn" throughout
+- [x] Sidebar: Planning section (blackout dates + reservation), has-blackouts toggle, Has Peak Rankings toggle
+- [x] Align data table buttons
+- [x] Reduce height of bar elements on mobile
+
 **Next up:** #108 ("How to use" first-load popover) or #110 ("Help improve this app" feedback section).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
