@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` (no active feature branch)
+`main` (no active feature branch — #117 merged 2026-05-31)
 
 ## Status (as of 2026-05-30)
 

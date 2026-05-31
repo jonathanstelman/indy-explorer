@@ -124,6 +124,13 @@ Format for new entries:
 **Follow-up:** None.
 
 ---
+## 2026-05-31 — UI polish batch: tooltips, sidebar filters, mobile chrome
+**Issue:** #116 / #117
+**Decision:** Map tooltip reduced from 14 rows to 6 (Resort, Location, Acres, Vertical, Trails, Lifts); US resorts omit country from Location. Sidebar "Blackout Dates" section renamed "Planning" and absorbs Reservation Required; sub-headings added for Lift Ticket / Learn to Turn. LTT expanded to "Learn to Turn" throughout. New Yes/No toggles for "Has Peak Rankings" and "Blackout dates" (`has_blackouts` backend param added). `FeatureToggle` exported and reused rather than duplicated. Sticky section headers added to sidebar. Mobile chrome slimmed (header 56→40px, tab bar 48→36px). Playwright added as frontend dev dependency for UI verification.
+**Rationale:** Tooltip was overwhelming quick-glance UX — detail belongs in the modal. "Planning" groups logistically-related filters (reservations, blackouts) that were scattered. LTT is not a known initialism outside Indy Pass context. Mobile chrome consumed ~30% of screen on small phones.
+**Follow-up:** `has_blackouts` Yes/No toggle for Learn to Turn blackouts not added (would require separate backend param — deferred).
+
+---
 ## 2026-05-25 — Theme color pass: 80s ski-punk palette
 **Issue:** #107
 **Decision:** Expanded color palette in `theme.js` with `accentBlue` (#3d52ff), `accentPurple` (#9b00e6), `bgMidtone` (#505050), deepened `primary` to #00c4d4 and `success` to #b4f000 (chartreuse). Map dots: pink=alpine, electric blue=XC, purple=both (pink+blue=purple). Difficulty pie chart: chartreuse=beginner, blue=intermediate, grey=advanced (matches real trail markers). PR bars colored by score value (green/yellow/pink). Dark anchor bands: near-black header, charcoal search band and table drag handle, charcoal table column headers. Features section redesigned as "Label: Yes/No" grid. Neon colors used on dark surfaces; functional colors carry semantic meaning throughout.
