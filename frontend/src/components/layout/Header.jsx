@@ -1,7 +1,7 @@
 import { Button, Divider, Layout, Typography, theme } from 'antd'
 import { COLORS, FONTS } from '@/theme'
 
-export default function AppHeader({ sidebarCollapsed, onToggleSidebar, isMobile }) {
+export default function AppHeader({ sidebarCollapsed, onToggleSidebar, onHowToUse, isMobile }) {
   const { token } = theme.useToken()
   const height = isMobile ? 40 : 56
   return (
@@ -44,10 +44,26 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar, isMobile 
           fontSize: isMobile ? 20 : 28,
           WebkitFontSmoothing: 'antialiased',
           WebkitTextStroke: `0.5px ${COLORS.error}`,
+          flex: 1,
         }}
       >
         Indy Explorer
       </Typography.Title>
+      <Button
+        type="text"
+        onClick={onHowToUse}
+        aria-label="How to use"
+        style={{
+          color: COLORS.textMuted,
+          fontFamily: FONTS.mono,
+          fontSize: isMobile ? 12 : 13,
+          padding: '0 8px',
+          flexShrink: 0,
+          lineHeight: 1,
+        }}
+      >
+        ?
+      </Button>
     </Layout.Header>
   )
 }

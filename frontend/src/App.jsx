@@ -10,6 +10,7 @@ import ResortToolbar from '@/components/ResortToolbar'
 import ResortMap from '@/components/ResortMap'
 import ResortTable, { COLUMN_DEFS, HEADER_BY_FIELD, COL_GROUPS } from '@/components/ResortTable'
 import ResortDetailModal from '@/components/ResortDetailModal'
+import HowToUseModal from '@/components/HowToUseModal'
 import { themeConfig, COLORS, FONTS } from '@/theme'
 
 const DEFAULT_TABLE_HEIGHT = 260
@@ -41,6 +42,13 @@ export default function App() {
   const [tableCollapsed, setTableCollapsed] = useState(false)
   const [mobileTab, setMobileTab] = useState('map')
   const [infoOpen, setInfoOpen] = useState(false)
+  const [howToUseOpen, setHowToUseOpen] = useState(() => !localStorage.getItem('indy-how-to-use-seen'))
+
+  function openHowToUse() { setHowToUseOpen(true) }
+  function closeHowToUse() {
+    localStorage.setItem('indy-how-to-use-seen', '1')
+    setHowToUseOpen(false)
+  }
 
   const tableRef = useRef()
   const [colsOpen,      setColsOpen]      = useState(false)
@@ -181,7 +189,7 @@ export default function App() {
     return (
       <ConfigProvider theme={themeConfig}>
         <Layout style={{ height: '100%' }}>
-          <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} isMobile />
+          <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} onHowToUse={openHowToUse} isMobile />
           <Layout>
             <AppSidebar
               meta={meta}
@@ -300,6 +308,7 @@ export default function App() {
           onClose={() => setSelectedResortId(null)}
           isMobile={isMobile}
         />
+        <HowToUseModal open={howToUseOpen} onClose={closeHowToUse} isMobile />
       </ConfigProvider>
     )
   }
@@ -307,7 +316,7 @@ export default function App() {
   return (
     <ConfigProvider theme={themeConfig}>
       <Layout style={{ height: '100%' }}>
-        <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} />
+        <AppHeader sidebarCollapsed={sidebarCollapsed} onToggleSidebar={() => setSidebarCollapsed(c => !c)} onHowToUse={openHowToUse} />
         <Layout>
           <AppSidebar
             meta={meta}
@@ -406,6 +415,7 @@ export default function App() {
         resortId={selectedResortId}
         onClose={() => setSelectedResortId(null)}
       />
+      <HowToUseModal open={howToUseOpen} onClose={closeHowToUse} />
     </ConfigProvider>
   )
 }
