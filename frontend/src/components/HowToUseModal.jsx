@@ -85,17 +85,22 @@ export default function HowToUseModal({ open, onClose, isMobile }) {
       onCancel={onClose}
       footer={null}
       closable={false}
-      width={isMobile ? '100vw' : 500}
-      style={{ top: gap, margin: isMobile ? 0 : '0 auto', padding: 0 }}
+      centered={isMobile}
+      width={isMobile ? '100%' : 500}
+      style={{
+        top: isMobile ? undefined : gap,
+        margin: isMobile ? 0 : '0 auto',
+        padding: 0,
+        maxWidth: isMobile ? '100vw' : undefined,
+      }}
       styles={{
         wrapper: { padding: 0 },
-        // Suppress any Ant Design default header element
         header: { display: 'none', padding: 0, height: 0, margin: 0 },
         content: {
           padding: 0,
           overflow: 'hidden',
           borderRadius: isMobile ? 0 : 2,
-          height: isMobile ? '100vh' : `calc(100vh - ${gap * 2}px)`,
+          height: isMobile ? '100dvh' : `calc(100vh - ${gap * 2}px)`,
           display: 'flex',
           flexDirection: 'column',
         },
