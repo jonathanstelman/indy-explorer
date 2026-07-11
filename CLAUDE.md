@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Indy Explorer is a Python/Streamlit app that scrapes, geocodes, and visualizes Indy Pass ski resorts. Data flows through a pipeline: scrape HTML → parse resort pages → geocode locations → merge into CSV → render in Streamlit with pydeck/Mapbox maps.
+Indy Explorer scrapes, geocodes, and visualizes Indy Pass ski resorts. Data flows through a pipeline: scrape HTML → parse resort pages → geocode locations → merge into CSV → serve via FastAPI → render in React. The live app is at **https://indy-explorer.vercel.app**.
 
-**A React + FastAPI rewrite is in progress.** GitHub issues #51–#77 track the full planned work. Issues #51–#55, #72–#75 are complete. The Streamlit app at `app.py` remains live on Streamlit Community Cloud during the transition. Do not assume Streamlit is the long-term target.
+The Streamlit app (`legacy/app.py`) is retired — it now shows a redirect notice only. The React + FastAPI stack is the production target.
 
 ## Architecture
 
@@ -16,7 +16,7 @@ Indy Explorer is a Python/Streamlit app that scrapes, geocodes, and visualizes I
 2. **`pipeline/utils.py`** — Google Maps geocoding wrapper. Caches results in `data/resort_locations.csv` to minimize API calls. Client is lazily initialized (safe without API key in CI).
 3. **`pipeline/blackout.py`** / **`pipeline/reservations.py`** — Fetch blackout dates from Google Sheets and reservation requirements from the Indy Pass site
 4. **`pipeline/prep_resort_data.py`** — Merges all data sources into `data/resorts.csv`. Calls `assign_resort_ids()` to stamp stable UUIDs using `data/resort_id_map.csv`.
-5. **`app.py`** — Streamlit UI: interactive map (pydeck/Mapbox), filterable table, region-based zoom (map config inlined)
+5. **`legacy/app.py`** — Retired Streamlit app (redirect notice only — do not develop against this)
 6. **`backend/models.py`** — Pydantic `Resort` model covering all columns in `data/resorts.csv`
 7. **`backend/data.py`** — `load_resorts()` reads `data/resorts.csv` into `list[Resort]`
 
@@ -60,7 +60,7 @@ A personal ops runbook lives at `docs/ops-runbook.md` (git-ignored; the user kee
 ## Environment & Secrets
 
 - `GOOGLE_MAPS_API_KEY` in `.env` — for geocoding (quota-sensitive; prefer cached `data/resort_locations.csv`). Not needed by the backend at runtime — pipeline only.
-- `MAPBOX_TOKEN` in `.streamlit/secrets.toml` — for map rendering in Streamlit
+- `MAPBOX_TOKEN` in `.streamlit/secrets.toml` — for the legacy Streamlit redirect app (still deployed)
 - `VITE_MAPBOX_TOKEN` — for map rendering in the React frontend. Set in Vercel dashboard (build-time env var; `VITE_` prefix required for browser exposure)
 
 ## Deployed Services
@@ -73,11 +73,8 @@ A personal ops runbook lives at `docs/ops-runbook.md` (git-ignored; the user kee
 ## Commands
 
 ```bash
-# Install (pipeline/Streamlit)
+# Install (pipeline)
 pipx install poetry && poetry install
-
-# Run Streamlit app (serves on localhost:8501)
-poetry run streamlit run app.py
 
 # Run FastAPI backend (serves on localhost:8000)
 cd backend && poetry run uvicorn main:app --reload
@@ -172,7 +169,7 @@ After completing any non-trivial task, add a summary to [`docs/decisions.md`](do
 ## Important Constraints
 
 - Prefer working from cached HTML (`cache/`) for parser development — avoid live scraping
-- When changing parsers in `parse_resort_page()`, also update `prep_resort_data.py` column list and verify `app.py` column expectations match
+- When changing parsers in `parse_resort_page()`, also update `prep_resort_data.py` column list
 - Avoid committing large diffs to `data/` files without coordinating with maintainers
 - Check `data/resort_locations.csv` before regenerating — geocoding costs API quota
 - **Never name a top-level directory after a Python package** (e.g., `streamlit/`, `fastapi/`). Python 3 treats any directory as a namespace package, which silently shadows the installed library on `sys.path`. This caused Streamlit Community Cloud boot failures when the app lived in `streamlit/`.
