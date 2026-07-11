@@ -91,7 +91,7 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
         placement="left"
         open={!collapsed}
         onClose={onClose}
-        width={280}
+        size={280}
         styles={{ body: { padding: 0, background: token.colorBgLayout } }}
       >
         {content}
