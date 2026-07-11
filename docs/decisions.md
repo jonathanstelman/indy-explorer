@@ -143,3 +143,10 @@ Format for new entries:
 **Decision:** Expanded color palette in `theme.js` with `accentBlue` (#3d52ff), `accentPurple` (#9b00e6), `bgMidtone` (#505050), deepened `primary` to #00c4d4 and `success` to #b4f000 (chartreuse). Map dots: pink=alpine, electric blue=XC, purple=both (pink+blue=purple). Difficulty pie chart: chartreuse=beginner, blue=intermediate, grey=advanced (matches real trail markers). PR bars colored by score value (green/yellow/pink). Dark anchor bands: near-black header, charcoal search band and table drag handle, charcoal table column headers. Features section redesigned as "Label: Yes/No" grid. Neon colors used on dark surfaces; functional colors carry semantic meaning throughout.
 **Rationale:** Original theme used only hot pink and pale cyan; neons were invisible on white. Key insight: neons only work on dark surfaces — structural dark bands provide the canvas. Color choices are functional (map dot mixing, trail marker convention, traffic-light PR scores) not purely decorative.
 **Follow-up:** Dark mode (future) will unlock full neon palette across the whole surface.
+
+---
+## 2026-07-11 — Retire Streamlit app; replace with redirect page
+**Issue:** #121
+**Decision:** `app.py` replaced with a minimal Streamlit redirect page (~17 lines) and moved to `legacy/app.py` (along with `.streamlit/config.toml` → `legacy/.streamlit/config.toml`). All 1480 lines of Streamlit app code removed. `README.md` rewritten to present the React/FastAPI stack as the primary app. `CLAUDE.md` updated to describe `legacy/app.py` as "redirect notice only." Button color set to `accentBlue` (#3d52ff). Page content centered via CSS injection.
+**Rationale:** React app has full feature parity and loads instantly (no cold start). Streamlit had a 5–10s cold start that was the main user complaint. Keeping `app.py` as a live redirect rather than deleting it preserves the Community Cloud URL so existing bookmarks and shared links forward correctly.
+**Follow-up:** After redeploying on Streamlit Community Cloud, confirm the live redirect works before merging this PR.
