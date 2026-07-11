@@ -212,7 +212,7 @@ export default function App() {
                   <ResortToolbar count={resorts.length} loading={loading} />
                 </div>
 
-                <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+                <div style={{ flex: 1, position: 'relative', minHeight: 0, overflow: 'hidden' }}>
                   {mobileTab === 'map' && (
                     <ResortMap
                       resorts={resorts}
@@ -365,7 +365,7 @@ export default function App() {
               <div style={{ padding: '8px 24px', borderBottom: `1px solid ${COLORS.bgHeader}`, background: COLORS.bgMidtone }}>
                 <ResortToolbar count={resorts.length} loading={loading} />
               </div>
-              <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+              <div style={{ flex: 1, position: 'relative', minHeight: 0, overflow: 'hidden' }}>
                 <ResortMap
                   resorts={resorts}
                   onResortClick={r => setSelectedResortId(r.resort_id)}
