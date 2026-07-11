@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/120-shared-modal-panel-primitives` — PR [#127](https://github.com/jonathanstelman/indy-explorer/pull/127) open, awaiting merge
+`main` — PR [#127](https://github.com/jonathanstelman/indy-explorer/pull/127) (#120) reviewed and merged
 
 ## Status (as of 2026-07-11)
 
@@ -78,7 +78,7 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - Created #120: refactor all modal/popup surfaces into shared primitives (DRY)
 - Created #121: retire Streamlit app (React now has full feature parity)
 
-**#120 — PR #127 open, not yet merged (2026-07-11):**
+**#120 merged (2026-07-11), PR #127:**
 - New shared primitives: `frontend/src/components/common/Panel.jsx` (bordered box + optional close button, exports `PANEL_STYLE`), `Overlay.jsx` (dim/dismiss layer, exports `OVERLAY_Z_INDEX`/`PANEL_Z_INDEX`), `ModalHeader.jsx` (dark title bar + close button), `ModalShell.jsx` (antd Modal viewport-constraint wrapper)
 - Applied across Select Columns, mobile ⓘ, Feedback popover, Map Legend/Attribution, the map hover tooltip, `HowToUseModal`, and `ResortDetailModal` — every popup/modal surface in the app now shares these primitives
 - Audited actual dim behavior across desktop/mobile × sidebar-expanded/collapsed (pixel-sampled, not just visual) and found real inconsistencies: Feedback/Map Legend/Attribution had 0% dim, Select Columns had 75% dim with a genuine bug (sidebar's sticky section headers used `zIndex: 10` vs. the overlay's `zIndex: 8`, so all four section headers punched through undimmed), and mobile ⓘ had 75% dim vs. desktop's 0% equivalent
