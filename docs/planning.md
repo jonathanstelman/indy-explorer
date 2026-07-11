@@ -78,7 +78,7 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - Created #120: refactor all modal/popup surfaces into shared primitives (DRY)
 - Created #121: retire Streamlit app (React now has full feature parity)
 
-**Next up:** #121 (retire Streamlit — turn off Community Cloud first, then delete files on this branch).
+**Next up:** #121 (Streamlit redirect page — waiting for Community Cloud to re-release the URL, then rewrite app.py as a redirect notice, redeploy, confirm live, then open PR).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 
