@@ -150,3 +150,10 @@ Format for new entries:
 **Decision:** `app.py` replaced with a minimal Streamlit redirect page (~17 lines) and moved to `legacy/app.py` (along with `.streamlit/config.toml` → `legacy/.streamlit/config.toml`). All 1480 lines of Streamlit app code removed. `README.md` rewritten to present the React/FastAPI stack as the primary app. `CLAUDE.md` updated to describe `legacy/app.py` as "redirect notice only." Button color set to `accentBlue` (#3d52ff). Page content centered via CSS injection.
 **Rationale:** React app has full feature parity and loads instantly (no cold start). Streamlit had a 5–10s cold start that was the main user complaint. Keeping `app.py` as a live redirect rather than deleting it preserves the Community Cloud URL so existing bookmarks and shared links forward correctly.
 **Follow-up:** After redeploying on Streamlit Community Cloud, confirm the live redirect works before merging this PR.
+
+---
+## 2026-07-11 — Playwright MCP output directory
+**Issue:** #124
+**Decision:** Playwright MCP artifacts (screenshots, accessibility snapshots, console/network logs) are scoped to `.playwright-mcp/` at the repo root, which is now gitignored. `CLAUDE.md` documents the convention: pass `filename` as `.playwright-mcp/<name>.png` on `browser_take_screenshot` calls.
+**Rationale:** A screenshot taken with a bare filename landed at the repo root as untracked cruft. `.playwright-mcp/` was already the tool's default location for snapshot/console log files, so it was reused rather than introducing a second directory.
+**Follow-up:** None — settled. Confirmed Playwright MCP works end-to-end against the local dev servers (navigate, snapshot, screenshot) once a macOS system-permission prompt was cleared.
