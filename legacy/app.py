@@ -19,4 +19,9 @@ st.markdown(
 )
 _, col, _ = st.columns([1, 1, 1])
 with col:
-    st.link_button('⛷️ Go to Indy Explorer', 'https://indy-explorer.vercel.app', type='primary', use_container_width=True)
+    st.link_button(
+        '⛷️ Go to Indy Explorer',
+        'https://indy-explorer.vercel.app',
+        type='primary',
+        use_container_width=True,
+    )
