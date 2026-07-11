@@ -6,9 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` (no active feature branch — #117 merged 2026-05-31)
+`feature/121-retire-streamlit` (pending merge of `feature/110-feedback-section` first)
 
-## Status (as of 2026-05-30)
+## Status (as of 2026-07-11)
 
 ### React rewrite — feature complete and deployed
 
@@ -31,8 +31,8 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #106 | Cold start: keep Fly.io machine warm | P1 | Done |
 | #107 | Design: theme color pass | P2 | Done |
 | #109 | UX: Peak Rankings visual encoding | P2 | Done |
-| #108 | UX: "How to use" first-load popover | P2 | |
-| #110 | UX: "Help improve this app" feedback section | P2 | |
+| #108 | UX: "How to use" first-load popover | P2 | Done |
+| #110 | UX: "Help improve this app" feedback section | P2 | Done |
 | #83 | Data validation on Resort Pydantic model | P1 (deferred) | Blocks #77 |
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | |
@@ -63,7 +63,20 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - [x] Align data table buttons
 - [x] Reduce height of bar elements on mobile
 
-**Next up:** #108 ("How to use" first-load popover) or #110 ("Help improve this app" feedback section).
+**#119 merged (2026-07-11):**
+- HowToUseModal: fixed antd v6 `styles.container` key, modal content-sized on desktop, 2px white frame around dark header
+- Drawer deprecation: `width={280}` → `size={280}`
+- Created #118: AG Grid Theming API migration (console warning accepted for now)
+
+**#110 merged (2026-07-11):**
+- Desktop footer: "Feedback" link opens centered fixed panel with dark overlay
+- Mobile ⓘ popup: attribution + "Improve this App" section, unified design language
+- Select Columns: centered fixed panel (desktop) and absolute panel above tab bar (mobile), both with dark overlay
+- All popup surfaces: consistent `2px solid COLORS.bgHeader` border, colored dot section labels (matching sidebar), bulleted black links
+- Created #120: DRY refactor of modal/popup primitives
+- Created #121: retire Streamlit app (React now has full feature parity)
+
+**Next up:** merge #110, then work #121 (retire Streamlit — turn off Community Cloud first, then delete files on this branch).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 
