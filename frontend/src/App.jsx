@@ -96,7 +96,7 @@ export default function App() {
   }
 
   const colsContent = (
-    <div style={{ maxHeight: 420, overflowY: 'auto', padding: '4px 0' }}>
+    <div style={{ padding: '4px 0' }}>
       {COL_GROUPS.map(group => {
         const allChecked  = group.fields.every(f => colVisibility[f])
         const someChecked = group.fields.some(f => colVisibility[f])
@@ -131,6 +131,47 @@ export default function App() {
       })}
     </div>
   )
+
+  function columnsPanel(style) {
+    return (
+      <Panel style={{ ...style, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 2 }}>
+        <div style={{
+          background: COLORS.bgHeader,
+          padding: '10px 12px 10px 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 12,
+          flexShrink: 0,
+        }}>
+          <span style={{ fontFamily: FONTS.display, fontSize: 20, letterSpacing: '0.04em', color: COLORS.error }}>
+            Select Columns
+          </span>
+          <button
+            onClick={() => setColsOpen(false)}
+            aria-label="Close"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: COLORS.error,
+              fontSize: 20,
+              fontWeight: 700,
+              fontFamily: FONTS.mono,
+              cursor: 'pointer',
+              padding: '4px 10px',
+              lineHeight: 1,
+              flexShrink: 0,
+            }}
+          >
+            ✕
+          </button>
+        </div>
+        <div style={{ overflowY: 'auto' }}>
+          {colsContent}
+        </div>
+      </Panel>
+    )
+  }
 
   const lastUpdated = meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : '—'
   const attributionContent = (
@@ -238,19 +279,14 @@ export default function App() {
                 </div>
 
                 <div style={{ position: 'relative', flexShrink: 0 }}>
-                  {colsOpen && mobileTab === 'table' && (
-                    <Panel style={{
-                      position: 'absolute',
-                      bottom: 'calc(100% + 8px)',
-                      left: 12,
-                      right: 12,
-                      maxHeight: 420,
-                      overflowY: 'auto',
-                      zIndex: PANEL_Z_INDEX,
-                    }}>
-                      {colsContent}
-                    </Panel>
-                  )}
+                  {colsOpen && mobileTab === 'table' && columnsPanel({
+                    position: 'absolute',
+                    bottom: 'calc(100% + 8px)',
+                    left: 12,
+                    right: 12,
+                    maxHeight: 420,
+                    zIndex: PANEL_Z_INDEX,
+                  })}
                   {infoOpen && (
                     <Panel style={{
                       position: 'absolute',
@@ -432,18 +468,15 @@ export default function App() {
       {colsOpen && (
         <>
           <Overlay onDismiss={() => setColsOpen(false)} />
-          <Panel style={{
+          {columnsPanel({
             position: 'fixed',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 340,
+            width: 440,
             maxHeight: 'calc(100vh - 48px)',
-            overflowY: 'auto',
             zIndex: PANEL_Z_INDEX,
-          }}>
-            {colsContent}
-          </Panel>
+          })}
         </>
       )}
     </ConfigProvider>
