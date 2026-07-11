@@ -128,6 +128,12 @@ poetry run python pipeline/prep_resort_data.py                      # merge all 
 - Backend tests live in `backend/tests/` and run separately: `cd backend && pytest tests/`
 - CI runs three jobs: Format (Black), Test suite (pipeline), Backend test suite
 
+## Playwright MCP (Visual Verification)
+
+- All Playwright MCP output — screenshots, accessibility snapshots, console/network logs — belongs in `.playwright-mcp/` at the repo root. That directory is gitignored.
+- When calling `browser_take_screenshot`, always pass a `filename` scoped to that directory, e.g. `.playwright-mcp/<name>.png`, so artifacts don't land at the repo root.
+- Start the backend (`localhost:8000`) and frontend (`localhost:5173`) dev servers first (see Commands above), then navigate Playwright to `http://localhost:5173/`.
+
 ## Code Style
 
 - Black with `line-length = 100` and `skip-string-normalization = true` (preserves single quotes)
