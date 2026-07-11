@@ -4,10 +4,12 @@ import {
   Bar, BarChart, Cell, Pie, PieChart,
   ResponsiveContainer, XAxis,
 } from 'recharts'
-import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Typography } from 'antd'
+import { Button, Calendar, Divider, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
 import { classifyBlackoutDates } from '@/utils/blackout'
-import { COLORS, FONTS, hexToHsl } from '@/theme'
+import { COLORS, hexToHsl } from '@/theme'
+import ModalShell from '@/components/common/ModalShell'
+import ModalHeader from '@/components/common/ModalHeader'
 
 // Persists the user's last-viewed month across modal opens
 let sharedCalendarMonth = dayjs()
@@ -366,94 +368,19 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
     (resort.snowfall_average_in != null || resort.snowfall_high_in != null)
   )
 
-  const gap = isMobile ? 0 : 24
-
   return (
-    <Modal
-      open={!!resortId}
-      onCancel={onClose}
-      footer={null}
-      closable={false}
-      centered={isMobile}
-      width={isMobile ? '100%' : 640}
-      destroyOnHidden
-      style={{
-        top: isMobile ? undefined : gap,
-        margin: isMobile ? 0 : '0 auto',
-        padding: 0,
-        maxWidth: isMobile ? '100vw' : undefined,
-      }}
-      styles={{
-        wrapper: { padding: 0 },
-        container: {
-          padding: isMobile ? 0 : 2,
-          border: isMobile ? undefined : `2px solid ${COLORS.bgHeader}`,
-          overflow: 'hidden',
-          borderRadius: isMobile ? 0 : undefined,
-          ...(isMobile ? { height: '100dvh', display: 'flex', flexDirection: 'column' } : {}),
-        },
-        body: {
-          padding: 0,
-          ...(isMobile ? { flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 } : {}),
-        },
-      }}
-    >
+    <ModalShell open={!!resortId} onClose={onClose} width={640} isMobile={isMobile} destroyOnHidden>
       {loading && <div style={{ padding: 24 }}><Skeleton active paragraph={{ rows: 8 }} /></div>}
 
       {!loading && resort && (
         <>
-          {/* Header — fixed, never scrolls */}
-          <div style={{
-            background: COLORS.bgHeader,
-            padding: '10px 12px 10px 24px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 12,
-          }}>
-            <div style={{ minWidth: 0 }}>
-              <div style={{
-                fontFamily: FONTS.display,
-                fontSize: 22,
-                letterSpacing: '0.04em',
-                color: COLORS.error,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
-                {resort.name}
-              </div>
-              {location && (
-                <div style={{ fontFamily: FONTS.mono, fontSize: 12, color: COLORS.textMuted, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {location}
-                </div>
-              )}
-            </div>
-            <button
-              onClick={onClose}
-              aria-label="Close"
-              style={{
-                background: 'none',
-                border: 'none',
-                color: COLORS.error,
-                fontSize: 22,
-                fontWeight: 700,
-                fontFamily: FONTS.mono,
-                cursor: 'pointer',
-                padding: '4px 10px',
-                lineHeight: 1,
-                flexShrink: 0,
-              }}
-            >
-              ✕
-            </button>
-          </div>
+          <ModalHeader title={resort.name} subtitle={location} onClose={onClose} />
 
           {/* Scrollable content */}
           <div style={{
+            flex: 1,
+            minHeight: 0,
             overflowY: 'auto',
-            flex: isMobile ? 1 : undefined,
-            maxHeight: isMobile ? undefined : `calc(100vh - ${gap * 2 + 76}px)`,
             padding: '16px 24px 24px',
           }}>
           <Space size="middle" wrap>
@@ -566,6 +493,6 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
           </div>
         </>
       )}
-    </Modal>
+    </ModalShell>
   )
 }

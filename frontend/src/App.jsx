@@ -13,6 +13,7 @@ import ResortDetailModal from '@/components/ResortDetailModal'
 import HowToUseModal from '@/components/HowToUseModal'
 import Panel from '@/components/common/Panel'
 import Overlay, { PANEL_Z_INDEX } from '@/components/common/Overlay'
+import ModalHeader from '@/components/common/ModalHeader'
 import { themeConfig, COLORS, FONTS } from '@/theme'
 
 const DEFAULT_TABLE_HEIGHT = 260
@@ -135,37 +136,7 @@ export default function App() {
   function columnsPanel(style) {
     return (
       <Panel style={{ ...style, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 2 }}>
-        <div style={{
-          background: COLORS.bgHeader,
-          padding: '10px 12px 10px 24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 12,
-          flexShrink: 0,
-        }}>
-          <span style={{ fontFamily: FONTS.display, fontSize: 20, letterSpacing: '0.04em', color: COLORS.error }}>
-            Select Columns
-          </span>
-          <button
-            onClick={() => setColsOpen(false)}
-            aria-label="Close"
-            style={{
-              background: 'none',
-              border: 'none',
-              color: COLORS.error,
-              fontSize: 20,
-              fontWeight: 700,
-              fontFamily: FONTS.mono,
-              cursor: 'pointer',
-              padding: '4px 10px',
-              lineHeight: 1,
-              flexShrink: 0,
-            }}
-          >
-            ✕
-          </button>
-        </div>
+        <ModalHeader title="Select Columns" titleFontSize={20} onClose={() => setColsOpen(false)} />
         <div style={{ overflowY: 'auto' }}>
           {colsContent}
         </div>
