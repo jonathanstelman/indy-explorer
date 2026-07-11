@@ -95,22 +95,15 @@ export default function HowToUseModal({ open, onClose, isMobile }) {
       }}
       styles={{
         wrapper: { padding: 0 },
-        header: { display: 'none', padding: 0, height: 0, margin: 0 },
-        content: {
-          padding: 0,
+        container: {
+          padding: isMobile ? 0 : 2,
           overflow: 'hidden',
-          borderRadius: isMobile ? 0 : 2,
-          height: isMobile ? '100dvh' : `calc(100vh - ${gap * 2}px)`,
-          display: 'flex',
-          flexDirection: 'column',
+          borderRadius: isMobile ? 0 : undefined,
+          ...(isMobile ? { height: '100dvh', display: 'flex', flexDirection: 'column' } : {}),
         },
         body: {
           padding: 0,
-          flex: 1,
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: 0,
+          ...(isMobile ? { flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 } : {}),
         },
       }}
     >
@@ -118,7 +111,6 @@ export default function HowToUseModal({ open, onClose, isMobile }) {
       <div style={{
         background: COLORS.bgHeader,
         padding: '10px 12px 10px 24px',
-        flexShrink: 0,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -148,7 +140,7 @@ export default function HowToUseModal({ open, onClose, isMobile }) {
       </div>
 
       {/* Scrollable content */}
-      <div style={{ overflowY: 'auto', flex: 1, padding: '16px 24px 24px' }}>
+      <div style={{ overflowY: 'auto', flex: isMobile ? 1 : undefined, maxHeight: isMobile ? undefined : `calc(100vh - ${gap * 2 + 60}px)`, padding: '16px 24px 24px' }}>
         <p style={{ fontFamily: FONTS.mono, fontSize: 13, color: COLORS.textMuted, marginTop: 0, marginBottom: 20, lineHeight: 1.6 }}>
           Indy Explorer helps you find the right{' '}
           <span style={{ color: COLORS.error }}>Indy Pass</span>{' '}
