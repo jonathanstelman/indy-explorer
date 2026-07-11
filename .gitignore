@@ -195,3 +195,6 @@ docs/ops-runbook.md
 .cursor/
 .aider*
 .copilot/
+
+# Playwright MCP output (screenshots, snapshots, console/network logs)
+.playwright-mcp/
