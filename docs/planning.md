@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/121-retire-streamlit` (PR open — awaiting Community Cloud redeploy confirmation)
+`main` (no active feature branch)
 
 ## Status (as of 2026-07-11)
 
@@ -78,7 +78,7 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - Created #120: refactor all modal/popup surfaces into shared primitives (DRY)
 - Created #121: retire Streamlit app (React now has full feature parity)
 
-**#121 in progress (2026-07-11):** Streamlit `app.py` replaced with redirect page. PR open — pending: redeploy on Community Cloud, confirm redirect is live, then merge.
+**#121 merged (2026-07-11):** Streamlit `app.py` replaced with redirect page at `legacy/app.py`. Streamlit Community Cloud redeploy pending (URL not yet re-released).
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 
