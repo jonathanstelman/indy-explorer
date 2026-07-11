@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Layout, Popover, Typography, theme } from 'antd'
 import { COLORS, FONTS } from '@/theme'
+import { PANEL_STYLE } from '@/components/common/Panel'
 
 export default function AppFooter({ lastUpdated, isMobile }) {
   if (isMobile) return null
@@ -55,9 +56,7 @@ export default function AppFooter({ lastUpdated, isMobile }) {
           placement="topRight"
           arrow={false}
           overlayInnerStyle={{
-            background: COLORS.bgBase,
-            border: `2px solid ${COLORS.bgHeader}`,
-            borderRadius: 4,
+            ...PANEL_STYLE,
             padding: '8px 12px',
             boxShadow: 'none',
           }}

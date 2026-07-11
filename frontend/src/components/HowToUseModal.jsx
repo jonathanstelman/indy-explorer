@@ -1,5 +1,6 @@
-import { Modal } from 'antd'
 import { COLORS, FONTS } from '@/theme'
+import ModalShell from '@/components/common/ModalShell'
+import ModalHeader from '@/components/common/ModalHeader'
 
 function Btn({ children, variant }) {
   const isDanger = variant === 'danger'
@@ -77,70 +78,13 @@ function mobileSections() {
 
 export default function HowToUseModal({ open, onClose, isMobile }) {
   const sections = isMobile ? mobileSections() : desktopSections()
-  const gap = isMobile ? 0 : 16
 
   return (
-    <Modal
-      open={open}
-      onCancel={onClose}
-      footer={null}
-      closable={false}
-      centered={isMobile}
-      width={isMobile ? '100%' : 500}
-      style={{
-        top: isMobile ? undefined : gap,
-        margin: isMobile ? 0 : '0 auto',
-        padding: 0,
-        maxWidth: isMobile ? '100vw' : undefined,
-      }}
-      styles={{
-        wrapper: { padding: 0 },
-        container: {
-          padding: isMobile ? 0 : 2,
-          overflow: 'hidden',
-          borderRadius: isMobile ? 0 : undefined,
-          ...(isMobile ? { height: '100dvh', display: 'flex', flexDirection: 'column' } : {}),
-        },
-        body: {
-          padding: 0,
-          ...(isMobile ? { flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 } : {}),
-        },
-      }}
-    >
-      {/* Header — fixed, never scrolls */}
-      <div style={{
-        background: COLORS.bgHeader,
-        padding: '10px 12px 10px 24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 12,
-      }}>
-        <span style={{ fontFamily: FONTS.display, fontSize: 22, letterSpacing: '0.06em', color: COLORS.error }}>
-          How to use Indy Explorer
-        </span>
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          style={{
-            background: 'none',
-            border: 'none',
-            color: COLORS.error,
-            fontSize: 22,
-            fontWeight: 700,
-            fontFamily: FONTS.mono,
-            cursor: 'pointer',
-            padding: '4px 10px',
-            lineHeight: 1,
-            flexShrink: 0,
-          }}
-        >
-          ✕
-        </button>
-      </div>
+    <ModalShell open={open} onClose={onClose} width={500} isMobile={isMobile}>
+      <ModalHeader title="How to use Indy Explorer" onClose={onClose} />
 
       {/* Scrollable content */}
-      <div style={{ overflowY: 'auto', flex: isMobile ? 1 : undefined, maxHeight: isMobile ? undefined : `calc(100vh - ${gap * 2 + 60}px)`, padding: '16px 24px 24px' }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '16px 24px 24px' }}>
         <p style={{ fontFamily: FONTS.mono, fontSize: 13, color: COLORS.textMuted, marginTop: 0, marginBottom: 20, lineHeight: 1.6 }}>
           Indy Explorer helps you find the right{' '}
           <span style={{ color: COLORS.error }}>Indy Pass</span>{' '}
@@ -164,6 +108,6 @@ export default function HowToUseModal({ open, onClose, isMobile }) {
           Data from Indy Pass, Peak Rankings, and Google Maps. Not affiliated with Indy Pass.
         </div>
       </div>
-    </Modal>
+    </ModalShell>
   )
 }

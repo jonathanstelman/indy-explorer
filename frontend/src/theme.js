@@ -24,7 +24,7 @@ export const COLORS = {
   prTop:         '#40b050',   // rich green — top tier (9–10) on PR score bars
   prScore1:      '#c0001a',   // deep crimson — PR continuous scale bottom anchor (score 1)
   prScore10:     '#78bc00',   // deep green   — PR continuous scale top anchor (score 10)
-  bgOverlay:     'rgba(0,0,0,0.75)',
+  bgOverlay:     'rgba(0,0,0,0.45)',   // dim layer behind popup panels — matches antd's default modal mask
   shadow:        'rgba(0,0,0,0.15)',
 }
 

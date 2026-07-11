@@ -4,15 +4,17 @@ import {
   Bar, BarChart, Cell, Pie, PieChart,
   ResponsiveContainer, XAxis,
 } from 'recharts'
-import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Typography } from 'antd'
+import { Button, Calendar, Divider, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
 import { classifyBlackoutDates } from '@/utils/blackout'
 import { COLORS, hexToHsl } from '@/theme'
+import ModalShell from '@/components/common/ModalShell'
+import ModalHeader from '@/components/common/ModalHeader'
 
 // Persists the user's last-viewed month across modal opens
 let sharedCalendarMonth = dayjs()
 
-const { Title, Text, Link } = Typography
+const { Text, Link } = Typography
 
 const BLACKOUT_COLORS = {
   standard: COLORS.error,
@@ -367,29 +369,25 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
   )
 
   return (
-    <Modal
-      open={!!resortId}
-      onCancel={onClose}
-      footer={null}
-      width={640}
-      destroyOnHidden
-      title={null}
-      styles={{ body: { maxHeight: '85vh', overflowY: 'auto' } }}
-    >
-      {loading && <Skeleton active paragraph={{ rows: 8 }} />}
+    <ModalShell open={!!resortId} onClose={onClose} width={640} isMobile={isMobile} destroyOnHidden>
+      {loading && <div style={{ padding: 24 }}><Skeleton active paragraph={{ rows: 8 }} /></div>}
 
       {!loading && resort && (
         <>
-          {/* Header */}
-          <Title level={4} style={{ marginBottom: 2 }}>{resort.name}</Title>
-          {location && <Text type="secondary">{location}</Text>}
-          <div style={{ marginTop: 10 }}>
-            <Space size="middle" wrap>
-              <Link href={resort.indy_page} target="_blank">Indy Pass ↗</Link>
-              {resort.website && <Link href={resort.website} target="_blank">Website ↗</Link>}
-              {resort.reservation_url && <Link href={resort.reservation_url} target="_blank">Reservations ↗</Link>}
-            </Space>
-          </div>
+          <ModalHeader title={resort.name} subtitle={location} onClose={onClose} />
+
+          {/* Scrollable content */}
+          <div style={{
+            flex: 1,
+            minHeight: 0,
+            overflowY: 'auto',
+            padding: '16px 24px 24px',
+          }}>
+          <Space size="middle" wrap>
+            <Link href={resort.indy_page} target="_blank">Indy Pass ↗</Link>
+            {resort.website && <Link href={resort.website} target="_blank">Website ↗</Link>}
+            {resort.reservation_url && <Link href={resort.reservation_url} target="_blank">Reservations ↗</Link>}
+          </Space>
 
           <Divider />
 
@@ -492,8 +490,9 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
           <div style={{ marginTop: 8 }}>
             <PeakRankings resort={resort} isMobile={isMobile} />
           </div>
+          </div>
         </>
       )}
-    </Modal>
+    </ModalShell>
   )
 }

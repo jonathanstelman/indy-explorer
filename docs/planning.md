@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` (no active feature branch)
+`feature/120-shared-modal-panel-primitives` — PR [#127](https://github.com/jonathanstelman/indy-explorer/pull/127) open, awaiting merge
 
 ## Status (as of 2026-07-11)
 
@@ -77,6 +77,18 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - Popup content: colored dot + section title (matching sidebar), bulleted black links, muted footnotes
 - Created #120: refactor all modal/popup surfaces into shared primitives (DRY)
 - Created #121: retire Streamlit app (React now has full feature parity)
+
+**#120 — PR #127 open, not yet merged (2026-07-11):**
+- New shared primitives: `frontend/src/components/common/Panel.jsx` (bordered box + optional close button, exports `PANEL_STYLE`), `Overlay.jsx` (dim/dismiss layer, exports `OVERLAY_Z_INDEX`/`PANEL_Z_INDEX`), `ModalHeader.jsx` (dark title bar + close button), `ModalShell.jsx` (antd Modal viewport-constraint wrapper)
+- Applied across Select Columns, mobile ⓘ, Feedback popover, Map Legend/Attribution, the map hover tooltip, `HowToUseModal`, and `ResortDetailModal` — every popup/modal surface in the app now shares these primitives
+- Audited actual dim behavior across desktop/mobile × sidebar-expanded/collapsed (pixel-sampled, not just visual) and found real inconsistencies: Feedback/Map Legend/Attribution had 0% dim, Select Columns had 75% dim with a genuine bug (sidebar's sticky section headers used `zIndex: 10` vs. the overlay's `zIndex: 8`, so all four section headers punched through undimmed), and mobile ⓘ had 75% dim vs. desktop's 0% equivalent
+- Collapsed to 2 dim tiers per user direction (75% felt "overdone"): **ambient** (no dim — Feedback, Map Legend, Map Attribution/desktop ⓘ) and **soft** (~45% — How To Use, Resort Detail, Select Columns, mobile ⓘ). `COLORS.bgOverlay` changed from `rgba(0,0,0,0.75)` to `rgba(0,0,0,0.45)` to match antd's default modal mask
+- Fixed the sidebar z-index leak: `Sidebar.jsx` `stickyHeader` zIndex dropped from 10 to 1
+- Fixed map hover tooltip clipping (`Layout.Content`'s `overflow: hidden` could clip it when the map area was short) by clamping its position instead of open-ended CSS flip math; gave it the shared bordered style
+- Fixed `ResortDetailModal` overflowing past the viewport (only `body` was height-capped, not the modal as a whole) — now matches `HowToUseModal`'s pattern; both gained a bold border + white inset frame
+- Contained Map Legend/Attribution within the map area (`overflow: hidden` on the map wrapper) so they can't spill onto the table's drag-handle bar when the map area is short
+- Gave Select Columns a header (title + close button) and more width (340px → 440px) — it was cramped and had no title
+- Extracted `ModalHeader`/`ModalShell` so the big-surface header/viewport-constraint pattern is shared between `HowToUseModal`, `ResortDetailModal`, and Select Columns instead of copy-pasted three times — net −48 lines despite adding two new files
 
 **#121 merged (2026-07-11):** Streamlit `app.py` replaced with redirect page at `legacy/app.py`. Streamlit Community Cloud redeploy pending (URL not yet re-released).
 
