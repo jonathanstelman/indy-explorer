@@ -22,7 +22,9 @@ export default function AppSidebar({ meta, allResorts, collapsed, width, isMobil
     )
   }
 
-  const stickyHeader = { position: 'sticky', top: 0, zIndex: 10, background: token.colorBgLayout }
+  // zIndex only needs to clear this panel's own scrolled-under content, not app-wide
+  // overlays — see OVERLAY_Z_INDEX in components/common/Overlay.jsx.
+  const stickyHeader = { position: 'sticky', top: 0, zIndex: 1, background: token.colorBgLayout }
 
   const items = [
     {

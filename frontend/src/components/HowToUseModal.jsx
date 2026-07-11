@@ -97,6 +97,7 @@ export default function HowToUseModal({ open, onClose, isMobile }) {
         wrapper: { padding: 0 },
         container: {
           padding: isMobile ? 0 : 2,
+          border: isMobile ? undefined : `2px solid ${COLORS.bgHeader}`,
           overflow: 'hidden',
           borderRadius: isMobile ? 0 : undefined,
           ...(isMobile ? { height: '100dvh', display: 'flex', flexDirection: 'column' } : {}),

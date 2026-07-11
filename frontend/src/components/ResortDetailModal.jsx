@@ -7,12 +7,12 @@ import {
 import { Button, Calendar, Divider, Modal, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
 import { classifyBlackoutDates } from '@/utils/blackout'
-import { COLORS, hexToHsl } from '@/theme'
+import { COLORS, FONTS, hexToHsl } from '@/theme'
 
 // Persists the user's last-viewed month across modal opens
 let sharedCalendarMonth = dayjs()
 
-const { Title, Text, Link } = Typography
+const { Text, Link } = Typography
 
 const BLACKOUT_COLORS = {
   standard: COLORS.error,
@@ -366,30 +366,101 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
     (resort.snowfall_average_in != null || resort.snowfall_high_in != null)
   )
 
+  const gap = isMobile ? 0 : 24
+
   return (
     <Modal
       open={!!resortId}
       onCancel={onClose}
       footer={null}
-      width={640}
+      closable={false}
+      centered={isMobile}
+      width={isMobile ? '100%' : 640}
       destroyOnHidden
-      title={null}
-      styles={{ body: { maxHeight: '85vh', overflowY: 'auto' } }}
+      style={{
+        top: isMobile ? undefined : gap,
+        margin: isMobile ? 0 : '0 auto',
+        padding: 0,
+        maxWidth: isMobile ? '100vw' : undefined,
+      }}
+      styles={{
+        wrapper: { padding: 0 },
+        container: {
+          padding: isMobile ? 0 : 2,
+          border: isMobile ? undefined : `2px solid ${COLORS.bgHeader}`,
+          overflow: 'hidden',
+          borderRadius: isMobile ? 0 : undefined,
+          ...(isMobile ? { height: '100dvh', display: 'flex', flexDirection: 'column' } : {}),
+        },
+        body: {
+          padding: 0,
+          ...(isMobile ? { flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 0 } : {}),
+        },
+      }}
     >
-      {loading && <Skeleton active paragraph={{ rows: 8 }} />}
+      {loading && <div style={{ padding: 24 }}><Skeleton active paragraph={{ rows: 8 }} /></div>}
 
       {!loading && resort && (
         <>
-          {/* Header */}
-          <Title level={4} style={{ marginBottom: 2 }}>{resort.name}</Title>
-          {location && <Text type="secondary">{location}</Text>}
-          <div style={{ marginTop: 10 }}>
-            <Space size="middle" wrap>
-              <Link href={resort.indy_page} target="_blank">Indy Pass ↗</Link>
-              {resort.website && <Link href={resort.website} target="_blank">Website ↗</Link>}
-              {resort.reservation_url && <Link href={resort.reservation_url} target="_blank">Reservations ↗</Link>}
-            </Space>
+          {/* Header — fixed, never scrolls */}
+          <div style={{
+            background: COLORS.bgHeader,
+            padding: '10px 12px 10px 24px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 12,
+          }}>
+            <div style={{ minWidth: 0 }}>
+              <div style={{
+                fontFamily: FONTS.display,
+                fontSize: 22,
+                letterSpacing: '0.04em',
+                color: COLORS.error,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+                {resort.name}
+              </div>
+              {location && (
+                <div style={{ fontFamily: FONTS.mono, fontSize: 12, color: COLORS.textMuted, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {location}
+                </div>
+              )}
+            </div>
+            <button
+              onClick={onClose}
+              aria-label="Close"
+              style={{
+                background: 'none',
+                border: 'none',
+                color: COLORS.error,
+                fontSize: 22,
+                fontWeight: 700,
+                fontFamily: FONTS.mono,
+                cursor: 'pointer',
+                padding: '4px 10px',
+                lineHeight: 1,
+                flexShrink: 0,
+              }}
+            >
+              ✕
+            </button>
           </div>
+
+          {/* Scrollable content */}
+          <div style={{
+            overflowY: 'auto',
+            flex: isMobile ? 1 : undefined,
+            maxHeight: isMobile ? undefined : `calc(100vh - ${gap * 2 + 76}px)`,
+            padding: '16px 24px 24px',
+          }}>
+          <Space size="middle" wrap>
+            <Link href={resort.indy_page} target="_blank">Indy Pass ↗</Link>
+            {resort.website && <Link href={resort.website} target="_blank">Website ↗</Link>}
+            {resort.reservation_url && <Link href={resort.reservation_url} target="_blank">Reservations ↗</Link>}
+          </Space>
 
           <Divider />
 
@@ -491,6 +562,7 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
           <SectionHeader color={COLORS.success}>Peak Rankings</SectionHeader>
           <div style={{ marginTop: 8 }}>
             <PeakRankings resort={resort} isMobile={isMobile} />
+          </div>
           </div>
         </>
       )}

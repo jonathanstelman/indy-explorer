@@ -6,8 +6,15 @@ import Map from 'react-map-gl/mapbox'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useFilters } from '@/hooks/useFilters'
 import { COLORS, FONTS, MAP_DOT_COLORS } from '@/theme'
+import Panel from '@/components/common/Panel'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
+
+// Fixed content shape (always 6 label/value rows) makes the rendered size predictable —
+// used to clamp the tooltip within its container instead of letting it overflow and get
+// clipped by Layout.Content's `overflow: hidden` when the map area is short.
+const TOOLTIP_WIDTH = 260
+const TOOLTIP_HEIGHT = 170
 
 const INITIAL_VIEW_STATE = {
   latitude: 44,
@@ -132,7 +139,7 @@ function fitViewToResorts(resorts, width, height, filters) {
 }
 
 function MapTooltip({ info }) {
-  const { resort: r, x, y, flipX, flipY } = info
+  const { resort: r, left, top } = info
   const locationParts = r.country === 'United States'
     ? [r.city, r.state]
     : [r.city, r.state, r.country]
@@ -146,18 +153,14 @@ function MapTooltip({ info }) {
     ['Lifts',    r.num_lifts != null ? r.num_lifts : '—'],
   ]
   return (
-    <div style={{
+    <Panel style={{
       position: 'absolute',
       pointerEvents: 'none',
       zIndex: 1,
-      ...(flipX ? { right: `calc(100% - ${x - 8}px)` } : { left: x + 8 }),
-      ...(flipY ? { bottom: `calc(100% - ${y - 8}px)` } : { top: y + 8 }),
-      backgroundColor: COLORS.bgBase,
+      left,
+      top,
       color: COLORS.text,
-      border: `1px solid ${COLORS.border}`,
-      borderRadius: 4,
       padding: '10px 12px',
-      boxShadow: `0 2px 8px ${COLORS.shadow}`,
       fontSize: 12,
       fontFamily: FONTS.mono,
       whiteSpace: 'nowrap',
@@ -172,7 +175,7 @@ function MapTooltip({ info }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </Panel>
   )
 }
 
@@ -194,14 +197,12 @@ function MapLegend() {
   }
 
   return (
-    <div
+    <Panel
+      onClose={() => setOpen(false)}
       style={{
         position: 'absolute',
         top: 8,
         left: 8,
-        background: COLORS.bgBase,
-        border: `2px solid ${COLORS.bgHeader}`,
-        borderRadius: 4,
         padding: '8px 12px 8px 12px',
         display: 'flex',
         flexDirection: 'column',
@@ -209,23 +210,6 @@ function MapLegend() {
         pointerEvents: 'auto',
       }}
     >
-      <button
-        onClick={() => setOpen(false)}
-        style={{
-          position: 'absolute',
-          top: 3,
-          right: 5,
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: COLORS.textMuted,
-          fontSize: 13,
-          lineHeight: 1,
-          padding: 0,
-        }}
-      >
-        ×
-      </button>
       {LEGEND_ITEMS.map(({ color, label }) => (
         <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div
@@ -242,7 +226,7 @@ function MapLegend() {
           </span>
         </div>
       ))}
-    </div>
+    </Panel>
   )
 }
 
@@ -252,25 +236,19 @@ function MapAttribution() {
   const [open, setOpen] = useState(false)
   if (open) {
     return (
-      <div style={{
-        position: 'absolute',
-        top: 8,
-        right: 8,
-        background: COLORS.bgBase,
-        border: `2px solid ${COLORS.bgHeader}`,
-        borderRadius: 4,
-        padding: '8px 12px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 6,
-        pointerEvents: 'auto',
-      }}>
-        <button
-          onClick={() => setOpen(false)}
-          style={{ position: 'absolute', top: 3, right: 5, background: 'none', border: 'none', cursor: 'pointer', color: COLORS.textMuted, fontSize: 13, lineHeight: 1, padding: 0 }}
-        >
-          ×
-        </button>
+      <Panel
+        onClose={() => setOpen(false)}
+        style={{
+          position: 'absolute',
+          top: 8,
+          right: 8,
+          padding: '8px 12px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 6,
+          pointerEvents: 'auto',
+        }}
+      >
         {[
           { href: 'https://www.mapbox.com/about/maps/', label: '© Mapbox' },
           { href: 'https://www.openstreetmap.org/copyright', label: '© OpenStreetMap' },
@@ -282,7 +260,7 @@ function MapAttribution() {
             {label}
           </a>
         ))}
-      </div>
+      </Panel>
     )
   }
 
@@ -336,7 +314,13 @@ export default function ResortMap({ resorts = [], onResortClick, isMobile }) {
     onHover: ({ object, x, y }) => {
       if (!object) { setTooltipInfo(null); return }
       const { width, height } = containerRef.current?.getBoundingClientRect() ?? {}
-      setTooltipInfo({ resort: object, x, y, flipX: x > width / 2, flipY: y > height / 2 })
+      const left = x > width / 2
+        ? Math.max(4, x - 8 - TOOLTIP_WIDTH)
+        : Math.max(4, Math.min(x + 8, width - TOOLTIP_WIDTH - 4))
+      const top = y > height / 2
+        ? Math.max(4, y - 8 - TOOLTIP_HEIGHT)
+        : Math.max(4, Math.min(y + 8, height - TOOLTIP_HEIGHT - 4))
+      setTooltipInfo({ resort: object, left, top })
     },
   })
 

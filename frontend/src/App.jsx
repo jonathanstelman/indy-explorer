@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Button, Checkbox, ConfigProvider, Layout, Popover } from 'antd'
+import { Button, Checkbox, ConfigProvider, Layout } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 import { useFilters } from '@/hooks/useFilters'
 import { fetchResorts, fetchMeta } from '@/api/resorts'
@@ -11,6 +11,8 @@ import ResortMap from '@/components/ResortMap'
 import ResortTable, { COLUMN_DEFS, HEADER_BY_FIELD, COL_GROUPS } from '@/components/ResortTable'
 import ResortDetailModal from '@/components/ResortDetailModal'
 import HowToUseModal from '@/components/HowToUseModal'
+import Panel from '@/components/common/Panel'
+import Overlay, { PANEL_Z_INDEX } from '@/components/common/Overlay'
 import { themeConfig, COLORS, FONTS } from '@/theme'
 
 const DEFAULT_TABLE_HEIGHT = 260
@@ -237,32 +239,26 @@ export default function App() {
 
                 <div style={{ position: 'relative', flexShrink: 0 }}>
                   {colsOpen && mobileTab === 'table' && (
-                    <div style={{
+                    <Panel style={{
                       position: 'absolute',
                       bottom: 'calc(100% + 8px)',
                       left: 12,
                       right: 12,
-                      background: COLORS.bgBase,
-                      border: `2px solid ${COLORS.bgHeader}`,
-                      borderRadius: 4,
                       maxHeight: 420,
                       overflowY: 'auto',
-                      zIndex: 10,
+                      zIndex: PANEL_Z_INDEX,
                     }}>
                       {colsContent}
-                    </div>
+                    </Panel>
                   )}
                   {infoOpen && (
-                    <div style={{
+                    <Panel style={{
                       position: 'absolute',
                       bottom: 'calc(100% + 8px)',
                       right: 8,
                       maxWidth: 'calc(100% - 16px)',
-                      background: COLORS.bgBase,
-                      border: `2px solid ${COLORS.bgHeader}`,
-                      borderRadius: 4,
                       padding: '8px 12px',
-                      zIndex: 10,
+                      zIndex: PANEL_Z_INDEX,
                     }}>
                       {attributionContent}
                       <div style={{ borderTop: `1px solid ${COLORS.bgHeader}`, marginTop: 6, paddingTop: 6, fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
@@ -276,7 +272,7 @@ export default function App() {
                           <li><a href="https://github.com/users/jonathanstelman/projects/2" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Project board</a></li>
                         </ul>
                       </div>
-                    </div>
+                    </Panel>
                   )}
                   <div style={{ display: 'flex', background: COLORS.bgHeader, borderTop: `1px solid ${COLORS.border}` }}>
                     {['map', 'table'].map(tab => (
@@ -327,10 +323,7 @@ export default function App() {
           </Layout>
         </Layout>
         {(colsOpen || infoOpen) && (
-          <div
-            style={{ position: 'fixed', inset: 0, background: COLORS.bgOverlay, zIndex: 8 }}
-            onClick={() => { setColsOpen(false); setInfoOpen(false) }}
-          />
+          <Overlay onDismiss={() => { setColsOpen(false); setInfoOpen(false) }} />
         )}
         <ResortDetailModal
           resortId={selectedResortId}
@@ -438,8 +431,8 @@ export default function App() {
       <HowToUseModal open={howToUseOpen} onClose={closeHowToUse} />
       {colsOpen && (
         <>
-          <div style={{ position: 'fixed', inset: 0, background: COLORS.bgOverlay, zIndex: 8 }} onClick={() => setColsOpen(false)} />
-          <div style={{
+          <Overlay onDismiss={() => setColsOpen(false)} />
+          <Panel style={{
             position: 'fixed',
             top: '50%',
             left: '50%',
@@ -447,13 +440,10 @@ export default function App() {
             width: 340,
             maxHeight: 'calc(100vh - 48px)',
             overflowY: 'auto',
-            background: COLORS.bgBase,
-            border: `2px solid ${COLORS.bgHeader}`,
-            borderRadius: 4,
-            zIndex: 9,
+            zIndex: PANEL_Z_INDEX,
           }}>
             {colsContent}
-          </div>
+          </Panel>
         </>
       )}
     </ConfigProvider>
