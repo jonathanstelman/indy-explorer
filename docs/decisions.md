@@ -131,6 +131,13 @@ Format for new entries:
 **Follow-up:** `has_blackouts` Yes/No toggle for Learn to Turn blackouts not added (would require separate backend param — deferred).
 
 ---
+## 2026-07-11 — Popup/popover design language: unified dark-border panel
+**Issue:** #110
+**Decision:** All popup surfaces (feedback footer, mobile ⓘ, Select Columns) use a consistent pattern: `2px solid COLORS.bgHeader` border, `borderRadius: 4`, no arrow, dark `COLORS.bgOverlay` overlay that dismisses on click. Desktop "Select Columns" and footer feedback use `position: fixed` centered panels; mobile panels are `position: absolute` above the tab bar. antd Popover dropped for these surfaces in favor of hand-rolled divs to guarantee consistent styling. Popup content uses colored dot + section title (matching sidebar), bulleted `COLORS.text` links, smaller muted footnotes (`fontSize: 10`).
+**Rationale:** Each surface was previously bespoke (antd Popover with overrides, custom divs, different borders/shadows). Unifying removes visual drift and makes future changes easier. antd Popover's placement logic was unreliable on short viewports — fixed centering is more predictable.
+**Follow-up:** #120 tracks extracting these into shared primitives so the pattern doesn't have to be re-implemented per surface.
+
+---
 ## 2026-05-25 — Theme color pass: 80s ski-punk palette
 **Issue:** #107
 **Decision:** Expanded color palette in `theme.js` with `accentBlue` (#3d52ff), `accentPurple` (#9b00e6), `bgMidtone` (#505050), deepened `primary` to #00c4d4 and `success` to #b4f000 (chartreuse). Map dots: pink=alpine, electric blue=XC, purple=both (pink+blue=purple). Difficulty pie chart: chartreuse=beginner, blue=intermediate, grey=advanced (matches real trail markers). PR bars colored by score value (green/yellow/pink). Dark anchor bands: near-black header, charcoal search band and table drag handle, charcoal table column headers. Features section redesigned as "Label: Yes/No" grid. Neon colors used on dark surfaces; functional colors carry semantic meaning throughout.

@@ -94,7 +94,7 @@ export default function App() {
   }
 
   const colsContent = (
-    <div style={{ width: 340, maxHeight: 420, overflowY: 'auto', padding: '4px 0' }}>
+    <div style={{ maxHeight: 420, overflowY: 'auto', padding: '4px 0' }}>
       {COL_GROUPS.map(group => {
         const allChecked  = group.fields.every(f => colVisibility[f])
         const someChecked = group.fields.some(f => colVisibility[f])
@@ -133,23 +133,28 @@ export default function App() {
   const lastUpdated = meta?.last_pipeline_run ? new Date(meta.last_pipeline_run).toLocaleDateString() : '—'
   const attributionContent = (
     <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
-      <div>
-        {'Map © '}
-        <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Mapbox</a>
-        {' © '}
-        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>OpenStreetMap</a>
-        {' · '}
-        <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Improve this map</a>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: COLORS.primary, marginBottom: 2 }}>
+        <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: COLORS.primary, flexShrink: 0 }} />
+        Map Tiles
       </div>
-      <div>
-        {'Data from '}
-        <a href="https://www.indyskipass.com" target="_blank" rel="noreferrer" style={{ color: COLORS.error }}>Indy Pass</a>
-        {', '}
-        <a href="https://peakrankings.com" target="_blank" rel="noreferrer" style={{ color: COLORS.success }}>Peak Rankings</a>
-        {', '}
-        <a href="https://developers.google.com/maps/documentation/geocoding" target="_blank" rel="noreferrer" style={{ color: COLORS.primary }}>Google Maps</a>
+      <ul style={{ margin: '0 0 0 14px', padding: 0 }}>
+        <li><a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Mapbox</a></li>
+        <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>OpenStreetMap</a></li>
+      </ul>
+      <div style={{ marginLeft: 14, fontSize: 10, lineHeight: 2 }}>
+        <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noreferrer" style={{ color: COLORS.textMuted }}>Improve this map</a>
       </div>
-      <div style={{ color: COLORS.textMuted, marginTop: 2, textAlign: 'right' }}>Last updated: {lastUpdated}</div>
+      <div style={{ borderTop: `1px solid ${COLORS.bgHeader}`, margin: '6px 0' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: COLORS.accentBlue, marginBottom: 2 }}>
+        <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: COLORS.accentBlue, flexShrink: 0 }} />
+        Data Sources
+      </div>
+      <ul style={{ margin: '0 0 0 14px', padding: 0 }}>
+        <li><a href="https://www.indyskipass.com" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Indy Pass</a></li>
+        <li><a href="https://peakrankings.com" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Peak Rankings</a></li>
+        <li><a href="https://developers.google.com/maps/documentation/geocoding" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Google Maps</a></li>
+      </ul>
+      <div style={{ color: COLORS.textMuted, fontSize: 10, lineHeight: 2, textAlign: 'right' }}>Last updated: {lastUpdated}</div>
     </div>
   )
 
@@ -216,16 +221,7 @@ export default function App() {
                   {mobileTab === 'table' && (
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <div style={{ display: 'flex', gap: 8, padding: '2px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0, justifyContent: 'flex-end' }}>
-                        <Popover
-                          content={colsContent}
-                          title="Show / hide columns"
-                          trigger="click"
-                          open={colsOpen}
-                          onOpenChange={setColsOpen}
-                          placement="topLeft"
-                        >
-                          <Button type="text" size="small" style={{ color: COLORS.success }}>Select Columns</Button>
-                        </Popover>
+                        <Button type="text" size="small" onClick={() => setColsOpen(o => !o)} style={{ color: COLORS.success }}>Select Columns</Button>
                         <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
                       </div>
                       <div style={{ flex: 1, minHeight: 0 }}>
@@ -240,6 +236,22 @@ export default function App() {
                 </div>
 
                 <div style={{ position: 'relative', flexShrink: 0 }}>
+                  {colsOpen && mobileTab === 'table' && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 'calc(100% + 8px)',
+                      left: 12,
+                      right: 12,
+                      background: COLORS.bgBase,
+                      border: `2px solid ${COLORS.bgHeader}`,
+                      borderRadius: 4,
+                      maxHeight: 420,
+                      overflowY: 'auto',
+                      zIndex: 10,
+                    }}>
+                      {colsContent}
+                    </div>
+                  )}
                   {infoOpen && (
                     <div style={{
                       position: 'absolute',
@@ -253,6 +265,17 @@ export default function App() {
                       zIndex: 10,
                     }}>
                       {attributionContent}
+                      <div style={{ borderTop: `1px solid ${COLORS.bgHeader}`, marginTop: 6, paddingTop: 6, fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: COLORS.error, marginBottom: 2 }}>
+                          <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: COLORS.error, flexShrink: 0 }} />
+                          Improve this App
+                        </div>
+                        <ul style={{ margin: '0 0 0 12px', padding: 0 }}>
+                          <li><a href="https://github.com/jonathanstelman/indy-explorer/issues/new?labels=bug" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Report a bug</a></li>
+                          <li><a href="https://github.com/jonathanstelman/indy-explorer/issues/new?labels=enhancement" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Suggest a feature</a></li>
+                          <li><a href="https://github.com/users/jonathanstelman/projects/2" target="_blank" rel="noreferrer" style={{ color: COLORS.text }}>Project board</a></li>
+                        </ul>
+                      </div>
                     </div>
                   )}
                   <div style={{ display: 'flex', background: COLORS.bgHeader, borderTop: `1px solid ${COLORS.border}` }}>
@@ -303,6 +326,12 @@ export default function App() {
             </Layout>
           </Layout>
         </Layout>
+        {(colsOpen || infoOpen) && (
+          <div
+            style={{ position: 'fixed', inset: 0, background: COLORS.bgOverlay, zIndex: 8 }}
+            onClick={() => { setColsOpen(false); setInfoOpen(false) }}
+          />
+        )}
         <ResortDetailModal
           resortId={selectedResortId}
           onClose={() => setSelectedResortId(null)}
@@ -380,16 +409,7 @@ export default function App() {
                   </Button>
                   {!tableCollapsed && (
                     <div style={{ display: 'flex', gap: 8, alignItems: 'center' }} onMouseDown={e => e.stopPropagation()}>
-                      <Popover
-                        content={colsContent}
-                        title="Show / hide columns"
-                        trigger="click"
-                        open={colsOpen}
-                        onOpenChange={setColsOpen}
-                        placement="bottomRight"
-                      >
-                        <Button type="text" size="small" style={{ color: COLORS.success }}>Select Columns</Button>
-                      </Popover>
+                        <Button type="text" size="small" onClick={() => setColsOpen(o => !o)} style={{ color: COLORS.success }}>Select Columns</Button>
                       <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
                     </div>
                   )}
@@ -416,6 +436,26 @@ export default function App() {
         onClose={() => setSelectedResortId(null)}
       />
       <HowToUseModal open={howToUseOpen} onClose={closeHowToUse} />
+      {colsOpen && (
+        <>
+          <div style={{ position: 'fixed', inset: 0, background: COLORS.bgOverlay, zIndex: 8 }} onClick={() => setColsOpen(false)} />
+          <div style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 340,
+            maxHeight: 'calc(100vh - 48px)',
+            overflowY: 'auto',
+            background: COLORS.bgBase,
+            border: `2px solid ${COLORS.bgHeader}`,
+            borderRadius: 4,
+            zIndex: 9,
+          }}>
+            {colsContent}
+          </div>
+        </>
+      )}
     </ConfigProvider>
   )
 }
