@@ -34,3 +34,9 @@ def test_parse_resort_page_malformed_numbers():
     # Snowfall fields should remain unset (None)
     assert result["snowfall_average_in"] is None
     assert result["snowfall_high_in"] is None
+
+    # No -xc elements present -> XC fields default to None (not an error)
+    assert result["trails_xc"] is None
+    assert result["difficulty_beginner_xc"] is None
+    assert result["difficulty_intermediate_xc"] is None
+    assert result["difficulty_advanced_xc"] is None

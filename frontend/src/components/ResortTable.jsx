@@ -59,14 +59,18 @@ export const COLUMN_DEFS = [
   // Size
   { field: 'acres',           headerName: 'Acres',             width: 78,  valueFormatter: numFmt },
   { field: 'num_trails',      headerName: 'Trails',            width: 72,  valueFormatter: numFmt },
+  { field: 'num_trails_xc',   headerName: 'Trails (XC)',       width: 100, valueFormatter: numFmt },
   { field: 'num_lifts',       headerName: 'Lifts',             width: 64,  valueFormatter: numFmt },
-  { field: 'trail_length_mi', headerName: 'Trail Length (mi)', width: 138, valueFormatter: numFmt },
-  { field: 'trail_length_km', headerName: 'Trail Length (km)', width: 138, valueFormatter: numFmt },
+  { field: 'trail_length_mi', headerName: 'Trail Length XC (mi)', width: 138, valueFormatter: numFmt },
+  { field: 'trail_length_km', headerName: 'Trail Length XC (km)', width: 138, valueFormatter: numFmt },
 
   // Difficulty
-  { field: 'difficulty_beginner',     headerName: 'Beginner (%)',     width: 120, valueFormatter: numFmt },
-  { field: 'difficulty_intermediate', headerName: 'Intermediate (%)', width: 136, valueFormatter: numFmt },
-  { field: 'difficulty_advanced',     headerName: 'Advanced (%)',     width: 120, valueFormatter: numFmt },
+  { field: 'difficulty_beginner',        headerName: 'Beginner (%)',        width: 120, valueFormatter: numFmt },
+  { field: 'difficulty_intermediate',    headerName: 'Intermediate (%)',    width: 136, valueFormatter: numFmt },
+  { field: 'difficulty_advanced',        headerName: 'Advanced (%)',        width: 120, valueFormatter: numFmt },
+  { field: 'difficulty_beginner_xc',     headerName: 'Beginner XC (%)',     width: 132, valueFormatter: numFmt },
+  { field: 'difficulty_intermediate_xc', headerName: 'Intermediate XC (%)', width: 152, valueFormatter: numFmt },
+  { field: 'difficulty_advanced_xc',     headerName: 'Advanced XC (%)',     width: 132, valueFormatter: numFmt },
 
   // Snow
   { field: 'snowfall_average_in', headerName: 'Avg Snowfall (in)', width: 138, valueFormatter: numFmt },
@@ -125,8 +129,12 @@ export const HEADER_BY_FIELD = Object.fromEntries(COLUMN_DEFS.map(c => [c.field,
 export const COL_GROUPS = [
   { label: 'Location',      fields: ['city', 'state', 'country', 'region', 'location_name'] },
   { label: 'Elevation',     fields: ['vertical', 'vertical_summit_ft', 'vertical_base_ft', 'vertical_meters'] },
-  { label: 'Size',          fields: ['acres', 'num_trails', 'num_lifts', 'trail_length_mi', 'trail_length_km'] },
-  { label: 'Difficulty',    fields: ['difficulty_beginner', 'difficulty_intermediate', 'difficulty_advanced'] },
+  // Select Columns renders each group as a 2-col CSS grid with default (row-wise) auto-flow —
+  // items fill left-to-right then wrap, so a field and its XC counterpart must be adjacent
+  // AND start on an even index to land side by side in the same row (col1/col2), not just be
+  // next to each other in the flat array.
+  { label: 'Size',          fields: ['acres', 'num_lifts', 'num_trails', 'num_trails_xc', 'trail_length_mi', 'trail_length_km'] },
+  { label: 'Difficulty',    fields: ['difficulty_beginner', 'difficulty_beginner_xc', 'difficulty_intermediate', 'difficulty_intermediate_xc', 'difficulty_advanced', 'difficulty_advanced_xc'] },
   { label: 'Snow',          fields: ['snowfall_average_in', 'snowfall_high_in'] },
   { label: 'Features',      fields: ['has_alpine', 'has_cross_country', 'has_night_skiing', 'has_terrain_parks', 'is_dog_friendly', 'has_snowshoeing', 'ltt_available', 'is_allied'] },
   { label: 'Blackout',      fields: ['blackout_count', 'ltt_blackout_count'] },
@@ -148,7 +156,7 @@ const GRID_THEME_VARS = {
   '--indy-header-text':                 COLORS.bgBase,
 }
 
-const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick }, ref) {
+const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick, columnDefs = COLUMN_DEFS }, ref) {
   const onRowClicked = useCallback(({ data }) => onRowClick(data.resort_id), [onRowClick])
 
   return (
@@ -156,7 +164,7 @@ const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick }, ref
       <AgGridReact
         ref={ref}
         rowData={resorts}
-        columnDefs={COLUMN_DEFS}
+        columnDefs={columnDefs}
         defaultColDef={DEFAULT_COL_DEF}
         getRowId={({ data }) => data.resort_id}
         onRowClicked={onRowClicked}

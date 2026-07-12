@@ -253,6 +253,7 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     - terrain difficulty coverage
     - snowfall
     - lifts
+    - cross-country trails and difficulty coverage (-xc suffixed fields)
     """
     soup = BeautifulSoup(html_content, 'html.parser')
     resort_data = {}
@@ -272,6 +273,13 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
     trails_field = soup.find('div', class_='field--name-field-trails')
     # Use get_numbers to avoid ValueError on malformed digits
     resort_data['trails'] = get_numbers(trails_field.text.strip()) if trails_field else 0
+
+    # Trails (cross-country) — separate -xc suffixed element on alpine+XC and XC-only pages.
+    # None (not 0) when absent: a resort with no XC section simply has no XC trail count.
+    trails_xc_field = soup.find('div', class_='field--name-field-trails-xc')
+    resort_data['trails_xc'] = (
+        get_numbers(trails_xc_field.text.strip()) if trails_xc_field else None
+    )
 
     # Lifts
     lifts_field = soup.find('div', class_='field--name-field-lifts')
@@ -342,6 +350,16 @@ def parse_resort_page(html_content: str, resort_id: str, resort_slug: str) -> di
         diff_class = soup.find('div', class_=f'field--name-field-{level}')
         if diff_class:
             resort_data[f'difficulty_{level}'] = get_numbers(diff_class.text.strip())
+
+    # Terrain difficulty coverage (cross-country) — -xc suffixed elements
+    resort_data['difficulty_beginner_xc'] = None
+    resort_data['difficulty_intermediate_xc'] = None
+    resort_data['difficulty_advanced_xc'] = None
+
+    for level in ['beginner', 'intermediate', 'advanced']:
+        diff_class_xc = soup.find('div', class_=f'field--name-field-{level}-xc')
+        if diff_class_xc:
+            resort_data[f'difficulty_{level}_xc'] = get_numbers(diff_class_xc.text.strip())
 
     # Snowfall
     resort_data['snowfall_average_in'] = None

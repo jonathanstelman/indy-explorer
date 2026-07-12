@@ -23,6 +23,7 @@ FAKE_RESORTS = [
         indy_page='https://example.com/alpine',
         vertical=2000.0,
         num_trails=100.0,
+        num_trails_xc=10.0,
         num_lifts=10.0,
         trail_length_mi=50.0,
         pr_total=85.0,
@@ -50,6 +51,7 @@ FAKE_RESORTS = [
         indy_page='https://example.com/nordic',
         vertical=1000.0,
         num_trails=50.0,
+        num_trails_xc=30.0,
         num_lifts=5.0,
         trail_length_mi=25.0,
         pr_total=70.0,
@@ -98,6 +100,7 @@ def test_meta_numeric_ranges():
     data = response.json()
     assert data['vertical'] == {'min': 1000.0, 'max': 2000.0}
     assert data['num_trails'] == {'min': 50.0, 'max': 100.0}
+    assert data['num_trails_xc'] == {'min': 10.0, 'max': 30.0}
     assert data['num_lifts'] == {'min': 5.0, 'max': 10.0}
     assert data['trail_length_mi'] == {'min': 25.0, 'max': 50.0}
     assert data['pr_total'] == {'min': 70.0, 'max': 85.0}
