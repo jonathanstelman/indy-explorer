@@ -54,7 +54,7 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar, onHowToUs
         onClick={onHowToUse}
         aria-label="How to use"
         style={{
-          color: COLORS.textMuted,
+          color: COLORS.primary,
           fontFamily: FONTS.mono,
           fontSize: isMobile ? 12 : 13,
           padding: '0 8px',

@@ -61,6 +61,7 @@ function hexToRgba(hex, alpha) {
 export const FONTS = {
   mono:    "'Space Mono', monospace",
   display: "'Bebas Neue', sans-serif",
+  sans:    "'Helvetica Neue', -apple-system, 'Segoe UI', Roboto, sans-serif",
 }
 
 // Deck.gl requires colors as [R, G, B, A] arrays (A: 0–255).

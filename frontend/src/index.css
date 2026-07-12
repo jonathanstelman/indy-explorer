@@ -8,3 +8,11 @@
     margin: 0;
   }
 }
+
+.link-hover-underline:hover {
+  text-decoration: underline !important;
+}
+
+.toolbar-btn-hover:hover {
+  background-color: var(--toolbar-btn-hover-bg) !important;
+}
