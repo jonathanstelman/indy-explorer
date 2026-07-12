@@ -1,10 +1,7 @@
 import { forwardRef, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
+import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community'
 import { COLORS, FONTS, withAlpha } from '@/theme'
-import 'ag-grid-community/styles/ag-grid.css'
-import 'ag-grid-community/styles/ag-theme-quartz.css'
-import './ResortTable.css'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
@@ -25,7 +22,7 @@ function LinkCell({ value }) {
       target="_blank"
       rel="noreferrer"
       onClick={e => e.stopPropagation()}
-      style={{ color: COLORS.accentBlue }}
+      style={{ color: COLORS.accentPurple }}
     >
       {value}
     </a>
@@ -143,26 +140,33 @@ export const COL_GROUPS = [
   { label: 'Links',         fields: ['indy_page', 'website'] },
 ]
 
-const GRID_THEME_VARS = {
-  '--ag-font-family':                   FONTS.mono,
-  '--ag-font-size':                     '12px',
-  '--ag-row-hover-color':               withAlpha(COLORS.primary, 0.06),
-  '--ag-selected-row-background-color': withAlpha(COLORS.primary, 0.12),
-  '--ag-border-color':                  COLORS.border,
-  '--ag-header-column-separator-color': COLORS.border,
-  '--ag-cell-horizontal-padding':       '8px',
-  '--indy-header-bg':                   COLORS.bgMidtone,
-  '--indy-header-hover':                COLORS.neutral,
-  '--indy-header-text':                 COLORS.bgBase,
-}
+const GRID_THEME = themeQuartz.withParams({
+  fontFamily:                   FONTS.sans,
+  fontSize:                     14,
+  rowHeight:                    25,
+  headerHeight:                 25,
+  cellHorizontalPadding:        11,
+  wrapperBorderRadius:          0,
+  borderColor:                  COLORS.border,
+  columnBorder:                 false,
+  headerColumnBorder:           false,
+  headerColumnResizeHandleColor: 'transparent',
+  rowHoverColor:                COLORS.success,
+  selectedRowBackgroundColor:   withAlpha(COLORS.neutral, 0.15),
+  headerBackgroundColor:        COLORS.bgMidtone,
+  headerCellHoverBackgroundColor: COLORS.neutral,
+  headerTextColor:              COLORS.bgBase,
+  headerFontWeight:             700,
+})
 
 const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick, columnDefs = COLUMN_DEFS }, ref) {
   const onRowClicked = useCallback(({ data }) => onRowClick(data.resort_id), [onRowClick])
 
   return (
-    <div className="ag-theme-quartz" style={{ height: '100%', ...GRID_THEME_VARS }}>
+    <div style={{ height: '100%' }}>
       <AgGridReact
         ref={ref}
+        theme={GRID_THEME}
         rowData={resorts}
         columnDefs={columnDefs}
         defaultColDef={DEFAULT_COL_DEF}

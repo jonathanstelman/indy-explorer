@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` — PR [#129](https://github.com/jonathanstelman/indy-explorer/pull/129) (#11) merged and deployed
+`feature/118-ag-grid-theming` — AG Grid Theming API migration
 
 **#11 merged and deployed (2026-07-12):** Parser `-xc` extraction, `num_trails_xc` + 3 `difficulty_*_xc` columns in `resorts.csv` output, backend model/filters/meta, and frontend surfacing (sidebar slider, table columns, map tooltip, detail modal difficulty chart). Frontend went through several UI iterations after live review — a `view`/display-mode concept (shared `ViewSelector`, independent URL filter, mode-aware hiding) was built, polished, then removed entirely once the real scope was named as one filterable field (`num_trails_xc`) and three display-only ones — not enough to justify it. Final shape: `has_alpine`/`has_cross_country` are ordinary boolean filters; `Trails (XC)` is a plain always-shown sidebar slider; `num_trails_xc`/`difficulty_*_xc` are ordinary optional table columns; the map tooltip's XC row is a per-resort presence check (suppressed for XC-only resorts, where it's always identical to `Trails`), matching the detail modal's existing pattern. See `docs/decisions.md` for the full history and reusable UI patterns worth keeping. Frontend auto-deployed via Vercel, backend manually deployed to Fly.io — verified live in production (`/meta` and `/resorts` both serving real `num_trails_xc`/`difficulty_*_xc` values).
 
@@ -92,7 +92,14 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - Gave Select Columns a header (title + close button) and more width (340px → 440px) — it was cramped and had no title
 - Extracted `ModalHeader`/`ModalShell` so the big-surface header/viewport-constraint pattern is shared between `HowToUseModal`, `ResortDetailModal`, and Select Columns instead of copy-pasted three times — net −48 lines despite adding two new files
 
-**#121 merged (2026-07-11):** Streamlit `app.py` replaced with redirect page at `legacy/app.py`. Streamlit Community Cloud redeploy pending (URL not yet re-released).
+**#121 merged (2026-07-11):** Streamlit `app.py` replaced with redirect page at `legacy/app.py`. Streamlit Community Cloud redeploy complete — old URL now shows the retirement notice.
+
+**#118 merged (2026-07-12):**
+- `ResortTable.jsx` migrated from AG Grid's legacy CSS-file theming (`ag-grid.css`/`ag-theme-quartz.css` + `className="ag-theme-quartz"`) to the Theming API (`themeQuartz.withParams(...)` passed via the `theme` prop) — clears AG Grid console error #239. `ResortTable.css` deleted; header background/hover/text now native theme params instead of CSS class overrides.
+- Under the old CSS-conflict mode, every `--ag-*` CSS variable in the previous `GRID_THEME_VARS` was silently ignored (not just font-family) — row hover, selection color, border color, font size, and padding were all rendering AG's own hardcoded defaults, not the intended values. Rebuilt `GRID_THEME` to reproduce the real prior look (25px compact rows, system-sans font, no vertical grid lines in the data area, invisible header separators) rather than the never-actually-applied original design.
+- Deliberate cosmetic upgrades bundled in since the row hover/link colors were effectively blank/wrong before: row hover is now full-saturation `COLORS.success` (chartreuse) — a fun, on-theme addition since there was no working hover before; link cell text moved from `COLORS.accentBlue` to `COLORS.accentPurple` (blue clashed badly against the new chartreuse hover); added `FONTS.sans` token for the grid's system-sans stack.
+- Small cosmetic pass in the same branch: header "?" (How to use) button recolored to `COLORS.primary` (was `COLORS.textMuted`, nearly invisible on the dark header); added hover states to the footer's "Data sourced from" links (underline) and the "Select Columns"/"Download CSV"/"Feedback" controls (light background tint) via two new global utility classes in `index.css` (`.link-hover-underline`, `.toolbar-btn-hover`) — colors passed in per-instance via CSS custom properties from `COLORS`, keeping literal color values out of the CSS file.
+- Also fixed `Footer.jsx`'s unrelated pre-existing antd deprecation warning (`overlayInnerStyle` → `styles.container`, same fix pattern as #119's `HowToUseModal`) — console is now fully clean on load, zero warnings or errors.
 
 **#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
 

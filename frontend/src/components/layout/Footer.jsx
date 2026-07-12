@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Layout, Popover, Typography, theme } from 'antd'
-import { COLORS, FONTS } from '@/theme'
+import { COLORS, FONTS, withAlpha } from '@/theme'
 import { PANEL_STYLE } from '@/components/common/Panel'
 
 export default function AppFooter({ lastUpdated, isMobile }) {
@@ -37,11 +37,11 @@ export default function AppFooter({ lastUpdated, isMobile }) {
     >
       <Typography.Text type="secondary" style={{ fontSize: 12 }}>
         Data sourced from{' '}
-        <Typography.Link style={{ color: token.colorError }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
+        <Typography.Link className="link-hover-underline" style={{ color: token.colorError }} href="https://www.indyskipass.com" target="_blank">Indy Pass</Typography.Link>
         {', '}
-        <Typography.Link style={{ color: token.colorSuccess }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
+        <Typography.Link className="link-hover-underline" style={{ color: token.colorSuccess }} href="https://peakrankings.com" target="_blank">Peak Rankings</Typography.Link>
         {', and '}
-        <Typography.Link style={{ color: token.colorPrimary }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
+        <Typography.Link className="link-hover-underline" style={{ color: token.colorPrimary }} href="https://developers.google.com/maps/documentation/geocoding" target="_blank">Google Maps</Typography.Link>
       </Typography.Text>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <Typography.Text type="secondary" style={{ fontSize: 12 }}>
@@ -55,13 +55,26 @@ export default function AppFooter({ lastUpdated, isMobile }) {
           onOpenChange={setFeedbackOpen}
           placement="topRight"
           arrow={false}
-          overlayInnerStyle={{
-            ...PANEL_STYLE,
-            padding: '8px 12px',
-            boxShadow: 'none',
+          styles={{
+            container: {
+              ...PANEL_STYLE,
+              padding: '8px 12px',
+              boxShadow: 'none',
+            },
           }}
         >
-          <Typography.Link style={{ fontSize: 12, color: token.colorTextSecondary }}>Feedback</Typography.Link>
+          <Typography.Link
+            className="toolbar-btn-hover"
+            style={{
+              fontSize: 12,
+              color: token.colorTextSecondary,
+              padding: '2px 6px',
+              borderRadius: 4,
+              '--toolbar-btn-hover-bg': withAlpha(COLORS.textMuted, 0.15),
+            }}
+          >
+            Feedback
+          </Typography.Link>
         </Popover>
       </div>
     </Layout.Footer>

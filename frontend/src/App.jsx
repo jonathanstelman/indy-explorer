@@ -14,11 +14,13 @@ import HowToUseModal from '@/components/HowToUseModal'
 import Panel from '@/components/common/Panel'
 import Overlay, { PANEL_Z_INDEX } from '@/components/common/Overlay'
 import ModalHeader from '@/components/common/ModalHeader'
-import { themeConfig, COLORS, FONTS } from '@/theme'
+import { themeConfig, COLORS, FONTS, withAlpha } from '@/theme'
 
 const DEFAULT_TABLE_HEIGHT = 260
 const MIN_TABLE_HEIGHT = 100
 const MAX_TABLE_HEIGHT_RATIO = 0.7
+
+const TOOLBAR_BTN_STYLE = { color: COLORS.success, '--toolbar-btn-hover-bg': withAlpha(COLORS.success, 0.15) }
 
 export default function App() {
   const [searchParams] = useSearchParams()
@@ -247,8 +249,8 @@ export default function App() {
                   {mobileTab === 'table' && (
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                       <div style={{ display: 'flex', gap: 8, padding: '2px 12px', background: COLORS.bgHeader, borderBottom: `1px solid ${COLORS.border}`, flexShrink: 0, justifyContent: 'flex-end' }}>
-                        <Button type="text" size="small" onClick={() => setColsOpen(o => !o)} style={{ color: COLORS.success }}>Select Columns</Button>
-                        <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
+                        <Button className="toolbar-btn-hover" type="text" size="small" onClick={() => setColsOpen(o => !o)} style={TOOLBAR_BTN_STYLE}>Select Columns</Button>
+                        <Button className="toolbar-btn-hover" type="text" size="small" onClick={onDownloadCsv} style={TOOLBAR_BTN_STYLE}>Download CSV</Button>
                       </div>
                       <div style={{ flex: 1, minHeight: 0 }}>
                         <ResortTable
@@ -422,8 +424,8 @@ export default function App() {
                   </Button>
                   {!tableCollapsed && (
                     <div style={{ display: 'flex', gap: 8, alignItems: 'center' }} onMouseDown={e => e.stopPropagation()}>
-                        <Button type="text" size="small" onClick={() => setColsOpen(o => !o)} style={{ color: COLORS.success }}>Select Columns</Button>
-                      <Button type="text" size="small" onClick={onDownloadCsv} style={{ color: COLORS.success }}>Download CSV</Button>
+                        <Button className="toolbar-btn-hover" type="text" size="small" onClick={() => setColsOpen(o => !o)} style={TOOLBAR_BTN_STYLE}>Select Columns</Button>
+                      <Button className="toolbar-btn-hover" type="text" size="small" onClick={onDownloadCsv} style={TOOLBAR_BTN_STYLE}>Download CSV</Button>
                     </div>
                   )}
                 </div>
