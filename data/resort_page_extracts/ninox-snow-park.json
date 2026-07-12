@@ -6,6 +6,7 @@
     "description": "This ski resort boasts abundant snowfall and excellent snow quality due to its location on the slopes of Mt. Ninouji. The freeride park and Smile Kids park are permanently open. Night skiing is open until 22:00, making it popular as for its convenience. We are applying because we want to increase the number of visitors by raising awareness overseas.",
     "website": "https://www.ninox.co.jp/",
     "trails": 2,
+    "trails_xc": null,
     "lifts": 2,
     "acres": 49,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 65,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 0,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 71,
     "snowfall_high_in": 472
 }

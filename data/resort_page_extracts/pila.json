@@ -6,6 +6,7 @@
     "description": "Pila is a top ski resort in the Italian Alps, directly connected to Aosta by a scenic 18-minute gondola ride. This unique link allows visitors to enjoy both world-class skiing and Aosta\u2019s rich Roman and medieval heritage, creating a perfect blend of alpine adventure and cultural exploration.",
     "website": "https://pila.it/en/",
     "trails": 30,
+    "trails_xc": null,
     "lifts": 14,
     "acres": 865,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 19,
     "difficulty_intermediate": 69,
     "difficulty_advanced": 11,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 97,
     "snowfall_high_in": 150
 }

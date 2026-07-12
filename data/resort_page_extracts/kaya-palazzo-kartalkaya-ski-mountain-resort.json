@@ -6,6 +6,7 @@
     "description": "Everything you expect from the world\u2019s most famous ski resorts, and much more, is in Kartalkaya! Leitner Detachable Chairlifts are at Kaya Palazzo for the first time in Turkey!",
     "website": null,
     "trails": 32,
+    "trails_xc": null,
     "lifts": 11,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

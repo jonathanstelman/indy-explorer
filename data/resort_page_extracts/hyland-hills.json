@@ -6,6 +6,7 @@
     "description": "Hyland Hills is nestled in the Twin Cities suburb of Bloomington, MN\u2014a small but vibrant ski area renowned for its innovative Terrain Parks, SnowSports Academy, and welcoming, family-friendly atmosphere. Open from mid-November through mid-March, Hyland boasts 100% snowmaking coverage, meticulous nightly grooming, and daily night skiing, ensuring a top-tier experience from first chair to last run.",
     "website": "https://www.threeriversparks.org/location/hyland-hills-ski-area",
     "trails": 13,
+    "trails_xc": null,
     "lifts": 9,
     "acres": 29,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 35,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 60,
     "snowfall_high_in": 90
 }

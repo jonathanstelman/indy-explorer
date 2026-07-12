@@ -6,6 +6,7 @@
     "description": "Magic Mountain Ski Resort in southern Idaho is a hidden gem for winter sports enthusiasts. Located in the Sawtooth National Forest, this family-friendly resort offers a crowd-free skiing experience with stunning views. With 22 trails spread over 150 acres, Magic Mountain caters to all skill levels, from beginners to experts. The resort receives an impressive 230 inches of annual snowfall, ensuring excellent skiing conditions.",
     "website": "https://magicmountainresort.com/",
     "trails": 22,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 150,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 230,
     "snowfall_high_in": 300
 }

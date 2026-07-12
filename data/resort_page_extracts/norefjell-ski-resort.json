@@ -6,6 +6,7 @@
     "description": "Norefjell is located less than two hours away from Oslo, surrounded by beautiful nature and vast mountains. The ski resort has something for all ages and levels of expertise with a total of 30 ski slopes and 15 ski lifts. There are three different kid\u2019s areas, two terrain parks and much more.",
     "website": "https://www.norefjell.com/en",
     "trails": 30,
+    "trails_xc": null,
     "lifts": 15,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 68,
     "difficulty_intermediate": 20,
     "difficulty_advanced": 12,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 71,
     "snowfall_high_in": 110
 }

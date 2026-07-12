@@ -6,6 +6,7 @@
     "description": "Major ski mountain in Quebec, Mont SUTTON is often quoted as the favorite ski mountain for many skiers, for thousands of different reasons: unique ski experience, renowned glades for every level of skier and snowboarder, microclimate generous in snowfalls, exceptional natural snow conditions, varied terrain, authentic atmosphere in a breathtaking natural setting, french flair destination and among the best apres-ski!",
     "website": "https://montsutton.com/en/",
     "trails": 60,
+    "trails_xc": null,
     "lifts": 10,
     "acres": 230,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 140,
     "snowfall_high_in": 180
 }

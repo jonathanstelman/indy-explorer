@@ -6,6 +6,7 @@
     "description": "Apex Mountain Resort remains one of the best-hidden gems of BC skiing. A full-service destination ski resort, Apex has everything you need for the perfect ski getaway. With large amounts of precipitation and low humidity, some of the lightest champagne powder snow awaits you. We also have a large variety of terrain, incredible groomers, and some epic steep tree runs. All this combined with friendly locals and a cozy village atmosphere makes for an incredible ski vacation!",
     "website": "https://apexresort.com",
     "trails": 80,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 1112,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 12,
     "difficulty_intermediate": 34,
     "difficulty_advanced": 54,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 224,
     "snowfall_high_in": 256
 }

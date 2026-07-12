@@ -6,6 +6,7 @@
     "description": "Huff Hills Ski Area offers local skiing and riding in the heart of legendary ND. Only 16 miles from Bismarck/Mandan and located in the scenic Missouri River Valley, Huff Hills has 16 runs, two double chairs and two surface lis. We are a great place to learn to ski and ride, as well as get some turns in between trips out west.",
     "website": "https://www.huffhills.com",
     "trails": 16,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 70,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 25,
     "difficulty_advanced": 50,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 55,
     "snowfall_high_in": 101
 }

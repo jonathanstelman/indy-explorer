@@ -6,6 +6,7 @@
     "description": "The view of the Hakusan mountain range spreading out before your eyes and the linkage with the adjacent Washigatake Ski Resort make this a 115-hectare \u201cWashitopia\u201d.",
     "website": "https://whitepia.jp/",
     "trails": 13,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 146,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 47,
     "snowfall_high_in": 79
 }

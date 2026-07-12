@@ -6,6 +6,7 @@
     "description": "Welcome to Burke Mountain, the last little corner of Vermont. In the heart of the fabled Northeast Kingdom, you\u2019ll find classic New England skiing and riding on 270 acres of winding trails, steep pitches and acres of tree skiing.",
     "website": "https://www.skiburke.com",
     "trails": 54,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 178,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 8,
     "difficulty_intermediate": 48,
     "difficulty_advanced": 44,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 150,
     "snowfall_high_in": 225
 }

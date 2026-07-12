@@ -6,6 +6,7 @@
     "description": "450 meters vertical drop, biggest patrolled and marked backcountry sector East of the rockies, Home to multiple FIS races, Glades, moguls and steep terrain, XC skiing, snowshoeing, outdoor rink, The best apr\u00e8s-ski in the Province, #Findyourline",
     "website": "https://www.montedouard.com/",
     "trails": 44,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 123,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 23,
     "difficulty_intermediate": 26,
     "difficulty_advanced": 51,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 225,
     "snowfall_high_in": 275
 }

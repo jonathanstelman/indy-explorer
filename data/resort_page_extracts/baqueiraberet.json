@@ -6,6 +6,7 @@
     "description": "Unknown amazing ski resort and ski vacation destination at the heart of the Pyrenees",
     "website": "https://www.baqueira.es/en",
     "trails": 122,
+    "trails_xc": null,
     "lifts": 36,
     "acres": 5616,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 35,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 152
 }

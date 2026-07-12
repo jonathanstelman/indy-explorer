@@ -6,6 +6,7 @@
     "description": "A stay-in snow resort where skiing, lodging, and entertainment come together, Tangram Ski Circus is famous for its powder snow and tree runs. The resort offers a ski-in/ski-out hotel where you can experience Japanese culture with hot springs, dining, and rooms with tatami mats.",
     "website": "https://japan-skiguide.com/guide/htm/r0016ens.htm",
     "trails": 17,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 124,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 71,
     "snowfall_high_in": 126
 }

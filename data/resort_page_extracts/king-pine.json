@@ -6,6 +6,7 @@
     "description": "From bunny hills to black diamonds and natural snowshoe trails to a snowtubing hill, King Pine Ski Area is where you\u2019ll find snow-fueled fun for everyone in the family.",
     "website": "https://www.kingpine.com/",
     "trails": 23,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 48,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 50,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 68,
     "snowfall_high_in": 90
 }

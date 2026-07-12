@@ -6,6 +6,7 @@
     "description": "A real insider for many winter sports activities! One of Austria\u2019s most beautiful ski resorts is located in the back of the Kaunertal: the Kaunertal Glacier, embedded in a mountain landscape with over thirty-three-thousand metre peaks. From the quiet village of Feichten, the Kaunertal Glacier Road leads right into the centre of the ski area. There are no long queues or overcrowded pistes here \u2013 just the white mountains, perfect snow conditions and you.",
     "website": "https://www.kaunertaler-gletscher.at/en/kaunertal-glacier/winter/ski-area.html",
     "trails": 55,
+    "trails_xc": null,
     "lifts": 8,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 110,
     "snowfall_high_in": 150
 }

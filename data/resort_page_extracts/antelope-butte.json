@@ -6,6 +6,7 @@
     "description": "Located in the beautiful Bighorn National Forest, between Granite Pass and Shell Canyon, Antelope Butte offers terrain for all ability levels on a 500-acre footprint and sits just 1:15 from downtown Sheridan. AB offers a truly authentic Wyoming skiing and riding experience, away from the crowds, and features the best skiing and riding in the Bighorns.",
     "website": "https://www.antelopebuttefoundation.org",
     "trails": 40,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 500,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 26,
     "difficulty_intermediate": 37,
     "difficulty_advanced": 37,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 200,
     "snowfall_high_in": 350
 }

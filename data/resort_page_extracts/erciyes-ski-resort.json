@@ -6,6 +6,7 @@
     "description": "T\u00fcrkiye's Biggest Resort",
     "website": "https://www.kayserierciyes.com.tr/",
     "trails": 31,
+    "trails_xc": null,
     "lifts": 24,
     "acres": 2965,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

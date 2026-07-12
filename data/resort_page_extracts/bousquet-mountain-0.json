@@ -6,6 +6,7 @@
     "description": "Bousquet Mountain is a family-focused ski area in Pittsfield, MA, within the Berkshires cultural region. The resort features a vertical drop of 750 feet, twenty-two trails (the majority with lights for night skiing), two lifts, two magic carpets, snowsports school, a terrain park, snowtubing park, and 85% snowmaking coverage.",
     "website": "https://bousquetmountain.com/",
     "trails": 22,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 200,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 17,
     "difficulty_intermediate": 26,
     "difficulty_advanced": 57,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 21,
     "snowfall_high_in": 63
 }

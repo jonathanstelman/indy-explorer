@@ -6,6 +6,7 @@
     "description": "Nayoro City is the gateway to Hokkaido, sandwiched between the Nayoro River and Teshio River and surrounded by magnificent nature. Nayoro Piyashiri Ski Resort boasts the best snow quality in Japan, and can be enjoyed by everyone from kids to seniors and backcountry skiers. Be sure to experience the rare sun pillar phenomenon and Japan's best powder snow.",
     "website": "https://www.nayoro.co.jp/piyashiri/",
     "trails": 12,
+    "trails_xc": null,
     "lifts": 3,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 33,
     "difficulty_intermediate": 44,
     "difficulty_advanced": 22,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 47,
     "snowfall_high_in": 71
 }

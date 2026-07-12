@@ -6,6 +6,7 @@
     "description": "Mt Eyak Ski Area offers alpine skiing and snowboarding on Mt Eyak above the town of Cordova, Alaska. Mt Eyak uses an historic 1939 American Steel and Wire single chair lift, as well as a rope tow on the beginner slope. The base elevation is 400 feet, rising to 1200 feet at the top of the single lift, for a vertical drop of 800 feet. The annual snowfall averages 350\". With approximately 30 different trail options, including a new easy trail down the hill, the area offers something for everyone!",
     "website": "https://www.mteyak.org/",
     "trails": 10,
+    "trails_xc": null,
     "lifts": 2,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 60,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 350,
     "snowfall_high_in": 500
 }

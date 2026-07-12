@@ -6,6 +6,7 @@
     "description": "As Denver\u2019s closest and most affordable ski area, Echo Mountain has helped open up the world of snow sports to many first-time skiers and snowboarders, while also being a go-to local spot for folks looking for more time and turns on snow. Just 36 miles from downtown Denver and night skiing until 9:00 PM on Wednesday-Saturday, Echo Mountain has something for everyone!",
     "website": "https://echomtn.com",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 2,
     "acres": 60,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 85,
     "snowfall_high_in": 125
 }

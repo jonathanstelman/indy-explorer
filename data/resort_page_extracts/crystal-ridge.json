@@ -6,6 +6,7 @@
     "description": "Breathe in the fresh air and Milwaukee skyline at Crystal Ridge. Located just outside of Milwaukee, we are an easy destination to reach. We offer great conditions and one of the best parks in the Midwest.",
     "website": "https://crystalridge.com/",
     "trails": 6,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 50,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 39,
     "difficulty_intermediate": 38,
     "difficulty_advanced": 23,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 40,
     "snowfall_high_in": 160
 }

@@ -6,6 +6,7 @@
     "description": "Schuss Mountain at Shanty Creek Resort combines variety, terrain, and well-maintained conditions with friendly guest service and everyday low rates, creating a spectacular winter getaway. With 42 downhill runs, alpine tubing, 25km of cross-country trails, and a host of family-friendly winter activities, youll find Schuss Mountain at Shanty Creek Resort delivers a better value.",
     "website": "https://www.shantycreek.com",
     "trails": 42,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 81,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 33,
     "difficulty_intermediate": 26,
     "difficulty_advanced": 41,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 160,
     "snowfall_high_in": 245
 }

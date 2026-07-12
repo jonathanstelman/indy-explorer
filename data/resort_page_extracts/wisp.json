@@ -6,6 +6,7 @@
     "description": "Tucked away in the mountains of Western Maryland lies Wisp Resort, Maryland\u2019s only 4-season ski, golf, and recreational destination resort. Wisp\u2019s 172 acres of ski terrain provide snowsport enthusiasts of all levels with a stellar winter playground. Non-skiers and boarders won\u2019t be left out \u2013 Wisp Resort and the Deep Creek Lake area offer a mountain coaster, shopping, dining, and more.",
     "website": "https://www.wispresort.com/",
     "trails": 33,
+    "trails_xc": null,
     "lifts": 13,
     "acres": 142,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 154,
     "snowfall_high_in": 226
 }

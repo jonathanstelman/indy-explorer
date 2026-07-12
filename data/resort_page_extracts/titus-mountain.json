@@ -6,6 +6,7 @@
     "description": "Rated North Americas #1 Family Friendly Ski Resort. 53 runs. 380 skiable acres. 3 Mountains. Day and night skiing. 3-lane tubing hill. Home of the Slopeside Skiba.",
     "website": "https://www.titusmountain.com",
     "trails": 53,
+    "trails_xc": null,
     "lifts": 9,
     "acres": 380,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 34,
     "difficulty_intermediate": 38,
     "difficulty_advanced": 28,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 150,
     "snowfall_high_in": 215
 }

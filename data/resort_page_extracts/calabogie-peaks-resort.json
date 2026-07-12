@@ -6,6 +6,7 @@
     "description": "The big mountain close to home. Ontario\u2019s tallest public vertical drop of 781ft with the longest beginner run. Diverse groomed intermediate terrain and advanced trails packed with bumps, turns, pitches, and parks. Try exceptional programs, skating, and snowshoeing trails. 1 hour from Ottawa, the Peaks has something for everyone.",
     "website": "https://www.calabogie.com",
     "trails": 25,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 80,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 45,
     "difficulty_advanced": 25,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 37,
     "snowfall_high_in": 67
 }

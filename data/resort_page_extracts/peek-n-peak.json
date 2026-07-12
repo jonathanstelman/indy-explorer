@@ -6,6 +6,7 @@
     "description": "Located in Southwestern New York, Peek\u2019n Peak Resort is the ultimate winter playground. With 27 trails and 3 progressive terrain parks, there is something for everyone at The Peak. Whether you are new to winter sports or an old pro, our fresh powder, world-class Snow Sports School, and charming amenities will keep you wanting to visit for years to come.",
     "website": "https://www.pknpk.com",
     "trails": 27,
+    "trails_xc": null,
     "lifts": 9,
     "acres": 105,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 16,
     "difficulty_intermediate": 61,
     "difficulty_advanced": 23,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 200,
     "snowfall_high_in": 384
 }

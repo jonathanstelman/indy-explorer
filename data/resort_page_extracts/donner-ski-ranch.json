@@ -6,6 +6,7 @@
     "description": "For nearly nine decades, Donner Ski Ranch has welcomed families to it's slopes. Since they first opened in 1937, they have provided an accessible and affordable experience for everyone who loves the snow. They are easily one of California's oldest and most beloved ski resorts, offering generations of families a place to learn, play, and make lasting memories. See why families have made Donner Ski Ranch their winter home for decades.",
     "website": "https://www.donnerskiranch.com/",
     "trails": 52,
+    "trails_xc": null,
     "lifts": 8,
     "acres": 500,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 26,
     "difficulty_advanced": 49,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 400,
     "snowfall_high_in": 600
 }

@@ -6,6 +6,7 @@
     "description": "Why is Whitecap the best for Midwest skiing? It\u2019s our 48 runs across three peaks and that authentic \"Ski Country\" vibe in the ancient Penokee Mountains. No corporate feel here: just pure Northwoods magic and down-home Wisconsin hospitality. Whitecap Mountains Resort has been announced as a new Indy Pass member for the 26/27 season. Access to this mountain does not begin until fall/winter 2026/27.",
     "website": "https://whitecapresort.com/",
     "trails": 48,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 300,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 48,
     "difficulty_advanced": 23,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 200,
     "snowfall_high_in": 300
 }

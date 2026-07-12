@@ -6,6 +6,7 @@
     "description": "Located in Mars Hill, Maine, on the western face of Mars Hill. It is one of the larger ski resorts in Northern Maine with 2 chairlifts, 26 trails, 80 snowmaking, night skiing, and almost 1000ft of continuous vertical drop. As a 501(C)(3) nonprofit organization managed by a local Board of Directors, BigRock would not be open if not for the support and generosity of the public and local businesses. We\u2019re committed to making skiing an outdoor activity for the whole family to enjoy.",
     "website": "https://www.bigrockmaine.com",
     "trails": 29,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 90,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 10,
     "difficulty_intermediate": 66,
     "difficulty_advanced": 24,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 94,
     "snowfall_high_in": 150
 }

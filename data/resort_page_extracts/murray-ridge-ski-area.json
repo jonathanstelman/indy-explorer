@@ -6,6 +6,7 @@
     "description": "Our mission is to provide Fort St. James and the Regional market with high quality, affordable, alpine recreational experiences. Murray Ridge is a community-run non-profit ski area featuring a terrain park, excellent variable terrain from steep runs to glades and excellent grooming - all accessible from our T-Bar (longest in North America).",
     "website": "https://www.murrayridge.com",
     "trails": 23,
+    "trails_xc": null,
     "lifts": 2,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 26,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 44,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 118,
     "snowfall_high_in": 190
 }

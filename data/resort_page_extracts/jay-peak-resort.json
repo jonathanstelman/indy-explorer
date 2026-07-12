@@ -6,6 +6,7 @@
     "description": "If you've been to Jay Peak, you know our reputation is well deserved with the most snow in eastern North America and a liberal in-bounds policy that ensures you can enjoy it. 81 trails, slopes, and glades all wait for you, but the nooks and crannies are what really set Jay Peak apart.",
     "website": "https://jaypeakresort.com",
     "trails": 81,
+    "trails_xc": null,
     "lifts": 9,
     "acres": 385,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 347,
     "snowfall_high_in": 497
 }

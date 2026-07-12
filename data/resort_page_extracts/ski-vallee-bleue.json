@@ -6,6 +6,7 @@
     "description": "On July 19, 1963, the Vall\u00e9e Bleue Ski Center was born, located in Val-David in the \"Snow Belt\" of the Laurentians. This ski resort, with its unique character and atmosphere, has managed to preserve its original DNA throughout the years, and this is what has always made it famous. Our mountain stands out from the others thanks to its originality and its family policy.",
     "website": "https://www.valleebleue.com/english/",
     "trails": 52,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 42,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 45,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

@@ -6,6 +6,7 @@
     "description": "We are a semi-private club that welcomes non-members during the week and reserves weekends for members only. We also offer Business Pass Packages, Student and Weekday only passes. Our Snowsports School is excellent, with 97% of the senior instructors being PSIA certified. We have a variety of programs, camps and lessons.",
     "website": "https://www.hunthollow.com/Home",
     "trails": 21,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 100,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 32,
     "difficulty_intermediate": 21,
     "difficulty_advanced": 48,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 46,
     "snowfall_high_in": 72
 }

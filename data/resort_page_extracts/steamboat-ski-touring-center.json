@@ -6,6 +6,7 @@
     "description": "Located at the base of the Steamboat Ski Resort, the Steamboat Ski Touring Center (SSTC) has been a cornerstone of Nordic skiing excellence since 1980. Our facility offers over 15 kilometers of meticulously groomed trails that wind through stunning mountain terrain. From beginners to Olympic hopefuls, our trails and facilities have welcomed skiers of all abilities. Steamboat Ski Touring Center (SSTC) has been announced as a new Indy Pass member for the 26/27 season. Access to this mountain does not begin until fall/winter 2026/27.",
     "website": "https://nordicski.net/steamboat-ski-touring-center/",
     "trails": 0,
+    "trails_xc": 7,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 20,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 53,
+    "difficulty_intermediate_xc": 47,
+    "difficulty_advanced_xc": 0,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

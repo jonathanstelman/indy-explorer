@@ -6,6 +6,7 @@
     "description": "Sunlight gives you a full day of skiing for about half the cost of the mega resorts. You\u2019ll park for free, walk to the lifts, and never stand in line. Without the big crowds, our powder lasts for days. All 72 trails lead right back to the lodge where you can stow your gear, meet your family and friends, and get something hot and delicious at the grill. NO HASSLES. NO HYPE. IT\u2019S EXACTLY WHY YOU GO SKIING OR RIDING.",
     "website": "https://sunlightmtn.com",
     "trails": 72,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 730,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 10,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 60,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 250,
     "snowfall_high_in": 400
 }

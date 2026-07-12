@@ -6,6 +6,7 @@
     "description": "Dry Hill is a family-owned and operated resort in northern New York. Our Snow Sports School focuses on making learning fun for beginner to intermediate skiers and snowboarders. We offer a full-service ski shop and equipment rental program. Food is available at The Apres Cafe and The Fireside Lounge bar. Night skiing is available during the week and Saturday nights.",
     "website": "https://www.skidryhill.com/",
     "trails": 13,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 42,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

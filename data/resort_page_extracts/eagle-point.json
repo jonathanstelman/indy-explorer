@@ -6,6 +6,7 @@
     "description": "Eagle Point Resort is where you go to escape the crowds, with no lift lines and uncrowded slopes. Nearly all lodging is ski-in/ski-out and literal steps from the trails. At 10,000 feet, the Utah powder is dry, fresh and plentiful at over 350\" each winter. The lower steep side of the mountain will challenge any skier and never moguls due to the lack of crowds. The upper side of the resort features uncrowded groomers perfect for beginners and intermediates to turn with confidence.",
     "website": "https://www.eaglepointresort.com",
     "trails": 40,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 650,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 25,
     "difficulty_advanced": 35,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 350,
     "snowfall_high_in": 450
 }

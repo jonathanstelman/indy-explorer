@@ -6,6 +6,7 @@
     "description": "Mont Rigaud is a family-friendly resort near Montreal, offering affordable skiing, snowboarding, and mountain biking for all levels. Known as \"Quebec's ski kindergarten,\" it features 15 lit trails, a snow park, and alpine touring routes in winter. Summer activities include 15 km of mountain bike trails and hiking paths. The resort provides lessons, equipment rentals, and a relaxed atmosphere in an old-growth forest setting.",
     "website": "https://ski.montrigaud.com/home",
     "trails": 15,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 40,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 20,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 4,
     "snowfall_high_in": 6
 }

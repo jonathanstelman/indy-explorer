@@ -6,6 +6,7 @@
     "description": "The Fort Kent Outdoor Center is dedicated to providing beautiful trails for skiing, biathlon, biking, walking, running, snowshoeing, and disc golf in the great outdoors. We are a community non-profit organization promoting year-round, outdoor recreational trail activities in the beautiful St. John Valley. Located close to downtown Fort Kent and Lonesome Pine Trails alpine ski area, you are minutes away from scenic vistas, friendly people, and good, clean, healthy FUN with the most dependable annual snowfall in the Northeast!",
     "website": "https://www.fortkentoc.org/",
     "trails": 0,
+    "trails_xc": null,
     "lifts": 0,
     "acres": null,
     "trail_length_km": null,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

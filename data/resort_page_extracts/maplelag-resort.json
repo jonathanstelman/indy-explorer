@@ -6,6 +6,7 @@
     "description": "Our mission is to provide a healthy atmosphere in a safe and welcoming outdoor environment. Our terrain features 68 km of groomed and 8k of ungroomed terrain across our 17 trails. We offer family oriented outdoor themed experiences that give guests a sense of comfort and belonging, leaving them feeling rejuvenated and relaxed after their stay.",
     "website": "https://www.maplelag.com/",
     "trails": 0,
+    "trails_xc": 17,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 76,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 35,
+    "difficulty_intermediate_xc": 55,
+    "difficulty_advanced_xc": 10,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

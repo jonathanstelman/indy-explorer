@@ -6,6 +6,7 @@
     "description": "Carved into the rugged river breaks, Thrill hills offers a surprising variety of terrain that caters to everyone from first-timers to seasoned prairie shredders. Now featuring an updated lodge offering hot food, a full bar, and a fireplace to warm up next to to improve our community-focused atmosphere.",
     "website": "https://skithrillhills.com/",
     "trails": 10,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 30,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 60,
     "difficulty_advanced": 0,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 95
 }

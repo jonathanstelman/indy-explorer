@@ -6,6 +6,7 @@
     "description": "Since 1941, Cazenovia Ski Club has offered ski enthusiasts challenging terrain and a great atmosphere for family fun. This small, private ski club is located in Cazenovia, NY. Ski through roughly 100 acres of incredibly diverse terrain, from heart-stopping \"steeps,\" to powder-laden glades, to groomed cruisers, to gentle beginner trails.",
     "website": "https://skicaz.com/",
     "trails": 14,
+    "trails_xc": null,
     "lifts": 2,
     "acres": 98,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 38,
     "difficulty_intermediate": 31,
     "difficulty_advanced": 31,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 99,
     "snowfall_high_in": 225
 }

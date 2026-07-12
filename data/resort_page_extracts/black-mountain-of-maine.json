@@ -6,6 +6,7 @@
     "description": "Black Mountain of Maine is located in the heart of the Western Maine mountains. We are Maine\u2019s 4th tallest ski area, with a 1,380 foot vertical drop. Discover 600 acres of boundary-to-boundary skiing, terrain for all ages and abilities, powder in our glades and the friendliest vibe around. As a 501(c)(3) our primary mission is to keep skiing affordable to ensure the sport is accessible to all and always has a place in Maine\u2019s future.",
     "website": "https://skiblackmountain.org",
     "trails": 31,
+    "trails_xc": 8,
     "lifts": 2,
     "acres": 600,
     "trail_length_km": 33,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 23,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 37,
+    "difficulty_beginner_xc": 35,
+    "difficulty_intermediate_xc": 30,
+    "difficulty_advanced_xc": 35,
     "snowfall_average_in": 100,
     "snowfall_high_in": 210
 }

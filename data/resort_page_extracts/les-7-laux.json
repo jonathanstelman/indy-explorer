@@ -6,6 +6,7 @@
     "description": "Les 7 Laux is built for the \"ski-first\" crowd. Positioned as a natural barrier to Atlantic storms, it consistently punches above its weight in snowfall, burying its rugged, unpisted bowls in deep powder while the modern lift system whisks you back up before your legs can even stop burning. It\u2019s a resort with a split personality: one side offers the buzzing, high-energy vibes of Prapoutel, while the other hides the silent, glacial majesty of Le Pleynet.",
     "website": "https://www.les7laux.com/hiver/",
     "trails": 53,
+    "trails_xc": null,
     "lifts": 22,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 49,
     "difficulty_intermediate": 38,
     "difficulty_advanced": 13,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 120,
     "snowfall_high_in": 200
 }

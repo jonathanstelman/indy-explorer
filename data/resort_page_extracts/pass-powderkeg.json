@@ -6,6 +6,7 @@
     "description": "Pass Powderkeg is a great place for the entire family to get out and enjoy winter. Our mountain is big enough that it offers trails of all difficulty levels but small enough that kids can roam free and explore the mountain while returning to one easy centralized li system and lodge.",
     "website": "https://www.passpowderkeg.com",
     "trails": 27,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 48,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 22,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 48,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 75,
     "snowfall_high_in": 200
 }

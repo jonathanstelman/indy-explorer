@@ -6,6 +6,7 @@
     "description": "Swain is the ultimate family-friendly destination for your winter adventures! With our inviting slopes, cozy lodging, and childrens programs, Swain is where families come to play. Enjoy skiing and snowboarding on our diverse trails, unwind in our comfortable lodges, and savor delicious meals in our family-oriented restaurants. With a small-time vibe, we are known for being that resort that feels like a home away from home.",
     "website": "https://swain.com",
     "trails": 35,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 120,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 32,
     "difficulty_intermediate": 37,
     "difficulty_advanced": 31,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 130,
     "snowfall_high_in": 180
 }

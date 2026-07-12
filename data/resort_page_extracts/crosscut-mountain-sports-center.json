@@ -6,6 +6,7 @@
     "description": "Crosscut Mountain Sports Center provides year-round recreation, sports training, and outdoor education opportunities for everyone through our simple yet exceptional facilities and trails.",
     "website": "https://www.crosscutmt.org/",
     "trails": 0,
+    "trails_xc": 35,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 45,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 25,
+    "difficulty_intermediate_xc": 50,
+    "difficulty_advanced_xc": 25,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

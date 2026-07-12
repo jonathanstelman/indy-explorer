@@ -6,6 +6,7 @@
     "description": "We are a welcoming family-friendly resort that has something for everyone! Whether it is your first time in the snow or you are an expert, you will have a great time at the Mt Shasta Ski Park.",
     "website": "https://www.skipark.com",
     "trails": 38,
+    "trails_xc": 16,
     "lifts": 6,
     "acres": 635,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 45,
     "difficulty_advanced": 35,
+    "difficulty_beginner_xc": 45,
+    "difficulty_intermediate_xc": 35,
+    "difficulty_advanced_xc": 20,
     "snowfall_average_in": 157,
     "snowfall_high_in": 472
 }

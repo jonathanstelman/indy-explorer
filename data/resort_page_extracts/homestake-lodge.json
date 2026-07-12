@@ -6,6 +6,7 @@
     "description": "Homestake Lodge is your easy-to-get-to but off-the-beaten-path Rocky Mountain Nordic ski experience. World-class classic and skate skiing nestled amongst quiet, secluded forests and large granite boulders. Homemade soups and rolls, crepes, and bevies for the young and old can be enjoyed inside the Lodge by the cozy fire or you can book a luxury cabin or room in the Lodge. Our ski-in yurt offers a unique experience that feels like you are in the middle of nowhere.",
     "website": null,
     "trails": 0,
+    "trails_xc": 21,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 35,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 30,
+    "difficulty_intermediate_xc": 40,
+    "difficulty_advanced_xc": 30,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

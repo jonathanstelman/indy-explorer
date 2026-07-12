@@ -6,6 +6,7 @@
     "description": "Plain Valley Ski Trails (PVST) is a thriving cross-country ski community. With the collaboration of generous landowners, PVST works to create and sustain a high-quality ski trail system that serves the community, while also funding barrier-free ski educational programs that motivate individual and team achievement. To support our youth, please consider becoming a monthly donor or making a one-time gift. Visit www.SkiPlain.com/donate.",
     "website": "https://www.skiplain.com/",
     "trails": 0,
+    "trails_xc": null,
     "lifts": 0,
     "acres": null,
     "trail_length_km": null,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

@@ -6,6 +6,7 @@
     "description": "There is a shuttle bus service from the bus stop if you take the highway bus from Nagoya, and nearby accommodations are also within walking distance, including pensions. Our ski resort has a wide range of gentle slopes suitable for beginners and families.",
     "website": "https://www.hiruganokogen.com/",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 75,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 45,
     "difficulty_intermediate": 55,
     "difficulty_advanced": 0,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 165,
     "snowfall_high_in": 200
 }

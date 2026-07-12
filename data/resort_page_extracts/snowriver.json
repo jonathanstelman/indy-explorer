@@ -6,6 +6,7 @@
     "description": "Snowriver Mountain Resort, nestled in the powder-friendly hills of the Western Upper Peninsula of Michigan, boasts the pristine slopes of Black River Basin and Jackson Creek Summit. In the tranquil town of Wakefield, MI, the resort offers a secluded haven for skiers and snowboarders alike, and a picturesque escape for those seeking the tranquility of the hills.",
     "website": "https://www.snowriver.com",
     "trails": 71,
+    "trails_xc": null,
     "lifts": 11,
     "acres": 400,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 204,
     "snowfall_high_in": 278
 }

@@ -6,6 +6,7 @@
     "description": "Nestled at the base of the Mt. Washington Auto Road in scenic Pinkham Notch, New Hampshire, Great Glen Trails Outdoor Center offers 45 km of Nordic terrain for every style of winter adventurer. Glide along 20km of groomed carriage roads, or explore more adventurous backcountry routes.",
     "website": "https://greatglentrails.com/cross-country-skiing/?_gl=1*qitcvz*_up*MQ..*_gs*MQ..&gclid=CjwKCAiAkvDMBhBMEiwAnUA9BZ6kNL4vegv6BQD_C82hd7pI8lI1ty6BH6gkk6SHvR7OfZLV-E40MBoCbe4QAvD_BwE&gbraid=0AAAAApFtTRt_XANX2BB0O-CyvlwPep5xO",
     "trails": 0,
+    "trails_xc": 22,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 45,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 40,
+    "difficulty_intermediate_xc": 50,
+    "difficulty_advanced_xc": 10,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

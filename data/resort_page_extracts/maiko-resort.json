@@ -6,6 +6,7 @@
     "description": "Hagl\u00f6fs Tree Run Area Maiko Snow Resort, supported by the Nordic outdoor brand \"Hagl\u00f6fs\", is popular for its extensive courses and parks!!",
     "website": "https://www.snowjapan.com/listings/resort-spotlights/maiko-snow-resort",
     "trails": 26,
+    "trails_xc": null,
     "lifts": 10,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 350,
     "snowfall_high_in": 500
 }

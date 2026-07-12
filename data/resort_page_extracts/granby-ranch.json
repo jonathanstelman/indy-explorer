@@ -6,6 +6,7 @@
     "description": "With over 85\u2033 of annual snow, Granby Ranch offers an intimate Colorado ski experience with unforgettable views. The summit towers at 9,202 ft with 1,000 vertical ft on 406 acres of skiable terrain and 43 family-friendly trails funneling from 2 peaks to a common base.",
     "website": "https://granbyranch.com",
     "trails": 43,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 406,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 28,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 32,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 85,
     "snowfall_high_in": 187
 }

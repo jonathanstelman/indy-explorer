@@ -6,6 +6,7 @@
     "description": "Arctic Valley appeals to skiers and riders who want to feel like they are in the backcountry, but with the safety and convenience of a ski area. Groomed runs on the front side of the mountain provide a place for intermediates to cruise, while more advanced riders will love the expansive ungroomed terrain!",
     "website": "https://arcticvalley.org",
     "trails": 15,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 500,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 250,
     "snowfall_high_in": 400
 }

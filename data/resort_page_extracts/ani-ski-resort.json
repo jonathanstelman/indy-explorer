@@ -6,6 +6,7 @@
     "description": "Ani Ski Resort, in the remote Mt. Moriyoshi of Akita Prefecture, offers a haven for powder enthusiasts. While it's a small resort with accessible tree skiing, the real treasures lie in the challenging sidecountry and backcountry, perfect for those with route-finding skills or a guide. Ani is a hidden gem among Japanese ski resorts, boasting abundant snow, great tree skiing, and minimal crowds, making it a reward for those willing to explore off-piste terrain.",
     "website": "https://www.aniski.jp/",
     "trails": 5,
+    "trails_xc": null,
     "lifts": 3,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 400,
     "snowfall_high_in": 550
 }

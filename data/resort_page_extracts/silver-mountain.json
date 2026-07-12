@@ -6,6 +6,7 @@
     "description": "Take America's longest gondola to the top of Silver Mountain, where epic memories are ready to be made! Only 30 minutes east of Coeur d'Alene, Silver is part of the Northwest Rocky Mountains, where light, dry powder can be found throughout the 1600 acres of terrain. And don't miss out on our Indy lodging deal, which includes daily access to Silver Rapids, Idaho's largest indoor waterpark that is always a balmy 84 degrees.",
     "website": "https://www.silvermt.com",
     "trails": 83,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 1600,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 300,
     "snowfall_high_in": 400
 }

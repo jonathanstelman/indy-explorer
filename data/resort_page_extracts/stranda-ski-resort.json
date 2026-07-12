@@ -6,6 +6,7 @@
     "description": "Stranda Ski Resort is widely considered the \"Freeride Capital\" of Scandinavia. Perched high above the Storfjord\u2014the gateway to the UNESCO-protected Geirangerfjord\u2014it offers a visual experience that feels almost surreal. It is one of the few places on earth where you can carve down 1,000 meters of vertical while looking directly into the deep blue waters of a Norwegian fjord.",
     "website": "https://www.strandafjellet.no/en",
     "trails": 20,
+    "trails_xc": null,
     "lifts": 7,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 50,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 10,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 280,
     "snowfall_high_in": 320
 }

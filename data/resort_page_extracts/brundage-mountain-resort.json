@@ -6,6 +6,7 @@
     "description": "Brundage Mountain Resort is steeped in Idaho history and offers a charming, accessible local vibe. Brundage has been providing a high-value, family-friendly skiing experience for more than 60 years. Known for the \u201cBest Snow in Idaho\u201d, Brundage Mountain is blessed with more than 320 inches of base area snow annually, which creates a consistently satisfying mix of bluebird and powder days throughout the winter season. Future improvements at the independently owned resort will expand the on-site recreational experience and complement the endless adventure-based experiences on the vast Payette National Forest in Brundage Mountain\u2019s backyard, all while preserving and enhancing the attributes that make Brundage a true Idaho original.",
     "website": "https://brundage.com",
     "trails": 70,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 1920,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 21,
     "difficulty_intermediate": 33,
     "difficulty_advanced": 46,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 320,
     "snowfall_high_in": 430
 }

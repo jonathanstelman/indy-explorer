@@ -6,6 +6,7 @@
     "description": "Our trails feature gentler terrain ideal for beginners, families, and those looking for a more leisurely ski experience. The open meadows and rolling hills provide perfect learning conditions while still offering enough variety to keep experienced skiers engaged.",
     "website": "https://nordicski.net/haymaker-nordic-center/",
     "trails": 0,
+    "trails_xc": 4,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 13,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 70,
+    "difficulty_intermediate_xc": 25,
+    "difficulty_advanced_xc": 0,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

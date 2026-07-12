@@ -6,6 +6,7 @@
     "description": "Togakushi Ski Resort, also known as Togakushi Snow World, provides a secluded skiing experience with deserted slopes on weekdays. The base area boasts a quaint charm, albeit with somewhat run-down buildings. Togakushi is famous for its exquisite soba noodles, and the village holds historical significance as a potential birthplace of ninjutsu. The resort features two peaks, seven chairlifts, and 19 courses, offering hidden tree runs and easy sidecountry access.",
     "website": "https://www.togakusi.com",
     "trails": 19,
+    "trails_xc": null,
     "lifts": 7,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 300,
     "snowfall_high_in": 440
 }

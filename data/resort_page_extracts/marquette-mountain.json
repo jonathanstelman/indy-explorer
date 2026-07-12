@@ -6,6 +6,7 @@
     "description": "540 feet of vertical, 29 runs, 9 glades, natural hits everywhere. Overlooking Lake Superior and 5 minutes from the city of Marquette and all of its amenities. Terrain for the adrenaline junky and corduroy cruiser and everyone in between.",
     "website": "https://marquettemountain.com",
     "trails": 29,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 170,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 16,
     "difficulty_intermediate": 42,
     "difficulty_advanced": 42,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 210,
     "snowfall_high_in": 300
 }

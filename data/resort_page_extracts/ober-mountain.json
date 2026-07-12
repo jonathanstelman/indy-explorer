@@ -6,6 +6,7 @@
     "description": "High above the acclaimed resort town of Gatlinburg TN, bordering the Great Smoky Mountains National Park, Ober Mountain is more than a winter ski area and snow tubing park. A 120 passenger Aerial Tramway takes visitors over 2 miles from downtown up to the base of our slopes and a year-round mountaintop amusement park, with indoor ice skating, shopping, dining, mountain coaster, Alpine Slide, wildlife encounter and much more",
     "website": "https://obergatlinburg.com",
     "trails": 10,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 50,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 60,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 16,
     "snowfall_high_in": 45
 }

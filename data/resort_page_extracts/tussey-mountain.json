@@ -6,6 +6,7 @@
     "description": "Located just minutes away from Penn State University, Tussey Mountain is THE place to learn how to ski or snowboard in Central PA, and to improve existing winter sports skills.",
     "website": "https://tusseymountain.com",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 38,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 45,
     "difficulty_advanced": 25,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 45,
     "snowfall_high_in": 100
 }

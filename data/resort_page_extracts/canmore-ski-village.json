@@ -6,6 +6,7 @@
     "description": "Offers courses for from beginners to experts. The Rabbit Course is safe for kids and first-timers, while skiing, snowboarding, and cross-country trails add variety. With night skiing and a kids area for sledding and practice, guests can enjoy winter fun all day.",
     "website": "https://www.canmore-ski.jp/",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 2,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 180,
     "snowfall_high_in": 220
 }
