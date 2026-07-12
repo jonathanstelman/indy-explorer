@@ -50,8 +50,12 @@ FAKE_RESORTS = [
         is_allied=True,
         vertical=1200.0,
         num_trails=40.0,
+        num_trails_xc=35.0,
         num_lifts=5.0,
         trail_length_mi=30.0,
+        difficulty_beginner_xc=20.0,
+        difficulty_intermediate_xc=60.0,
+        difficulty_advanced_xc=20.0,
     ),
     Resort(
         resort_id='id-3',
@@ -71,6 +75,7 @@ FAKE_RESORTS = [
         is_allied=False,
         vertical=2000.0,
         num_trails=70.0,
+        num_trails_xc=15.0,
         num_lifts=10.0,
         trail_length_mi=None,
     ),
@@ -190,6 +195,35 @@ def test_max_trails(client):
     response = client.get('/resorts?max_trails=40')
     names = {r['name'] for r in response.json()}
     assert names == {'Nordic Valley'}
+
+
+def test_min_trails_xc(client):
+    response = client.get('/resorts?min_trails_xc=20')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Nordic Valley'}
+
+
+def test_max_trails_xc(client):
+    response = client.get('/resorts?max_trails_xc=20')
+    names = {r['name'] for r in response.json()}
+    # Alpine Peak has no num_trails_xc — excluded from range filters
+    assert names == {'Mid Mountain'}
+
+
+def test_trails_xc_excludes_null_values(client):
+    response = client.get('/resorts?min_trails_xc=1')
+    names = {r['name'] for r in response.json()}
+    assert 'Alpine Peak' not in names
+
+
+def test_xc_fields_in_summary(client):
+    response = client.get('/resorts?search=nordic')
+    data = response.json()
+    assert len(data) == 1
+    assert data[0]['num_trails_xc'] == 35.0
+    assert data[0]['difficulty_beginner_xc'] == 20.0
+    assert data[0]['difficulty_intermediate_xc'] == 60.0
+    assert data[0]['difficulty_advanced_xc'] == 20.0
 
 
 def test_min_lifts(client):

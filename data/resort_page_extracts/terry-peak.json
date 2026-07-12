@@ -6,6 +6,7 @@
     "description": "Terry Peak Ski Area is South Dakota\u2019s premier destination for a winter vacation, featuring skiing and snowboarding. The family-friendly ski resort is near historic Deadwood in the Black Hills of South Dakota. The summit of Terry Peak stands at 7,100 tall, with the highest li service between the Rockies and the Alps. Three high-speed quad lis, a triple chairli, and a covered snow carpet move you up the mountain quickly. At the same time, a variety of terrain will challenge almost all skill levels. Snowmaking and an average of 150 inches of natural snowfall will ensure great conditions from the beginning to the end of the season.",
     "website": "https://terrypeak.com",
     "trails": 30,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 450,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 17,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 43,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 150,
     "snowfall_high_in": 300
 }

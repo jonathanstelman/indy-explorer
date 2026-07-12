@@ -156,6 +156,19 @@ def main(refresh_blackout=False, refresh_ltt=False):
     resorts.rename(columns={'is_open_nights': 'has_night_skiing'}, inplace=True)
     resorts.drop(columns=['terrain_parks'], inplace=True)
 
+    # Cross-country stats come only from the resort pages (-xc suffixed elements, issue #11).
+    # Ensure the columns exist even if extracts predate the XC-aware scraper.
+    xc_page_cols = [
+        'trails_xc',
+        'difficulty_beginner_xc',
+        'difficulty_intermediate_xc',
+        'difficulty_advanced_xc',
+    ]
+    for col in xc_page_cols:
+        if col not in resorts.columns:
+            resorts[col] = np.nan
+    resorts.rename(columns={'trails_xc': 'num_trails_xc'}, inplace=True)
+
     # Location
     resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
     resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
@@ -217,6 +230,7 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'is_allied',
         'acres',
         'num_trails',
+        'num_trails_xc',
         'trail_length_mi',
         'trail_length_km',
         'num_lifts',
@@ -230,6 +244,9 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'difficulty_beginner',
         'difficulty_intermediate',
         'difficulty_advanced',
+        'difficulty_beginner_xc',
+        'difficulty_intermediate_xc',
+        'difficulty_advanced_xc',
         'snowfall_average_in',
         'snowfall_high_in',
         'has_alpine_display',

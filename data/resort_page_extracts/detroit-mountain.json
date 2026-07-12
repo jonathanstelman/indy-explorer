@@ -6,6 +6,7 @@
     "description": "Located just one hour east of Fargo, ND, Detroit Mountain offers up a snowy platter of fun and explorable terrain with 45 skiable acres, 21 runs, 2 terrain parks, 2 chairlifts, 2 high-speed rope tows, and 2 magic carpet lifts. Detroit Mountain also caters to the first-timer, with a designated learning area featuring Terrain Based Learning. Detroit Mountain is also home to lift-served mountain biking during the summer months.",
     "website": "https://detroitmountain.com",
     "trails": 21,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 45,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 35,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 21,
     "snowfall_high_in": 45
 }

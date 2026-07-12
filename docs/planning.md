@@ -6,7 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` — PR [#127](https://github.com/jonathanstelman/indy-explorer/pull/127) (#120) reviewed and merged
+`feature/11-alpine-xc-metrics` — #11 complete, PR opened for review
+
+**#11 status (2026-07-12):** All layers implemented, tested, and verified live in a browser. Parser `-xc` extraction, `num_trails_xc` + 3 `difficulty_*_xc` columns in `resorts.csv` output (already regenerated and committed on this branch — real values confirmed, e.g. Black Mountain of Maine 31 alpine / 8 XC trails), backend model/filters/meta. Frontend went through several UI iterations after live review — a `view`/display-mode concept (shared `ViewSelector`, independent URL filter, mode-aware hiding) was built, polished, then removed entirely once the real scope was named as one filterable field (`num_trails_xc`) and three display-only ones — not enough to justify it. Final shape: `has_alpine`/`has_cross_country` are ordinary boolean filters; `Trails (XC)` is a plain always-shown sidebar slider; `num_trails_xc`/`difficulty_*_xc` are ordinary optional table columns; the map tooltip's XC row is a per-resort presence check (suppressed for XC-only resorts, where it's always identical to `Trails`), matching the detail modal's existing pattern. A final review pass caught and fixed a real regression (stray `view` reference crashing the map tooltip) missed by tests/build. See `docs/decisions.md` for the full history and reusable UI patterns worth keeping. **Remaining after merge:** backend redeploy to pick up the new `data/resorts.csv` (Docker bakes `data/` at build time — see Ops Runbook).
 
 ## Status (as of 2026-07-11)
 
@@ -35,7 +37,7 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #110 | UX: "Help improve this app" feedback section | P2 | Done |
 | #83 | Data validation on Resort Pydantic model | P1 (deferred) | Blocks #77 |
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
-| #11 | Bug: alpine+XC metrics parsing | P1 | |
+| #11 | Bug: alpine+XC metrics parsing | P1 | In review |
 
 **#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar

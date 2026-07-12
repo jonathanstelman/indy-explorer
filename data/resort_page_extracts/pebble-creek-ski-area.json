@@ -6,6 +6,7 @@
     "description": "Perched on the flanks of Mount Bonneville in the Portneuf Range, Pebble Creek Ski Area is a high-vertical haven for those who prefer their skiing rugged and their crowds non-existent.",
     "website": "https://pebblecreekskiarea.com/",
     "trails": 51,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 1100,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 19,
     "difficulty_intermediate": 36,
     "difficulty_advanced": 45,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 225,
     "snowfall_high_in": 300
 }

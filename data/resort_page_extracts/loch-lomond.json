@@ -6,6 +6,7 @@
     "description": "Nestled in the heart of Thunder Bay, Loch Lomond Ski Area is a haven for winter enthusiasts seeking both excitement and natural beauty. Our resort combines thrilling ski and snowboard slopes with the unique charm of Canada's northern wilderness. With breathtaking views of Lake Superior and a variety of meticulously groomed runs, Loch Lomond Ski Area offers an unforgettable winter experience. Whether you're a seasoned skier or a beginner looking to learn, our friendly staff and well-maintained facilities make it the perfect destination for outdoor fun in the snow. Join us for a winter adventure that combines the exhilaration of the slopes with the serene allure of the North.",
     "website": "https://www.lochlomond.ca/",
     "trails": 18,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 70,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 80,
     "snowfall_high_in": 169
 }

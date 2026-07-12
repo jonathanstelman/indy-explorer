@@ -6,6 +6,7 @@
     "description": "West Mountain offers day & night skiing, riding and snow tubing. An established ski and outdoor activities year-round community with a family-friendly atmosphere, West Mountain is the choice for an authentic upstate experience. Nestled at the foot of the Adirondack Mountains and conveniently located off I-87 at Exit 19, West Mountain offers a quick drive to downhill satisfaction. The mountain offers beginner through advanced terrain, an expanded learning area with an exciting lineup of winter events & live music. There are daily specials at the West Mountain Bar & Eatery, school & college ski programs, theme nights and ticket promotions.",
     "website": "https://westmountain.com",
     "trails": 35,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 130,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 70,
     "snowfall_high_in": 100
 }

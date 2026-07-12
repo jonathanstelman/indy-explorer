@@ -6,6 +6,7 @@
     "description": "Boasting an impressive array of amenities, accommodations, comforts and activities, Chestnut Mountain is the choice Illinois travel destination. Conveniently located near historic Galena, nestled neatly amongst the hills overlooking the Mississippi, it\u2019s the perfect place to escape the everyday. Chestnut\u2019s over 220 rolling acres and 475-foot vertical drop are home to 19 ski trails and a 7-acre terrain park, The Farside, featuring over 25 rails and structures. With two quad lifts, four triple chair lifts, two conveyor lifts and one surface lift, you won\u2019t be waiting in line to get back to the peak.",
     "website": "https://www.chestnutmtn.com",
     "trails": 19,
+    "trails_xc": null,
     "lifts": 9,
     "acres": 59,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 100
 }

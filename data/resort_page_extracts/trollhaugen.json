@@ -6,6 +6,7 @@
     "description": "Just 50 minutes north of the Twin Cities, Trollhaugen is tucked in the St.Croix River Valley, and frozen in time in the best way. The mid-century chalet greets you with all the charm you'd expect of a classic Midwest mom-and-pop ski area. With 80 acres of trails for all abilities, including legendary terrain parks, Trollhaugen has something for everyone. Not to mention, the Skolhaugen Lounge has you covered for the mandatory cheese curd & Spotted Cow pit stop. As humans like to say \"If you want snow...Go Troll!\"",
     "website": "https://trollhaugen.com",
     "trails": 30,
+    "trails_xc": null,
     "lifts": 8,
     "acres": 80,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 28,
     "difficulty_intermediate": 43,
     "difficulty_advanced": 29,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 90
 }

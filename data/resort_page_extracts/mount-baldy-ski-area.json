@@ -6,6 +6,7 @@
     "description": "FROM OUR FAMILY TO YOURS Located on the north shore of Lake Superior, Mount Baldy has been one of Thunder Bay's most popular destinations for individuals and families for over 60 years. We have three lifts accessing varied terrain for all skill levels of skiers and snowboarders. All runs lead to the base chalet, where winter sports enthusiasts can take a break and warm up by the fireplace or watch the action on the hills from the picturesque windows. Come to discover nature - and yourself.",
     "website": "https://www.skimountbaldy.ca/",
     "trails": 12,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 200,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 47,
     "snowfall_high_in": 79
 }

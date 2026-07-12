@@ -28,6 +28,8 @@ export function useFilters() {
     max_vertical: getNum('max_vertical'),
     min_trails: getNum('min_trails'),
     max_trails: getNum('max_trails'),
+    min_trails_xc: getNum('min_trails_xc'),
+    max_trails_xc: getNum('max_trails_xc'),
     min_lifts: getNum('min_lifts'),
     max_lifts: getNum('max_lifts'),
     min_trail_length: getNum('min_trail_length'),

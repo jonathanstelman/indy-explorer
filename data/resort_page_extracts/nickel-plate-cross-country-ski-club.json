@@ -6,6 +6,7 @@
     "description": "The Okanagan's best-kept secret. Nestled in the heart of BC, a whopping 1,850 metres above sea level, Nickel Plate has the snow, the terrain, and the views that equal nothing short of a slice of Heaven. With 50'ish km of trails groomed for both Skate and Classic, 25+ km of snowshoe trails, and a community of winter keeners that is second to none, Nickel Plate is your Nordic home away from home.",
     "website": "https://nickelplatenordic.org/livecam/",
     "trails": 0,
+    "trails_xc": 28,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 50,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 30,
+    "difficulty_intermediate_xc": 50,
+    "difficulty_advanced_xc": 20,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

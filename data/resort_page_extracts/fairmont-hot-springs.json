@@ -6,6 +6,7 @@
     "description": "With a total of 14 runs, ranging from green to black in skill level, the Fairmont Hot Springs Ski Area provides an ideal family ski experience. Enjoy our resort\u2019s nearly non-existent lift lines, the un-crowded trails, and runs of perfect corduroy and panoramic views of the stunning Purcell and Rocky Mountains. And don't forget teh incredible hot springs after a day on the slopes.",
     "website": "https://www.fairmonthotsprings.com",
     "trails": 14,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 88,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 60,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 100,
     "snowfall_high_in": 550
 }

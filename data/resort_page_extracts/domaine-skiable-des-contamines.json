@@ -6,6 +6,7 @@
     "description": "At only one hour from Geneva airport, enjoy 120 km of slopes between 1200 and 2500 m, between Savoie and Haute-Savoie. With an exceptional snow cover, the area offers a wonderful panorama from Mont Blanc to Beaufortain. The ski runs wind down between valleys, wide slopes and alpine chalets.",
     "website": "https://www.lescontamines.com/winter",
     "trails": 120,
+    "trails_xc": null,
     "lifts": 25,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 33,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 17,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

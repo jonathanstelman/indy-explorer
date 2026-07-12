@@ -6,6 +6,7 @@
     "description": "Mt. Hood Meadows offers the best and most varied terrain on Mt. Hood. There are slopes for families and beginners and double blacks for advanced skiers and riders. We have a great mix of powder and sunny days with over 2,000 acres plus 140 acres of lit terrain for nights. This year we are also debuting the new Mt. Hood Express six-seater lift to get folks out of the base area even faster. Our average snowfall is 430 inches a year. Visit us in the winter or spring and you won't be disappointed.",
     "website": "https://www.skihood.com",
     "trails": 142,
+    "trails_xc": 10,
     "lifts": 11,
     "acres": 2150,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 32,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 28,
+    "difficulty_beginner_xc": 50,
+    "difficulty_intermediate_xc": 35,
+    "difficulty_advanced_xc": 15,
     "snowfall_average_in": 430,
     "snowfall_high_in": 500
 }

@@ -6,6 +6,7 @@
     "description": "A Mountain of Memories awaits you at Greek Peak Mountain Resort. This four-season family resort is located in New York's scenic Finger Lakes Region just minutes from I-81. Enjoy 55 trails complete with glade skiing, terrain parks and a specialized terrain-based learning area, we guarantee there's something to captivate every member of your family or group. Come help us celebrate our 65th anniversary season and start making memories!",
     "website": "https://www.greekpeak.net",
     "trails": 55,
+    "trails_xc": null,
     "lifts": 8,
     "acres": 220,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 35,
     "difficulty_intermediate": 33,
     "difficulty_advanced": 32,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 122,
     "snowfall_high_in": 240
 }

@@ -6,6 +6,7 @@
     "description": "For forward-thinking outdoor appreciators with refined taste, Tamarack is the all-season ski, golf, and lake resort that delivers abundant, accessible experiences and modern amenities. Featuring 2,800 vertical and 1,300+ skiable acres. A mere 90 miles from Boise, along the scenic Payette River Byway, blaze the trail to new adventures.",
     "website": "https://tamarackidaho.com",
     "trails": 50,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 1385,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 28,
     "difficulty_intermediate": 49,
     "difficulty_advanced": 23,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 300,
     "snowfall_high_in": 427
 }

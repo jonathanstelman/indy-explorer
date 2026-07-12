@@ -6,6 +6,7 @@
     "description": "Located in Minakami, the closest heavy snowfall area from Tokyo, Hodaigi Ski Resort offers top-quality powder, steep 40\u00b0 tree runs, and wide gentle slopes for beginners. With both groomed and ungroomed areas, it\u2019s a resort where everyone from novices to experts can enjoy Japan\u2019s famous powder.",
     "website": "https://en.hodaigi.jp/",
     "trails": 16,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 2600,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 170,
     "snowfall_high_in": 220
 }

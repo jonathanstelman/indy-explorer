@@ -6,6 +6,7 @@
     "description": "Whether you wish for a gentle ski alongside the wetlands, a social aernoon with friends on undulating trails, or the challenge of a long climb followed by exciting downhill sections, the variety in the 35 km of well-groomed skate and classic trails at Bull Mountain allows you to choose routes that suit you best. Park in one of our 2 parking lots, sign in at our Brand New Lodge, gear up, and head out for your ski of choice while looking forward to the warm comfort of our new lodge. Enjoy the trails and groom the tales.",
     "website": "https://www.williamslakecrosscountryskiclub.ca/",
     "trails": 0,
+    "trails_xc": 30,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 35,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 25,
+    "difficulty_intermediate_xc": 25,
+    "difficulty_advanced_xc": 50,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

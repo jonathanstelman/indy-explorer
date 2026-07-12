@@ -6,6 +6,7 @@
     "description": "Massif du Sud ski resort is a privately-owned winter sports resort located on the north side of Mont du Midi in the Massif du Sud. This is the mountain with the highest altitude for skiing in Quebec. Champagne powder and glades are part of our daily routine.",
     "website": "https://massifdusud.net/en/",
     "trails": 37,
+    "trails_xc": null,
     "lifts": 2,
     "acres": 420,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 14,
     "difficulty_intermediate": 22,
     "difficulty_advanced": 64,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 144,
     "snowfall_high_in": 360
 }

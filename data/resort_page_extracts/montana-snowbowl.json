@@ -6,6 +6,7 @@
     "description": "Just a quick 30-minute drive from downtown Missoula, you'll find a winter wonderland. Montana Snowbowl offers a perfect blend of challenging slopes, stunning mountain views, unbeatable powder, and a cozy lodge that serves the best Pizza and Bloody Marys in town. Whether you are a first-timer or an experienced rider, Snowbowl has something to offer to everyone!",
     "website": "https://www.montanasnowbowl.com",
     "trails": 68,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 2000,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 300,
     "snowfall_high_in": 486
 }

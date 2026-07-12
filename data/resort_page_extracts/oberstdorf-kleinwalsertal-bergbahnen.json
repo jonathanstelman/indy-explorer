@@ -6,6 +6,7 @@
     "description": "In the two-country ski region between Vorarlberg and Allg\u00e4u, seven ski resorts fulfill winter sports dreams. The Oberstdorf Kleinwalsertal cable cars transport skiers to the slopes located in the German Allg\u00e4u and the Austrian Kleinwalsertal. Skiing in the Allg\u00e4u means adventure, experiencing nature, family fun, and skiing enjoyment. State-of-the-art lifts and snow guns ensure optimal snow reliability and slope quality: an incomparable skiing experience that keeps our guests coming back. What's more, getting there is easy, quick, and toll-free!",
     "website": "https://www.ok-bergbahnen.com/",
     "trails": 70,
+    "trails_xc": null,
     "lifts": 48,
     "acres": 1200,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 120,
     "snowfall_high_in": 180
 }

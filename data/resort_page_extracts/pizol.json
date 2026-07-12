@@ -6,6 +6,7 @@
     "description": "Perched above the famous spa towns of Bad Ragaz and Wangs, Pizol is a versatile Swiss ski area offering breathtaking panoramic views that stretch from Lake Constance to the Alps of Graub\u00fcnden.",
     "website": "https://pizol.com/en/",
     "trails": 36,
+    "trails_xc": null,
     "lifts": 12,
     "acres": 1720,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 36,
     "difficulty_intermediate": 31,
     "difficulty_advanced": 33,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 163,
     "snowfall_high_in": 216
 }

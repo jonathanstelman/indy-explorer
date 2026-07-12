@@ -97,7 +97,7 @@ function fmt(value, unit) {
   return unit ? `${value.toLocaleString()} ${unit}` : value.toLocaleString()
 }
 
-function DifficultyChart({ beginner, intermediate, advanced, isMobile }) {
+function DifficultyChart({ beginner, intermediate, advanced, isMobile, title = 'Trail Difficulty' }) {
   if (beginner == null && intermediate == null && advanced == null) return null
   const data = [
     { name: 'Beginner',     value: Number(beginner     || 0) },
@@ -107,7 +107,7 @@ function DifficultyChart({ beginner, intermediate, advanced, isMobile }) {
   if (data.length === 0) return null
   return (
     <div>
-      <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 8 }}>Trail Difficulty</Text>
+      <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 8 }}>{title}</Text>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'auto auto', columnGap: 8, rowGap: 4, flexShrink: 0 }}>
           {data.flatMap(d => [
@@ -365,6 +365,7 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
 
   const hasCharts = resort && (
     (resort.difficulty_beginner != null || resort.difficulty_intermediate != null || resort.difficulty_advanced != null) ||
+    (resort.difficulty_beginner_xc != null || resort.difficulty_intermediate_xc != null || resort.difficulty_advanced_xc != null) ||
     (resort.snowfall_average_in != null || resort.snowfall_high_in != null)
   )
 
@@ -434,7 +435,13 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
               {[
                 ['Lifts',             fmt(resort.num_lifts)],
                 ['Trails',            fmt(resort.num_trails)],
-                ['Trail length (mi)', fmt(resort.trail_length_mi)],
+                // Per-resort presence check, not a global toggle — shown whenever this
+                // resort has XC data, same pattern as the map tooltip's Trails (XC) row.
+                // Suppressed for XC-only resorts: num_trails and num_trails_xc are always
+                // identical there (both describe the resort's one trail network), so
+                // showing both reads as a duplication bug rather than useful information.
+                ...(resort.num_trails_xc != null && resort.has_alpine ? [['Trails (XC)', fmt(resort.num_trails_xc)]] : []),
+                ['Trail Length XC (mi)', fmt(resort.trail_length_mi)],
                 ['Acreage (ac)',      fmt(resort.acres)],
               ].map(([label, value]) => (
                 <div key={label}>
@@ -461,12 +468,22 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
             <>
               <Divider />
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 32px', alignItems: 'start' }}>
-                <DifficultyChart
-                  beginner={resort.difficulty_beginner}
-                  intermediate={resort.difficulty_intermediate}
-                  advanced={resort.difficulty_advanced}
-                  isMobile={isMobile}
-                />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  <DifficultyChart
+                    beginner={resort.difficulty_beginner}
+                    intermediate={resort.difficulty_intermediate}
+                    advanced={resort.difficulty_advanced}
+                    isMobile={isMobile}
+                  />
+                  {/* XC difficulty stacks below alpine, mirroring the Indy Pass page layout */}
+                  <DifficultyChart
+                    title="Trail Difficulty (XC)"
+                    beginner={resort.difficulty_beginner_xc}
+                    intermediate={resort.difficulty_intermediate_xc}
+                    advanced={resort.difficulty_advanced_xc}
+                    isMobile={isMobile}
+                  />
+                </div>
                 <SnowfallChart avg={resort.snowfall_average_in} high={resort.snowfall_high_in} />
               </div>
             </>

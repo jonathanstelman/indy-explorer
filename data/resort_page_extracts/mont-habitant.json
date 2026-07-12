@@ -6,6 +6,7 @@
     "description": "First and Foremost, Mont Habitant is a Resort that focuses 100% on the best skiing experience for families.From accessible and safe trails as well as a super welcoming team, everything is in place for you to pass onto the next generation the sheer pleasure of slithering the trails.",
     "website": "https://www.monthabitant.com/en/",
     "trails": 43,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 230,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 18,
     "difficulty_intermediate": 64,
     "difficulty_advanced": 18,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 98,
     "snowfall_high_in": 130
 }

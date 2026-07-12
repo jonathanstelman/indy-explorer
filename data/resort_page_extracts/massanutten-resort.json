@@ -6,6 +6,7 @@
     "description": "Don\u2019t miss the chance to hit some of the best slopes in the state of Virginia! At 2,922 ft. of elevation, Massanutten is home to a large variety of trails, a dedicated learner\u2019s area, terrain parks, and night skiing. Skiers and riders who visit Massanutten will have access to 82 skiable acres, including 23 runs serviced by 7 lifts.",
     "website": "https://www.massresort.com",
     "trails": 23,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 82,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 35,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 36,
     "snowfall_high_in": 85
 }

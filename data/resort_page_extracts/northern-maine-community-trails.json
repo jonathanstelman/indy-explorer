@@ -6,6 +6,7 @@
     "description": "Northern Maine Community Trails is a non-profit, grassroots organization and prior world class biathlon center that hosts a network of year-round trails situated on 750 acres of a mature hardwood forest. After a brief closure, the 700+ acre site was purchased by the community to ensure it remains open to the public for a modest donation fee.",
     "website": "https://www.nmctrails.org/",
     "trails": 0,
+    "trails_xc": 16,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 24,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 42,
+    "difficulty_intermediate_xc": 36,
+    "difficulty_advanced_xc": 22,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

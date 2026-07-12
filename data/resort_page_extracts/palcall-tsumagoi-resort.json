@@ -6,6 +6,7 @@
     "description": "Located halfway between Karuizawa and Kusatsu, famous for its hot springs, Palcall Tsumagoi Ski Resort has 22 courses. Take the longest gondola in the Kanto region (3,193m) to the summit at an altitude of 2,100m and you'll be amazed by the view that is unlike anything else in Japan and the excellent quality of the snow. With its high altitude and fully-equipped artificial snowmaking machines, you can ski from early December to early April. Palcall boasts Japan's largest terrain park and divine sunrise skiing. Enjoy Palcall Tsumagoi and satisfy your five senses.",
     "website": "https://tsumagoiskiresort.life/",
     "trails": 22,
+    "trails_xc": null,
     "lifts": 5,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 62,
     "difficulty_intermediate": 33,
     "difficulty_advanced": 5,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 35,
     "snowfall_high_in": 63
 }

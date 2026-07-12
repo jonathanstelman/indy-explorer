@@ -6,6 +6,7 @@
     "description": "A small, family-owned ski area, Maple Ski Ridge has helped skiers/riders enjoy 60 winters in the NY Capital District. Just minutes away from downtown Schenectady, we boast some of the best snow in the area. Featuring a variety of terrain, a stress-free facility, friendly staff, and a snowsports school that is a leader in the industry, Maple Ski Ridge is a small area with a lot to offer.",
     "website": "https://www.mapleskiridge.com/",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 60,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 38,
     "difficulty_advanced": 37,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 65,
     "snowfall_high_in": 94
 }

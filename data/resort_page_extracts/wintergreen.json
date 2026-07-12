@@ -6,6 +6,7 @@
     "description": "Treat yourself to magnificent mountain views, luxury, and recreation at Wintergreen Resort. Spanning 11,000 acres on the eastern slopes of the Blue Ridge Mountains, our spacious condominiums and vacation homes are surrounded by winding trails, cascading streams and lush forests. The ultimate four-season vacation or conference spot, Wintergreen Resort is peaceful and refreshing, with an endless variety of activities.",
     "website": "https://www.wintergreenresort.com",
     "trails": 26,
+    "trails_xc": null,
     "lifts": 5,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 45,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

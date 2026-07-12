@@ -6,6 +6,7 @@
     "description": "Pats Peak stands out from the competition with its family-friendly atmosphere, extensive night skiing facilities, diverse terrain, convenient location, and reliable snow conditions, making it the premier choice for snowsports enthusiasts of all ages and skill levels.",
     "website": "https://www.patspeak.com",
     "trails": 28,
+    "trails_xc": null,
     "lifts": 11,
     "acres": 115,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 50,
     "difficulty_intermediate": 21,
     "difficulty_advanced": 29,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 100,
     "snowfall_high_in": 150
 }

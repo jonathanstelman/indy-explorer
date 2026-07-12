@@ -6,6 +6,7 @@
     "description": "Located on the eastern edge of the Tug Hill Plateau, Snow Ridge receives an average of 230 inches of beautiful lake-effect snow every season. With terrain for everyone from the first-time rider to the seasoned vets, Snow Ridge has something for everyone. This is a unique ski and snowboard experience, unlike anywhere else in the Northeast!",
     "website": "https://snowridge.com",
     "trails": 33,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 150,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 11,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 59,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 230,
     "snowfall_high_in": 300
 }

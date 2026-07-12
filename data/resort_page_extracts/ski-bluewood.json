@@ -6,6 +6,7 @@
     "description": "With smoke-dry powder, epic tree skiing, 2 lifts, 2 carpets, Side Country Cat skiing access, 24+ trails and a family-friendly vibe, nothing more is needed to keep the Bluewood Family of riders coming back year after year. Bluewood is the epitome of the Indy Revolution. Affordable, fun, unique and better than you'd think. Come check us out, you'll be as surprised as we were...",
     "website": "https://bluewood.com",
     "trails": 25,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 450,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 45,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 300,
     "snowfall_high_in": 410
 }

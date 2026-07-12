@@ -6,6 +6,7 @@
     "description": "Tucked between the Okanogan and Methow Valleys, The \"Loup\" offers skiing like it used to be...short lift lines and a friendly small-town vibe. In addition to an amazing amount of terrain packed into a manageable 300-acre footprint, the Loup offers 10k+ of groomed Nordic trails, tubing and the PNW's only alpine Luge experience.",
     "website": "https://www.skitheloup.com",
     "trails": 14,
+    "trails_xc": 10,
     "lifts": 3,
     "acres": 300,
     "trail_length_km": 50,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 35,
     "difficulty_intermediate": 15,
     "difficulty_advanced": 50,
+    "difficulty_beginner_xc": 25,
+    "difficulty_intermediate_xc": 50,
+    "difficulty_advanced_xc": 25,
     "snowfall_average_in": 86,
     "snowfall_high_in": 120
 }

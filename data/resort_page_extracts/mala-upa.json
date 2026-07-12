@@ -6,6 +6,7 @@
     "description": "Mal\u00e1 \u00dapa offers unforgettable winter experiences. In the highest mountains of the Czech Republic, there is a picturesque ski area, groomed cross-country ski tracks and beautiful nature. The authentic atmosphere of a mountain village, fresh air and skiing with a view of the majestic Sn\u011b\u017eka create ideal conditions for a family winter holiday.",
     "website": "https://www.skimu.cz/zima",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 9,
     "acres": 1680,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 0,
     "difficulty_intermediate": 39,
     "difficulty_advanced": 61,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 26,
     "snowfall_high_in": 28
 }

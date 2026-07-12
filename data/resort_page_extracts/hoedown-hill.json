@@ -6,6 +6,7 @@
     "description": "Not every snowy adventure needs a two-hour drive and a packed lift line. Hoedown Hill brings the best parts of Colorado winter right to Windsor; terrain parks, Ski School, day and night skiing/snowboarding sessions, and tubing. It\u2019s where beginners find their footing, park riders push their limits, and families discover a new winter tradition close to home. Built by locals, for locals, this hill is small on purpose, because it means more runs, more progression, and more time to ride.",
     "website": "https://hoedownhill.com/",
     "trails": 6,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 10,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 50,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 0,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 26,
     "snowfall_high_in": 36
 }

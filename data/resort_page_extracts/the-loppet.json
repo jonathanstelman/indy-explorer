@@ -6,6 +6,7 @@
     "description": "The Loppet Foundation partners with the Minneapolis Park & Recreation Board to provide lessons and learning opportunities to over 40,000 annual guests with programs, events and spaces at Wirth Park. The Loppet Foundation is a PSIA Certified Ski School offering outdoor learning experiences for all ages. Between private, family and group lessons the Loppet is proud to offer something for everyone.",
     "website": "https://loppet.org/",
     "trails": 0,
+    "trails_xc": 16,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 22,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 35,
+    "difficulty_intermediate_xc": 45,
+    "difficulty_advanced_xc": 20,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

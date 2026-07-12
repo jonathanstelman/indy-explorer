@@ -6,6 +6,7 @@
     "description": "The Portes du Soleil is an international ski area with a unique situation. Located between the French and Swiss Alps, people can cross 12 resorts by more than 600 km of piste over both countries. Here, you enjoy the freedom of skiing without borders. Indy Pass offers 2 days of skiing total via Portes Du Soleil resorts. Passholders can choose where to use 2 days between their 12 destinations: ABONDANCE",
     "website": "https://en.portesdusoleil.com/",
     "trails": 307,
+    "trails_xc": null,
     "lifts": 208,
     "acres": 16018,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 300,
     "snowfall_high_in": 400
 }

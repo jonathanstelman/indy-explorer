@@ -6,6 +6,7 @@
     "description": "Nub\u2019s Nob is where skiers go. Situated near Petoskey and Harbor Springs, and a short drive from I-75. This family-owned ski hill features 53 runs on 3 faces, 29 km of cross-country and snowshoe trails, 2 day lodges, 8 chairlifts, one beginner conveyor and one rope tow on 248 skiable acres.",
     "website": "https://www.nubsnob.com",
     "trails": 53,
+    "trails_xc": null,
     "lifts": 10,
     "acres": 248,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 29,
     "difficulty_intermediate": 38,
     "difficulty_advanced": 33,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 125,
     "snowfall_high_in": 188
 }

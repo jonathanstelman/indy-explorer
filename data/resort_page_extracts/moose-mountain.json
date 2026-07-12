@@ -6,6 +6,7 @@
     "description": "Moose Mountain Ski Resort is interior Alaska\u2019s largest alpine ski and snowboard area. With 750 acres, over a mile wide and a mile long, and 1300 vertical feet, \u201cthe Moose\u201d has miles of long gentle cruisers and steep, narrow black diamond runs that can challenge the best skiers and boarders.",
     "website": "https://shredthemoose.com/",
     "trails": 42,
+    "trails_xc": null,
     "lifts": 1,
     "acres": 750,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 10,
     "difficulty_intermediate": 45,
     "difficulty_advanced": 45,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

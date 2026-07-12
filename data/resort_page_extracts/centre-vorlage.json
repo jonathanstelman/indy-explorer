@@ -6,6 +6,7 @@
     "description": "Located in Wakefield, QC, Centre Vorlage offers year-round outdoor fun. Enjoy 18 ski runs, night skiing, a snow park, rentals, and alpine touring in winter. Apr\u00e8s-ski at Le Hub with local food and craft beer. In summer, explore trails for biking, hiking, and running.",
     "website": "https://centrevorlage.ca/en/winter/",
     "trails": 29,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 100,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 11,
     "difficulty_intermediate": 48,
     "difficulty_advanced": 41,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 59,
     "snowfall_high_in": 95
 }

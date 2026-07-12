@@ -6,6 +6,7 @@
     "description": "Discover over 45km of terrain for cross-country skiing and snowshoeing across two mountainous trail networks in the heart of Woodstock, Vermont. Explore historic carriage trails in Vermonts only National Park (the Marsh-Billings-Rockfeller National Historical Park) on Mt. Tom and cruise the varying terrain on Mt. Peg ranging from casual ski-tours to technical tracks. Enjoy the extensive network of winter trails leading to panoramic views of the village and valley below. Cross-country ski and snowshoe rentals, winter clothing, accessories, and trail passes are all available at the Woodstock Nordic Center lodge at the base of Mt. Peg.",
     "website": null,
     "trails": 0,
+    "trails_xc": 48,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 45,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 30,
+    "difficulty_intermediate_xc": 50,
+    "difficulty_advanced_xc": 20,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

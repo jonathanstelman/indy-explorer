@@ -19,6 +19,7 @@ class MetaResponse(BaseModel):
     states: list[str]
     vertical: RangeField
     num_trails: RangeField
+    num_trails_xc: RangeField
     num_lifts: RangeField
     trail_length_mi: RangeField
     pr_total: RangeField
@@ -66,12 +67,16 @@ class ResortSummary(BaseModel):
     vertical_summit_ft: Optional[float] = None
     acres: Optional[float] = None
     num_trails: Optional[float] = None
+    num_trails_xc: Optional[float] = None
     num_lifts: Optional[float] = None
     trail_length_mi: Optional[float] = None
     trail_length_km: Optional[float] = None
     difficulty_beginner: Optional[float] = None
     difficulty_intermediate: Optional[float] = None
     difficulty_advanced: Optional[float] = None
+    difficulty_beginner_xc: Optional[float] = None
+    difficulty_intermediate_xc: Optional[float] = None
+    difficulty_advanced_xc: Optional[float] = None
     snowfall_average_in: Optional[float] = None
     snowfall_high_in: Optional[float] = None
     blackout_count: Optional[int] = None
@@ -121,6 +126,7 @@ class Resort(BaseModel):
     is_allied: Optional[bool] = None
     acres: Optional[float] = None
     num_trails: Optional[float] = None
+    num_trails_xc: Optional[float] = None
     trail_length_mi: Optional[float] = None
     trail_length_km: Optional[float] = None
     num_lifts: Optional[float] = None
@@ -134,6 +140,9 @@ class Resort(BaseModel):
     difficulty_beginner: Optional[float] = None
     difficulty_intermediate: Optional[float] = None
     difficulty_advanced: Optional[float] = None
+    difficulty_beginner_xc: Optional[float] = None
+    difficulty_intermediate_xc: Optional[float] = None
+    difficulty_advanced_xc: Optional[float] = None
     snowfall_average_in: Optional[float] = None
     snowfall_high_in: Optional[float] = None
     has_alpine_display: Optional[str] = None

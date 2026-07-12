@@ -6,6 +6,7 @@
     "description": "Pippu Ski Resort, located near Asahikawa in Hokkaido, offers a family-friendly atmosphere with a hidden delight for powder hounds. On a powder day, the resort becomes a haven for deep snow enthusiasts, offering a nearly private skiing experience. This quaint resort features 9 runs, 330 meters of vertical, and 3 lifts. The main thrill here is off-piste and sidecountry skiing, making Pippu an ideal destination for those looking to explore backcountry terrain and improve their skills.",
     "website": "http://yuyupippu.com/",
     "trails": 9,
+    "trails_xc": null,
     "lifts": 3,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

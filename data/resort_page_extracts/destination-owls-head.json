@@ -3,9 +3,10 @@
     "slug": "destination-owls-head",
     "name": "Destination Owls Head",
     "region": "Canada",
-    "description": "Owl\u2019s Head, a true gem of the Eastern Townships, is a premier ski destination offering breathtaking lake and mountain views. Perfectly groomed slopes, warm hospitality, and unforgettable scenery make every run special. End the day at the cozy resto-bar for an authentic alpine experience.\u00a0",
+    "description": "Owl\u2019s Head, a true gem of the Eastern Townships, is a premier ski destination offering breathtaking lake and mountain views. Perfectly groomed slopes, warm hospitality, and unforgettable scenery make every run special. End the day at the cozy resto-bar for an authentic alpine experience.",
     "website": "https://owlshead.com/en/",
     "trails": 50,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 125,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 130,
     "snowfall_high_in": 170
 }

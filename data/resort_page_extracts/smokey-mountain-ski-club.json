@@ -3,9 +3,10 @@
     "slug": "smokey-mountain-ski-club",
     "name": "Smokey Mountain Ski Club",
     "region": "Canada",
-    "description": "At 845 meters (2769 ft) with multiple well groomed trails, Smokey offers riders everything imaginable, including steep walls and open faces, all accessible by our new Skytrac Quad Chair Lift, two Poma Lifts and our new Magic Carpet for beginners.\u00a0",
+    "description": "At 845 meters (2769 ft) with multiple well groomed trails, Smokey offers riders everything imaginable, including steep walls and open faces, all accessible by our new Skytrac Quad Chair Lift, two Poma Lifts and our new Magic Carpet for beginners.",
     "website": "http://skismokey.ca/",
     "trails": 23,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 40,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 177,
     "snowfall_high_in": 225
 }

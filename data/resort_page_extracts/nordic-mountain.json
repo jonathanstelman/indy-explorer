@@ -6,6 +6,7 @@
     "description": "Located just 45 minutes from the Green Bay area, we are a family-focused resort that has terrain for every need. Located in a beautiful area of Wisconsin, we are more remote and peaceful than other surrounding resorts.",
     "website": "https://nordicmountain.com",
     "trails": 16,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 60,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 31,
     "difficulty_intermediate": 46,
     "difficulty_advanced": 23,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 200
 }

@@ -6,6 +6,7 @@
     "description": "Your community Mountain, right off I89 - An excellent learning area, night skiing/riding, sweet terrain park and 700' of vertical in a small ski area, we have it all. You have to Ski It To Believe It!",
     "website": "https://www.whaleback.com",
     "trails": 31,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 86,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 35,
     "difficulty_advanced": 35,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 96
 }

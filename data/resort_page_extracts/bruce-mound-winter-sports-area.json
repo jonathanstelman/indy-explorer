@@ -6,6 +6,7 @@
     "description": "Bruce Mound Winters Sports Area is a great little ski resort is the southern most point of the northern Wisconsin region in Clark County. There are opportunities for skiing, snowboarding and tubing. There is a chalet with a full service restaurant. Private rooms are available for reservations and outdoor patios with fire places.",
     "website": "https://www.clarkcountywi.gov/brucemound?fbclid=IwY2xjawGGKnNleHRuA2FlbQIxMAABHVI0TRWfgUqgH2E-x8t200vmclOlQI6wlMJneID4P6hL7n2rBYvFIMewtg_aem___GnBCZLiGgScH-L8YrkfA",
     "trails": 10,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 40,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 17,
     "difficulty_intermediate": 17,
     "difficulty_advanced": 63,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 12,
     "snowfall_high_in": 53
 }

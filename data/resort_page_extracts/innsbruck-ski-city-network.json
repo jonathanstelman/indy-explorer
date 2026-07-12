@@ -3,9 +3,10 @@
     "slug": "innsbruck-ski-city-network",
     "name": "Innsbruck Ski & City Network",
     "region": "Europe",
-    "description": "The SKI plus CITY Pass is a ticket that connects skiing and snowboarding in 5 ski destinations. The four skiing areas in the Stubaital, above all the Stubai Glacier, the Glungezer in Tyrol\u2019s Hall area, the\u00a0Axamer Lizum, Patscherkofelbahn\u00a0and the\u00a0K\u00fchtai\u00a0in the Innsbruck area as well as the Hochoetz skiing area in the anterior \u00d6tztal Valley - a total of 12 skiing areas, 265 km of ski slopes, and 49 km of ski mountaineering routes available from October to May on a skiing vacation with a single card.",
-    "website": "https://www.ski-plus-city.com/en/",
+    "description": "The SKI plus CITY Pass is a ticket that connects skiing and snowboarding in 5 ski destinations. The four skiing areas in the Stubaital, above all the Stubai Glacier, the Glungezer in Tyrol\u2019s Hall area, the Axamer Lizum, Patscherkofelbahn and the K\u00fchtai in the Innsbruck area as well as the Hochoetz skiing area in the anterior \u00d6tztal Valley - a total of 12 skiing areas, 265 km of ski slopes, and 49 km of ski mountaineering routes available from October to May on a skiing vacation with a single card.",
+    "website": "https://www.innsbruck.info/en/skiing/ski-plus-city-pass.html",
     "trails": 0,
+    "trails_xc": null,
     "lifts": 111,
     "acres": 11614,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 248,
     "snowfall_high_in": 437
 }

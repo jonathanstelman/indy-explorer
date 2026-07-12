@@ -6,6 +6,7 @@
     "description": "Yuzawa Nakazato Snow Resort has great slopes for beginners making their ski debut, but also has ample ungroomed and tree run areas, making for all-day fun for families and friends!",
     "website": "https://www.yuzawa-nakazato.com/winter/",
     "trails": 16,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 326,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 531,
     "snowfall_high_in": 925
 }

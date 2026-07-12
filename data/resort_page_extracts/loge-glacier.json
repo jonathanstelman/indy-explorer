@@ -6,6 +6,7 @@
     "description": "LOGE Glacier grooms a 30+ kilometer network of Nordic trails for skate and classic skiing along the southern edge of Glacier National Park and adjacent to the Great Bear Wilderness. The lodge provides rental gear, food, and cocktails for skiers after a day on the trails.",
     "website": "https://www.logecamps.com/property/glacier-natl-park",
     "trails": 0,
+    "trails_xc": 20,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 30,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 45,
+    "difficulty_intermediate_xc": 45,
+    "difficulty_advanced_xc": 10,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

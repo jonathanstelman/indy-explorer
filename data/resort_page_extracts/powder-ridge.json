@@ -6,6 +6,7 @@
     "description": "One of the Midwest\u2019s hidden gems, Powder Ridge is situated just west of the Twin Cities that offers a skiing experience fit for the entire family! With our 15 precisely groomed runs, 3 chairlifts, 3 terrain parks, and a full-service restaurant, you are sure to enjoy the ride at our family-owned and operated resort!",
     "website": "https://powderridge.com",
     "trails": 13,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 60,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 45,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 15,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 60,
     "snowfall_high_in": 75
 }

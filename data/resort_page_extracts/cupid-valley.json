@@ -6,6 +6,7 @@
     "description": "Located in a heavy snowfall region, this ski resort enjoys an abundance of snow. Although it is a small resort, it has courses that can be enjoyed by all levels of skiers, from beginners to experts. There is also a day-trip hot spring nearby, where you can relax after a long day of skiing.",
     "website": "https://www.yukidaruma-kogen.com/winter.html",
     "trails": 12,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 77,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 49,
     "snowfall_high_in": 56
 }

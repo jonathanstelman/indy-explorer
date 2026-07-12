@@ -6,6 +6,7 @@
     "description": "Cape Smokey offers thrilling skiing amid Nova Scotia's scenic splendor. Nestled along the Cabot Trail, its slopes cater to all skill levels, with gentle beginner runs and challenging black diamond trails. Sweeping views of the Atlantic Ocean accompany exhilarating descents, creating an unforgettable alpine experience on Canada's east coast.",
     "website": "https://capesmokey.ca/",
     "trails": 16,
+    "trails_xc": null,
     "lifts": 2,
     "acres": 150,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 25,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 26,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 236,
     "snowfall_high_in": 275
 }

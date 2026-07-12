@@ -3,9 +3,10 @@
     "slug": "mt-washington",
     "name": "Mt. Washington",
     "region": "Canada",
-    "description": "Relish in the authentic West Coast vibe, where the clock ticks a little slower. Island time radiates throughout the happy, laid-back Mt. Washington locals who prosper in the bounty of fresh local fair, beautiful climate, and an endless coastal playground, year-round. The true seasonal magic you're looking for is all right here. \u00a0",
+    "description": "Relish in the authentic West Coast vibe, where the clock ticks a little slower. Island time radiates throughout the happy, laid-back Mt. Washington locals who prosper in the bounty of fresh local fair, beautiful climate, and an endless coastal playground, year-round. The true seasonal magic you're looking for is all right here.",
     "website": "https://www.mountwashington.ca/",
     "trails": 81,
+    "trails_xc": null,
     "lifts": 11,
     "acres": 1700,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 457,
     "snowfall_high_in": 733
 }

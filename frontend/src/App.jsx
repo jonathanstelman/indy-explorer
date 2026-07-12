@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button, Checkbox, ConfigProvider, Layout } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 import { useFilters } from '@/hooks/useFilters'
@@ -59,6 +59,19 @@ export default function App() {
     () => Object.fromEntries(COLUMN_DEFS.map(c => [c.field, true]))
   )
 
+  // Displayed columns flow declaratively from the user's Select Columns choices — this
+  // (rather than imperative tableRef.current?.api.applyColumnState calls) is what keeps
+  // visibility correct across grid remounts (e.g. switching mobile tabs or collapsing/
+  // expanding the table), since colVisibility is the single source of truth re-applied
+  // on every render instead of a one-off imperative call that a remount would lose.
+  const columnDefs = useMemo(
+    () => COLUMN_DEFS.map(c => ({
+      ...c,
+      hide: !colVisibility[c.field],
+    })),
+    [colVisibility]
+  )
+
   // Fetch meta and full unfiltered resort list once on mount
   useEffect(() => {
     fetchMeta()
@@ -83,17 +96,16 @@ export default function App() {
     tableRef.current?.api.exportDataAsCsv({ fileName: 'indy-resorts.csv' })
   }
 
+  // Visibility flows into the grid declaratively via the memoized columnDefs
+  // above — no imperative applyColumnState needed here.
   function toggleColumn(field) {
-    const next = !colVisibility[field]
-    setColVisibility(prev => ({ ...prev, [field]: next }))
-    tableRef.current?.api.applyColumnState({ state: [{ colId: field, hide: !next }] })
+    setColVisibility(prev => ({ ...prev, [field]: !prev[field] }))
   }
 
   function toggleGroup(group) {
     const allChecked = group.fields.every(f => colVisibility[f])
     const next = !allChecked
     setColVisibility(prev => ({ ...prev, ...Object.fromEntries(group.fields.map(f => [f, next])) }))
-    tableRef.current?.api.applyColumnState({ state: group.fields.map(f => ({ colId: f, hide: !next })) })
   }
 
   const colsContent = (
@@ -242,6 +254,7 @@ export default function App() {
                         <ResortTable
                           ref={tableRef}
                           resorts={resorts}
+                          columnDefs={columnDefs}
                           onRowClick={setSelectedResortId}
                         />
                       </div>
@@ -421,6 +434,7 @@ export default function App() {
                     <ResortTable
                       ref={tableRef}
                       resorts={resorts}
+                      columnDefs={columnDefs}
                       onRowClick={setSelectedResortId}
                     />
                   </div>

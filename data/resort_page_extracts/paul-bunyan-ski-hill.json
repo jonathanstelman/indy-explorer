@@ -6,6 +6,7 @@
     "description": "Paul Bunyan Ski Hill is a classic old school Midwest ski resort where families gather for authentic Midwest skiing in Lakewood, Wisconsin. Pine trees, fresh snow, and small-town charm create a nostalgic skiing experience. With diverse terrain that skis bigger than it is and a vintage 1967 Hall T-Bar, the hill proudly preserves the traditional feel of skiing\u2019s earlier days.",
     "website": "https://skipaulbunyan.com/",
     "trails": 14,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 30,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 20,
     "difficulty_advanced": 50,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

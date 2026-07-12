@@ -6,6 +6,7 @@
     "description": "One of North America\u2019s oldest ski resorts! With accessible terrain for families, plus challenging options for advanced skiers & riders, including the infamous race trail The Face which hosts the longest-running ski race in North America, the Fisk Trophy Race and also saw the very first National Snow Surfing Championship in 1982. The ski area includes a world-class snow sports school, excellent snowmaking and grooming, and a fun apr\u00e8s ski atmosphere! Formerly known as Suicide Six, Saskadena means Standing Mountain in the native Abenaki language.",
     "website": "https://www.saskadenasix.com",
     "trails": 28,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 100,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 42,
     "snowfall_high_in": 82
 }

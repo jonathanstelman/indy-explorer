@@ -6,6 +6,7 @@
     "description": "Enjoy the finest powder snow at a great price at Amihari Onsen Ski Resort, the highest ski resort in Iwate Prefecture!",
     "website": "https://qkamura.or.jp/iwate/ski/",
     "trails": 7,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 143,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 35,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 15,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

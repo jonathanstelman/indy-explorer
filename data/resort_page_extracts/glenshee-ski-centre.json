@@ -6,6 +6,7 @@
     "description": "Nestled amidst the stunning Cairngorms National Park, Glenshee Ski Centre beckons winter sports enthusiasts with expansive slopes and breath-taking scenery. Boasting the title of Scotland\u2019s largest ski resort, there's a variety of terrain suitable for all skiers and snowboarders. From invitingly easy to the surprisingly steep, Glenshee offers the most extensive skiing and snowboarding in Scotland. Steeps and glades, pisted and unpisted, open bowls and narrow gullies, no matter your ability, Glenshee's mountains have your name on them!",
     "website": "https://www.ski-glenshee.co.uk/Winter",
     "trails": 36,
+    "trails_xc": null,
     "lifts": 21,
     "acres": 2000,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 22,
     "difficulty_intermediate": 36,
     "difficulty_advanced": 6,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 25,
     "snowfall_high_in": 30
 }

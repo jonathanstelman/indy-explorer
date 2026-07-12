@@ -6,6 +6,7 @@
     "description": "Nestled in the Kurikoma Quasi-National Park, Onikoube Ski Resort offers a charming, European-style alpine experience in the heart of northern Japan. Known for its wide-open slopes and volcanic backdrop, it\u2019s a favorite for families and those looking to escape the crowded tracks of more mainstream resorts.",
     "website": null,
     "trails": 9,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 150,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 11,
     "difficulty_intermediate": 56,
     "difficulty_advanced": 33,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 80,
     "snowfall_high_in": 118
 }

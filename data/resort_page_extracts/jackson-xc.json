@@ -6,6 +6,7 @@
     "description": "JacksonXC rolls out the white corduroy carpet with nightly grooming. With more than 100 Km of trails, from fairways to forests, riverbanks to mountainsides, there are trails for chilling, and thrilling. First-timers love our fairway loops and rec skiers extend out along the Ellis River. There are multiple long-distance routes for the experienced XC skier; whether you want flat and rolling, or longer pitches both up and down! Lessons are available daily and up-to-date rental ski packages let you get out and go like never before.",
     "website": null,
     "trails": 0,
+    "trails_xc": 60,
     "lifts": 0,
     "acres": null,
     "trail_length_km": 100,
@@ -19,6 +20,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": 50,
+    "difficulty_intermediate_xc": 25,
+    "difficulty_advanced_xc": 25,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

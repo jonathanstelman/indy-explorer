@@ -6,6 +6,7 @@
     "description": "The peak of Paland\u00f6ken Mountains covering the southern part of Erzurum as an arc and locating only 10 kms away from Erzurum is Ejder Hill with 3271 mt altitude. With its high quality snow and long track, Paland\u00f6ken is the favorite place of skiers and as a result of mass investments it has become a winter sports center.",
     "website": "https://www.ejder3200.com/Main/Index",
     "trails": 32,
+    "trails_xc": null,
     "lifts": 19,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": null,
     "difficulty_intermediate": null,
     "difficulty_advanced": null,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": null,
     "snowfall_high_in": null
 }

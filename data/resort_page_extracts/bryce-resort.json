@@ -6,6 +6,7 @@
     "description": "Whether you're looking for an adventure filled escape or a peaceful retreat we have everything for a fulfilling trip no matter what time of year it is. Ski or snowboard the slopes, rip down the tubing hill, and warm up by the fire in the Copper Kettle. Apr\u00e9s every weekend at Carter's H\u00fctte in the base area! Regardless of which activity you choose the atmosphere at Bryce is top notch!",
     "website": "https://bryceresort.com",
     "trails": 8,
+    "trails_xc": null,
     "lifts": 4,
     "acres": 32,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 40,
     "difficulty_intermediate": 50,
     "difficulty_advanced": 10,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 40,
     "snowfall_high_in": 80
 }

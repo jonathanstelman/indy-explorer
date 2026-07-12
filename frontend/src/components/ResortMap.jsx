@@ -10,11 +10,17 @@ import Panel from '@/components/common/Panel'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
-// Fixed content shape (always 6 label/value rows) makes the rendered size predictable —
-// used to clamp the tooltip within its container instead of letting it overflow and get
-// clipped by Layout.Content's `overflow: hidden` when the map area is short.
+// Predictable content shape (6 label/value rows, 7 when the hovered resort has XC trail
+// data) makes the rendered size computable — used to clamp the tooltip within its container
+// instead of letting it overflow and get clipped by Layout.Content's `overflow: hidden`
+// when the map area is short.
 const TOOLTIP_WIDTH = 260
-const TOOLTIP_HEIGHT = 170
+const TOOLTIP_BASE_HEIGHT = 170 // height at 6 rows
+const TOOLTIP_ROW_HEIGHT = 25   // added when the extra Trails (XC) row is present
+
+function tooltipHeight(hasXcTrails) {
+  return TOOLTIP_BASE_HEIGHT + (hasXcTrails ? TOOLTIP_ROW_HEIGHT : 0)
+}
 
 const INITIAL_VIEW_STATE = {
   latitude: 44,
@@ -150,6 +156,12 @@ function MapTooltip({ info }) {
     ['Acres',    r.acres != null ? r.acres.toLocaleString() : '—'],
     ['Vertical', r.vertical != null ? `${r.vertical.toLocaleString()} ft` : '—'],
     ['Trails',   r.num_trails != null ? r.num_trails : '—'],
+    // Per-resort presence check, not a global toggle — same pattern as the detail modal.
+    // Suppressed for XC-only resorts: num_trails (from the main listing page) and
+    // num_trails_xc (from the detail page's XC field) are always identical there, since
+    // both describe the resort's one and only trail network — showing both reads as a
+    // duplication bug rather than two independently-sourced confirmations of one number.
+    ...(r.num_trails_xc != null && r.has_alpine ? [['Trails (XC)', r.num_trails_xc]] : []),
     ['Lifts',    r.num_lifts != null ? r.num_lifts : '—'],
   ]
   return (
@@ -318,12 +330,13 @@ export default function ResortMap({ resorts = [], onResortClick, isMobile }) {
     onHover: ({ object, x, y }) => {
       if (!object) { setTooltipInfo(null); return }
       const { width, height } = containerRef.current?.getBoundingClientRect() ?? {}
+      const th = tooltipHeight(object.num_trails_xc != null && object.has_alpine)
       const left = x > width / 2
         ? Math.max(4, x - 8 - TOOLTIP_WIDTH)
         : Math.max(4, Math.min(x + 8, width - TOOLTIP_WIDTH - 4))
       const top = y > height / 2
-        ? Math.max(4, y - 8 - TOOLTIP_HEIGHT)
-        : Math.max(4, Math.min(y + 8, height - TOOLTIP_HEIGHT - 4))
+        ? Math.max(4, y - 8 - th)
+        : Math.max(4, Math.min(y + 8, height - th - 4))
       setTooltipInfo({ resort: object, left, top })
     },
   })

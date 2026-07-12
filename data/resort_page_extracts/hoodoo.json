@@ -6,6 +6,7 @@
     "description": "Awaken a New Sense of Fun at Hoodoo! Reconnect & reinvigorate in a place of incredible natural beauty at Oregon\u2019s original ski area & your destination for family-friendly winter fun!",
     "website": "http://skihoodoo.com",
     "trails": 36,
+    "trails_xc": null,
     "lifts": 6,
     "acres": 805,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 21,
     "difficulty_intermediate": 41,
     "difficulty_advanced": 38,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 250,
     "snowfall_high_in": 400
 }

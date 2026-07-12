@@ -6,6 +6,7 @@
     "description": "Cataloochee Ski Area, located at 1080 Ski Lodge Road in Maggie Valley, was the first ski area in the state of North Carolina. Founded by Tom Alexander in 1961, the ski area initially came to fruition as an explorative opportunity to provide employment for local ranch hands during the winter season. Since that time, we have grown to offer SO much more!",
     "website": "https://cataloochee.com",
     "trails": 18,
+    "trails_xc": null,
     "lifts": 5,
     "acres": 260,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 44,
     "difficulty_intermediate": 39,
     "difficulty_advanced": 17,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 21,
     "snowfall_high_in": 35
 }

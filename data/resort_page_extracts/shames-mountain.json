@@ -6,6 +6,7 @@
     "description": "Home to 1,600 vertical feet of powder, Shames Mountain is located 35 km west of Terrace in the spectacular Shames Valley amidst the majestic Coast Mountain Range of British Columbia. Established in the early 1990s, Shames Mountain has 28 cut runs and an abundance of natural glades. Shames is a family-friendly mountain with lots of great options from beginner to expert. Shames is surrounded by more than 7,800 acres of backcountry bliss and the options are only limited by your imagination! 480 inches fall on average each season.",
     "website": "https://mymountaincoop.ca/",
     "trails": 30,
+    "trails_xc": null,
     "lifts": 3,
     "acres": 252,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 20,
     "difficulty_intermediate": 60,
     "difficulty_advanced": 20,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 480,
     "snowfall_high_in": 800
 }

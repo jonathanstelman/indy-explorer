@@ -6,6 +6,7 @@
     "description": "Tyrol Basin has friendly family fun for everyone! Located just 18 miles west of Madison, Tyrol Basin offers some of the best snow, trails, and park terrain in the Midwest. Three chairlifts, two carpets, and two tow ropes servicing 24 runs.",
     "website": "https://www.tyrolbasin.com",
     "trails": 24,
+    "trails_xc": null,
     "lifts": 7,
     "acres": 40,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 30,
     "difficulty_advanced": 40,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 51,
     "snowfall_high_in": 101
 }

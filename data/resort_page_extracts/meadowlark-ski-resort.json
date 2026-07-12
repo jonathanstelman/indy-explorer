@@ -6,6 +6,7 @@
     "description": "Located on US Highway 16 in Wyoming's Bighorn Mountains, this hidden gem has some great terrain and no lift lines! Beginners and experts alike will find what they need, both on the mountain and in the lodge: Ski and snowboard rentals, great food, a full bar and a mountain atmosphere.",
     "website": "https://snoflo.org/ski-area/big-horn-ski-resort",
     "trails": 14,
+    "trails_xc": null,
     "lifts": 2,
     "acres": 300,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 30,
     "difficulty_intermediate": 40,
     "difficulty_advanced": 30,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 120,
     "snowfall_high_in": 260
 }

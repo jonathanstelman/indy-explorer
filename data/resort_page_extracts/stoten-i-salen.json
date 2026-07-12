@@ -3,9 +3,10 @@
     "slug": "stoten-i-salen",
     "name": "St\u00f6ten i S\u00e4len",
     "region": "Europe",
-    "description": "Located in the Dalarna region near the Norwegian border, St\u00f6ten is widely regarded as the premier destination within the S\u00e4len mountain range. While the Swedish mountains are lower in elevation than the Alps, St\u00f6ten distinguishes itself by offering the highest vertical drop and some of the most diverse terrain in the region, making it a favorite for both families and serious skiers. St\u00f6ten i S\u00e4len has been announced as a new Indy Pass member for the 26/27 season. Access to this mountain does not begin until fall/winter 2026/27.",
+    "description": "Located in the Dalarna region near the Norwegian border, St\u00f6ten is widely regarded as the premier destination within the S\u00e4len mountain range. While the Swedish mountains are lower in elevation than the Alps, St\u00f6ten distinguishes itself by offering the highest vertical drop and some of the most diverse terrain in the region, making it a favorite for both families and serious skiers.",
     "website": "https://www.stoten.se/en/",
     "trails": 53,
+    "trails_xc": null,
     "lifts": 23,
     "acres": null,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 72,
     "difficulty_intermediate": 15,
     "difficulty_advanced": 13,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 80,
     "snowfall_high_in": 120
 }

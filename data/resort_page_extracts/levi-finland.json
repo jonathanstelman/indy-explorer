@@ -6,6 +6,7 @@
     "description": "Levi Ski Resort, nestled in Finnish Lapland, is Finland\u2019s largest and most popular winter sports destination. It offers 44 slopes, 26 lifts, and over 230 km of cross-country trails. Levi is known for its snow reliability, its long skiing season and family-friendly atmosphere. Levi hosts the annual Alpine Skiing World Cup and boasts vibrant apr\u00e8s-ski and eco-friendly operations.",
     "website": "https://www.levi.fi/en/",
     "trails": 44,
+    "trails_xc": null,
     "lifts": 26,
     "acres": 370,
     "trail_length_km": null,
@@ -21,6 +22,9 @@
     "difficulty_beginner": 44,
     "difficulty_intermediate": 46,
     "difficulty_advanced": 10,
+    "difficulty_beginner_xc": null,
+    "difficulty_intermediate_xc": null,
+    "difficulty_advanced_xc": null,
     "snowfall_average_in": 50,
     "snowfall_high_in": 70
 }
