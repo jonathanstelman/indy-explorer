@@ -9,7 +9,7 @@ const nullFmt = p => p.value != null ? p.value : '—'
 const numFmt  = p => p.value != null ? Number(p.value).toLocaleString() : '—'
 
 function BoolCell({ value }) {
-  if (value === true)  return <span style={{ color: COLORS.success }}>✓</span>
+  if (value === true)  return <span style={{ color: COLORS.bgHeader }}>✓</span>
   if (value === false) return <span style={{ color: COLORS.neutral  }}>✗</span>
   return <span style={{ color: COLORS.textMuted }}>—</span>
 }
