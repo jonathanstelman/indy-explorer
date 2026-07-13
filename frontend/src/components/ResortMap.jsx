@@ -6,6 +6,7 @@ import Map from 'react-map-gl/mapbox'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useFilters } from '@/hooks/useFilters'
 import { COLORS, FONTS, MAP_DOT_COLORS } from '@/theme'
+import { formatVertical, formatAcres } from '@/utils/units'
 import Panel from '@/components/common/Panel'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
@@ -144,7 +145,7 @@ function fitViewToResorts(resorts, width, height, filters) {
   }
 }
 
-function MapTooltip({ info }) {
+function MapTooltip({ info, unit }) {
   const { resort: r, left, top } = info
   const locationParts = r.country === 'United States'
     ? [r.city, r.state]
@@ -153,8 +154,8 @@ function MapTooltip({ info }) {
   const rows = [
     ['Resort',   r.name],
     ['Location', location || '—'],
-    ['Acres',    r.acres != null ? r.acres.toLocaleString() : '—'],
-    ['Vertical', r.vertical != null ? `${r.vertical.toLocaleString()} ft` : '—'],
+    ['Acreage',  formatAcres(r.acres, unit)],
+    ['Vertical', formatVertical(r.vertical, unit)],
     ['Trails',   r.num_trails != null ? r.num_trails : '—'],
     // Per-resort presence check, not a global toggle — same pattern as the detail modal.
     // Suppressed for XC-only resorts: num_trails (from the main listing page) and
@@ -290,7 +291,7 @@ function MapAttribution() {
   )
 }
 
-export default function ResortMap({ resorts = [], onResortClick, isMobile }) {
+export default function ResortMap({ resorts = [], onResortClick, unit = 'imperial', isMobile }) {
   const containerRef = useRef()
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE)
   const [tooltipInfo, setTooltipInfo] = useState(null)
@@ -360,7 +361,7 @@ export default function ResortMap({ resorts = [], onResortClick, isMobile }) {
       </DeckGL>
       <MapLegend />
       {!isMobile && <MapAttribution />}
-      {tooltipInfo && <MapTooltip info={tooltipInfo} />}
+      {tooltipInfo && <MapTooltip info={tooltipInfo} unit={unit} />}
     </div>
   )
 }

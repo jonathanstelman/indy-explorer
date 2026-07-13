@@ -4,11 +4,12 @@ import ModalHeader from '@/components/common/ModalHeader'
 
 function Btn({ children, variant }) {
   const isDanger = variant === 'danger'
+  const isPrimary = variant === 'primary'
   return (
     <span style={{
       display: 'inline-block',
       background: isDanger ? COLORS.error : COLORS.bgHeader,
-      color: isDanger ? '#ffffff' : COLORS.error,
+      color: isDanger ? '#ffffff' : isPrimary ? COLORS.primary : COLORS.error,
       fontFamily: FONTS.mono,
       fontSize: 12,
       fontWeight: 700,
@@ -50,6 +51,12 @@ function desktopSections() {
         Opens from any map dot or table row. Shows trail breakdown, snowfall, blackout dates, and Peak Rankings score.
       </>,
     },
+    {
+      heading: 'Units',
+      body: <>
+        Tap the <Btn variant="primary">ft</Btn> / <Btn variant="primary">m</Btn> button in the header or filter sidebar to switch between imperial and metric — it updates vertical drop, trail length, snowfall, and acreage everywhere in the app.
+      </>,
+    },
   ]
 }
 
@@ -71,6 +78,12 @@ function mobileSections() {
       heading: 'Resort detail',
       body: <>
         Tap any map dot or table row to open the resort detail view — trail breakdown, snowfall, blackout dates, and Peak Rankings score.
+      </>,
+    },
+    {
+      heading: 'Units',
+      body: <>
+        Tap the <Btn variant="primary">ft</Btn> / <Btn variant="primary">m</Btn> button in the header or filter sidebar to switch between imperial and metric — it updates vertical drop, trail length, snowfall, and acreage everywhere in the app.
       </>,
     },
   ]

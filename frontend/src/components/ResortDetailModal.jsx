@@ -7,6 +7,7 @@ import {
 import { Button, Calendar, Divider, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
 import { classifyBlackoutDates } from '@/utils/blackout'
+import { formatVertical, formatTrailLength, formatAcres, convertSnowfall, UNIT_LABELS } from '@/utils/units'
 import { COLORS, hexToHsl } from '@/theme'
 import ModalShell from '@/components/common/ModalShell'
 import ModalHeader from '@/components/common/ModalHeader'
@@ -132,20 +133,22 @@ function DifficultyChart({ beginner, intermediate, advanced, isMobile, title = '
   )
 }
 
-function SnowfallChart({ avg, high }) {
+function SnowfallChart({ avg, high, unit = 'imperial' }) {
   if (avg == null && high == null) return null
   const data = [
-    { label: 'Average', inches: avg != null ? Number(avg) : null },
-    { label: 'Max',     inches: high != null ? Number(high) : null },
-  ].filter(d => d.inches != null)
+    { label: 'Average', snow: convertSnowfall(avg, unit) },
+    { label: 'Max',     snow: convertSnowfall(high, unit) },
+  ].filter(d => d.snow != null)
   if (data.length === 0) return null
   return (
     <div style={{ maxWidth: 210 }}>
-      <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 4 }}>Snowfall (in)</Text>
+      <Text type="secondary" style={{ fontSize: 11, display: 'block', marginBottom: 4 }}>
+        Snowfall ({UNIT_LABELS.snowfall[unit === 'metric' ? 'metric' : 'imperial']})
+      </Text>
       <ResponsiveContainer width="100%" height={90}>
         <BarChart data={data} margin={{ top: 16, right: 0, bottom: 0, left: -10 }}>
           <XAxis dataKey="label" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
-          <Bar dataKey="inches" fill={COLORS.primary} isAnimationActive={false}
+          <Bar dataKey="snow" fill={COLORS.primary} isAnimationActive={false}
             label={{ position: 'top', fontSize: 11 }} />
         </BarChart>
       </ResponsiveContainer>
@@ -346,7 +349,7 @@ function BlackoutCalendar({ standardJson, lttJson }) {
   )
 }
 
-export default function ResortDetailModal({ resortId, onClose, isMobile = false }) {
+export default function ResortDetailModal({ resortId, onClose, unit = 'imperial', isMobile = false }) {
   const [resort, setResort] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -441,8 +444,8 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
                 // identical there (both describe the resort's one trail network), so
                 // showing both reads as a duplication bug rather than useful information.
                 ...(resort.num_trails_xc != null && resort.has_alpine ? [['Trails (XC)', fmt(resort.num_trails_xc)]] : []),
-                ['Trail Length XC (mi)', fmt(resort.trail_length_mi)],
-                ['Acreage (ac)',      fmt(resort.acres)],
+                ['Trail Length XC', formatTrailLength(resort.trail_length_mi, unit)],
+                ['Acreage',         formatAcres(resort.acres, unit)],
               ].map(([label, value]) => (
                 <div key={label}>
                   <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>
@@ -452,9 +455,9 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {[
-                ['Summit (ft)',   fmt(resort.vertical_summit_ft)],
-                ['Vertical (ft)', fmt(resort.vertical)],
-                ['Base (ft)',     fmt(resort.vertical_base_ft)],
+                ['Summit',   formatVertical(resort.vertical_summit_ft, unit)],
+                ['Vertical', formatVertical(resort.vertical, unit)],
+                ['Base',     formatVertical(resort.vertical_base_ft, unit)],
               ].map(([label, value]) => (
                 <div key={label}>
                   <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>
@@ -484,7 +487,7 @@ export default function ResortDetailModal({ resortId, onClose, isMobile = false 
                     isMobile={isMobile}
                   />
                 </div>
-                <SnowfallChart avg={resort.snowfall_average_in} high={resort.snowfall_high_in} />
+                <SnowfallChart avg={resort.snowfall_average_in} high={resort.snowfall_high_in} unit={unit} />
               </div>
             </>
           )}

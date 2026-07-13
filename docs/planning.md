@@ -6,7 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/118-ag-grid-theming` — AG Grid Theming API migration
+`feature/128-unit-selector` — Unit selector (imperial/metric). Implemented and verified live via Playwright (desktop + 390px mobile); not yet committed. See `docs/decisions.md` (2026-07-13) for the full design rationale, posted to #128 as a comment before implementation began.
+
+**#118 merged and deployed (2026-07-12):** AG Grid Theming API migration — see `docs/decisions.md` for the full trail (real prior styling was mostly silently broken; row hover, checkmark contrast fix, header separator investigation).
 
 **#11 merged and deployed (2026-07-12):** Parser `-xc` extraction, `num_trails_xc` + 3 `difficulty_*_xc` columns in `resorts.csv` output, backend model/filters/meta, and frontend surfacing (sidebar slider, table columns, map tooltip, detail modal difficulty chart). Frontend went through several UI iterations after live review — a `view`/display-mode concept (shared `ViewSelector`, independent URL filter, mode-aware hiding) was built, polished, then removed entirely once the real scope was named as one filterable field (`num_trails_xc`) and three display-only ones — not enough to justify it. Final shape: `has_alpine`/`has_cross_country` are ordinary boolean filters; `Trails (XC)` is a plain always-shown sidebar slider; `num_trails_xc`/`difficulty_*_xc` are ordinary optional table columns; the map tooltip's XC row is a per-resort presence check (suppressed for XC-only resorts, where it's always identical to `Trails`), matching the detail modal's existing pattern. See `docs/decisions.md` for the full history and reusable UI patterns worth keeping. Frontend auto-deployed via Vercel, backend manually deployed to Fly.io — verified live in production (`/meta` and `/resorts` both serving real `num_trails_xc`/`difficulty_*_xc` values).
 
@@ -38,6 +40,8 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #83 | Data validation on Resort Pydantic model | P1 (deferred) | Blocks #77 |
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | Done |
+| #118 | AG Grid Theming API migration | P2 | Done |
+| #128 | Unit selector (imperial/metric) | P2 | Implemented, not yet committed |
 
 **#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar
