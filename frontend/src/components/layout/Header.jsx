@@ -1,5 +1,6 @@
 import { Button, Divider, Layout, Typography, theme } from 'antd'
 import { COLORS, FONTS } from '@/theme'
+import UnitToggle from '@/components/common/UnitToggle'
 
 export default function AppHeader({ sidebarCollapsed, onToggleSidebar, onHowToUse, isMobile }) {
   const { token } = theme.useToken()
@@ -49,6 +50,7 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar, onHowToUs
       >
         Indy Explorer
       </Typography.Title>
+      <UnitToggle style={{ fontSize: isMobile ? 12 : 13 }} />
       <Button
         type="text"
         onClick={onHowToUse}

@@ -1,12 +1,26 @@
-import { forwardRef, useCallback } from 'react'
+import { forwardRef, useCallback, useEffect } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community'
 import { COLORS, FONTS, withAlpha } from '@/theme'
+import { UNIT_LABELS, convertVertical, convertTrailLength, convertSnowfall, convertAcres } from '@/utils/units'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
 const nullFmt = p => p.value != null ? p.value : '—'
 const numFmt  = p => p.value != null ? Number(p.value).toLocaleString() : '—'
+
+// Unit-bearing columns read the current toggle off AG Grid's `context` (see the
+// `context={{ unit }}` prop below) so header + cell values flip together without
+// needing separate imperial/metric columns.
+function unitHeader(kind, baseLabel) {
+  return params => `${baseLabel} (${UNIT_LABELS[kind][params.context?.unit === 'metric' ? 'metric' : 'imperial']})`
+}
+function unitFmt(convert) {
+  return params => {
+    const v = convert(params.value, params.context?.unit === 'metric' ? 'metric' : 'imperial')
+    return v != null ? v.toLocaleString() : '—'
+  }
+}
 
 function BoolCell({ value }) {
   if (value === true)  return <span style={{ color: COLORS.bgHeader }}>✓</span>
@@ -48,18 +62,16 @@ export const COLUMN_DEFS = [
   { field: 'location_name', headerName: 'Location', width: 120 },
 
   // Elevation
-  { field: 'vertical',           headerName: 'Vertical (ft)', width: 106, valueFormatter: numFmt },
-  { field: 'vertical_summit_ft', headerName: 'Summit (ft)',   width: 100, valueFormatter: numFmt },
-  { field: 'vertical_base_ft',   headerName: 'Base (ft)',     width: 88,  valueFormatter: numFmt },
-  { field: 'vertical_meters',    headerName: 'Vertical (m)',  width: 108, valueFormatter: numFmt },
+  { field: 'vertical',           headerName: 'Vertical', headerValueGetter: unitHeader('vertical', 'Vertical'), width: 106, valueFormatter: unitFmt(convertVertical) },
+  { field: 'vertical_summit_ft', headerName: 'Summit',   headerValueGetter: unitHeader('vertical', 'Summit'),   width: 100, valueFormatter: unitFmt(convertVertical) },
+  { field: 'vertical_base_ft',   headerName: 'Base',     headerValueGetter: unitHeader('vertical', 'Base'),     width: 88,  valueFormatter: unitFmt(convertVertical) },
 
   // Size
-  { field: 'acres',           headerName: 'Acres',             width: 78,  valueFormatter: numFmt },
+  { field: 'acres',           headerName: 'Acreage', headerValueGetter: unitHeader('acreage', 'Acreage'), width: 84,  valueFormatter: unitFmt(convertAcres) },
   { field: 'num_trails',      headerName: 'Trails',            width: 72,  valueFormatter: numFmt },
   { field: 'num_trails_xc',   headerName: 'Trails (XC)',       width: 100, valueFormatter: numFmt },
   { field: 'num_lifts',       headerName: 'Lifts',             width: 64,  valueFormatter: numFmt },
-  { field: 'trail_length_mi', headerName: 'Trail Length XC (mi)', width: 138, valueFormatter: numFmt },
-  { field: 'trail_length_km', headerName: 'Trail Length XC (km)', width: 138, valueFormatter: numFmt },
+  { field: 'trail_length_mi', headerName: 'Trail Length XC', headerValueGetter: unitHeader('trailLength', 'Trail Length XC'), width: 144, valueFormatter: unitFmt(convertTrailLength) },
 
   // Difficulty
   { field: 'difficulty_beginner',        headerName: 'Beginner (%)',        width: 120, valueFormatter: numFmt },
@@ -70,8 +82,8 @@ export const COLUMN_DEFS = [
   { field: 'difficulty_advanced_xc',     headerName: 'Advanced XC (%)',     width: 132, valueFormatter: numFmt },
 
   // Snow
-  { field: 'snowfall_average_in', headerName: 'Avg Snowfall (in)', width: 138, valueFormatter: numFmt },
-  { field: 'snowfall_high_in',    headerName: 'Max Snowfall (in)', width: 138, valueFormatter: numFmt },
+  { field: 'snowfall_average_in', headerName: 'Avg Snowfall', headerValueGetter: unitHeader('snowfall', 'Avg Snowfall'), width: 138, valueFormatter: unitFmt(convertSnowfall) },
+  { field: 'snowfall_high_in',    headerName: 'Max Snowfall', headerValueGetter: unitHeader('snowfall', 'Max Snowfall'), width: 138, valueFormatter: unitFmt(convertSnowfall) },
 
   // Features
   { field: 'has_alpine',        headerName: 'Alpine',        width: 74,  cellRenderer: BoolCell },
@@ -125,12 +137,12 @@ export const HEADER_BY_FIELD = Object.fromEntries(COLUMN_DEFS.map(c => [c.field,
 
 export const COL_GROUPS = [
   { label: 'Location',      fields: ['city', 'state', 'country', 'region', 'location_name'] },
-  { label: 'Elevation',     fields: ['vertical', 'vertical_summit_ft', 'vertical_base_ft', 'vertical_meters'] },
+  { label: 'Elevation',     fields: ['vertical', 'vertical_summit_ft', 'vertical_base_ft'] },
   // Select Columns renders each group as a 2-col CSS grid with default (row-wise) auto-flow —
   // items fill left-to-right then wrap, so a field and its XC counterpart must be adjacent
   // AND start on an even index to land side by side in the same row (col1/col2), not just be
   // next to each other in the flat array.
-  { label: 'Size',          fields: ['acres', 'num_lifts', 'num_trails', 'num_trails_xc', 'trail_length_mi', 'trail_length_km'] },
+  { label: 'Size',          fields: ['acres', 'num_lifts', 'num_trails', 'num_trails_xc', 'trail_length_mi'] },
   { label: 'Difficulty',    fields: ['difficulty_beginner', 'difficulty_beginner_xc', 'difficulty_intermediate', 'difficulty_intermediate_xc', 'difficulty_advanced', 'difficulty_advanced_xc'] },
   { label: 'Snow',          fields: ['snowfall_average_in', 'snowfall_high_in'] },
   { label: 'Features',      fields: ['has_alpine', 'has_cross_country', 'has_night_skiing', 'has_terrain_parks', 'is_dog_friendly', 'has_snowshoeing', 'ltt_available', 'is_allied'] },
@@ -159,8 +171,17 @@ const GRID_THEME = themeQuartz.withParams({
   headerFontWeight:             700,
 })
 
-const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick, columnDefs = COLUMN_DEFS }, ref) {
+const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick, columnDefs = COLUMN_DEFS, unit = 'imperial' }, ref) {
   const onRowClicked = useCallback(({ data }) => onRowClick(data.resort_id), [onRowClick])
+
+  // headerValueGetter/valueFormatter read `unit` off grid context rather than props, so a
+  // toggle needs an explicit refresh — AG Grid doesn't re-derive header/cell text on its own.
+  useEffect(() => {
+    const api = ref?.current?.api
+    if (!api) return
+    api.refreshHeader()
+    api.refreshCells({ force: true })
+  }, [unit, ref])
 
   return (
     <div style={{ height: '100%' }}>
@@ -170,6 +191,7 @@ const ResortTable = forwardRef(function ResortTable({ resorts, onRowClick, colum
         rowData={resorts}
         columnDefs={columnDefs}
         defaultColDef={DEFAULT_COL_DEF}
+        context={{ unit }}
         getRowId={({ data }) => data.resort_id}
         onRowClicked={onRowClicked}
         rowStyle={{ cursor: 'pointer' }}

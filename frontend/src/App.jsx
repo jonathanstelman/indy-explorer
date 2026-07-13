@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button, Checkbox, ConfigProvider, Layout } from 'antd'
 import { useSearchParams } from 'react-router-dom'
 import { useFilters } from '@/hooks/useFilters'
+import { useUnits } from '@/hooks/useUnits'
 import { fetchResorts, fetchMeta } from '@/api/resorts'
 import AppHeader from '@/components/layout/Header'
 import AppSidebar from '@/components/layout/Sidebar'
@@ -25,6 +26,7 @@ const TOOLBAR_BTN_STYLE = { color: COLORS.success, '--toolbar-btn-hover-bg': wit
 export default function App() {
   const [searchParams] = useSearchParams()
   const { filters } = useFilters()
+  const { unit } = useUnits()
 
   const [resorts, setResorts] = useState([])
   const [allResorts, setAllResorts] = useState([])
@@ -243,6 +245,7 @@ export default function App() {
                     <ResortMap
                       resorts={resorts}
                       onResortClick={r => setSelectedResortId(r.resort_id)}
+                      unit={unit}
                       isMobile
                     />
                   )}
@@ -257,6 +260,7 @@ export default function App() {
                           ref={tableRef}
                           resorts={resorts}
                           columnDefs={columnDefs}
+                          unit={unit}
                           onRowClick={setSelectedResortId}
                         />
                       </div>
@@ -350,6 +354,7 @@ export default function App() {
         <ResortDetailModal
           resortId={selectedResortId}
           onClose={() => setSelectedResortId(null)}
+          unit={unit}
           isMobile={isMobile}
         />
         <HowToUseModal open={howToUseOpen} onClose={closeHowToUse} isMobile />
@@ -391,6 +396,7 @@ export default function App() {
                 <ResortMap
                   resorts={resorts}
                   onResortClick={r => setSelectedResortId(r.resort_id)}
+                  unit={unit}
                 />
               </div>
 
@@ -437,6 +443,7 @@ export default function App() {
                       ref={tableRef}
                       resorts={resorts}
                       columnDefs={columnDefs}
+                      unit={unit}
                       onRowClick={setSelectedResortId}
                     />
                   </div>
@@ -450,6 +457,7 @@ export default function App() {
       <ResortDetailModal
         resortId={selectedResortId}
         onClose={() => setSelectedResortId(null)}
+        unit={unit}
       />
       <HowToUseModal open={howToUseOpen} onClose={closeHowToUse} />
       {colsOpen && (
