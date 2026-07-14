@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`main` — working tree has uncommitted changes for **#83 (data validation on Resort Pydantic model)**: `backend/models.py` gained bounded `field_validator`s (soft log+null) and a hard `indy_page` URL pattern constraint; `backend/tests/test_resort_validation.py` added; `backend/tests/test_meta_endpoint.py` fixture rescaled from placeholder 0–100 PR subscores to the real 0–11 scale. Full backend + pipeline suites pass, Black clean, verified against real `data/resorts.csv` (277 resorts, zero fields nulled). Not yet branched/committed — see `docs/decisions.md` (2026-07-13) for full rationale. Next: create `feature/83-...` branch and commit, or continue toward #77 (scheduled pipeline, depends on this issue).
+`feature/83-resort-data-validation` (commit `dde6e90`) — **#83 (data validation on Resort Pydantic model)**: `backend/models.py` gained bounded `field_validator`s (soft log+null) and a hard `indy_page` URL pattern constraint; `backend/tests/test_resort_validation.py` added; `backend/tests/test_meta_endpoint.py` fixture rescaled from placeholder 0–100 PR subscores to the real 0–11 scale. Full backend + pipeline suites pass, Black clean, verified against real `data/resorts.csv` (277 resorts, zero fields nulled). Backend-only change, no frontend surface to verify live. See `docs/decisions.md` (2026-07-13) for full rationale. Committed but not yet pushed/PR'd. Next: push branch, open PR, then #77 (scheduled pipeline, depends on this issue) can proceed.
 
 **#128 (unit selector) merged and deployed (2026-07-13)**, PR #131. Follow-up issue **#132** opened (low priority): drop now-unused `vertical_meters`/`trail_length_km` (and check `vertical_tt`/`acres_tt`) from the pipeline/backend model now that the frontend converts client-side instead of reading precomputed columns.
 
@@ -109,7 +109,7 @@ Small tasks interspersed with larger feature work. Check off here and in the Git
 - Also fixed `Footer.jsx`'s unrelated pre-existing antd deprecation warning (`overlayInnerStyle` → `styles.container`, same fix pattern as #119's `HowToUseModal`) — console is now fully clean on load, zero warnings or errors.
 - Follow-up caught after the first commit: `BoolCell`'s true-value checkmark used `COLORS.success` — same color as the new chartreuse row hover, so checkmarks vanished on hover (green-on-green). Changed to `COLORS.bgHeader` (near-black), trading the green "yes" cue for guaranteed legibility against both white and hovered rows.
 
-**#83/#77 deferred:** Cosmetic P2 issues take priority over automated pipeline work — the data being a day or two out-of-date isn't consequential right now.
+**#83 done (2026-07-13):** see Current Branch section above and `docs/decisions.md` for full detail.
 
 **#77 revised scope:** Pipeline runs on a schedule and opens a PR against main rather than auto-committing. Human reviews the data diff before merging. Pre-PR sanity check runs `load_resorts()` against the new CSV — any Pydantic validation failures abort the job before a PR is opened. See issue for full acceptance criteria.
 
