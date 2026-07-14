@@ -62,11 +62,17 @@ def get_normalized_location(location_name: str) -> Dict[str, Optional[str]]:
 
 
 def generate_resort_locations_csv(
-    resorts_json_path='data/resorts_raw.json', output_csv_path='data/resort_locations.csv'
+    resorts_json_path='data/resorts_raw.json',
+    output_csv_path='data/resort_locations.csv',
+    full=False,
 ):
     """
     Iterates through resorts JSON, fetches normalized locations, and saves to CSV.
     Needed for caching location data to avoid repeated API calls.
+
+    Incremental by default: resorts already present in output_csv_path (matched by
+    name) are left as-is and not re-geocoded. Pass full=True to re-geocode every
+    resort and overwrite the existing cache.
     """
 
     # Load resorts data
@@ -84,12 +90,20 @@ def generate_resort_locations_csv(
     # Remove duplicates
     unique_locations = list({(n, l) for n, l in locations})
 
-    # Fetch normalized locations
-    rows = []
+    existing_df = pd.DataFrame(columns=['name', 'city', 'state', 'country'])
+    cached_names = set()
+    if not full and os.path.exists(output_csv_path):
+        existing_df = pd.read_csv(output_csv_path)
+        cached_names = set(existing_df['name'])
+
+    # Fetch normalized locations for anything not already cached
+    new_rows = []
     for name, location_name in unique_locations:
+        if name in cached_names:
+            continue
         logger.info("Retrieving location for: %s / %s", name, location_name)
         loc = get_normalized_location(location_name)
-        rows.append(
+        new_rows.append(
             {
                 'name': name,
                 'city': loc.get('city'),
@@ -98,10 +112,15 @@ def generate_resort_locations_csv(
             }
         )
 
+    df = (
+        pd.concat([existing_df, pd.DataFrame(new_rows)], ignore_index=True)
+        if new_rows
+        else existing_df
+    )
+
     # Save to CSV
-    df = pd.DataFrame(rows)
     df.to_csv(output_csv_path, index=False)
-    logger.info("Wrote %s", output_csv_path)
+    logger.info("Wrote %s (%d new, %d total)", output_csv_path, len(new_rows), len(df))
 
 
 # Date Utilities
