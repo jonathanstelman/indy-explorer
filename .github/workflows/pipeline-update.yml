@@ -1,0 +1,109 @@
+name: Pipeline data update
+
+# Manual trigger only for now — a weekly cron will be added once the workflow
+# has been exercised a few times (see #77).
+#
+# Note: cache/ is gitignored, so CI has no HTML cache and incremental mode
+# already re-scrapes every resort page. In CI, "full" additionally re-geocodes
+# all resort locations via the Google Maps API (quota-sensitive) — intended
+# cadence is roughly quarterly.
+on:
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Full refresh — also re-geocode all resort locations (costs Google Maps API quota)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-data:
+    name: Run pipeline and open data PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Cache Poetry
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+
+      - name: Install pipeline dependencies
+        run: poetry install --no-interaction
+
+      - name: Record pre-run row count
+        run: |
+          ROWS_BEFORE=$(($(wc -l < data/resorts.csv) - 1))
+          echo "ROWS_BEFORE=$ROWS_BEFORE" >> "$GITHUB_ENV"
+
+      - name: Run pipeline
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        run: poetry run python pipeline/pipeline.py ${{ inputs.full == true && '--full' || '' }}
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: poetry install --no-interaction
+
+      # Hard-fails (aborting before any PR) on structural problems: empty CSV,
+      # missing expected columns, or a raised Pydantic ValidationError. Soft-nulled
+      # fields are reported in reports/validation_summary.md for human review.
+      - name: Validate pipeline output
+        working-directory: backend
+        run: poetry run python validate_resorts.py
+
+      # pipeline_metadata.json's last_run timestamp changes on every run. If it is
+      # the only modified file, revert it so the PR step below no-ops — otherwise a
+      # no-change run would still open a PR containing just a timestamp bump.
+      - name: Discard timestamp-only changes
+        run: |
+          CHANGED=$(git diff --name-only -- data/)
+          if [ "$CHANGED" = "data/pipeline_metadata.json" ]; then
+            echo "Only pipeline_metadata.json changed — reverting to avoid a timestamp-only PR."
+            git checkout -- data/pipeline_metadata.json
+          fi
+
+      - name: Append data diff to summary
+        run: |
+          ROWS_AFTER=$(($(wc -l < data/resorts.csv) - 1))
+          {
+            echo ""
+            echo "## Data Changes"
+            echo ""
+            echo "- Mode: ${{ inputs.full == true && 'full refresh' || 'incremental' }}"
+            echo "- Resorts: ${ROWS_BEFORE} → ${ROWS_AFTER}"
+            echo ""
+            echo '```'
+            git diff --stat -- data/ || true
+            echo '```'
+          } >> reports/validation_summary.md
+          cat reports/validation_summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      # No-ops (no PR, no noise) when the pipeline produced no data changes.
+      - name: Open or update data PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: data/
+          commit-message: 'Automated pipeline data update'
+          title: "Automated pipeline data update${{ inputs.full == true && ' (full refresh)' || '' }}"
+          body-path: reports/validation_summary.md
+          branch: automated/pipeline-data-update
+          labels: automated-data-update
+          delete-branch: true

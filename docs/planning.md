@@ -6,7 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/83-resort-data-validation` (commit `dde6e90`) — **#83 (data validation on Resort Pydantic model)**: `backend/models.py` gained bounded `field_validator`s (soft log+null) and a hard `indy_page` URL pattern constraint; `backend/tests/test_resort_validation.py` added; `backend/tests/test_meta_endpoint.py` fixture rescaled from placeholder 0–100 PR subscores to the real 0–11 scale. Full backend + pipeline suites pass, Black clean, verified against real `data/resorts.csv` (277 resorts, zero fields nulled). Backend-only change, no frontend surface to verify live. See `docs/decisions.md` (2026-07-13) for full rationale. Committed but not yet pushed/PR'd. Next: push branch, open PR, then #77 (scheduled pipeline, depends on this issue) can proceed.
+`feature/77-scheduled-pipeline` — **#77 (GitHub Actions scheduled pipeline)**: new `.github/workflows/pipeline-update.yml` (`workflow_dispatch` only for now — cron comes later after a few manual runs) runs the incremental pipeline in CI, gates it with the new `backend/validate_resorts.py` (hard-fail on structural breaks: empty CSV, missing columns, raised Pydantic errors; soft-nulled fields surfaced in the PR body instead of blocking), and opens a data PR via `peter-evans/create-pull-request@v6` (`add-paths: data/`, no-ops on no changes, timestamp-only `pipeline_metadata.json` churn reverted by a guard step). `GOOGLE_MAPS_API_KEY` added to repo Actions secrets by the user (2026-07-13). Tests + Black pass; workflow YAML validated, guard logic simulated locally. Remaining: commit/PR this branch, then exercise a real `workflow_dispatch` run end-to-end.
+
+**#83 merged (2026-07-13)**, PR #133: data validation on `Resort` Pydantic model — bounded `field_validator`s (soft log+null) plus hard `indy_page` URL constraint. See `docs/decisions.md` for rationale.
 
 **#128 (unit selector) merged and deployed (2026-07-13)**, PR #131. Follow-up issue **#132** opened (low priority): drop now-unused `vertical_meters`/`trail_length_km` (and check `vertical_tt`/`acres_tt`) from the pipeline/backend model now that the frontend converts client-side instead of reading precomputed columns.
 
@@ -39,12 +41,13 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #109 | UX: Peak Rankings visual encoding | P2 | Done |
 | #108 | UX: "How to use" first-load popover | P2 | Done |
 | #110 | UX: "Help improve this app" feedback section | P2 | Done |
-| #83 | Data validation on Resort Pydantic model | P1 | Implemented, not yet committed |
-| #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
+| #83 | Data validation on Resort Pydantic model | P1 | Done |
+| #77 | GitHub Actions scheduled pipeline | P1 | Implemented, not yet committed |
 | #11 | Bug: alpine+XC metrics parsing | P1 | Done |
 | #118 | AG Grid Theming API migration | P2 | Done |
 | #128 | Unit selector (imperial/metric) | P2 | Done |
 | #132 | Drop unused vertical_meters/trail_length_km | P3 | Open, not started |
+| #134 | Bug: geocoding all-or-nothing, new resorts get no city/state/country | P2 | Open, not started |
 
 **#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar
