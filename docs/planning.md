@@ -6,7 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/128-unit-selector` — Unit selector (imperial/metric). Implemented and verified live via Playwright (desktop + 390px mobile); not yet committed. See `docs/decisions.md` (2026-07-13) for the full design rationale, posted to #128 as a comment before implementation began.
+`main` — working tree has uncommitted changes for **#83 (data validation on Resort Pydantic model)**: `backend/models.py` gained bounded `field_validator`s (soft log+null) and a hard `indy_page` URL pattern constraint; `backend/tests/test_resort_validation.py` added; `backend/tests/test_meta_endpoint.py` fixture rescaled from placeholder 0–100 PR subscores to the real 0–11 scale. Full backend + pipeline suites pass, Black clean, verified against real `data/resorts.csv` (277 resorts, zero fields nulled). Not yet branched/committed — see `docs/decisions.md` (2026-07-13) for full rationale. Next: create `feature/83-...` branch and commit, or continue toward #77 (scheduled pipeline, depends on this issue).
+
+**#128 (unit selector) merged and deployed (2026-07-13)**, PR #131. Follow-up issue **#132** opened (low priority): drop now-unused `vertical_meters`/`trail_length_km` (and check `vertical_tt`/`acres_tt`) from the pipeline/backend model now that the frontend converts client-side instead of reading precomputed columns.
 
 **#118 merged and deployed (2026-07-12):** AG Grid Theming API migration — see `docs/decisions.md` for the full trail (real prior styling was mostly silently broken; row hover, checkmark contrast fix, header separator investigation).
 
@@ -37,11 +39,12 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #109 | UX: Peak Rankings visual encoding | P2 | Done |
 | #108 | UX: "How to use" first-load popover | P2 | Done |
 | #110 | UX: "Help improve this app" feedback section | P2 | Done |
-| #83 | Data validation on Resort Pydantic model | P1 (deferred) | Blocks #77 |
+| #83 | Data validation on Resort Pydantic model | P1 | Implemented, not yet committed |
 | #77 | GitHub Actions scheduled pipeline | P1 (deferred) | Depends on #83 |
 | #11 | Bug: alpine+XC metrics parsing | P1 | Done |
 | #118 | AG Grid Theming API migration | P2 | Done |
-| #128 | Unit selector (imperial/metric) | P2 | Implemented, not yet committed |
+| #128 | Unit selector (imperial/metric) | P2 | Done |
+| #132 | Drop unused vertical_meters/trail_length_km | P3 | Open, not started |
 
 **#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar
