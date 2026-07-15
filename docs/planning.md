@@ -6,7 +6,15 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/77-scheduled-pipeline` — **#77 (GitHub Actions scheduled pipeline)**: new `.github/workflows/pipeline-update.yml` (`workflow_dispatch` only for now — cron comes later after a few manual runs) runs the incremental pipeline in CI, gates it with the new `backend/validate_resorts.py` (hard-fail on structural breaks: empty CSV, missing columns, raised Pydantic errors; soft-nulled fields surfaced in the PR body instead of blocking), and opens a data PR via `peter-evans/create-pull-request@v6` (`add-paths: data/`, no-ops on no changes, timestamp-only `pipeline_metadata.json` churn reverted by a guard step). `GOOGLE_MAPS_API_KEY` added to repo Actions secrets by the user (2026-07-13). Tests + Black pass; workflow YAML validated, guard logic simulated locally. Remaining: commit/PR this branch, then exercise a real `workflow_dispatch` run end-to-end.
+`feature/134-incremental-geocoding` — **#134 implemented**: `generate_resort_locations_csv()` (`pipeline/utils.py`) is now incremental by default (reads existing `resort_locations.csv`, geocodes only resorts missing by name, appends rather than overwrites); `full=True` re-geocodes everything as an explicit escape hatch. `step_geocode()` (`pipeline/pipeline.py`) no longer skips the whole step when the cache file exists — it always runs, now cheap when nothing's missing. Tests added in `tests/test_location_utils.py` (first-run geocodes all, incremental skips cached names, full regenerates all — call counts verified via a counting mock client). `docs/ops-runbook.md` updated to drop the stale "full refresh ~quarterly" guidance. All tests + Black pass. Remaining: commit, open PR, merge.
+
+**#77 merged and closed (2026-07-13, PR #135); no-change path verified live**: first real `workflow_dispatch` run succeeded (4m12s — 277 pages scraped, validation passed with zero soft-nulls, timestamp-only guard fired correctly, PR step no-op'd with no noise). The `automated-data-update` label was missing from the repo (workflow referenced it but it was never created) — created 2026-07-13.
+
+**Data-changed path verification split into #136**, scheduled ~early November 2026 (Indy Pass resort data typically doesn't shift until next-season info is published Oct/Nov) — no longer blocking delivery. Checklist (PR opens correctly, PR body renders correctly, diff scoped to `data/`, update-in-place on a second run, hard-fail path, `full=true` input, weekly cron) lives on the issue, not here.
+
+Minor follow-up from run annotations: `actions/*@v4` + `create-pull-request@v6` target deprecated Node 20 in both workflows — trivial version bumps for a future housekeeping pass.
+
+Next up (after #134 merges): **#132** (drop unused metric columns, P3).
 
 **#83 merged (2026-07-13)**, PR #133: data validation on `Resort` Pydantic model — bounded `field_validator`s (soft log+null) plus hard `indy_page` URL constraint. See `docs/decisions.md` for rationale.
 
@@ -27,9 +35,9 @@ Current work-in-progress. Update this file at the start and end of every session
 - **#76** Pipeline output compatibility (backup step, pipeline metadata, README)
 - **#100** Deployed: backend at `https://indy-explorer-backend.fly.dev`, frontend at `https://indy-explorer.vercel.app`
 
-### Epic 7: Pre-release polish — in progress (#102)
+### Epic 7: Pre-release polish — done, #102 closed (2026-07-14)
 
-Target: public launch on Indy Pass Facebook groups ahead of ski season.
+Target: public launch on Indy Pass Facebook groups ahead of ski season. All P0/P1/P2 items complete; app is live. #132/#134/#136 are separate follow-up issues filed during Epic 7 work — not part of the closed checklist, still open below.
 
 | # | Description | Priority | Status |
 |---|---|---|---|
@@ -42,12 +50,13 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season.
 | #108 | UX: "How to use" first-load popover | P2 | Done |
 | #110 | UX: "Help improve this app" feedback section | P2 | Done |
 | #83 | Data validation on Resort Pydantic model | P1 | Done |
-| #77 | GitHub Actions scheduled pipeline | P1 | Implemented, not yet committed |
+| #77 | GitHub Actions scheduled pipeline | P1 | Done (cron deferred) |
 | #11 | Bug: alpine+XC metrics parsing | P1 | Done |
 | #118 | AG Grid Theming API migration | P2 | Done |
 | #128 | Unit selector (imperial/metric) | P2 | Done |
 | #132 | Drop unused vertical_meters/trail_length_km | P3 | Open, not started |
-| #134 | Bug: geocoding all-or-nothing, new resorts get no city/state/country | P2 | Open, not started |
+| #134 | Bug: geocoding all-or-nothing, new resorts get no city/state/country | P2 | Implemented, not yet merged |
+| #136 | Verify automated pipeline data-changed path against real source data | P3 | Open, scheduled ~Nov 2026 |
 
 **#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar

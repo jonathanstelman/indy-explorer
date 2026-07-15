@@ -182,21 +182,20 @@ def step_fetch_peak_rankings(full: bool) -> None:
 def step_geocode(full: bool) -> None:
     """
     Generate resort locations via Google Maps geocoding API.
-    Skips if cache exists unless --full is used.
+    Incremental by default: only geocodes resorts missing from the cache.
+    Use --full to re-geocode every resort from scratch.
     """
     from utils import generate_resort_locations_csv
 
     output_path = DATA_DIR / 'resort_locations.csv'
-    if not full and output_path.exists():
-        logger.info('Skipping geocoding — %s exists. Use --full to regenerate.', output_path)
-        return
-
-    if full and output_path.exists():
-        logger.info('Full mode: regenerating geocoded locations...')
+    if full:
+        logger.info('Full mode: regenerating all resort locations...')
+    elif output_path.exists():
+        logger.info('Incremental mode: geocoding any resorts missing from %s...', output_path)
     else:
         logger.info('Generating resort locations (first run)...')
 
-    generate_resort_locations_csv()
+    generate_resort_locations_csv(full=full)
     logger.info('Geocoding complete.')
 
 
