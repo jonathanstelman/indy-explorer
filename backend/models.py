@@ -16,14 +16,12 @@ _NONNEG_BOUNDS: dict[str, tuple[float, Optional[float]]] = {
     'num_trails_xc': (0, 500),
     'num_lifts': (0, 500),
     'vertical': (0, 15_000),
-    'vertical_meters': (0, 5_000),
     'vertical_base_ft': (0, 20_000),
     'vertical_summit_ft': (0, 25_000),
     'vertical_elevation_ft': (0, 15_000),
     'snowfall_average_in': (0, 2_000),
     'snowfall_high_in': (0, 2_500),
     'trail_length_mi': (0, 200),
-    'trail_length_km': (0, 320),
 }
 
 _DIFFICULTY_FIELDS = (
@@ -141,7 +139,6 @@ class ResortSummary(BaseModel):
     has_snowshoeing: Optional[bool] = None
     ltt_available: Optional[bool] = None
     vertical: Optional[float] = None
-    vertical_meters: Optional[float] = None
     vertical_base_ft: Optional[float] = None
     vertical_summit_ft: Optional[float] = None
     acres: Optional[float] = None
@@ -149,7 +146,6 @@ class ResortSummary(BaseModel):
     num_trails_xc: Optional[float] = None
     num_lifts: Optional[float] = None
     trail_length_mi: Optional[float] = None
-    trail_length_km: Optional[float] = None
     difficulty_beginner: Optional[float] = None
     difficulty_intermediate: Optional[float] = None
     difficulty_advanced: Optional[float] = None
@@ -199,7 +195,6 @@ class Resort(BaseModel):
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     vertical: Optional[float] = None
-    vertical_meters: Optional[float] = None
     has_alpine: Optional[bool] = None
     has_cross_country: Optional[bool] = None
     is_allied: Optional[bool] = None
@@ -207,7 +202,6 @@ class Resort(BaseModel):
     num_trails: Optional[float] = None
     num_trails_xc: Optional[float] = None
     trail_length_mi: Optional[float] = None
-    trail_length_km: Optional[float] = None
     num_lifts: Optional[float] = None
     vertical_base_ft: Optional[float] = None
     vertical_summit_ft: Optional[float] = None
@@ -231,8 +225,6 @@ class Resort(BaseModel):
     has_terrain_parks_display: Optional[str] = None
     is_allied_display: Optional[str] = None
     location_name_tt: Optional[str] = None
-    acres_tt: Optional[str] = None
-    vertical_tt: Optional[str] = None
     num_trails_tt: Optional[str] = None
     num_lifts_tt: Optional[str] = None
     blackout_named_ranges: Optional[str] = None

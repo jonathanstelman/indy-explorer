@@ -6,7 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/134-incremental-geocoding` — **#134 implemented**: `generate_resort_locations_csv()` (`pipeline/utils.py`) is now incremental by default (reads existing `resort_locations.csv`, geocodes only resorts missing by name, appends rather than overwrites); `full=True` re-geocodes everything as an explicit escape hatch. `step_geocode()` (`pipeline/pipeline.py`) no longer skips the whole step when the cache file exists — it always runs, now cheap when nothing's missing. Tests added in `tests/test_location_utils.py` (first-run geocodes all, incremental skips cached names, full regenerates all — call counts verified via a counting mock client). `docs/ops-runbook.md` updated to drop the stale "full refresh ~quarterly" guidance. All tests + Black pass. Remaining: commit, open PR, merge.
+`feature/132-drop-unused-metric-fields` — **#132 implemented**: dropped `vertical_meters`/`trail_length_km`/`acres_tt`/`vertical_tt` from `backend/models.py` (`Resort`, `ResortSummary`, `_NONNEG_BOUNDS`) and from `pipeline/prep_resort_data.py`'s computation + output columns; `feet_to_meters()` removed (its only caller). Regenerated `data/resorts.csv` locally (all inputs already cached — no live API calls). New backend test asserts the fields are gone from both models (written first, confirmed failing, then made to pass). Follow-up filed as **#138**: broader grep found `location_name_tt`/`num_trails_tt`/`num_lifts_tt`/`pr_total_tt` are also unused in the frontend today — out of this issue's scope, left for separate cleanup. All tests + Black pass. Remaining: commit, open PR, merge.
+
+**#134 merged (2026-07-14, PR #137)**: `generate_resort_locations_csv()` (`pipeline/utils.py`) is now incremental by default (reads existing `resort_locations.csv`, geocodes only resorts missing by name, appends rather than overwrites); `full=True` re-geocodes everything as an explicit escape hatch. `step_geocode()` (`pipeline/pipeline.py`) no longer skips the whole step when the cache file exists — it always runs, now cheap when nothing's missing. `docs/ops-runbook.md` updated to drop the stale "full refresh ~quarterly" guidance.
 
 **#77 merged and closed (2026-07-13, PR #135); no-change path verified live**: first real `workflow_dispatch` run succeeded (4m12s — 277 pages scraped, validation passed with zero soft-nulls, timestamp-only guard fired correctly, PR step no-op'd with no noise). The `automated-data-update` label was missing from the repo (workflow referenced it but it was never created) — created 2026-07-13.
 
@@ -14,7 +16,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 Minor follow-up from run annotations: `actions/*@v4` + `create-pull-request@v6` target deprecated Node 20 in both workflows — trivial version bumps for a future housekeeping pass.
 
-Next up (after #134 merges): **#132** (drop unused metric columns, P3).
+Next up (after #132 merges): nothing prioritized — check the project board for backlog (#21, #22) or pick up **#138** (remaining unused `_tt` fields).
 
 **#83 merged (2026-07-13)**, PR #133: data validation on `Resort` Pydantic model — bounded `field_validator`s (soft log+null) plus hard `indy_page` URL constraint. See `docs/decisions.md` for rationale.
 
@@ -54,9 +56,10 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season. All P0/P
 | #11 | Bug: alpine+XC metrics parsing | P1 | Done |
 | #118 | AG Grid Theming API migration | P2 | Done |
 | #128 | Unit selector (imperial/metric) | P2 | Done |
-| #132 | Drop unused vertical_meters/trail_length_km | P3 | Open, not started |
-| #134 | Bug: geocoding all-or-nothing, new resorts get no city/state/country | P2 | Implemented, not yet merged |
+| #132 | Drop unused vertical_meters/trail_length_km | P3 | Implemented, not yet merged |
+| #134 | Bug: geocoding all-or-nothing, new resorts get no city/state/country | P2 | Done |
 | #136 | Verify automated pipeline data-changed path against real source data | P3 | Open, scheduled ~Nov 2026 |
+| #138 | Remaining unused `_tt` tooltip fields (location_name_tt, num_trails_tt, num_lifts_tt, pr_total_tt) | P3 | Open, not started |
 
 **#113 merged and deployed (2026-05-30):**
 - Map/Table tab switcher, footer hidden, unified attribution ⓘ in tab bar
