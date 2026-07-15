@@ -68,10 +68,10 @@ export const COLUMN_DEFS = [
 
   // Size
   { field: 'acres',           headerName: 'Acreage', headerValueGetter: unitHeader('acreage', 'Acreage'), width: 84,  valueFormatter: unitFmt(convertAcres) },
+  { field: 'num_lifts',       headerName: 'Lifts',             width: 64,  valueFormatter: numFmt },
   { field: 'num_trails',      headerName: 'Trails',            width: 72,  valueFormatter: numFmt },
   { field: 'num_trails_xc',   headerName: 'Trails (XC)',       width: 100, valueFormatter: numFmt },
-  { field: 'num_lifts',       headerName: 'Lifts',             width: 64,  valueFormatter: numFmt },
-  { field: 'trail_length_mi', headerName: 'Trail Length XC', headerValueGetter: unitHeader('trailLength', 'Trail Length XC'), width: 144, valueFormatter: unitFmt(convertTrailLength) },
+  { field: 'trail_length_mi', headerName: 'Trail Length (XC)', headerValueGetter: unitHeader('trailLength', 'Trail Length (XC)'), width: 144, valueFormatter: unitFmt(convertTrailLength) },
 
   // Difficulty
   { field: 'difficulty_beginner',        headerName: 'Beginner (%)',        width: 120, valueFormatter: numFmt },
@@ -92,16 +92,16 @@ export const COLUMN_DEFS = [
   { field: 'has_terrain_parks', headerName: 'Terrain Parks', width: 116, cellRenderer: BoolCell },
   { field: 'is_dog_friendly',   headerName: 'Dog Friendly',  width: 110, cellRenderer: BoolCell },
   { field: 'has_snowshoeing',   headerName: 'Snowshoeing',   width: 120, cellRenderer: BoolCell },
-  { field: 'ltt_available',     headerName: 'Learn to Turn', width: 122, cellRenderer: BoolCell },
   { field: 'is_allied',         headerName: 'Allied',        width: 74,  cellRenderer: BoolCell },
-
-  // Blackout
-  { field: 'blackout_count',     headerName: 'Blackout Dates', width: 122, valueFormatter: numFmt },
-  { field: 'ltt_blackout_count', headerName: 'Learn to Turn Blackouts', width: 180, valueFormatter: numFmt },
 
   // Reservations
   { field: 'reservation_status', headerName: 'Reservations',    width: 120 },
   { field: 'reservation_url',    headerName: 'Reservation URL', width: 150, cellRenderer: LinkCell },
+
+  // Blackout
+  { field: 'blackout_count',     headerName: 'Blackout Dates', width: 122, valueFormatter: numFmt },
+  { field: 'ltt_available',      headerName: 'Learn to Turn',  width: 122, cellRenderer: BoolCell },
+  { field: 'ltt_blackout_count', headerName: 'Learn to Turn Blackouts', width: 180, valueFormatter: numFmt },
 
   // Peak Rankings — summary
   { field: 'pr_total',         headerName: 'Peak Score',    width: 104, valueFormatter: numFmt },

@@ -33,8 +33,9 @@ const FEATURES = [
   { key: 'has_cross_country', label: 'Cross-country' },
   { key: 'has_night_skiing',  label: 'Night skiing' },
   { key: 'has_terrain_parks', label: 'Terrain parks' },
-  { key: 'has_snowshoeing',   label: 'Snowshoeing' },
   { key: 'is_dog_friendly',   label: 'Dog friendly' },
+  { key: 'has_snowshoeing',   label: 'Snowshoeing' },
+  { key: 'is_allied',         label: 'Allied' },
 ]
 
 const PR_CATEGORIES = [
@@ -413,7 +414,7 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'auto auto 1fr auto auto 1fr auto auto', gap: '4px 4px', alignItems: 'baseline', marginTop: 8 }}>
-              {[FEATURES.slice(0, 3), FEATURES.slice(3)].flatMap((row, rowIdx) =>
+              {[FEATURES.slice(0, 3), FEATURES.slice(3, 6), FEATURES.slice(6)].flatMap((row, rowIdx) =>
                 row.flatMap(({ key, label }, colIdx) => {
                   const val = resort[key]
                   const cells = [
@@ -436,7 +437,9 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 24, marginTop: 8 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {[
-                ['Lifts',             fmt(resort.num_lifts)],
+                // Alpine-only stats — no XC-only resort has acreage or lift data.
+                ...(resort.acres != null ? [['Acreage', formatAcres(resort.acres, unit)]] : []),
+                ...(resort.num_lifts != null ? [['Lifts', fmt(resort.num_lifts)]] : []),
                 ['Trails',            fmt(resort.num_trails)],
                 // Per-resort presence check, not a global toggle — shown whenever this
                 // resort has XC data, same pattern as the map tooltip's Trails (XC) row.
@@ -444,8 +447,9 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
                 // identical there (both describe the resort's one trail network), so
                 // showing both reads as a duplication bug rather than useful information.
                 ...(resort.num_trails_xc != null && resort.has_alpine ? [['Trails (XC)', fmt(resort.num_trails_xc)]] : []),
-                ['Trail Length XC', formatTrailLength(resort.trail_length_mi, unit)],
-                ['Acreage',         formatAcres(resort.acres, unit)],
+                // XC-only stat, like the difficulty (XC) chart below — hidden when the
+                // resort has no cross-country trail length data.
+                ...(resort.trail_length_mi != null ? [['Trail Length (XC)', formatTrailLength(resort.trail_length_mi, unit)]] : []),
               ].map(([label, value]) => (
                 <div key={label}>
                   <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>
@@ -455,9 +459,10 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {[
-                ['Summit',   formatVertical(resort.vertical_summit_ft, unit)],
                 ['Vertical', formatVertical(resort.vertical, unit)],
-                ['Base',     formatVertical(resort.vertical_base_ft, unit)],
+                // Alpine-only stats — no XC-only resort has summit/base elevation data.
+                ...(resort.vertical_summit_ft != null ? [['Summit', formatVertical(resort.vertical_summit_ft, unit)]] : []),
+                ...(resort.vertical_base_ft != null ? [['Base', formatVertical(resort.vertical_base_ft, unit)]] : []),
               ].map(([label, value]) => (
                 <div key={label}>
                   <Text type="secondary" style={{ fontSize: 11 }}>{label}</Text>

@@ -13,7 +13,7 @@ export default function UnitToggle({ style }) {
       onClick={toggleUnit}
       aria-label={`Switch to ${nextUnit} units`}
       style={{
-        color: COLORS.primary,
+        color: COLORS.error,
         fontFamily: FONTS.mono,
         fontSize: 13,
         fontWeight: 700,

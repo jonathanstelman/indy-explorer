@@ -84,6 +84,12 @@ export default function StatsFilters({ meta }) {
         maxKey="max_vertical"
       />
       <RangeSlider
+        label="Lifts"
+        metaRange={meta?.num_lifts ?? null}
+        minKey="min_lifts"
+        maxKey="max_lifts"
+      />
+      <RangeSlider
         label="Trails"
         metaRange={meta?.num_trails ?? null}
         minKey="min_trails"
@@ -96,13 +102,7 @@ export default function StatsFilters({ meta }) {
         maxKey="max_trails_xc"
       />
       <RangeSlider
-        label="Lifts"
-        metaRange={meta?.num_lifts ?? null}
-        minKey="min_lifts"
-        maxKey="max_lifts"
-      />
-      <RangeSlider
-        label="Trail Length XC"
+        label="Trail Length (XC)"
         unitKind="trailLength"
         metaRange={meta?.trail_length_mi ?? null}
         minKey="min_trail_length"

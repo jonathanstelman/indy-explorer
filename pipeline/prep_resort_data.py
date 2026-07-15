@@ -90,13 +90,6 @@ def is_alpine(resort):
     return False
 
 
-def feet_to_meters(feet):
-    """
-    Convert feet to meters, safely handling missing values
-    """
-    return int(feet * 0.30479999) if pd.notnull(feet) else np.nan
-
-
 def nan_to_text(value, replace_text='---'):
     """
     Convert NaN to '---' for tooltip display
@@ -178,9 +171,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
     if missing_locations:
         logger.warning('Missing location data for %d resorts after merge.', missing_locations)
 
-    # Formatting and units
-    resorts["vertical_meters"] = resorts.vertical.apply(feet_to_meters)
-
     # Fields for table display
     bool_map = {False: 'No', True: 'Yes'}
     table_cols = [
@@ -199,13 +189,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
     resorts['location_name_tt'] = resorts['location_name'].apply(nan_to_text, replace_text='n/a')
     resorts['num_trails_tt'] = resorts['num_trails'].apply(nan_to_text)
     resorts['num_lifts_tt'] = resorts['num_lifts'].apply(nan_to_text)
-    resorts['acres_tt'] = resorts['acres'].apply(lambda x: f"{x} acres" if pd.notnull(x) else '---')
-    resorts['vertical_tt'] = resorts.apply(
-        lambda r: (
-            f"{r.vertical} ft / {int(r.vertical_meters)} m" if pd.notnull(r.vertical) else '---'
-        ),
-        axis=1,
-    )
 
     # Clean up
     cols = [
@@ -224,7 +207,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'latitude',
         'longitude',
         'vertical',
-        'vertical_meters',
         'has_alpine',
         'has_cross_country',
         'is_allied',
@@ -232,7 +214,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'num_trails',
         'num_trails_xc',
         'trail_length_mi',
-        'trail_length_km',
         'num_lifts',
         'vertical_base_ft',
         'vertical_summit_ft',
@@ -256,8 +237,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'has_terrain_parks_display',
         'is_allied_display',
         'location_name_tt',
-        'acres_tt',
-        'vertical_tt',
         'num_trails_tt',
         'num_lifts_tt',
         'blackout_named_ranges',

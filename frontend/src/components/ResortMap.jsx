@@ -11,16 +11,39 @@ import Panel from '@/components/common/Panel'
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
-// Predictable content shape (6 label/value rows, 7 when the hovered resort has XC trail
-// data) makes the rendered size computable — used to clamp the tooltip within its container
-// instead of letting it overflow and get clipped by Layout.Content's `overflow: hidden`
-// when the map area is short.
+// Row count varies per resort (Acreage/Lifts hidden for XC-only resorts, Trails (XC) shown
+// only for alpine+XC resorts) — buildTooltipRows() is the single source of truth for which
+// rows appear, used both to render the tooltip and to compute its height for clamping it
+// within its container instead of letting it overflow and get clipped by Layout.Content's
+// `overflow: hidden` when the map area is short.
 const TOOLTIP_WIDTH = 260
-const TOOLTIP_BASE_HEIGHT = 170 // height at 6 rows
-const TOOLTIP_ROW_HEIGHT = 25   // added when the extra Trails (XC) row is present
+const TOOLTIP_CHROME_HEIGHT = 20 // Panel's 10px top + 10px bottom padding
+const TOOLTIP_ROW_HEIGHT = 25
 
-function tooltipHeight(hasXcTrails) {
-  return TOOLTIP_BASE_HEIGHT + (hasXcTrails ? TOOLTIP_ROW_HEIGHT : 0)
+function buildTooltipRows(r, unit) {
+  const locationParts = r.country === 'United States'
+    ? [r.city, r.state]
+    : [r.city, r.state, r.country]
+  const location = locationParts.filter(Boolean).join(', ')
+  return [
+    ['Resort',   r.name],
+    ['Location', location || '—'],
+    ['Vertical', formatVertical(r.vertical, unit)],
+    // Alpine-only stats — no XC-only resort has acreage or lift data.
+    ...(r.acres != null ? [['Acreage', formatAcres(r.acres, unit)]] : []),
+    ...(r.num_lifts != null ? [['Lifts', r.num_lifts]] : []),
+    ['Trails',   r.num_trails != null ? r.num_trails : '—'],
+    // Per-resort presence check, not a global toggle — same pattern as the detail modal.
+    // Suppressed for XC-only resorts: num_trails (from the main listing page) and
+    // num_trails_xc (from the detail page's XC field) are always identical there, since
+    // both describe the resort's one and only trail network — showing both reads as a
+    // duplication bug rather than two independently-sourced confirmations of one number.
+    ...(r.num_trails_xc != null && r.has_alpine ? [['Trails (XC)', r.num_trails_xc]] : []),
+  ]
+}
+
+function tooltipHeight(rowCount) {
+  return TOOLTIP_CHROME_HEIGHT + rowCount * TOOLTIP_ROW_HEIGHT
 }
 
 const INITIAL_VIEW_STATE = {
@@ -147,24 +170,7 @@ function fitViewToResorts(resorts, width, height, filters) {
 
 function MapTooltip({ info, unit }) {
   const { resort: r, left, top } = info
-  const locationParts = r.country === 'United States'
-    ? [r.city, r.state]
-    : [r.city, r.state, r.country]
-  const location = locationParts.filter(Boolean).join(', ')
-  const rows = [
-    ['Resort',   r.name],
-    ['Location', location || '—'],
-    ['Acreage',  formatAcres(r.acres, unit)],
-    ['Vertical', formatVertical(r.vertical, unit)],
-    ['Trails',   r.num_trails != null ? r.num_trails : '—'],
-    // Per-resort presence check, not a global toggle — same pattern as the detail modal.
-    // Suppressed for XC-only resorts: num_trails (from the main listing page) and
-    // num_trails_xc (from the detail page's XC field) are always identical there, since
-    // both describe the resort's one and only trail network — showing both reads as a
-    // duplication bug rather than two independently-sourced confirmations of one number.
-    ...(r.num_trails_xc != null && r.has_alpine ? [['Trails (XC)', r.num_trails_xc]] : []),
-    ['Lifts',    r.num_lifts != null ? r.num_lifts : '—'],
-  ]
+  const rows = buildTooltipRows(r, unit)
   return (
     <Panel style={{
       position: 'absolute',
@@ -331,7 +337,7 @@ export default function ResortMap({ resorts = [], onResortClick, unit = 'imperia
     onHover: ({ object, x, y }) => {
       if (!object) { setTooltipInfo(null); return }
       const { width, height } = containerRef.current?.getBoundingClientRect() ?? {}
-      const th = tooltipHeight(object.num_trails_xc != null && object.has_alpine)
+      const th = tooltipHeight(buildTooltipRows(object, unit).length)
       const left = x > width / 2
         ? Math.max(4, x - 8 - TOOLTIP_WIDTH)
         : Math.max(4, Math.min(x + 8, width - TOOLTIP_WIDTH - 4))
