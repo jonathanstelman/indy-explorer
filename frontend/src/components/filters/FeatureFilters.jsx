@@ -1,4 +1,4 @@
-import { Button, Typography } from 'antd'
+import { Button, Space, Typography } from 'antd'
 import { useFilters } from '@/hooks/useFilters'
 
 const { Text } = Typography
@@ -22,10 +22,10 @@ export function FeatureToggle({ label, filterKey }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
       <Text style={{ fontSize: 12, flex: 1 }}>{label}</Text>
-      <Button.Group size="small">
+      <Space.Compact size="small">
         <Button type={yesActive ? 'primary' : 'default'} onClick={toggleYes}>Yes</Button>
         <Button type={noActive  ? 'primary' : 'default'} onClick={toggleNo}>No</Button>
-      </Button.Group>
+      </Space.Compact>
     </div>
   )
 }

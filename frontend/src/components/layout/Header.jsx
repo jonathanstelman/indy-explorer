@@ -1,9 +1,8 @@
-import { Button, Divider, Layout, Typography, theme } from 'antd'
+import { Button, Divider, Layout, Typography } from 'antd'
 import { COLORS, FONTS } from '@/theme'
 import UnitToggle from '@/components/common/UnitToggle'
 
 export default function AppHeader({ sidebarCollapsed, onToggleSidebar, onHowToUse, isMobile }) {
-  const { token } = theme.useToken()
   const height = isMobile ? 40 : 56
   return (
     <Layout.Header
@@ -56,7 +55,7 @@ export default function AppHeader({ sidebarCollapsed, onToggleSidebar, onHowToUs
         onClick={onHowToUse}
         aria-label="How to use"
         style={{
-          color: COLORS.primary,
+          color: COLORS.error,
           fontFamily: FONTS.mono,
           fontSize: isMobile ? 12 : 13,
           padding: '0 8px',

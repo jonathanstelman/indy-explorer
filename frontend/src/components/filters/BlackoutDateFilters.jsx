@@ -7,7 +7,7 @@ const { Text } = Typography
 
 function SectionHeading({ children }) {
   return (
-    <Divider orientation="left" orientationMargin={0} plain style={{ margin: '4px 0' }}>
+    <Divider titlePlacement="left" plain style={{ margin: '4px 0' }} styles={{ content: { margin: 0 } }}>
       <Text type="secondary" style={{ fontSize: 11 }}>{children}</Text>
     </Divider>
   )

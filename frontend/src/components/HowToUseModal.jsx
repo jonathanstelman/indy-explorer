@@ -4,12 +4,11 @@ import ModalHeader from '@/components/common/ModalHeader'
 
 function Btn({ children, variant }) {
   const isDanger = variant === 'danger'
-  const isPrimary = variant === 'primary'
   return (
     <span style={{
       display: 'inline-block',
       background: isDanger ? COLORS.error : COLORS.bgHeader,
-      color: isDanger ? '#ffffff' : isPrimary ? COLORS.primary : COLORS.error,
+      color: isDanger ? COLORS.bgBase : COLORS.error,
       fontFamily: FONTS.mono,
       fontSize: 12,
       fontWeight: 700,
@@ -54,7 +53,7 @@ function desktopSections() {
     {
       heading: 'Units',
       body: <>
-        Tap the <Btn variant="primary">ft</Btn> / <Btn variant="primary">m</Btn> button in the header or filter sidebar to switch between imperial and metric — it updates vertical drop, trail length, snowfall, and acreage everywhere in the app.
+        Tap the <Btn>ft</Btn> / <Btn>m</Btn> button in the header or filter sidebar to switch between imperial and metric — it updates vertical drop, trail length, snowfall, and acreage everywhere in the app.
       </>,
     },
   ]
@@ -83,7 +82,7 @@ function mobileSections() {
     {
       heading: 'Units',
       body: <>
-        Tap the <Btn variant="primary">ft</Btn> / <Btn variant="primary">m</Btn> button in the header or filter sidebar to switch between imperial and metric — it updates vertical drop, trail length, snowfall, and acreage everywhere in the app.
+        Tap the <Btn>ft</Btn> / <Btn>m</Btn> button in the header or filter sidebar to switch between imperial and metric — it updates vertical drop, trail length, snowfall, and acreage everywhere in the app.
       </>,
     },
   ]
