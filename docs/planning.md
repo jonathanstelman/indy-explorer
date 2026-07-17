@@ -6,9 +6,11 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/132-drop-unused-metric-fields` — **#132 merged into this branch (uncommitted → committed)**: dropped `vertical_meters`/`trail_length_km`/`acres_tt`/`vertical_tt` from `backend/models.py` (`Resort`, `ResortSummary`, `_NONNEG_BOUNDS`) and from `pipeline/prep_resort_data.py`'s computation + output columns; `feet_to_meters()` removed (its only caller). Regenerated `data/resorts.csv` locally (all inputs already cached — no live API calls). New backend test asserts the fields are gone from both models. Follow-up filed as **#138**: broader grep found `location_name_tt`/`num_trails_tt`/`num_lifts_tt`/`pr_total_tt` are also unused in the frontend today — out of this issue's scope, left for separate cleanup.
+None — `main` is clean. **#132 merged and closed (2026-07-15, PR #142)**: dropped `vertical_meters`/`trail_length_km`/`acres_tt`/`vertical_tt` from `backend/models.py` (`Resort`, `ResortSummary`, `_NONNEG_BOUNDS`) and from `pipeline/prep_resort_data.py`'s computation + output columns; `feet_to_meters()` removed (its only caller). Regenerated `data/resorts.csv` locally (all inputs already cached — no live API calls). New backend test asserts the fields are gone from both models. Follow-up filed as **#138**: broader grep found `location_name_tt`/`num_trails_tt`/`num_lifts_tt`/`pr_total_tt` are also unused in the frontend today — out of this issue's scope, left for separate cleanup.
 
-**Same branch, unrelated UI consistency pass** (no issue — ad hoc live-review polish): color tokens (unit picker, "?" button, How-to-use unit chips → `COLORS.error`), field display order normalized across map tooltip / sidebar filters / table / detail modal (Vertical→Summit→Base, Acreage→Lifts→Trails→Trails (XC)→Trail Length (XC); table's Allied/Reservations/Blackout/LTT column order), hide-when-null for XC-only resorts' Acreage/Lifts/Summit/Base/Trail Length (XC) (tooltip height calc refactored to match via a shared `buildTooltipRows()`), Allied added to the detail modal's Features grid, a few antd deprecation/dead-code cleanups. Filed **#139** (no acreage filter despite acreage being shown prominently), **#140** (Peak Rankings Pass Affiliation filter), **#141** (pre-existing `npm run lint` findings — a real conditional-hook bug in `Footer.jsx` plus a `setState`-in-effect cluster). See `docs/decisions.md` for full detail. All tests + Black pass; dev servers used for live verification throughout. Remaining: commit, open PR, merge.
+**Same PR, unrelated UI consistency pass** (no issue — ad hoc live-review polish): color tokens (unit picker, "?" button, How-to-use unit chips → `COLORS.error`), field display order normalized across map tooltip / sidebar filters / table / detail modal (Vertical→Summit→Base, Acreage→Lifts→Trails→Trails (XC)→Trail Length (XC); table's Allied/Reservations/Blackout/LTT column order), hide-when-null for XC-only resorts' Acreage/Lifts/Summit/Base/Trail Length (XC) (tooltip height calc refactored to match via a shared `buildTooltipRows()`), Allied added to the detail modal's Features grid, a few antd deprecation/dead-code cleanups. Filed **#139** (no acreage filter despite acreage being shown prominently), **#140** (Peak Rankings Pass Affiliation filter), **#141** (pre-existing `npm run lint` findings — a real conditional-hook bug in `Footer.jsx` plus a `setState`-in-effect cluster). See `docs/decisions.md` for full detail.
+
+**Next up:** nothing branched yet. Open backlog: **#138** (unused `_tt` fields, P3), **#139** (acreage filter), **#140** (Peak Rankings Pass Affiliation filter), **#141** (lint cleanup — includes a real `Footer.jsx` conditional-hook bug), **#136** (data-changed pipeline verification, scheduled ~Nov 2026), plus older backlog **#21**/**#22**. No priority set among #138–#141 yet — ask the user which to pick up.
 
 **#134 merged (2026-07-14, PR #137)**: `generate_resort_locations_csv()` (`pipeline/utils.py`) is now incremental by default (reads existing `resort_locations.csv`, geocodes only resorts missing by name, appends rather than overwrites); `full=True` re-geocodes everything as an explicit escape hatch. `step_geocode()` (`pipeline/pipeline.py`) no longer skips the whole step when the cache file exists — it always runs, now cheap when nothing's missing. `docs/ops-runbook.md` updated to drop the stale "full refresh ~quarterly" guidance.
 
@@ -17,8 +19,6 @@ Current work-in-progress. Update this file at the start and end of every session
 **Data-changed path verification split into #136**, scheduled ~early November 2026 (Indy Pass resort data typically doesn't shift until next-season info is published Oct/Nov) — no longer blocking delivery. Checklist (PR opens correctly, PR body renders correctly, diff scoped to `data/`, update-in-place on a second run, hard-fail path, `full=true` input, weekly cron) lives on the issue, not here.
 
 Minor follow-up from run annotations: `actions/*@v4` + `create-pull-request@v6` target deprecated Node 20 in both workflows — trivial version bumps for a future housekeeping pass.
-
-Next up (after #132 merges): nothing prioritized — check the project board for backlog (#21, #22) or pick up **#138** (remaining unused `_tt` fields).
 
 **#83 merged (2026-07-13)**, PR #133: data validation on `Resort` Pydantic model — bounded `field_validator`s (soft log+null) plus hard `indy_page` URL constraint. See `docs/decisions.md` for rationale.
 
@@ -58,7 +58,7 @@ Target: public launch on Indy Pass Facebook groups ahead of ski season. All P0/P
 | #11 | Bug: alpine+XC metrics parsing | P1 | Done |
 | #118 | AG Grid Theming API migration | P2 | Done |
 | #128 | Unit selector (imperial/metric) | P2 | Done |
-| #132 | Drop unused vertical_meters/trail_length_km | P3 | Implemented, not yet merged |
+| #132 | Drop unused vertical_meters/trail_length_km | P3 | Done (2026-07-15) |
 | #134 | Bug: geocoding all-or-nothing, new resorts get no city/state/country | P2 | Done |
 | #136 | Verify automated pipeline data-changed path against real source data | P3 | Open, scheduled ~Nov 2026 |
 | #138 | Remaining unused `_tt` tooltip fields (location_name_tt, num_trails_tt, num_lifts_tt, pr_total_tt) | P3 | Open, not started |
