@@ -26,6 +26,8 @@ export function useFilters() {
     // Numeric range filters
     min_vertical: getNum('min_vertical'),
     max_vertical: getNum('max_vertical'),
+    min_acres: getNum('min_acres'),
+    max_acres: getNum('max_acres'),
     min_trails: getNum('min_trails'),
     max_trails: getNum('max_trails'),
     min_trails_xc: getNum('min_trails_xc'),

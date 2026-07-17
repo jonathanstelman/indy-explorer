@@ -22,6 +22,7 @@ FAKE_RESORTS = [
         reservation_status='none',
         indy_page='https://example.com/alpine',
         vertical=2000.0,
+        acres=800.0,
         num_trails=100.0,
         num_trails_xc=10.0,
         num_lifts=10.0,
@@ -50,6 +51,7 @@ FAKE_RESORTS = [
         reservation_status='none',
         indy_page='https://example.com/nordic',
         vertical=1000.0,
+        acres=300.0,
         num_trails=50.0,
         num_trails_xc=30.0,
         num_lifts=5.0,
@@ -99,6 +101,7 @@ def test_meta_numeric_ranges():
         response = client.get('/meta')
     data = response.json()
     assert data['vertical'] == {'min': 1000.0, 'max': 2000.0}
+    assert data['acres'] == {'min': 300.0, 'max': 800.0}
     assert data['num_trails'] == {'min': 50.0, 'max': 100.0}
     assert data['num_trails_xc'] == {'min': 10.0, 'max': 30.0}
     assert data['num_lifts'] == {'min': 5.0, 'max': 10.0}
@@ -129,6 +132,7 @@ def test_meta_empty_resorts():
     data = response.json()
     assert data['regions'] == []
     assert data['vertical'] == {'min': None, 'max': None}
+    assert data['acres'] == {'min': None, 'max': None}
     assert data['blackout_date_range'] == {'min': None, 'max': None}
 
 

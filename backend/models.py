@@ -95,6 +95,7 @@ class MetaResponse(BaseModel):
     countries: list[str]
     states: list[str]
     vertical: RangeField
+    acres: RangeField
     num_trails: RangeField
     num_trails_xc: RangeField
     num_lifts: RangeField

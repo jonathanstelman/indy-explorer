@@ -65,6 +65,7 @@ def get_meta():
         countries=sorted({r.country for r in _resorts if r.country}),
         states=sorted({r.state for r in _resorts if r.state}),
         vertical=_range('vertical'),
+        acres=_range('acres'),
         num_trails=_range('num_trails'),
         num_trails_xc=_range('num_trails_xc'),
         num_lifts=_range('num_lifts'),
@@ -113,6 +114,8 @@ def get_resorts(
     # Numeric range filters (inclusive; resorts with null values are excluded)
     min_vertical: Optional[float] = Query(default=None),
     max_vertical: Optional[float] = Query(default=None),
+    min_acres: Optional[float] = Query(default=None),
+    max_acres: Optional[float] = Query(default=None),
     min_trails: Optional[float] = Query(default=None),
     max_trails: Optional[float] = Query(default=None),
     min_trails_xc: Optional[float] = Query(default=None),
@@ -212,6 +215,7 @@ def get_resorts(
     # Numeric range filters (resorts with null values are excluded)
     range_filters = [
         ('vertical', min_vertical, max_vertical),
+        ('acres', min_acres, max_acres),
         ('num_trails', min_trails, max_trails),
         ('num_trails_xc', min_trails_xc, max_trails_xc),
         ('num_lifts', min_lifts, max_lifts),
