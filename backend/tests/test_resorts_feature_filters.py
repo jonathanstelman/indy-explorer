@@ -28,6 +28,7 @@ FAKE_RESORTS = [
         has_snowshoeing=False,
         is_allied=False,
         vertical=3000.0,
+        acres=500.0,
         num_trails=100.0,
         num_lifts=15.0,
         trail_length_mi=80.0,
@@ -49,6 +50,7 @@ FAKE_RESORTS = [
         has_snowshoeing=True,
         is_allied=True,
         vertical=1200.0,
+        acres=200.0,
         num_trails=40.0,
         num_trails_xc=35.0,
         num_lifts=5.0,
@@ -224,6 +226,31 @@ def test_xc_fields_in_summary(client):
     assert data[0]['difficulty_beginner_xc'] == 20.0
     assert data[0]['difficulty_intermediate_xc'] == 60.0
     assert data[0]['difficulty_advanced_xc'] == 20.0
+
+
+def test_min_acres(client):
+    response = client.get('/resorts?min_acres=300')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Alpine Peak'}
+
+
+def test_max_acres(client):
+    response = client.get('/resorts?max_acres=300')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Nordic Valley'}
+
+
+def test_acres_range(client):
+    response = client.get('/resorts?min_acres=100&max_acres=250')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Nordic Valley'}
+
+
+def test_acres_excludes_null_values(client):
+    # Mid Mountain has no acres — excluded from range filters
+    response = client.get('/resorts?min_acres=1')
+    names = {r['name'] for r in response.json()}
+    assert 'Mid Mountain' not in names
 
 
 def test_min_lifts(client):
