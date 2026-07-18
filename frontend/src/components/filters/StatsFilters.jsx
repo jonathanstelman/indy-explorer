@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Slider, Typography, theme } from 'antd'
 import { useFilters } from '@/hooks/useFilters'
 import { useUnits } from '@/hooks/useUnits'
@@ -56,9 +56,13 @@ function RangeSlider({ label, unitKind, metaRange, minKey, maxKey, logScale = fa
 
   const [local, setLocal] = useState([urlMin, urlMax])
 
-  useEffect(() => {
-    setLocal([filters[minKey] ?? metaMin, filters[maxKey] ?? metaMax])
-  }, [filters[minKey], filters[maxKey], metaMin, metaMax])
+  // Reset local state when the URL value changes externally — adjusted during render
+  // rather than via effect, per https://react.dev/learn/you-might-not-need-an-effect
+  const [syncedRange, setSyncedRange] = useState([urlMin, urlMax])
+  if (urlMin !== syncedRange[0] || urlMax !== syncedRange[1]) {
+    setSyncedRange([urlMin, urlMax])
+    setLocal([urlMin, urlMax])
+  }
 
   function onChangeComplete(rawValue) {
     const [min, max] = logScale

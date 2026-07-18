@@ -1,10 +1,5 @@
 import { COLORS } from '@/theme'
-
-export const PANEL_STYLE = {
-  background: COLORS.bgBase,
-  border: `2px solid ${COLORS.bgHeader}`,
-  borderRadius: 4,
-}
+import { PANEL_STYLE } from '@/components/common/panelStyle'
 
 export default function Panel({ children, onClose, closeLabel = 'Close', style, ...rest }) {
   return (

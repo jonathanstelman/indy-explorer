@@ -15,10 +15,18 @@ function useDeferredFilter(urlValue, filterKey) {
   const [local, setLocal] = useState(urlValue)
   const ref = useRef(urlValue)
 
-  useEffect(() => {
+  // Reset local state when the URL value changes externally — adjusted during render
+  // rather than via effect, per https://react.dev/learn/you-might-not-need-an-effect
+  const urlKey = JSON.stringify(urlValue)
+  const [syncedKey, setSyncedKey] = useState(urlKey)
+  if (urlKey !== syncedKey) {
+    setSyncedKey(urlKey)
     setLocal(urlValue)
+  }
+  // Ref writes aren't allowed during render, so this stays in an effect
+  useEffect(() => {
     ref.current = urlValue
-  }, [JSON.stringify(urlValue)])
+  }, [urlKey, urlValue])
 
   function onChange(v) {
     setLocal(v)
