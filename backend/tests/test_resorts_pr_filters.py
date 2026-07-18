@@ -42,6 +42,7 @@ FAKE_RESORTS = [
         pr_access_road='good',
         pr_ability_low='beginner',
         pr_ability_high='expert',
+        pr_pass_affiliation='Indy Pass, Powder Alliance',
     ),
     make_resort(
         'id-2',
@@ -62,6 +63,7 @@ FAKE_RESORTS = [
         pr_access_road='acceptable',
         pr_ability_low='intermediate',
         pr_ability_high='advanced',
+        pr_pass_affiliation='Cali Pass',
     ),
     make_resort(
         'id-3',
@@ -206,6 +208,43 @@ def test_categorical_excludes_no_data_resorts(client):
 
 def test_categorical_case_insensitive(client):
     response = client.get('/resorts?pr_lodging=YES')
+    names = {r['name'] for r in response.json()}
+    assert 'Peak A' in names
+
+
+# --- pass_affiliation (split-tag any-match, since values are comma-separated combos) ---
+
+
+def test_pass_affiliation_single_tag(client):
+    # Peak A has 'Indy Pass, Powder Alliance' — a single-tag query should still match
+    # since it's a combo, not an exact string.
+    response = client.get('/resorts?pass_affiliation=Indy Pass')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Peak A'}
+
+
+def test_pass_affiliation_matches_within_combo(client):
+    # Peak A's combo includes 'Powder Alliance' alongside 'Indy Pass' — querying for
+    # just 'Powder Alliance' should still surface it, not just exact whole-string matches.
+    response = client.get('/resorts?pass_affiliation=Powder Alliance')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Peak A'}
+
+
+def test_pass_affiliation_multi(client):
+    response = client.get('/resorts?pass_affiliation=Indy Pass&pass_affiliation=Cali Pass')
+    names = {r['name'] for r in response.json()}
+    assert names == {'Peak A', 'Peak B'}
+
+
+def test_pass_affiliation_excludes_no_data_resorts(client):
+    response = client.get('/resorts?pass_affiliation=Indy Pass&pass_affiliation=Cali Pass')
+    names = {r['name'] for r in response.json()}
+    assert 'No Rankings' not in names
+
+
+def test_pass_affiliation_case_insensitive(client):
+    response = client.get('/resorts?pass_affiliation=indy pass')
     names = {r['name'] for r in response.json()}
     assert 'Peak A' in names
 

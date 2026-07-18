@@ -81,6 +81,15 @@ def get_meta():
         pr_facilities=_range('pr_facilities'),
         pr_navigation=_range('pr_navigation'),
         pr_mountain_aesthetic=_range('pr_mountain_aesthetic'),
+        pass_affiliations=sorted(
+            {
+                tag
+                for r in _resorts
+                if r.pr_pass_affiliation
+                for tag in (t.strip() for t in r.pr_pass_affiliation.split(','))
+                if tag
+            }
+        ),
         blackout_date_range=_date_range('blackout_all_dates'),
         ltt_date_range=_date_range('ltt_blackout_all_dates'),
     )
@@ -153,6 +162,7 @@ def get_resorts(
     pr_access_road: list[str] = Query(default=[]),
     pr_ability_low: list[str] = Query(default=[]),
     pr_ability_high: list[str] = Query(default=[]),
+    pass_affiliation: list[str] = Query(default=[]),
     # Blackout date range filters (YYYY-MM-DD; show resorts with no blackouts in the range)
     has_blackouts: Optional[bool] = Query(default=None),
     blackout_date_from: Optional[str] = Query(default=None),
@@ -254,6 +264,18 @@ def get_resorts(
         if values:
             value_set = {v.lower() for v in values}
             results = [r for r in results if (getattr(r, field) or '').lower() in value_set]
+
+    # pr_pass_affiliation holds comma-separated combos (e.g. "Cali Pass, Powder Alliance"),
+    # not single tags, so this any-matches selected tags against each resort's split combo
+    # rather than treating the whole string as one opaque value like the filters above.
+    if pass_affiliation:
+        affiliation_set = {v.lower() for v in pass_affiliation}
+        results = [
+            r
+            for r in results
+            if {t.strip().lower() for t in (r.pr_pass_affiliation or '').split(',')}
+            & affiliation_set
+        ]
 
     if has_blackouts is not None:
         if has_blackouts:
