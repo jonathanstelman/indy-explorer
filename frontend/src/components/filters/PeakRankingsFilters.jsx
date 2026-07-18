@@ -76,10 +76,15 @@ function CategoricalSelect({ label, filterKey, options }) {
     setSyncedKey(urlKey)
     setLocal(urlValue)
   }
-  // Ref writes aren't allowed during render, so this stays in an effect
+  // Ref writes aren't allowed during render, so this stays in an effect. Deliberately
+  // depends on urlKey (a stable string), not urlValue itself — urlValue is a fresh array
+  // reference every render (filters[filterKey] is rebuilt from searchParams each time),
+  // so depending on it directly reran this every render and clobbered ref.current back to
+  // the stale URL value right after onChange had just set it to the in-progress selection,
+  // silently breaking every multi-select filter's commit-on-close.
   useEffect(() => {
     ref.current = urlValue
-  }, [urlKey, urlValue])
+  }, [urlKey])
 
   function onChange(v) {
     setLocal(v)
@@ -172,6 +177,12 @@ export default function PeakRankingsFilters({ meta }) {
       {CATEGORICAL_FILTERS.map(({ label, key, options }) => (
         <CategoricalSelect key={key} label={label} filterKey={key} options={options} />
       ))}
+
+      <CategoricalSelect
+        label="Pass Affiliation"
+        filterKey="pass_affiliation"
+        options={toOptions(meta?.pass_affiliations ?? [])}
+      />
     </div>
   )
 }

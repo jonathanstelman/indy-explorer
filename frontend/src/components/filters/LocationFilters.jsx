@@ -23,10 +23,15 @@ function useDeferredFilter(urlValue, filterKey) {
     setSyncedKey(urlKey)
     setLocal(urlValue)
   }
-  // Ref writes aren't allowed during render, so this stays in an effect
+  // Ref writes aren't allowed during render, so this stays in an effect. Deliberately
+  // depends on urlKey (a stable string), not urlValue itself — urlValue is a fresh array
+  // reference every render (filters.region etc. are rebuilt from searchParams each time),
+  // so depending on it directly reran this every render and clobbered ref.current back to
+  // the stale URL value right after onChange had just set it to the in-progress selection,
+  // silently breaking every multi-select filter's commit-on-close.
   useEffect(() => {
     ref.current = urlValue
-  }, [urlKey, urlValue])
+  }, [urlKey])
 
   function onChange(v) {
     setLocal(v)

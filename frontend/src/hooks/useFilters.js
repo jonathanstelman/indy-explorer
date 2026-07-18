@@ -82,6 +82,7 @@ export function useFilters() {
     pr_access_road: searchParams.getAll('pr_access_road'),
     pr_ability_low: searchParams.getAll('pr_ability_low'),
     pr_ability_high: searchParams.getAll('pr_ability_high'),
+    pass_affiliation: searchParams.getAll('pass_affiliation'),
   }
 
   function applyUpdates(next, updates) {
