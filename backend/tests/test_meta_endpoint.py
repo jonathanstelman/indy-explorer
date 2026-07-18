@@ -105,7 +105,16 @@ def test_meta_pass_affiliations_split_deduped_sorted():
     with patch('main._resorts', FAKE_RESORTS):
         response = client.get('/meta')
     data = response.json()
-    assert data['pass_affiliations'] == ['Cali Pass', 'Indy Pass', 'Powder Alliance']
+    assert data['pass_affiliations'] == ['Cali Pass', 'Powder Alliance']
+
+
+def test_meta_pass_affiliations_excludes_indy_pass():
+    # Every resort in this app is an Indy Pass resort by definition, so 'Indy Pass'
+    # isn't a discriminating filter option here — worth suppressing rather than
+    # showing a tag that (mis-)implies some resorts aren't Indy Pass affiliated.
+    with patch('main._resorts', FAKE_RESORTS):
+        response = client.get('/meta')
+    assert 'Indy Pass' not in response.json()['pass_affiliations']
 
 
 def test_meta_numeric_ranges():

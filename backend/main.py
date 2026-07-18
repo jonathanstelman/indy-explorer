@@ -81,13 +81,16 @@ def get_meta():
         pr_facilities=_range('pr_facilities'),
         pr_navigation=_range('pr_navigation'),
         pr_mountain_aesthetic=_range('pr_mountain_aesthetic'),
+        # 'Indy Pass' isn't a discriminating filter option here — every resort in this
+        # app is an Indy Pass resort by definition (and Peak Rankings' own affiliation
+        # data doesn't consistently tag every one of them as such anyway).
         pass_affiliations=sorted(
             {
                 tag
                 for r in _resorts
                 if r.pr_pass_affiliation
                 for tag in (t.strip() for t in r.pr_pass_affiliation.split(','))
-                if tag
+                if tag and tag != 'Indy Pass'
             }
         ),
         blackout_date_range=_date_range('blackout_all_dates'),
