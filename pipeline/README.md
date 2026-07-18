@@ -28,7 +28,7 @@ poetry run python pipeline/pipeline.py --steps scrape_resorts,prep
 | `fetch_blackout_dates` | `blackout.py` | Reads standard blackout dates from Google Sheets (always live) |
 | `fetch_ltt_dates` | `ltt_blackout.py` | Reads LTT blackout dates from Google Sheets (always live) |
 | `fetch_peak_rankings` | `peak_rankings.py` | Reads Peak Rankings scores from Google Sheets (always live) |
-| `geocode` | `utils.py` | Google Maps geocoding; skips if `data/resort_locations.csv` exists unless `--full` |
+| `geocode` | `utils.py` | Google Maps geocoding; incremental by default (geocodes only resorts missing from `data/resort_locations.csv`, a cheap no-op once nothing's missing); `--full` re-geocodes everything |
 | `prep` | `prep_resort_data.py` | Merges all sources into `data/resorts.csv`; assigns stable UUIDs via `data/resort_id_map.csv` |
 
 ## Outputs
@@ -68,5 +68,5 @@ The `backups/` directory is not tracked in git. Cache HTML files are not include
 ## Cache behavior
 
 - **HTML cache** (`cache/*.html`): Written with `open(..., 'x')` — never overwrites. Delete files manually to re-fetch. The `--full` flag deletes all resort HTML before running.
-- **Geocoding cache** (`data/resort_locations.csv`): Skipped entirely if the file exists. Use `--full` to regenerate. Geocoding costs API quota — avoid unnecessary runs.
+- **Geocoding cache** (`data/resort_locations.csv`): Incremental by default — only resorts missing from the cache (matched by name) are geocoded; existing rows are left as-is. A cheap no-op once nothing's missing, so the `geocode` step always runs rather than being skipped outright. Use `--full` to re-geocode every resort and overwrite the cache. Geocoding costs API quota — avoid unnecessary `--full` runs.
 - **Resort IDs** (`data/resort_id_map.csv`): UUIDs are assigned once and preserved across all subsequent runs. Never delete this file.
