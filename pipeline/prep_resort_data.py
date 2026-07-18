@@ -90,16 +90,6 @@ def is_alpine(resort):
     return False
 
 
-def nan_to_text(value, replace_text='---'):
-    """
-    Convert NaN to '---' for tooltip display
-    """
-    if pd.isnull(value) or value == '':
-        return replace_text
-    else:
-        return value
-
-
 def main(refresh_blackout=False, refresh_ltt=False):
     logger.info('Loading raw resort data...')
     # Get resort data from main page
@@ -185,11 +175,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
     for col in table_cols:
         resorts[col + '_display'] = resorts[col].map(bool_map)
 
-    # Fields for tooltip display
-    resorts['location_name_tt'] = resorts['location_name'].apply(nan_to_text, replace_text='n/a')
-    resorts['num_trails_tt'] = resorts['num_trails'].apply(nan_to_text)
-    resorts['num_lifts_tt'] = resorts['num_lifts'].apply(nan_to_text)
-
     # Clean up
     cols = [
         'resort_id',
@@ -236,9 +221,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'has_night_skiing_display',
         'has_terrain_parks_display',
         'is_allied_display',
-        'location_name_tt',
-        'num_trails_tt',
-        'num_lifts_tt',
         'blackout_named_ranges',
         'blackout_additional_dates',
         'blackout_all_dates',
@@ -267,7 +249,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
         'pr_ability_high',
         'pr_nearest_cities',
         'pr_pass_affiliation',
-        'pr_total_tt',
     ]
 
     # Merge blackout data (fail fast if anything goes wrong)
@@ -335,16 +316,6 @@ def main(refresh_blackout=False, refresh_ltt=False):
         logger.warning('Peak Rankings data missing at %s. Using defaults.', peak_rankings_path)
         for col in PR_COLUMNS:
             resorts[col] = np.nan
-
-    # Peak Rankings tooltip field
-    resorts['pr_total_tt'] = resorts.apply(
-        lambda r: (
-            f"Score: {int(r.pr_total)} (Rank #{int(r.pr_overall_rank)})"
-            if pd.notnull(r.get('pr_total')) and pd.notnull(r.get('pr_overall_rank'))
-            else '---'
-        ),
-        axis=1,
-    )
 
     resorts = assign_resort_ids(resorts)
     resorts = resorts[cols]

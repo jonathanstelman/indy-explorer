@@ -32,6 +32,18 @@ def test_resort_ids_are_unique():
 def test_unused_metric_and_tooltip_fields_are_dropped():
     # #128's unit toggle converts client-side from canonical imperial values, so these
     # precomputed fields (#132) are dead weight on the wire and in data/resorts.csv.
-    dropped_fields = {'vertical_meters', 'trail_length_km', 'acres_tt', 'vertical_tt'}
+    # #138 dropped the remaining unused tooltip-formatting fields, left over from the
+    # legacy Streamlit app's raw-HTML PyDeck tooltip, which had no null-safe formatting
+    # of its own — the React map tooltip formats values inline instead.
+    dropped_fields = {
+        'vertical_meters',
+        'trail_length_km',
+        'acres_tt',
+        'vertical_tt',
+        'location_name_tt',
+        'num_trails_tt',
+        'num_lifts_tt',
+        'pr_total_tt',
+    }
     assert not dropped_fields & set(Resort.model_fields.keys())
     assert not dropped_fields & set(ResortSummary.model_fields.keys())
