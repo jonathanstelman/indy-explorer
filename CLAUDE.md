@@ -154,7 +154,29 @@ gh issue view <number> --repo jonathanstelman/indy-explorer --comments
 
 **Why:** Open questions and clarifications are left as comments on issues, not in the issue body. Reading the body alone will miss them. If a comment contains an unresolved question, surface it to the user before writing code rather than making assumptions.
 
-The project board is: https://github.com/users/jonathanstelman/projects/2
+**PR merges don't auto-close referenced issues here.** PR bodies reference issues as bare `#123` (readable prose, not GitHub's closing-keyword syntax), so merging a PR does *not* close the issues it implements. After a merge, close each implemented issue explicitly:
+
+```bash
+gh issue close <number> --repo jonathanstelman/indy-explorer --comment "Merged in #<PR-number>. <one-line summary>."
+```
+
+## Project Board
+
+The project board is: https://github.com/users/jonathanstelman/projects/2 (Status field: `Todo` / `In Progress` / `Done`)
+
+**The board is for users of the live app — a different audience from `docs/decisions.md` (which is for developers).** Keep it curated, not exhaustive:
+
+- **Add and mark `Done`:** new user-facing features, and bug fixes a user would actually notice (wrong/missing data displayed, broken UI behavior, etc.)
+- **Leave off:** internal refactors, lint cleanup, dead-code/unused-field removal, pipeline/ops-only changes, test additions, doc fixes — anything invisible from the live app
+
+After merging and closing an issue, ask: would a user of the live app notice or care about this change? If yes, add it to the board and set it to `Done`:
+
+```bash
+gh project item-add 2 --owner jonathanstelman --url https://github.com/jonathanstelman/indy-explorer/issues/<number>
+gh project item-edit --project-id PVT_kwHOAVEDwM4AuV5p --id <item-id> --field-id PVTSSF_lAHOAVEDwM4AuV5pzgk9Cuw --single-select-option-id 98236657
+```
+
+(`item-add` prints the new item's `id` in its JSON output with `--format json`.) If no, skip the board — the closed issue and its `docs/decisions.md` entry are sufficient.
 
 ## Session Documentation
 
@@ -171,6 +193,8 @@ After completing any non-trivial task, add a summary to [`docs/decisions.md`](do
 **Rationale:** Why, and what alternatives were considered.
 **Follow-up:** Open items or gotchas, if any.
 ```
+
+**When a PR merges**, close each issue it implements (see "PR merges don't auto-close referenced issues" above) and update the [Project Board](#project-board) for any user-facing ones.
 
 ## Important Constraints
 
