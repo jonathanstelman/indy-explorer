@@ -38,6 +38,7 @@ FAKE_RESORTS = [
         pr_facilities=5.0,
         pr_navigation=4.5,
         pr_mountain_aesthetic=9.5,
+        pr_pass_affiliation='Indy Pass',
         blackout_all_dates=json.dumps(['2025-12-25', '2025-12-26']),
         ltt_blackout_all_dates=json.dumps(['2026-01-01']),
     ),
@@ -67,6 +68,7 @@ FAKE_RESORTS = [
         pr_facilities=3.5,
         pr_navigation=3.0,
         pr_mountain_aesthetic=8.0,
+        pr_pass_affiliation='Cali Pass, Powder Alliance',
         blackout_all_dates=json.dumps(['2025-12-24', '2026-01-02']),
         ltt_blackout_all_dates=json.dumps(['2026-01-15']),
     ),
@@ -94,6 +96,25 @@ def test_meta_regions_countries_states():
     assert data['regions'] == ['Northeast', 'West']
     assert data['countries'] == ['Canada', 'USA']
     assert data['states'] == ['CO', 'VT']
+
+
+def test_meta_pass_affiliations_split_deduped_sorted():
+    # id-2's 'Cali Pass, Powder Alliance' is a combo value — meta should expose the
+    # individual tags, not the raw combo string, so a user can filter on one tag
+    # across all combos it appears in.
+    with patch('main._resorts', FAKE_RESORTS):
+        response = client.get('/meta')
+    data = response.json()
+    assert data['pass_affiliations'] == ['Cali Pass', 'Powder Alliance']
+
+
+def test_meta_pass_affiliations_excludes_indy_pass():
+    # Every resort in this app is an Indy Pass resort by definition, so 'Indy Pass'
+    # isn't a discriminating filter option here — worth suppressing rather than
+    # showing a tag that (mis-)implies some resorts aren't Indy Pass affiliated.
+    with patch('main._resorts', FAKE_RESORTS):
+        response = client.get('/meta')
+    assert 'Indy Pass' not in response.json()['pass_affiliations']
 
 
 def test_meta_numeric_ranges():
@@ -131,6 +152,7 @@ def test_meta_empty_resorts():
     assert response.status_code == 200
     data = response.json()
     assert data['regions'] == []
+    assert data['pass_affiliations'] == []
     assert data['vertical'] == {'min': None, 'max': None}
     assert data['acres'] == {'min': None, 'max': None}
     assert data['blackout_date_range'] == {'min': None, 'max': None}

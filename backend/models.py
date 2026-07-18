@@ -94,6 +94,7 @@ class MetaResponse(BaseModel):
     regions: list[str]
     countries: list[str]
     states: list[str]
+    pass_affiliations: list[str]
     vertical: RangeField
     acres: RangeField
     num_trails: RangeField
@@ -225,9 +226,6 @@ class Resort(BaseModel):
     has_night_skiing_display: Optional[str] = None
     has_terrain_parks_display: Optional[str] = None
     is_allied_display: Optional[str] = None
-    location_name_tt: Optional[str] = None
-    num_trails_tt: Optional[str] = None
-    num_lifts_tt: Optional[str] = None
     blackout_named_ranges: Optional[str] = None
     blackout_additional_dates: Optional[str] = None
     blackout_all_dates: Optional[str] = None
@@ -256,7 +254,6 @@ class Resort(BaseModel):
     pr_ability_high: Optional[str] = None
     pr_nearest_cities: Optional[str] = None
     pr_pass_affiliation: Optional[str] = None
-    pr_total_tt: Optional[str] = None
 
     @field_validator(*_NONNEG_BOUNDS.keys(), mode='after')
     @classmethod

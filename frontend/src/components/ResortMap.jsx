@@ -301,11 +301,25 @@ export default function ResortMap({ resorts = [], onResortClick, unit = 'imperia
   const containerRef = useRef()
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE)
   const [tooltipInfo, setTooltipInfo] = useState(null)
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const { filters } = useFilters()
 
 
   // Track the location key we last zoomed to — only re-fit when location filters actually change
   const lastZoomedLocationKey = useRef(null)
+
+  // Tracked in state (rather than read from containerRef during the onHover callback below)
+  // since ref values can't be read while constructing the layer during render.
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect
+      setContainerSize({ width, height })
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   const validResorts = resorts
     .filter(r => r.latitude && r.longitude)
@@ -318,9 +332,11 @@ export default function ResortMap({ resorts = [], onResortClick, unit = 'imperia
     if (locationKey === lastZoomedLocationKey.current) return
     lastZoomedLocationKey.current = locationKey
 
-    const el = containerRef.current
-    const { width, height } = el ? el.getBoundingClientRect() : {}
-    setViewState(fitViewToResorts(validResorts, width, height, filters))
+    ;(() => {
+      const el = containerRef.current
+      const { width, height } = el ? el.getBoundingClientRect() : {}
+      setViewState(fitViewToResorts(validResorts, width, height, filters))
+    })()
   }, [resorts])
 
   const layer = new ScatterplotLayer({
@@ -336,7 +352,7 @@ export default function ResortMap({ resorts = [], onResortClick, unit = 'imperia
     onClick: ({ object }) => onResortClick?.(object),
     onHover: ({ object, x, y }) => {
       if (!object) { setTooltipInfo(null); return }
-      const { width, height } = containerRef.current?.getBoundingClientRect() ?? {}
+      const { width, height } = containerSize
       const th = tooltipHeight(buildTooltipRows(object, unit).length)
       const left = x > width / 2
         ? Math.max(4, x - 8 - TOOLTIP_WIDTH)

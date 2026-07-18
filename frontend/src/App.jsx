@@ -9,7 +9,8 @@ import AppSidebar from '@/components/layout/Sidebar'
 import AppFooter from '@/components/layout/Footer'
 import ResortToolbar from '@/components/ResortToolbar'
 import ResortMap from '@/components/ResortMap'
-import ResortTable, { COLUMN_DEFS, HEADER_BY_FIELD, COL_GROUPS } from '@/components/ResortTable'
+import ResortTable from '@/components/ResortTable'
+import { COLUMN_DEFS, HEADER_BY_FIELD, COL_GROUPS } from '@/components/resortTableColumns'
 import ResortDetailModal from '@/components/ResortDetailModal'
 import HowToUseModal from '@/components/HowToUseModal'
 import Panel from '@/components/common/Panel'
@@ -32,7 +33,7 @@ export default function App() {
   const [allResorts, setAllResorts] = useState([])
   const [meta, setMeta] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [_error, setError] = useState(null)
   const [selectedResortId, setSelectedResortId] = useState(null)
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
@@ -88,12 +89,17 @@ export default function App() {
 
   // Fetch resorts whenever filters change
   useEffect(() => {
-    setLoading(true)
-    setError(null)
-    fetchResorts(filters)
-      .then(setResorts)
-      .catch(e => setError(e.message))
-      .finally(() => setLoading(false))
+    ;(async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        setResorts(await fetchResorts(filters))
+      } catch (e) {
+        setError(e.message)
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [searchParams.toString()])
 
   function onDownloadCsv() {

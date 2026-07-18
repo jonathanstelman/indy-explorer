@@ -12,9 +12,6 @@ import { COLORS, hexToHsl } from '@/theme'
 import ModalShell from '@/components/common/ModalShell'
 import ModalHeader from '@/components/common/ModalHeader'
 
-// Persists the user's last-viewed month across modal opens
-let sharedCalendarMonth = dayjs()
-
 const { Text, Link } = Typography
 
 const BLACKOUT_COLORS = {
@@ -235,17 +232,11 @@ function PeakRankings({ resort, isMobile }) {
   )
 }
 
-function BlackoutCalendar({ standardJson, lttJson }) {
+function BlackoutCalendar({ standardJson, lttJson, displayMonth, setMonth }) {
   const classified = classifyBlackoutDates(standardJson, lttJson)
   const hasAny = classified.size > 0
   const hasLtt = [...classified.values()].some(v => v === 'ltt' || v === 'both')
-  const [displayMonth, setDisplayMonth] = useState(sharedCalendarMonth)
   const today = useRef(dayjs())
-
-  function setMonth(m) {
-    sharedCalendarMonth = m
-    setDisplayMonth(m)
-  }
 
   if (!hasAny) return <Text type="secondary">No blackout dates.</Text>
 
@@ -353,14 +344,20 @@ function BlackoutCalendar({ standardJson, lttJson }) {
 export default function ResortDetailModal({ resortId, onClose, unit = 'imperial', isMobile = false }) {
   const [resort, setResort] = useState(null)
   const [loading, setLoading] = useState(false)
+  // Persists the user's last-viewed blackout calendar month across resort switches
+  const [calendarMonth, setCalendarMonth] = useState(() => dayjs())
 
   useEffect(() => {
     if (!resortId) return
-    setLoading(true)
-    setResort(null)
-    fetchResort(resortId)
-      .then(setResort)
-      .finally(() => setLoading(false))
+    ;(async () => {
+      setLoading(true)
+      setResort(null)
+      try {
+        setResort(await fetchResort(resortId))
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [resortId])
 
   const location = resort
@@ -505,6 +502,8 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
             <BlackoutCalendar
               standardJson={resort.blackout_all_dates}
               lttJson={resort.ltt_blackout_all_dates}
+              displayMonth={calendarMonth}
+              setMonth={setCalendarMonth}
             />
           </div>
 

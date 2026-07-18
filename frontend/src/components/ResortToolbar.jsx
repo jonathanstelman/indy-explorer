@@ -7,10 +7,13 @@ export default function ResortToolbar({ count, loading }) {
   const { filters, setFilter } = useFilters()
   const [localSearch, setLocalSearch] = useState(filters.search ?? '')
 
-  // Sync local state when URL changes (e.g. on reset)
-  useEffect(() => {
+  // Reset local state when URL changes externally (e.g. on reset) — adjusted during
+  // render rather than via effect, per https://react.dev/learn/you-might-not-need-an-effect
+  const [syncedSearch, setSyncedSearch] = useState(filters.search ?? '')
+  if ((filters.search ?? '') !== syncedSearch) {
+    setSyncedSearch(filters.search ?? '')
     setLocalSearch(filters.search ?? '')
-  }, [filters.search])
+  }
 
   // Debounce URL update while user types
   useEffect(() => {

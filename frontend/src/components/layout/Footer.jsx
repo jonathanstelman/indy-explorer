@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Layout, Popover, Typography, theme } from 'antd'
 import { COLORS, FONTS, withAlpha } from '@/theme'
-import { PANEL_STYLE } from '@/components/common/Panel'
+import { PANEL_STYLE } from '@/components/common/panelStyle'
 
 export default function AppFooter({ lastUpdated, isMobile }) {
-  if (isMobile) return null
   const { token } = theme.useToken()
   const [feedbackOpen, setFeedbackOpen] = useState(false)
+
+  if (isMobile) return null
 
   const feedbackContent = (
     <div style={{ fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.8 }}>
