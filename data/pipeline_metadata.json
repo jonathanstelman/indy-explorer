@@ -1,8 +1,8 @@
 {
-  "last_run": "2026-07-12T14:45:20.310986+00:00",
+  "last_run": "2026-09-03T11:44:10.923047+00:00",
   "mode": "incremental",
   "steps_run": [
-    "scrape_resorts",
+    "geocode",
     "prep"
   ]
 }
