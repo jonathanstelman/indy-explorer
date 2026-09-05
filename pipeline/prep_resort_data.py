@@ -55,6 +55,7 @@ def assign_resort_ids(resorts: pd.DataFrame) -> pd.DataFrame:
         else:
             new_id = str(uuid.uuid4())
             resort_ids.append(new_id)
+            existing[key] = new_id  # so a duplicate slug later in this batch reuses it
             new_rows.append({'resort_id': new_id, 'source': 'indy', 'source_id': slug})
             logger.info('Generated new resort_id for %s (%s)', row.get('name', ''), slug)
 
@@ -71,6 +72,21 @@ def assign_resort_ids(resorts: pd.DataFrame) -> pd.DataFrame:
         logger.info('Wrote %d new entries to %s', len(new_rows), ID_MAP_PATH)
 
     return resorts
+
+
+def merge_locations(resorts: pd.DataFrame, locations: pd.DataFrame) -> pd.DataFrame:
+    """Merge geocoded location data into resorts.
+
+    Keyed on (name, location_name) rather than name alone — two distinct resorts can
+    share a name (e.g. the two "Powder Ridge" resorts added to Indy Pass in 2026-09,
+    one in Kimball, MN and one in Middlefield, CT). A name-only join is a many-to-many
+    merge in that case and silently fans out into duplicate rows. Falls back to a
+    name-only join against a legacy resort_locations.csv that predates the
+    location_name column.
+    """
+    if 'location_name' in locations.columns:
+        return pd.merge(resorts, locations, on=['name', 'location_name'], how='left')
+    return pd.merge(resorts, locations, on='name', how='left')
 
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
@@ -156,7 +172,7 @@ def main(refresh_blackout=False, refresh_ltt=False):
     resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
     resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
     # resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
-    resorts = pd.merge(resorts, locations, left_on='name', right_on='name', how='left')
+    resorts = merge_locations(resorts, locations)
     missing_locations = resorts['city'].isna().sum()
     if missing_locations:
         logger.warning('Missing location data for %d resorts after merge.', missing_locations)

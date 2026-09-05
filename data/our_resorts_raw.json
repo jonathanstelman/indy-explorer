@@ -755,24 +755,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/cannon-mountain"
     },
-    "345": {
-        "name": "Cape Smokey",
-        "coordinates": {
-            "latitude": 46.627615294095,
-            "longitude": -60.421888642657
-        },
-        "location_name": "Ingonish Beach, Nova Scotia, CA",
-        "vertical": 1000,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 16,
-        "num_lifts": 2,
-        "is_open_nights": false,
-        "has_terrain_parks": false,
-        "href": "/our-resorts/cape-smokey"
-    },
     "496": {
         "name": "Carters XC Ski Center",
         "coordinates": {
@@ -1295,6 +1277,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/eaglecrest"
     },
+    "516": {
+        "name": "Eastman Cross Country",
+        "coordinates": {
+            "latitude": 43.5148401,
+            "longitude": -72.115632
+        },
+        "location_name": "Grantham, NH",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 23,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/eastman-cross-country"
+    },
     "80": {
         "name": "Echo Mountain",
         "coordinates": {
@@ -1348,6 +1348,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/enchanted-forest-xc"
+    },
+    "523": {
+        "name": "Engstligenalp",
+        "coordinates": {
+            "latitude": 46.4592216,
+            "longitude": 7.5664537
+        },
+        "location_name": "Adelboden, Switzerland",
+        "vertical": 1312,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 11,
+        "num_lifts": 9,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/engstligenalp"
     },
     "392": {
         "name": "Erc\u0130yes Ski Resort",
@@ -1519,11 +1537,11 @@
         },
         "location_name": "Granby, CO, USA",
         "vertical": 1000,
-        "is_nordic": false,
-        "is_alpine_xc": false,
+        "is_nordic": true,
+        "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 43,
+        "num_trails": 45,
         "num_lifts": 6,
         "is_open_nights": true,
         "has_terrain_parks": true,
@@ -1951,8 +1969,8 @@
         },
         "location_name": "Jay, VT, USA",
         "vertical": 2153,
-        "is_nordic": false,
-        "is_alpine_xc": false,
+        "is_nordic": true,
+        "is_alpine_xc": true,
         "is_xc_only": false,
         "is_allied": false,
         "num_trails": 81,
@@ -2051,6 +2069,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/kelly-canyon"
     },
+    "538": {
+        "name": "Kendall Mountain Ski Area",
+        "coordinates": {
+            "latitude": 37.8112094,
+            "longitude": -107.6594836
+        },
+        "location_name": "Silverton, CO",
+        "vertical": 283,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 5,
+        "num_lifts": 1,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/kendall-mountain-ski-area"
+    },
     "287": {
         "name": "Kimberley Nordic Club",
         "coordinates": {
@@ -2080,7 +2116,7 @@
         "is_nordic": false,
         "is_alpine_xc": false,
         "is_xc_only": false,
-        "is_allied": true,
+        "is_allied": false,
         "num_trails": 23,
         "num_lifts": 6,
         "is_open_nights": true,
@@ -2627,6 +2663,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/mont-sutton"
     },
+    "537": {
+        "name": "Mont-Kanasuta",
+        "coordinates": {
+            "latitude": 48.1850054,
+            "longitude": -79.4010267
+        },
+        "location_name": "Rouyn-Noranda, QC",
+        "vertical": 482,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 22,
+        "num_lifts": 2,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mont-kanasuta"
+    },
     "109": {
         "name": "Montage Mountain",
         "coordinates": {
@@ -2842,6 +2896,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/mt-hood-meadows"
+    },
+    "546": {
+        "name": "Mt. Pisgah",
+        "coordinates": {
+            "latitude": 44.3456105,
+            "longitude": -74.128274
+        },
+        "location_name": "Saranac Lake, NY",
+        "vertical": 325,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 7,
+        "num_lifts": 1,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/mt-pisgah"
     },
     "116": {
         "name": "Mt. Shasta",
@@ -3149,6 +3221,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/onikoube-ski-resort"
     },
+    "543": {
+        "name": "Osceola Tug Hill XC Ski Center",
+        "coordinates": {
+            "latitude": 43.4991781,
+            "longitude": -75.7148977
+        },
+        "location_name": "Camden, NY",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 11,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/osceola-tug-hill-xc-ski-center"
+    },
     "352": {
         "name": "Palcall Tsumagoi Resort",
         "coordinates": {
@@ -3437,6 +3527,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/powder-ridge"
     },
+    "513": {
+        "name": "Powder Ridge",
+        "coordinates": {
+            "latitude": 41.501645,
+            "longitude": -72.7390292
+        },
+        "location_name": "Middlefield, Connecticut",
+        "vertical": 550,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 17,
+        "num_lifts": 8,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/powder-ridge-0"
+    },
     "333": {
         "name": "Powderhorn",
         "coordinates": {
@@ -3599,6 +3707,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/riksgransen"
     },
+    "528": {
+        "name": "Ruka Ski Resort",
+        "coordinates": {
+            "latitude": 66.1681976,
+            "longitude": 29.1358443
+        },
+        "location_name": "Kuusamo, Finland",
+        "vertical": 659,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 42,
+        "num_lifts": 23,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ruka-ski-resort"
+    },
     "131": {
         "name": "Saddleback Mountain",
         "coordinates": {
@@ -3743,6 +3869,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/shimokura"
     },
+    "524": {
+        "name": "Showdown Montana",
+        "coordinates": {
+            "latitude": 46.8384109,
+            "longitude": -110.7027078
+        },
+        "location_name": "Neihart MT",
+        "vertical": 1400,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 40,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/showdown-montana"
+    },
     "138": {
         "name": "Silver Mountain",
         "coordinates": {
@@ -3851,6 +3995,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/ski-land"
     },
+    "532": {
+        "name": "Ski Saint-Bruno",
+        "coordinates": {
+            "latitude": 45.5626658,
+            "longitude": -73.3358389
+        },
+        "location_name": "St-Bruno, QC",
+        "vertical": 427,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 18,
+        "num_lifts": 9,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/ski-saint-bruno"
+    },
     "141": {
         "name": "Ski Sawmill",
         "coordinates": {
@@ -3886,6 +4048,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/ski-vallee-bleue"
+    },
+    "520": {
+        "name": "Skigebiet Heiligenblut-Gro\u00dfglockner",
+        "coordinates": {
+            "latitude": 47.0405002,
+            "longitude": 12.8383713
+        },
+        "location_name": "Carinthia, Austria",
+        "vertical": 4274,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 13,
+        "num_lifts": 11,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/skigebiet-heiligenblut-grossglockner"
     },
     "177": {
         "name": "SkiWelt",
@@ -4030,6 +4210,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/spirit-mountain"
+    },
+    "518": {
+        "name": "St Johann in Tirol",
+        "coordinates": {
+            "latitude": 47.5167833,
+            "longitude": 12.4268241
+        },
+        "location_name": "St. Johann in Tirol,  Austria",
+        "vertical": 3100,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 19,
+        "num_lifts": 11,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/st-johann-in-tirol"
     },
     "488": {
         "name": "Steamboat Ski Touring Center",
@@ -4372,6 +4570,24 @@
         "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/togakushi-ski-resort"
+    },
+    "542": {
+        "name": "Togari Onsen Snow Resort",
+        "coordinates": {
+            "latitude": 36.9322769,
+            "longitude": 138.385218
+        },
+        "location_name": "Nagano, Japan",
+        "vertical": 2133,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 16,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/togari-onsen-snow-resort"
     },
     "302": {
         "name": "Trapp Family Lodge",

@@ -70,9 +70,10 @@ def generate_resort_locations_csv(
     Iterates through resorts JSON, fetches normalized locations, and saves to CSV.
     Needed for caching location data to avoid repeated API calls.
 
-    Incremental by default: resorts already present in output_csv_path (matched by
-    name) are left as-is and not re-geocoded. Pass full=True to re-geocode every
-    resort and overwrite the existing cache.
+    Incremental by default: resorts already present in output_csv_path (matched by the
+    (name, location_name) pair, so two different resorts sharing a name — e.g. two
+    "Powder Ridge" resorts — stay distinguishable) are left as-is and not re-geocoded.
+    Pass full=True to re-geocode every resort and overwrite the existing cache.
     """
 
     # Load resorts data
@@ -90,27 +91,42 @@ def generate_resort_locations_csv(
     # Remove duplicates
     unique_locations = list({(n, l) for n, l in locations})
 
-    existing_df = pd.DataFrame(columns=['name', 'city', 'state', 'country'])
-    cached_names = set()
+    existing_df = pd.DataFrame(columns=['name', 'location_name', 'city', 'state', 'country'])
+    cached_pairs = set()
     if not full and os.path.exists(output_csv_path):
         existing_df = pd.read_csv(output_csv_path)
-        cached_names = set(existing_df['name'])
+        if 'location_name' in existing_df.columns:
+            cached_pairs = set(zip(existing_df['name'], existing_df['location_name']))
+        else:
+            # Legacy cache predating the location_name column — fall back to matching
+            # by name alone (can't distinguish same-named resorts, but avoids a mass
+            # re-geocode of an otherwise-valid cache).
+            logger.warning(
+                '%s predates the location_name column; matching cached rows by name only.',
+                output_csv_path,
+            )
+            cached_pairs = {(n, None) for n in existing_df['name']}
 
     # Fetch normalized locations for anything not already cached
     new_rows = []
     for name, location_name in unique_locations:
-        if name in cached_names:
+        pair = (name, location_name) if 'location_name' in existing_df.columns else (name, None)
+        if pair in cached_pairs:
             continue
         logger.info("Retrieving location for: %s / %s", name, location_name)
         loc = get_normalized_location(location_name)
         new_rows.append(
             {
                 'name': name,
+                'location_name': location_name,
                 'city': loc.get('city'),
                 'state': loc.get('state'),
                 'country': loc.get('country'),
             }
         )
+        # Mark as cached immediately so a duplicate (name, location_name) pair later in
+        # this same batch isn't geocoded twice.
+        cached_pairs.add(pair)
 
     df = (
         pd.concat([existing_df, pd.DataFrame(new_rows)], ignore_index=True)

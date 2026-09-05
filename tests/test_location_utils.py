@@ -121,6 +121,64 @@ def test_generate_resort_locations_csv_incremental_skips_cached(tmp_path, monkey
     assert df.set_index("name").loc["Resort A", "city"] == "Townsville"
 
 
+def test_generate_resort_locations_csv_geocodes_both_when_names_collide(tmp_path, monkeypatch):
+    """Two different resorts can share a name (e.g. two "Powder Ridge" resorts on the
+    2026-09 roster) — both must be geocoded and stay distinguishable by location_name,
+    not collapsed into one cache entry keyed by name alone."""
+    resorts_json = tmp_path / "resorts_raw.json"
+    output_csv = tmp_path / "resort_locations.csv"
+    _write_resorts_json(
+        resorts_json,
+        [("Powder Ridge", "Kimball, MN, USA"), ("Powder Ridge", "Middlefield, Connecticut")],
+    )
+
+    client = _CountingGMClient(_GEOCODE_RESPONSE)
+    monkeypatch.setattr(location_utils, "gmaps", client)
+
+    location_utils.generate_resort_locations_csv(str(resorts_json), str(output_csv))
+
+    assert sorted(client.calls) == ["Kimball, MN, USA", "Middlefield, Connecticut"]
+    df = pd.read_csv(output_csv)
+    assert len(df) == 2
+    assert set(df["location_name"]) == {"Kimball, MN, USA", "Middlefield, Connecticut"}
+
+
+def test_generate_resort_locations_csv_incremental_skips_cached_pair_not_just_name(
+    tmp_path, monkeypatch
+):
+    """A cached (name, location_name) pair is skipped, but a new location_name sharing
+    an already-cached name must still be geocoded — not skipped just because the name
+    matches some other resort's cached row."""
+    resorts_json = tmp_path / "resorts_raw.json"
+    output_csv = tmp_path / "resort_locations.csv"
+    _write_resorts_json(
+        resorts_json,
+        [("Powder Ridge", "Kimball, MN, USA"), ("Powder Ridge", "Middlefield, Connecticut")],
+    )
+
+    # Kimball, MN entry already cached from a prior run.
+    pd.DataFrame(
+        [
+            {
+                "name": "Powder Ridge",
+                "location_name": "Kimball, MN, USA",
+                "city": "Kimball",
+                "state": "Minnesota",
+                "country": "United States",
+            }
+        ]
+    ).to_csv(output_csv, index=False)
+
+    client = _CountingGMClient(_GEOCODE_RESPONSE)
+    monkeypatch.setattr(location_utils, "gmaps", client)
+
+    location_utils.generate_resort_locations_csv(str(resorts_json), str(output_csv))
+
+    assert client.calls == ["Middlefield, Connecticut"]
+    df = pd.read_csv(output_csv)
+    assert len(df) == 2
+
+
 def test_generate_resort_locations_csv_full_regenerates_all(tmp_path, monkeypatch):
     resorts_json = tmp_path / "resorts_raw.json"
     output_csv = tmp_path / "resort_locations.csv"
