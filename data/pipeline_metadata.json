@@ -1,7 +1,13 @@
 {
-  "last_run": "2026-09-05T15:08:11.535233+00:00",
-  "mode": "incremental",
+  "last_run": "2026-09-08T14:15:03.198200+00:00",
+  "mode": "full",
   "steps_run": [
+    "scrape_resorts",
+    "scrape_reservations",
+    "fetch_blackout_dates",
+    "fetch_ltt_dates",
+    "fetch_peak_rankings",
+    "geocode",
     "prep"
   ]
 }

@@ -1331,6 +1331,24 @@
         "has_terrain_parks": false,
         "href": "/our-resorts/ejder3200-palandoken"
     },
+    "534": {
+        "name": "Elm Creek Park Reserve",
+        "coordinates": {
+            "latitude": 45.1385172,
+            "longitude": -93.4406417
+        },
+        "location_name": "Maple Grove, MN",
+        "vertical": 80,
+        "is_nordic": true,
+        "is_alpine_xc": true,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 6,
+        "num_lifts": 3,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/elm-creek-park-reserve"
+    },
     "280": {
         "name": "Enchanted Forest XC",
         "coordinates": {
@@ -3149,6 +3167,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/nubs-nob-0"
     },
+    "539": {
+        "name": "Nutt Hill",
+        "coordinates": {
+            "latitude": 43.0782796,
+            "longitude": -98.3056097
+        },
+        "location_name": "Plymouth, WI",
+        "vertical": 120,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 2,
+        "num_lifts": 1,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/nutt-hill"
+    },
     "119": {
         "name": "Ober Mountain",
         "coordinates": {
@@ -3185,6 +3221,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/oberstdorf-kleinwalsertal-bergbahnen"
     },
+    "519": {
+        "name": "Obertauern",
+        "coordinates": {
+            "latitude": 47.2485002,
+            "longitude": 13.5595376
+        },
+        "location_name": "Salzburg Region, Austria",
+        "vertical": 2241,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 76,
+        "num_lifts": 26,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/obertauern"
+    },
     "120": {
         "name": "Okunakayama Kogen",
         "coordinates": {
@@ -3220,6 +3274,24 @@
         "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/onikoube-ski-resort"
+    },
+    "521": {
+        "name": "Orci\u00e8res Merlette 1850",
+        "coordinates": {
+            "latitude": 44.6972477,
+            "longitude": 6.3205163
+        },
+        "location_name": "Orci\u00e8res, France",
+        "vertical": 2870,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 61,
+        "num_lifts": 26,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/orcieres-merlette-1850"
     },
     "543": {
         "name": "Osceola Tug Hill XC Ski Center",
@@ -3346,6 +3418,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/peek-n-peak"
+    },
+    "517": {
+        "name": "Petzen",
+        "coordinates": {
+            "latitude": 46.5405314,
+            "longitude": 14.7715212
+        },
+        "location_name": "Carinthia, Austria",
+        "vertical": 4295,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 21,
+        "num_lifts": 7,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/petzen"
     },
     "124": {
         "name": "Phoenix Mountain",
@@ -3509,24 +3599,6 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/portes-du-soleil"
     },
-    "129": {
-        "name": "Powder Ridge",
-        "coordinates": {
-            "latitude": 45.3438676,
-            "longitude": -94.3075934
-        },
-        "location_name": "Kimball, MN, USA",
-        "vertical": 300,
-        "is_nordic": false,
-        "is_alpine_xc": false,
-        "is_xc_only": false,
-        "is_allied": false,
-        "num_trails": 13,
-        "num_lifts": 6,
-        "is_open_nights": true,
-        "has_terrain_parks": true,
-        "href": "/our-resorts/powder-ridge"
-    },
     "513": {
         "name": "Powder Ridge",
         "coordinates": {
@@ -3544,6 +3616,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/powder-ridge-0"
+    },
+    "129": {
+        "name": "Powder Ridge",
+        "coordinates": {
+            "latitude": 45.3438676,
+            "longitude": -94.3075934
+        },
+        "location_name": "Kimball, MN, USA",
+        "vertical": 300,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 13,
+        "num_lifts": 6,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/powder-ridge"
     },
     "333": {
         "name": "Powderhorn",
@@ -4085,6 +4175,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/skiwelt"
     },
+    "515": {
+        "name": "Sleepy Hollow",
+        "coordinates": {
+            "latitude": 43.604658,
+            "longitude": -74.3029643
+        },
+        "location_name": "Huntington, VT",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": null,
+        "num_lifts": null,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/sleepy-hollow"
+    },
     "454": {
         "name": "Smokey Mountain Ski Club",
         "coordinates": {
@@ -4103,6 +4211,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/smokey-mountain-ski-club"
     },
+    "525": {
+        "name": "Smugglers' Notch Resort",
+        "coordinates": {
+            "latitude": 44.5904656,
+            "longitude": -72.7890019
+        },
+        "location_name": "South Jeffersonville, VT",
+        "vertical": 2610,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 78,
+        "num_lifts": 8,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/smugglers-notch-resort"
+    },
     "142": {
         "name": "Snow King Mountain Resort",
         "coordinates": {
@@ -4120,6 +4246,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/snow-king-mountain-resort"
+    },
+    "544": {
+        "name": "Snow Resort The Cupid of Romance",
+        "coordinates": {
+            "latitude": 36.8198686,
+            "longitude": 138.4008047
+        },
+        "location_name": "Nagano, Japan",
+        "vertical": 2505,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 10,
+        "num_lifts": 6,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/snow-resort-the-cupid-of-romance"
     },
     "143": {
         "name": "Snow Ridge",
@@ -4210,6 +4354,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/spirit-mountain"
+    },
+    "526": {
+        "name": "Spring Mountain Adventures",
+        "coordinates": {
+            "latitude": 40.2725545,
+            "longitude": -75.4526832
+        },
+        "location_name": "Schwenksville, PA",
+        "vertical": 450,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 9,
+        "num_lifts": 6,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/spring-mountain-adventures"
     },
     "518": {
         "name": "St Johann in Tirol",
@@ -4643,6 +4805,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/trollhaugen"
     },
+    "522": {
+        "name": "Tschiertschen - Chur",
+        "coordinates": {
+            "latitude": 46.8153212,
+            "longitude": 9.6047696
+        },
+        "location_name": "Tschiertschen, Switzerland",
+        "vertical": 3382,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 12,
+        "num_lifts": 4,
+        "is_open_nights": false,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/tschiertschen-chur"
+    },
     "304": {
         "name": "Turpin Meadow Ranch",
         "coordinates": {
@@ -4714,6 +4894,24 @@
         "is_open_nights": false,
         "has_terrain_parks": true,
         "href": "/our-resorts/val-direne"
+    },
+    "545": {
+        "name": "Veterans Memorial Recreation Area",
+        "coordinates": {
+            "latitude": 43.4450556,
+            "longitude": -71.6946611
+        },
+        "location_name": "Franklin, NH",
+        "vertical": 230,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 54,
+        "num_lifts": 3,
+        "is_open_nights": true,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/veterans-memorial-recreation-area"
     },
     "364": {
         "name": "Washigatake Ski Resort",
@@ -4930,6 +5128,24 @@
         "is_open_nights": true,
         "has_terrain_parks": false,
         "href": "/our-resorts/williams-lake-cross-country-ski-club"
+    },
+    "514": {
+        "name": "Winter4Kids",
+        "coordinates": {
+            "latitude": 41.1871439,
+            "longitude": -74.4841242
+        },
+        "location_name": "Vernon, NJ",
+        "vertical": 620,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 7,
+        "num_lifts": 4,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/winter4kids"
     },
     "334": {
         "name": "Wintergreen",
