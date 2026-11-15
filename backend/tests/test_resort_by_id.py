@@ -57,3 +57,20 @@ def test_get_resort_by_id_not_found():
     with patch('main._resorts', FAKE_RESORTS):
         response = client.get('/resorts/nonexistent-uuid')
     assert response.status_code == 404
+
+
+def test_get_resort_by_id_includes_blackout_notes():
+    """Indy's free-text blackout notes (e.g. closures, TBD dates) reach the detail modal."""
+    resort = Resort(
+        resort_id='eagle',
+        name='Eagle Point',
+        region='Rockies',
+        reservation_status='Not Required',
+        indy_page='https://example.com/eagle',
+        blackout_notes='["CLOSED FOR 26/27 DUE TO WILDFIRE"]',
+        ltt_blackout_notes='["Learn to Turn blackout dates are TBD."]',
+    )
+    with patch('main._resorts', [resort]):
+        data = client.get('/resorts/eagle').json()
+    assert data['blackout_notes'] == '["CLOSED FOR 26/27 DUE TO WILDFIRE"]'
+    assert data['ltt_blackout_notes'] == '["Learn to Turn blackout dates are TBD."]'
