@@ -89,6 +89,46 @@ def merge_locations(resorts: pd.DataFrame, locations: pd.DataFrame) -> pd.DataFr
     return pd.merge(resorts, locations, on='name', how='left')
 
 
+def apply_coordinate_fallback(resorts: pd.DataFrame) -> pd.DataFrame:
+    """Use the geocoded point (geo_latitude/geo_longitude) instead of Indy's coordinates
+    when Indy's are missing, or when Indy's point falls in a different country from the
+    geocoded location (e.g. Hafjell, Norway placed in New Hampshire).
+
+    Distance alone isn't a usable signal: a vague location_name like "NL, Canada"
+    geocodes to a province centroid hundreds of km from the real resort, where Indy's
+    point is the correct one. indy_point_country comes from a reverse lookup done in the
+    geocode step, and only counts if it was done for Indy's current coordinates.
+    """
+    resorts = resorts.copy()
+    lat = pd.to_numeric(resorts['latitude'], errors='coerce')
+    lon = pd.to_numeric(resorts['longitude'], errors='coerce')
+    geo_lat = pd.to_numeric(resorts['geo_latitude'], errors='coerce')
+    geo_lon = pd.to_numeric(resorts['geo_longitude'], errors='coerce')
+    checked_lat = pd.to_numeric(resorts['indy_checked_latitude'], errors='coerce')
+    checked_lon = pd.to_numeric(resorts['indy_checked_longitude'], errors='coerce')
+
+    has_geo = geo_lat.notna() & geo_lon.notna()
+    indy_missing = lat.isna() | lon.isna()
+    check_current = np.isclose(lat, checked_lat) & np.isclose(lon, checked_lon)
+    wrong_country = (
+        resorts['indy_point_country'].notna()
+        & (resorts['indy_point_country'] != resorts['country'])
+        & check_current
+    )
+    replace = has_geo & (indy_missing | wrong_country)
+
+    for _, row in resorts[replace & ~indy_missing].iterrows():
+        logger.warning(
+            'Indy coordinates for %s fall in %s, not %s — using geocoded location.',
+            row['name'],
+            row['indy_point_country'],
+            row['country'],
+        )
+    resorts.loc[replace, 'latitude'] = geo_lat[replace]
+    resorts.loc[replace, 'longitude'] = geo_lon[replace]
+    return resorts
+
+
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
     """
     Gets the city, state, and country from Indy's "city" field using Google Map's Geocoding API
@@ -173,6 +213,8 @@ def main(refresh_blackout=False, refresh_ltt=False):
     resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
     # resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
     resorts = merge_locations(resorts, locations)
+    if {'geo_latitude', 'indy_point_country'}.issubset(resorts.columns):
+        resorts = apply_coordinate_fallback(resorts)
     missing_locations = resorts['city'].isna().sum()
     if missing_locations:
         logger.warning('Missing location data for %d resorts after merge.', missing_locations)

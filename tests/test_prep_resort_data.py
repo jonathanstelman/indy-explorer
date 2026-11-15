@@ -80,3 +80,83 @@ def test_merge_locations_legacy_cache_without_location_name_falls_back_to_name()
 
     assert len(merged) == 1
     assert merged.iloc[0]['city'] == 'Townsville'
+
+
+_COORD_COLS = [
+    'name',
+    'country',
+    'latitude',
+    'longitude',
+    'geo_latitude',
+    'geo_longitude',
+    'indy_point_country',
+    'indy_checked_latitude',
+    'indy_checked_longitude',
+]
+
+
+def _coords_frame(rows):
+    return pd.DataFrame(rows, columns=_COORD_COLS)
+
+
+def test_apply_coordinate_fallback_replaces_indy_point_in_wrong_country():
+    """Indy's roster put Hafjell (Øyer, Norway) at 44.14, -71.19 — New Hampshire."""
+    resorts = _coords_frame(
+        [
+            [
+                'Hafjell',
+                'Norway',
+                44.1417,
+                -71.1880,
+                61.342,
+                10.500,
+                'United States',
+                44.1417,
+                -71.1880,
+            ]
+        ]
+    )
+
+    out = prep_resort_data.apply_coordinate_fallback(resorts)
+
+    assert out.iloc[0]['latitude'] == 61.342
+    assert out.iloc[0]['longitude'] == 10.500
+
+
+def test_apply_coordinate_fallback_keeps_far_indy_point_in_right_country():
+    """A vague location_name ("NL, Canada") geocodes to a province centroid hundreds of km
+    from the real resort. Indy's point is in the right country, so keep it."""
+    resorts = _coords_frame(
+        [['Marble Mountain', 'Canada', 48.948, -57.831, 54.273, -61.739, 'Canada', 48.948, -57.831]]
+    )
+
+    out = prep_resort_data.apply_coordinate_fallback(resorts)
+
+    assert out.iloc[0]['latitude'] == 48.948
+
+
+def test_apply_coordinate_fallback_ignores_stale_country_check():
+    """If Indy's coordinates changed since the country check ran, the check no longer
+    applies to them — keep Indy's current point."""
+    resorts = _coords_frame(
+        [['Hafjell', 'Norway', 61.30, 10.45, 61.342, 10.500, 'United States', 44.1417, -71.1880]]
+    )
+
+    out = prep_resort_data.apply_coordinate_fallback(resorts)
+
+    assert out.iloc[0]['latitude'] == 61.30
+
+
+def test_apply_coordinate_fallback_fills_missing_indy_coordinates():
+    resorts = _coords_frame(
+        [
+            ['No Geocode', 'US', 44.0, -72.0, None, None, None, None, None],
+            ['No Indy Coords', 'Austria', None, None, 46.9, 10.8, None, None, None],
+        ]
+    )
+
+    out = prep_resort_data.apply_coordinate_fallback(resorts).set_index('name')
+
+    assert out.loc['No Geocode', 'latitude'] == 44.0
+    assert out.loc['No Indy Coords', 'latitude'] == 46.9
+    assert out.loc['No Indy Coords', 'longitude'] == 10.8
