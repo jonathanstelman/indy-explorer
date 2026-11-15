@@ -416,3 +416,17 @@ Verification: 291 rows / 291 distinct `resort_id`s / 291 distinct `(name, locati
 **Rationale:** Both were upstream format changes that silently degraded data. The pipeline logs a warning for unmatched reservation names, but nothing fails, and these were only caught by diffing the output against main.
 **Follow-up:** Indy's Catamount reservation link points to Detroit Mountain's booking page (an upstream copy-paste error); left as published. The blackout/LTT Google Sheets still list 11 resorts that have left Indy (e.g. Mission Ridge, Lutsen); harmless, since they just don't match.
 
+## 2026-11-15 — Switch blackout and Learn to Turn dates to the 26/27 season
+**Issue:** #155
+**Decision:** Dropped the 25/26 blackout dates and switched both sheets to Indy's 26/27 tabs. Lift ticket is `gid=1360740952` (embedded on the blackout-dates page; partial, 39 resorts, Indy "actively compiling"). Learn to Turn is `gid=1618878436`, linked **only** from the Learn to Turn pass page (`/shop/learn-to-turn-pass`), not the blackout page. It was missed at first and the owner pointed it out. Changes:
+- **Season year:** `utils.SEASON_START_YEAR` (2026) plus `season_year()` replace the hard-coded 2025/2026 in date parsing. Bump it together with the sheet URLs each season.
+- **Sheet names:** `strip_sheet_name_suffix()` + `map_sheet_resort_name()` handle `, ST`, full state names ("Big Rock, Maine"), `(Nordic)` and an empty trailing `, `. 20 new name mappings were added, all sheet names now match, and Shawnee's LTT data matches for the first time (it never did on 25/26).
+- **Same-named resorts:** `match_sheet_entries()` lets a sheet key be `name|location_name`. A plain name shared by several resorts is applied to none, with a warning. Suffix-stripping had briefly copied "Powder Ridge, CT" onto both Powder Ridge resorts.
+- **"Additional" parsing:** split on `and`/`&`; "Saturdays <range>"; "All blackouts end after <date>" trims (and, for LTT, makes Partial ranges apply up to the cutoff); unparseable parts are skipped, not fatal.
+- **Availability windows yield no dates:** "Only available on Saturdays and Sundays", "Valid only …" and "only open … two days". The old "contains saturday/sunday → every weekend" rule would have turned the first into blackouts on every weekend, the exact inverse.
+- **Notes:** new `blackout_notes` / `ltt_blackout_notes` (JSON list strings, detail endpoint only) carry Indy's wording for anything not turned into dates: closures (Eagle Point: "CLOSED FOR 26/27 DUE TO WILDFIRE"), availability windows, TBD cells. The modal shows them under the calendar.
+- **Frontend:** a season notice (`BLACKOUT_SEASON` in `utils/blackout.js`) in the Planning sidebar and the modal. The empty-calendar text now reads "No 26/27 blackout dates listed yet."
+- **LTT:** all-`TBD` rows still count as offering LTT, and the renamed "Additional" column is read.
+**Rationale:** The owner chose to show the current season with a disclaimer over keeping past dates. Notes verbatim over parsed guesses: availability windows and prose ("Opening Day-1/3/2027", "ALL JAN & FEB MONDAY-FRIDAY") can't be turned into blackout dates reliably, and a wrong date is worse than Indy's own words.
+**Follow-up:** When Indy finishes compiling, drop "still adding" from `BLACKOUT_SEASON.notice`. Next season: new tab gids (check **both** pages) + `SEASON_START_YEAR` + `BLACKOUT_SEASON.label`. LTT sheet's "Reservations Required?" column is ignored (LTT-specific reservations); possible future feature.
+
