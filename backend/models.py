@@ -11,7 +11,9 @@ URL_PATTERN = re.compile(r'^https?://')
 # glitch (e.g. an extra digit) rather than a real resort. Ceilings are set well above the
 # largest real value currently in data/resorts.csv, not at some theoretical world-record max.
 _NONNEG_BOUNDS: dict[str, tuple[float, Optional[float]]] = {
-    'acres': (0, 50_000),
+    # North Cascade Heli's USFS-permitted heli area is a real 300,000 acres. It's kept
+    # out of the acreage slider's range in /meta (see SLIDER_RANGE_CAPS in main.py).
+    'acres': (0, 1_000_000),
     'num_trails': (0, 1_000),
     'num_trails_xc': (0, 500),
     'num_lifts': (0, 500),
