@@ -130,6 +130,17 @@ def apply_coordinate_fallback(resorts: pd.DataFrame) -> pd.DataFrame:
     return resorts
 
 
+def fill_xc_only_num_trails(resorts: pd.DataFrame) -> pd.DataFrame:
+    """For XC-only resorts missing num_trails, use num_trails_xc (they're equal by
+    convention). Indy's roster page dropped the count for some XC-only resorts in the
+    2026-11 refresh while their resort pages still list XC trails."""
+    resorts = resorts.copy()
+    xc_only = resorts['has_cross_country'].eq(True) & resorts['has_alpine'].eq(False)
+    fill = xc_only & resorts['num_trails'].isna() & resorts['num_trails_xc'].notna()
+    resorts.loc[fill, 'num_trails'] = resorts.loc[fill, 'num_trails_xc']
+    return resorts
+
+
 def _parse_override_value(value: str):
     """Blank means null; numeric strings become floats; anything else stays a string."""
     if value == '':
@@ -282,6 +293,7 @@ def main(refresh_blackout=False, refresh_ltt=False):
         if col not in resorts.columns:
             resorts[col] = np.nan
     resorts.rename(columns={'trails_xc': 'num_trails_xc'}, inplace=True)
+    resorts = fill_xc_only_num_trails(resorts)
 
     # Location
     resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)

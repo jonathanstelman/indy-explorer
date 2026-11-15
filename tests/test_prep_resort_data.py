@@ -233,3 +233,40 @@ def test_apply_manual_overrides_missing_file_is_noop(tmp_path):
     out = prep_resort_data.apply_manual_overrides(_hochzeiger(), str(tmp_path / 'nope.csv'))
 
     assert out.set_index('name').loc['Hochzeiger Bergbahnen Pitztal AG', 'acres'] == 19136.0
+
+
+def test_fill_xc_only_num_trails_from_xc_count():
+    """Indy's roster page stopped publishing trail counts for some XC-only resorts
+    (Bethel Village Trails, Woodstock Nordic Center) but their resort pages still list
+    XC trails. For XC-only resorts num_trails == num_trails_xc by convention."""
+    resorts = pd.DataFrame(
+        [
+            {
+                'name': 'Bethel',
+                'has_alpine': False,
+                'has_cross_country': True,
+                'num_trails': None,
+                'num_trails_xc': 33.0,
+            },
+            {
+                'name': 'Alpine+XC',
+                'has_alpine': True,
+                'has_cross_country': True,
+                'num_trails': None,
+                'num_trails_xc': 7.0,
+            },
+            {
+                'name': 'Has Count',
+                'has_alpine': False,
+                'has_cross_country': True,
+                'num_trails': 18.0,
+                'num_trails_xc': 20.0,
+            },
+        ]
+    )
+
+    out = prep_resort_data.fill_xc_only_num_trails(resorts).set_index('name')
+
+    assert out.loc['Bethel', 'num_trails'] == 33.0
+    assert pd.isna(out.loc['Alpine+XC', 'num_trails'])
+    assert out.loc['Has Count', 'num_trails'] == 18.0
