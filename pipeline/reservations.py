@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 from typing import Dict, List, Optional
 from urllib.parse import urljoin
 
@@ -25,7 +26,12 @@ RESERVATION_NAME_MAP = {
     "Detroit Mountain Recreation Area": "Detroit Mountain",
     "Greek Peak": "Greek Peak Mountain Resort",
     "Blacktail Mountain Ski Area": "Blacktail Mountain Resort",
+    "Hardwood Ski & Bike": "Hardwood Ski and Bike",
+    "Smugglers' Notch": "Smugglers' Notch Resort",
 }
+
+# The 26/27 reservations page appends a state/province code: "Pats Peak, NH".
+_STATE_SUFFIX = re.compile(r",\s*[A-Z]{2}$")
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +86,7 @@ def parse_reservations_page(html_content: str) -> Dict[str, List[Dict[str, Optio
 
 def normalize_reservation_name(name: str) -> str:
     """Map reservation list names to resorts.csv names when needed."""
+    name = _STATE_SUFFIX.sub("", name).strip()
     return RESERVATION_NAME_MAP.get(name, name)
 
 

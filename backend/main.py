@@ -49,10 +49,22 @@ def _parse_date_list(value: Optional[str]) -> set[str]:
         return set()
 
 
+# Values above these caps are real but not comparable to the rest (North Cascade Heli's
+# 300,000-acre heli permit area vs. ~19,000 for the largest lift-served resort), so they're
+# left out of the slider range. Such resorts still show in /resorts: the slider sends no
+# max when its handle is at the top, so they only drop out once a user lowers the max.
+SLIDER_RANGE_CAPS: dict[str, float] = {'acres': 50_000}
+
+
 @app.get("/meta", response_model=MetaResponse)
 def get_meta():
     def _range(field: str) -> RangeField:
-        vals = [v for r in _resorts if (v := getattr(r, field)) is not None]
+        cap = SLIDER_RANGE_CAPS.get(field)
+        vals = [
+            v
+            for r in _resorts
+            if (v := getattr(r, field)) is not None and (cap is None or v <= cap)
+        ]
         return RangeField(min=min(vals) if vals else None, max=max(vals) if vals else None)
 
     def _date_range(field: str) -> DateRangeField:

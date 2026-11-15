@@ -34,6 +34,7 @@ from utils import get_normalized_location, generate_resort_locations_csv
 logger = logging.getLogger(__name__)
 
 ID_MAP_PATH = 'data/resort_id_map.csv'
+MANUAL_OVERRIDES_PATH = 'data/manual_overrides.csv'
 
 
 def assign_resort_ids(resorts: pd.DataFrame) -> pd.DataFrame:
@@ -87,6 +88,131 @@ def merge_locations(resorts: pd.DataFrame, locations: pd.DataFrame) -> pd.DataFr
     if 'location_name' in locations.columns:
         return pd.merge(resorts, locations, on=['name', 'location_name'], how='left')
     return pd.merge(resorts, locations, on='name', how='left')
+
+
+def apply_coordinate_fallback(resorts: pd.DataFrame) -> pd.DataFrame:
+    """Use the geocoded point (geo_latitude/geo_longitude) instead of Indy's coordinates
+    when Indy's are missing, or when Indy's point falls in a different country from the
+    geocoded location (e.g. Hafjell, Norway placed in New Hampshire).
+
+    Distance alone isn't a usable signal: a vague location_name like "NL, Canada"
+    geocodes to a province centroid hundreds of km from the real resort, where Indy's
+    point is the correct one. indy_point_country comes from a reverse lookup done in the
+    geocode step, and only counts if it was done for Indy's current coordinates.
+    """
+    resorts = resorts.copy()
+    lat = pd.to_numeric(resorts['latitude'], errors='coerce')
+    lon = pd.to_numeric(resorts['longitude'], errors='coerce')
+    geo_lat = pd.to_numeric(resorts['geo_latitude'], errors='coerce')
+    geo_lon = pd.to_numeric(resorts['geo_longitude'], errors='coerce')
+    checked_lat = pd.to_numeric(resorts['indy_checked_latitude'], errors='coerce')
+    checked_lon = pd.to_numeric(resorts['indy_checked_longitude'], errors='coerce')
+
+    has_geo = geo_lat.notna() & geo_lon.notna()
+    indy_missing = lat.isna() | lon.isna()
+    check_current = np.isclose(lat, checked_lat) & np.isclose(lon, checked_lon)
+    wrong_country = (
+        resorts['indy_point_country'].notna()
+        & (resorts['indy_point_country'] != resorts['country'])
+        & check_current
+    )
+    replace = has_geo & (indy_missing | wrong_country)
+
+    for _, row in resorts[replace & ~indy_missing].iterrows():
+        logger.warning(
+            'Indy coordinates for %s fall in %s, not %s — using geocoded location.',
+            row['name'],
+            row['indy_point_country'],
+            row['country'],
+        )
+    resorts.loc[replace, 'latitude'] = geo_lat[replace]
+    resorts.loc[replace, 'longitude'] = geo_lon[replace]
+    return resorts
+
+
+def fill_xc_only_num_trails(resorts: pd.DataFrame) -> pd.DataFrame:
+    """For XC-only resorts missing num_trails, use num_trails_xc (they're equal by
+    convention). Indy's roster page dropped the count for some XC-only resorts in the
+    2026-11 refresh while their resort pages still list XC trails."""
+    resorts = resorts.copy()
+    xc_only = resorts['has_cross_country'].eq(True) & resorts['has_alpine'].eq(False)
+    fill = xc_only & resorts['num_trails'].isna() & resorts['num_trails_xc'].notna()
+    resorts.loc[fill, 'num_trails'] = resorts.loc[fill, 'num_trails_xc']
+    return resorts
+
+
+def _parse_override_value(value: str):
+    """Blank means null; numeric strings become floats; anything else stays a string."""
+    if value == '':
+        return np.nan
+    try:
+        return float(value)
+    except ValueError:
+        return value
+
+
+def _values_match(current, expected) -> bool:
+    if pd.isna(expected):
+        return pd.isna(current)
+    if pd.isna(current):
+        return False
+    if isinstance(expected, float):
+        try:
+            return np.isclose(float(current), expected)
+        except (TypeError, ValueError):
+            return False
+    return str(current) == expected
+
+
+def apply_manual_overrides(
+    resorts: pd.DataFrame, overrides_path: str = MANUAL_OVERRIDES_PATH
+) -> pd.DataFrame:
+    """Correct egregious upstream data errors listed in data/manual_overrides.csv.
+
+    Reserved for errors that break the app (wrong country, size off by an order of
+    magnitude or more), not general fact-checking. Each row is keyed on the Indy page slug
+    and records the value Indy currently publishes (indy_value). If Indy's value has since
+    changed, the override is stale: it's skipped with a warning so Indy's new value wins
+    and the row can be removed.
+    """
+    if not os.path.exists(overrides_path):
+        return resorts
+    overrides = pd.read_csv(overrides_path, dtype=str, keep_default_na=False)
+    resorts = resorts.copy()
+    slugs = resorts['indy_page'].astype(str).str.rstrip('/').str.split('/').str[-1]
+
+    for _, o in overrides.iterrows():
+        mask = slugs == o['source_id']
+        if not mask.any():
+            logger.warning('Manual override for unknown resort %r — remove it.', o['source_id'])
+            continue
+        if o['field'] not in resorts.columns:
+            logger.warning(
+                'Manual override for %s names unknown field %r.', o['source_id'], o['field']
+            )
+            continue
+        expected = _parse_override_value(o['indy_value'])
+        current = resorts.loc[mask, o['field']].iloc[0]
+        if not _values_match(current, expected):
+            logger.warning(
+                'Manual override for %s.%s is stale: Indy now publishes %r (override expected '
+                '%r) — keeping Indy\'s value; remove or update the override.',
+                o['source_id'],
+                o['field'],
+                current,
+                o['indy_value'],
+            )
+            continue
+        resorts.loc[mask, o['field']] = _parse_override_value(o['override_value'])
+        logger.info(
+            'Applied manual override %s.%s: %r -> %r (%s)',
+            o['source_id'],
+            o['field'],
+            o['indy_value'],
+            o['override_value'],
+            o['reason'],
+        )
+    return resorts
 
 
 def get_regions_from_location_name(location_name: str) -> Tuple[str, str, str]:
@@ -167,12 +293,15 @@ def main(refresh_blackout=False, refresh_ltt=False):
         if col not in resorts.columns:
             resorts[col] = np.nan
     resorts.rename(columns={'trails_xc': 'num_trails_xc'}, inplace=True)
+    resorts = fill_xc_only_num_trails(resorts)
 
     # Location
     resorts['longitude'] = resorts['coordinates'].apply(lambda l: l.get('longitude') if l else None)
     resorts['latitude'] = resorts['coordinates'].apply(lambda l: l.get('latitude') if l else None)
     # resorts['city'], resorts['state'], resorts['country'] = zip(*resorts.location_name.apply(get_regions_from_location_name))
     resorts = merge_locations(resorts, locations)
+    if {'geo_latitude', 'indy_point_country'}.issubset(resorts.columns):
+        resorts = apply_coordinate_fallback(resorts)
     missing_locations = resorts['city'].isna().sum()
     if missing_locations:
         logger.warning('Missing location data for %d resorts after merge.', missing_locations)
@@ -334,6 +463,7 @@ def main(refresh_blackout=False, refresh_ltt=False):
             resorts[col] = np.nan
 
     resorts = assign_resort_ids(resorts)
+    resorts = apply_manual_overrides(resorts)
     resorts = resorts[cols]
     resorts.to_csv('data/resorts.csv', index=False)
     logger.info('Prepared resort data written to data/resorts.csv')

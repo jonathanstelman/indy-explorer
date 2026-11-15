@@ -11,9 +11,11 @@
     "acres": null,
     "trail_length_km": 24,
     "trail_length_mi": 14,
-    "is_cross_country": true,
+    "is_cross_country": false,
     "is_dog_friendly": false,
     "has_snowshoeing": true,
+    "terrain_parks": false,
+    "night_skiing": false,
     "vertical_base_ft": null,
     "vertical_summit_ft": null,
     "vertical_elevation_ft": null,
@@ -23,6 +25,6 @@
     "difficulty_beginner_xc": 56,
     "difficulty_intermediate_xc": 27,
     "difficulty_advanced_xc": 17,
-    "snowfall_average_in": null,
-    "snowfall_high_in": null
+    "snowfall_average_in": 80,
+    "snowfall_high_in": 110
 }

@@ -200,3 +200,36 @@ def test_load_pipeline_metadata_missing_key():
         json.dump({'mode': 'full'}, f)
         path = f.name
     assert _load_pipeline_metadata(path) is None
+
+
+def test_meta_acres_range_ignores_heli_scale_outliers():
+    """A 300,000-acre heli permit area would stretch the acreage slider ~6x past every
+    lift-served resort. /meta leaves values above the slider cap out of the range."""
+    heli = Resort(
+        resort_id='id-heli',
+        name='Heli Op',
+        region='West',
+        indy_page='https://example.com/heli',
+        reservation_status='none',
+        acres=300_000,
+    )
+    with patch('main._resorts', FAKE_RESORTS + [heli]):
+        response = client.get('/meta')
+    assert response.json()['acres'] == {'min': 300.0, 'max': 800.0}
+
+
+def test_resorts_heli_scale_acres_still_match_min_filter():
+    """With the slider's max handle at the top no max_acres is sent, so an above-cap
+    resort stays in results; a min_acres filter keeps it too."""
+    heli = Resort(
+        resort_id='id-heli',
+        name='Heli Op',
+        region='West',
+        indy_page='https://example.com/heli',
+        reservation_status='none',
+        acres=300_000,
+    )
+    with patch('main._resorts', FAKE_RESORTS + [heli]):
+        response = client.get('/resorts', params={'min_acres': 500})
+    ids = {r['resort_id'] for r in response.json()}
+    assert 'id-heli' in ids

@@ -13,7 +13,7 @@
     "trail_length_mi": 20,
     "is_cross_country": false,
     "is_dog_friendly": false,
-    "has_snowshoeing": false,
+    "has_snowshoeing": true,
     "terrain_parks": false,
     "night_skiing": false,
     "vertical_base_ft": 900,

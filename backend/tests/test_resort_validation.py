@@ -32,9 +32,16 @@ def test_acres_within_bounds_is_kept():
 
 
 def test_acres_absurdly_large_is_nulled():
-    # simulates a scraped value with an extra digit tacked on
-    resort = Resort(**BASE_KWARGS, acres=500000)
+    # simulates a scraped value with an extra digit tacked on (300,000 -> 3,000,000)
+    resort = Resort(**BASE_KWARGS, acres=3_000_000)
     assert resort.acres is None
+
+
+def test_heli_permit_area_acres_is_kept():
+    # North Cascade Heli's USFS-permitted area is a real 300,000 acres — shown in the
+    # table and detail modal, even though it's kept out of the slider range (/meta).
+    resort = Resort(**BASE_KWARGS, acres=300_000)
+    assert resort.acres == 300_000
 
 
 def test_difficulty_over_100_is_nulled():
