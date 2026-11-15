@@ -1,290 +1,306 @@
-name,location_name,city,state,country
-Pats Peak,"Henniker, NH, USA",Henniker,New Hampshire,United States
-Eastman Cross Country,"Grantham, NH",Grantham,New Hampshire,United States
-Showdown Montana,Neihart MT,Neihart,Montana,United States
-Takasu Snow Park,"Gujo, Gifu, Japan",Gujo,Gifu,Japan
-Togakushi Ski Resort,"Nagano, Japan",Nagano,Nagano,Japan
-Arctic Valley,"Anchorage, AK, USA",Anchorage,Alaska,United States
-Björkliden,"Lapland, Sweden",,,Sweden
-SkiWelt,"Söll, Austria",Söll,Tyrol,Austria
-Kaya Palazzo Kartalkaya Ski & Mountain Resort,"Gökpınar/Bolu Merkez/Bolu, Türkiye",Gökpınar,Bolu,Türkiye
-Mt. Holiday,"Traverse City, MI",Traverse City,Michigan,United States
-White Grass Ski Touring,"Davis, WV, USA",Davis,West Virginia,United States
-Rangeley Lakes Trail Center,"Rangeley, ME, USA",Rangeley,Maine,United States
-Petzen,"Carinthia, Austria",,Carinthia,Austria
-Haymaker Nordic Center,"Steamboat Springs, CO",Steamboat Springs,Colorado,United States
-Steamboat Ski Touring Center,"Steamboat Springs, CO",Steamboat Springs,Colorado,United States
-Wintergreen,"Nellysford, VA",Nellysford,Virginia,United States
-Nelson Nordic Ski Club,"Nelson, BC, CA",Nelson,British Columbia,Canada
-Mount Racey Ski Resort,"Yubari, Hokkaido",Yubari,Hokkaido,Japan
-Hirugano Kogen Ski Resort,"Gujo, Gifu, Japan",Gujo,Gifu,Japan
-Saddleback Mountain,"Rangeley, ME, USA",Rangeley,Maine,United States
-Sasquatch Mountain Resort,"Agassiz, BC, CA",Agassiz,British Columbia,Canada
-The Loppet,"Minneapolis, MN",Minneapolis,Minnesota,United States
-Kamui Ski Links,"Asahikawa, Hokkaido, Japan",Asahikawa,Hokkaido,Japan
-Huff Hills Ski Area,"Mandan, ND, USA",Mandan,North Dakota,United States
-Pyhä Ski Resort,"Pelkosenniemi, Finland",Pelkosenniemi,Lapland,Finland
-Manning Park XC,"Hope, BC, CA",Hope,British Columbia,Canada
-Leavenworth Winter Sports Club,"Leavenworth, WA, USA",Leavenworth,Washington,United States
-Bruce Mound Winter Sports Area,"Merrillan, WI",Merrillan,Wisconsin,United States
-Ski Land,"Fairbanks, AK",Fairbanks,Alaska,United States
-Pebble Creek Ski Area,"Inkom, ID",Inkom,Idaho,United States
-Tamarack Mountain Resort,"Donnelly , ID, USA",Donnelly,Idaho,United States
-Nutt Hill,"Plymouth, WI",Plymouth,Wisconsin,United States
-Portes du Soleil,French Swiss Border,,,
-Ski Saint-Bruno,"St-Bruno, QC",St-Bruno-de-Montarville,Quebec,Canada
-Les 7 Laux,"Les Adrets, France",Les Adrets,Auvergne-Rhône-Alpes,France
-Franconia Village XC Ski Area,"Franconia, NH",Franconia,New Hampshire,United States
-Shawnee Mountain Ski Area,"East Stroudsburg , PA, USA",East Stroudsburg,Pennsylvania,United States
-High Point XC Ski Center,"Sussex, NJ, USA",,New Jersey,United States
-Schuss Mountain at Shanty Creek,"Bellaire, MI, USA",Bellaire,Michigan,United States
-Washigatake Ski Resort,"Gujo, Gifu, Japan",Gujo,Gifu,Japan
-Loveland Ski Area,"Georgetown, CO",Georgetown,Colorado,United States
-Ninox Snow Park,"Niigata, Shibata, Kamisanko, 大平国有林無番地",Shibata,Niigata,Japan
-Tenney Mountain,"Plymouth, NH",Plymouth,New Hampshire,United States
-Mont Sutton,"Sutton, QC",Sutton,Quebec,Canada
-Black Jack Cross Country Ski Club,"Rossland, BC, CA",Rossland,British Columbia,Canada
-Berkshire East Mountain Resort,"Charlemont, MA, USA",Charlemont,Massachusetts,United States
-Muica Snow Resort,"Minamiuonuma, Niigata, Japan",Minamiuonuma,Niigata,Japan
-Ejder3200 Palandoken,"Erzurum, Türkiye",Erzurum,Erzurum,Türkiye
-49 Degrees North,"Chewelah, WA, USA",Chewelah,Washington,United States
-Black Mountain of Maine,"Rumford, ME, USA",Rumford,Maine,United States
-Skaneateles Ski Club,"Syracuse, NY, USA",Syracuse,New York,United States
-Spring Mountain Adventures,"Schwenksville, PA",Schwenksville,Pennsylvania,United States
-Kandatsu Snow Resort,"Niigata, Japan",Niigata,Niigata,Japan
-The Krvavec Ski Resort,"Cerklje na Gorenjskem, Slovenia",Cerklje na Gorenjskem,Kranj,Slovenia
-Val d'Irène,"Sainte-Irène, QC",,Quebec,Canada
-Peek ‘n Peak,"Clymer, NY, USA",Clymer,New York,United States
-Massif du Sud,"Saint-Philémon, Quebec",Saint-Philémon,Quebec,Canada
-Granby Ranch,"Granby, CO, USA",Granby,Colorado,United States
-Rauriser-Hochalmbahnen,"Liftweg 2, 5661 Rauris, Austria",Rauris,Salzburg,Austria
-Snow King Mountain Resort,"Jackson, WY, USA",Jackson,Wyoming,United States
-Snowstar,"Andalusia, IL, USA",Andalusia,Illinois,United States
-Manning Park,"Hope, BC, CA",Hope,British Columbia,Canada
-Coffee Mill Ski Area,"Wabasha, Minnesota",Wabasha,Minnesota,United States
-Antelope Butte,"Shell, WY, USA",Shell,Wyoming,United States
-Beaver Mountain,"Garden City, UT, USA",Garden City,Utah,United States
-Amihari Onsen Ski Resort,"Morioka City, Iwate Prefecture, Japan",Morioka,Iwate,Japan
-Snow Resort The Cupid of Romance,"Nagano, Japan",Nagano,Nagano,Japan
-WhitePIA Takasu,"Gujo, Gifu, Japan",Gujo,Gifu,Japan
-Burke Mountain,"East Burke, VT, USA",Burke,Vermont,United States
-Spirit Mountain,"Duluth, MN, USA",Duluth,Minnesota,United States
-Marquette Mountain,"Marquette, MI, USA",Marquette,Michigan,United States
-Brundage Mountain Resort,"McCall, ID, USA",McCall,Idaho,United States
-White Pass,"White Pass, WA, USA",,Washington,United States
-Innsbruck Region,"Innsbruck Region, Austria",Innsbruck,Tyrol,Austria
-Maple Ski Ridge,"Schenectady, NY, USA",Schenectady,New York,United States
-Nubs Nob,"Harbor Springs, MI, USA",Harbor Springs,Michigan,United States
-Okunakayama Kogen,"Morioka, Tohoku, Japan",Morioka,Iwate,Japan
-Bolton Valley Resort,"Burlington, VT, USA",Burlington,Vermont,United States
-Waterville Valley Resort,"Waterville Valley, NH, USA",Waterville Valley,New Hampshire,United States
-Ragged Mountain,"Danbury, NH",Danbury,New Hampshire,United States
-Nickel Plate Cross Country Ski Club,"Hedley, BC, CA",Hedley,British Columbia,Canada
-Destination Owls Head,"Mansonville, QC",Mansonville,Quebec,Canada
-Elm Creek Park Reserve,"Maple Grove, MN",Maple Grove,Minnesota,United States
-Great Bear Ski Valley,"Sioux Falls, SD, USA",Sioux Falls,South Dakota,United States
-Hudson Bay Mountain,"Smithers, BC, Canada",Smithers,British Columbia,Canada
-Greek Peak Mountain Resort,"Cortland, NY, USA",Cortland,New York,United States
-Great Glen Trails Outdoor Center,"Gorham, NH",Gorham,New Hampshire,United States
-Malá Úpa,"Malá Úpa, Czechia",Malá Úpa,Hradec Králové Region,Czechia
-Ober Mountain,"Gatlinburg, TN, USA",Gatlinburg,Tennessee,United States
-Pomerelle Mountain Resort,"Burley, ID, USA",Burley,Idaho,United States
-Soldier Mountain,"Fairfield, ID, USA",Fairfield,Idaho,United States
-Titus Mountain,"Malone, NY, USA",Malone,New York,United States
-Turpin Meadow Ranch,"Jackson , WY, USA",Jackson,Wyoming,United States
-Whaleback Mountain,"Enfield, NH, USA",Enfield,New Hampshire,United States
-Williams Lake Cross Country Ski Club,"Williams Lake, BC, CA",Williams Lake,British Columbia,Canada
-Magic Mountain,"Londonderry , VT, USA",Londonderry,Vermont,United States
-Corralco Resort de Montaña,"Reserva Nacional Malalcahuello S/N, Curacautin, Chile",,Araucanía,Chile
-Carters XC Ski Center,"Bethel, Maine",Bethel,Maine,United States
-Kaunertaler Gletscher,"Kaunertal, Austria",Kaunertal,Tyrol,Austria
-North Cascade Heli,"Winthrop, WA",Winthrop,Washington,United States
-Powder Ridge,"Kimball, MN, USA",Kimball,Minnesota,United States
-Camp 10 Ski Area,"Rhinelander, WI",Rhinelander,Wisconsin,United States
-Black Mountain Ski Area,"Jackson, NH, USA",Jackson,New Hampshire,United States
-Glencoe Mountain Resort,"Glencoe, Scotland",Glencoe,Scotland,United Kingdom
-Woodstock Nordic Center,"Woodstock, VT, USA",Woodstock,Vermont,United States
-Homestake Lodge,"Butte, MT, USA",Butte,Montana,United States
-Cannon Mountain,"Franconia, NH, USA",Franconia,New Hampshire,United States
-Ski Vallée Bleue,"Val-David, Québec",Val-David,Quebec,Canada
-Pitztaler Gletscherbahn,"Mittelberg, Austria",Mittelberg,Vorarlberg,Austria
-Paul Bunyan Ski Hill,"Lakewood, WI",Lakewood,Wisconsin,United States
-Tazawako,"Tazawako, Tohoku",Minamiaizu,Fukushima,Japan
-Camden Snow Bowl,"Camden, Maine",Camden,Maine,United States
-Camp Fortune,"Chelsea, Quebec, Canada",Chelsea,Quebec,Canada
-Mont Edouard,"L'Anse-Saint-Jean, QC",L'Anse-Saint-Jean,Quebec,Canada
-Shimokura,"Hachimantai, Iwate, Japan",Hachimantai,Iwate,Japan
-Sovereign Lake Nordic Club,"Vernon, BC, CA",Vernon,British Columbia,Canada
-Christie Mountain,"Bruce, WI",Bruce,Wisconsin,United States
-Mt. Abram,"Greenwood, Maine",Greenwood,Maine,United States
-Kimberley Nordic Club,"Kimberley, BC, CA",Kimberley,British Columbia,Canada
-Kendall Mountain Ski Area,"Silverton, CO",Silverton,Colorado,United States
-Riksgränsen,"Riksgränsen, Sweden",Riksgränsen,Norrbotten County,Sweden
-Enchanted Forest XC,"Red River, NM, USA",Red River,New Mexico,United States
-Northern Maine Community Trails,"Presque-Isle, ME",Presque Isle,Maine,United States
-Moose Mountain,"Fairbanks, AK",Fairbanks,Alaska,United States
-Mountain High,"Wrightwood, CA, USA",Wrightwood,California,United States
-Big White Ski Resort,"Kelowna, BC, CA",Kelowna,British Columbia,Canada
-Big Rock Mountain,"Mars Hill, ME, USA",Mars Hill,Maine,United States
-Hochzeiger Bergbahnen Pitztal AG,"Jerzens, Austria",Jerzens,Tyrol,Austria
-Mohawk Mountain,"Cornwall, CT, USA",Cornwall,Connecticut,United States
-Skeetawk,"Palmer, Alaska",Palmer,Alaska,United States
-Marble Mountain,"NL, Canada",,Newfoundland and Labrador,Canada
-Blue Knob All Season Resort,"Claysburg, PA, USA",Claysburg,Pennsylvania,United States
-Shames Mountain,"Terrace, BC, CA",Terrace,British Columbia,Canada
-Calabogie Peaks Resort,"Calabogie, ON, CA",Greater Madawaska,Ontario,Canada
-Buffalo Ski Club,"Colden, NY",Colden,New York,United States
-Hyland Hills,"Bloomington, MN",Bloomington,Minnesota,United States
-Bear Valley Adventure Company,"Bear Valley, CA, USA",Bear Valley,California,United States
-Murray Ridge Ski Area,"Fort St. James, BC",Fort St. James,British Columbia,Canada
-Pippu Ski Resort,"Asahikawa, Hokkaido, Japan",Asahikawa,Hokkaido,Japan
-Donner Ski Ranch,"Norden, Lake Tahoe, CA",,,United States
-Bear Creek,"Macungie, PA",Macungie,Pennsylvania,United States
-Mont Rigaud,"Riquad QC, Canada",,Quebec,Canada
-Tussey Mountain,"State College, PA, USA",State College,Pennsylvania,United States
-Big Moose,"447 Ski Resort Rd, Greenville Junction, ME 04442",,Maine,United States
-King Pine,"Madison, NH, USA",Madison,New Hampshire,United States
-Fairmont Hot Springs,"Fairmont Hot Springs, BC, CA",Fairmont Hot Springs,British Columbia,Canada
-Telemark Nordic Center,"Kelowna, BC, CA",Kelowna,British Columbia,Canada
-Sunlight Mountain Resort,"Glenwood Springs, CO, USA",Glenwood Springs,Colorado,United States
-Togari Onsen Snow Resort,"Nagano, Japan",Nagano,Nagano,Japan
-Hilltop Ski Area,"Anchorage, AK",Anchorage,Alaska,United States
-Ruka Ski Resort,"Kuusamo, Finland",Kuusamo,North Ostrobothnia,Finland
-Cherry Peak,"Richmond, UT, USA",Richmond,Utah,United States
-Bear Valley Mountain Resort,"Bear Valley, CA",Bear Valley,California,United States
-Minocqua Winter Park,"Minocqua, WI, USA",Minocqua,Wisconsin,United States
-Powder Ridge,"Middlefield, Connecticut",Middlefield,Connecticut,United States
-Rikert Nordic Center,"Ripton, VT, USA",Ripton,Vermont,United States
-Steinplatte,"Waidring, Austria",Waidring,Tyrol,Austria
-Chestnut Mountain Resort,"Galena, IL, USA",Galena,Illinois,United States
-Mt. Washington,"BC, Canada",,British Columbia,Canada
-Dry Hill Ski Area,"Watertown, NY, USA",Watertown,New York,United States
-Swain Resort,"Swain, NY, USA",Swain,New York,United States
-Crosscut Mountain Sports Center,"Bozeman, MT, USA",Bozeman,Montana,United States
-Winter4Kids,"Vernon, NJ",Vernon Township,New Jersey,United States
-Baqueira/Beret,"Baqueira, Spain",Baqueira,Cataluña,Spain
-Little Ski Hill,"McCall, ID",McCall,Idaho,United States
-Snow Ridge,"Turin, NY, USA",,New York,United States
-Dartmouth Skiway,"Lyme Center, NH, USA",Lyme,New Hampshire,United States
-Kelly Canyon,"Ririe, ID, USA",Ririe,Idaho,United States
-Mt. Shasta,"Mount Shasta, CA, USA",Mount Shasta,California,United States
-Stranda Ski Resort,"Stranda, Norway",Stranda,Møre og Romsdal,Norway
-Sleepy Hollow,"Huntington, VT",Huntington,Vermont,United States
-Crystal Mountain,"Thompsonville, MI, USA",Thompsonville,Michigan,United States
-Howelsen Hill,"Steamboat Springs, CO, USA",Steamboat Springs,Colorado,United States
-Catamount Mountain Resort,"South Egremont, MA, USA",Egremont,Massachusetts,United States
-Smokey Mountain Ski Club,"NL, Canada",,Newfoundland and Labrador,Canada
-Obertauern,"Salzburg Region, Austria",,Salzburg,Austria
-Loup Loup Ski Bowl,"Twisp, WA, USA",Twisp,Washington,United States
-Nayoro Piyashiri Ski Resort,"Nisshin, Nayoro City, Hokkaido, Japan",Nayoro,Hokkaido,Japan
-Osceola Tug Hill XC Ski Center,"Camden, NY",Camden,New York,United States
-Tyrol Basin Ski and Snowboard,"Mt. Horeb, WI, USA",Mount Horeb,Wisconsin,United States
-Middlebury Snowbowl,"Hancock, VT",Hancock,Vermont,United States
-Garnet Hill XC,"North River, NY, USA",North River,New York,United States
-Pizol,"Bad Ragaz, Switzerland",Bad Ragaz,St. Gallen,Switzerland
-Catamount Outdoor Family Center,"Williston, VT, USA",Williston,Vermont,United States
-Bethel Village Trails,"Bethel, ME",Bethel,Maine,United States
-Engstligenalp,"Adelboden, Switzerland",Adelboden,Canton of Bern,Switzerland
-Massanutten Resort,"Massanutten, VA, USA",Massanutten,Virginia,United States
-Castle Mountain Resort,"Pincher Creek, AB, CA",Pincher Creek,Alberta,Canada
-Detroit Mountain,"Detroit Lakes, MN, USA",Detroit Lakes,Minnesota,United States
-Quarry Road Trails,"Waterville, ME, USA",Waterville,Maine,United States
-Big Powderhorn,"Bessemer, MI, USA",Bessemer,Michigan,United States
-Baldy Mountain Resort,"Oliver, BC, CA",Oliver,British Columbia,Canada
-Cataloochee Ski Area,"Maggie Valley, NC, USA",Maggie Valley,North Carolina,United States
-McIntyre Ski Area,"Manchester, NH, USA",Manchester,New Hampshire,United States
-Leukerbad Torrent Ski Resort & Gemmi Resort,"Leukerbad, Switzerland",Leukerbad,Valais,Switzerland
-Phoenix Mountain,"Grand Forks, BC, CA",Grand Forks,British Columbia,Canada
-Magic Mountain Idaho,"Kimberly, Idaho",Kimberly,Idaho,United States
-Cuchara,"Cuchara, CO",Cuchara,Colorado,United States
-Saskadena Six Ski Area,"Woodstock, VT, USA",Woodstock,Vermont,United States
-Maiko Resort,"Maiko, Minamiuonuma, Niigata, Japan",Minamiuonuma,Niigata,Japan
-Thrill Hills,"Fort Ransom, ND",Fort Ransom,North Dakota,United States
-Canmore Ski Village,"Hokkaido, Japan",,Hokkaido,Japan
-Centre Vorlage,"Wakefield, QC",Wakefield,Quebec,Canada
-Fort Kent Outdoor Center,"Fort Kent, Maine",Fort Kent,Maine,United States
-Orcières Merlette 1850,"Orcières, France",Orcières,Provence-Alpes-Côte d'Azur,France
-Mont Ripley Ski Area,"Hancock , MI, USA",Hancock,Michigan,United States
-Hockley Valley Resort,"Mono, ON",Mono,Ontario,Canada
-Maplelag Resort,"Callaway, MN, USA",Callaway,Minnesota,United States
-Andes Tower Hills,"Alexandria, MN, USA",Alexandria,Minnesota,United States
-Mount Baldy Ski Area,"Thunder Bay, ON, CA",Thunder Bay,Ontario,Canada
-Smugglers' Notch Resort,"South Jeffersonville, VT",Cambridge,Vermont,United States
-Dog Creek Lodge & Nordic Center,"Whitefish, MT, USA",Whitefish,Montana,United States
-West Mountain,"Queensbury, NY, USA",,New York,United States
-Mt Eyak,"Cordova, AK",Cordova,Alaska,United States
-Echo Mountain,"Evergreen, CO, USA",Evergreen,Colorado,United States
-White Pine Resort,"Pinedale, WY, USA",Pinedale,Wyoming,United States
-Cooper Spur Ski Area,"Parkdale, OR, USA",Parkdale,Oregon,United States
-St Johann in Tirol,"St. Johann in Tirol,  Austria",Sankt Johann,Tyrol,Austria
-Winterplace Ski Resort,"Flat Top , WV, USA",Flat Top,West Virginia,United States
-Canaan Valley,"Davis, WV, USA",Davis,West Virginia,United States
-Cazenovia Ski Club,"Cazenovia, New York",Cazenovia,New York,United States
-Pass Powderkeg,"Crowsnest Pass, AB, CA",,Alberta,Canada
-Mount Kato,"Mankato, MN, USA",Mankato,Minnesota,United States
-Geto Kogen,"Kita Kami, Tohoku, Japan",Kitakami,Iwate,Japan
-Mt. Hood Meadows,"Mt. Hood, OR, USA",Mount Hood,Oregon,United States
-White Pine Touring Nordic Center,"Park City, UT, USA",Park City,Utah,United States
-Scotts Cobble Nordic Center,"Lake Placid, NY",Lake Placid,New York,United States
-Bear Basin Nordic Center,"McCall, ID",McCall,Idaho,United States
-Pila,"Aosta, Italy",Aosta,Aosta Valley,Italy
-Jay Peak Resort,"Jay, VT, USA",Jay,Vermont,United States
-Norway Mountain,"Norway, MI",Norway,Michigan,United States
-Eagle Point,"Beaver, UT, USA",Beaver,Utah,United States
-Red Lodge Mountain,"Red Lodge, MT",Red Lodge,Montana,United States
-Hardwood Ski and Bike,"Barrie, ON, CA",Barrie,Ontario,Canada
-Treetops Resort,"Gaylord, MI, USA",Gaylord,Michigan,United States
-Glenshee Ski Centre,"Aberdeenshire, Scotland , AB35 5XU",,Scotland,United Kingdom
-Silver Mountain,"Kellogg, ID, USA",Kellogg,Idaho,United States
-Jackson XC,"Jackson, NH, USA",Jackson,New Hampshire,United States
-Sundown Mountain,"Dubuque, IA, USA",Dubuque,Iowa,United States
-Hodaigi Mountain Resort,"Tone-gun, Gunma",,Gunma,Japan
-Norefjell Ski Resort,"Noresund, Norway",Noresund,Buskerud,Norway
-Palcall Tsumagoi Resort,"Gunma, Agatsuma District, Tsumagoi, Japan",Tsumagoi,Gunma,Japan
-Trollhaugen,"Dresser, WI, USA",Dresser,Wisconsin,United States
-Ercİyes Ski Resort,"Hisarcık Erciyes, 38220 Melikgazi/Kayseri, Türkiye",,Kayseri,Türkiye
-Cupid Valley,"Joetsu, Niigata 942-0534, Japan",Joetsu,Niigata,Japan
-Apex Mountain Resort,"Penticton, BC, CA",Penticton,British Columbia,Canada
-OBERSTDORF KLEINWALSERTAL BERGBAHNEN,"Riezlern, Austria",Riezlern,Vorarlberg,Austria
-Ski Big Bear,"Lackawaxen, PA, USA",Lackawaxen,Pennsylvania,United States
-Ski Sawmill,"Morris, PA, USA",Morris,Pennsylvania,United States
-Bryce Resort,"Basye, VA, USA",Basye,Virginia,United States
-Hunt Hollow Ski Club,"Naples, NY",Naples,New York,United States
-Stöten i Sälen,"Sälen, Sweden",Sälen,Dalarna County,Sweden
-Whitecap Mountains Resort,"Upson, WI",Upson,Wisconsin,United States
-Lost Valley,"Auburn, ME",Auburn,Maine,United States
-Bottineau Winter Park,"Bottineau , ND, USA",Bottineau,North Dakota,United States
-Dynaland,"Gujo, Gifu, Japan",Gujo,Gifu,Japan
-"Levi, Finland","Kittilä, Finland",Kittilä,Lapland,Finland
-Ski Bluewood,"Dayton, WA, USA",Dayton,Washington,United States
-Hurricane Ridge,"Port Angeles, WA, USA",Port Angeles,Washington,United States
-Trapp Family Lodge,"Stowe, VT, USA",Stowe,Vermont,United States
-Tschiertschen - Chur,"Tschiertschen, Switzerland",Chur,Grisons,Switzerland
-Hoedown Hill,"Windsor, Colorado",Windsor,Colorado,United States
-Bergbahnen Hohsaas,"Saas-Grund, Switzerland",Saas-Grund,Valais,Switzerland
-Mont-Kanasuta,"Rouyn-Noranda, QC",Rouyn-Noranda,Quebec,Canada
-Plain Valley Ski Trails,"Leavenworth, WA",Leavenworth,Washington,United States
-Montana Snowbowl,"Missoula, MT, USA",Missoula,Montana,United States
-Onikoube Ski Resort,"Narukoonsen Onikobe, Osaki Japan",Ōsaki,Miyagi,Japan
-Bousquet Mountain,"Pittsfield, MA",Pittsfield,Massachusetts,United States
-China Peak,"Lakeshore, CA, USA",Lakeshore,California,United States
-Hatley Pointe,"Mars Hill, NC",Mars Hill,North Carolina,United States
-Loch Lomond,"Thunder Bay, ON, CA",Thunder Bay,Ontario,Canada
-Frost Fire Park,"Walhalla, ND",Walhalla,North Dakota,United States
-Dodge Ridge,"Pinecrest, CA, USA",Pinecrest,California,United States
-Lost Trail Powder Mountain,"Darby , MT, USA",Darby,Montana,United States
-Eaglecrest,"Juneau, AK, USA",Juneau,Alaska,United States
-Mt La Crosse,"La Crosse, WI",La Crosse,Wisconsin,United States
-Sunburst Ski Area,"Kewaskum, WI",Kewaskum,Wisconsin,United States
-Hoodoo,"Sisters, OR, USA",Sisters,Oregon,United States
-Pine Mountain,"Iron Mountain, MI, USA",Iron Mountain,Michigan,United States
-Powderhorn,"Mesa, CO",,Colorado,United States
-Whitehorse Nordic Centre,"Whitehorse, Yukon, Canada",Whitehorse,Yukon,Canada
-Yuzawa Nakazato Snow Resort,"Yuzawa, Niigata, Japan",Yuzawa,Niigata,Japan
-Caledonia Nordic Ski Club,"Prince George, BC, CA",Prince George,British Columbia,Canada
-Terry Peak,"Lead, SD, USA",Lead,South Dakota,United States
-Montage Mountain,"Scranton PA, PA, USA",Scranton,Pennsylvania,United States
-Skigebiet Heiligenblut-Großglockner,"Carinthia, Austria",,Carinthia,Austria
-Aomori Spring Ski Resort,"Hirosaki, Tohoku, Japan",Hirosaki,Aomori,Japan
-Mt. Pisgah,"Saranac Lake, NY",Saranac Lake,New York,United States
-Veterans Memorial Recreation Area,"Franklin, NH",Franklin,New Hampshire,United States
+name,location_name,city,state,country,geo_latitude,geo_longitude,indy_point_country,indy_checked_latitude,indy_checked_longitude
+Pats Peak,"Henniker, NH, USA",Henniker,New Hampshire,United States,43.1796573,-71.82234389999999,,,
+Eastman Cross Country,"Grantham, NH",Grantham,New Hampshire,United States,43.52254569999999,-72.1534606,,,
+Showdown Montana,Neihart MT,Neihart,Montana,United States,46.93329550000001,-110.7357707,,,
+Takasu Snow Park,"Gujo, Gifu, Japan",Gujo,Gifu,Japan,35.7484949,136.9643157,,,
+Togakushi Ski Resort,"Nagano, Japan",Nagano,Nagano,Japan,36.6485258,138.1950371,,,
+Arctic Valley,"Anchorage, AK, USA",Anchorage,Alaska,United States,61.2175758,-149.8996785,,,
+Björkliden,"Lapland, Sweden",,,Sweden,60.12816100000001,18.643501,Sweden,68.4059405,18.6835973
+SkiWelt,"Söll, Austria",Söll,Tyrol,Austria,47.5038789,12.1909209,,,
+Kaya Palazzo Kartalkaya Ski & Mountain Resort,"Gökpınar/Bolu Merkez/Bolu, Türkiye",Gökpınar,Bolu,Türkiye,,,,,
+Mt. Holiday,"Traverse City, MI",Traverse City,Michigan,United States,44.7628849,-85.6210036,,,
+White Grass Ski Touring,"Davis, WV, USA",Davis,West Virginia,United States,39.1287189,-79.4647739,,,
+Rangeley Lakes Trail Center,"Rangeley, ME, USA",Rangeley,Maine,United States,44.9656821,-70.6427102,,,
+Petzen,"Carinthia, Austria",,Carinthia,Austria,46.722203,14.1805881,,,
+Haymaker Nordic Center,"Steamboat Springs, CO",Steamboat Springs,Colorado,United States,40.4849769,-106.8317158,,,
+Steamboat Ski Touring Center,"Steamboat Springs, CO",Steamboat Springs,Colorado,United States,40.4849769,-106.8317158,,,
+Wintergreen,"Nellysford, VA",Nellysford,Virginia,United States,37.8897544,-78.8733658,,,
+Nelson Nordic Ski Club,"Nelson, BC, CA",Nelson,British Columbia,Canada,49.4928119,-117.2948343,,,
+Mount Racey Ski Resort,"Yubari, Hokkaido",Yubari,Hokkaido,Japan,43.0567681,141.9739433,,,
+Hirugano Kogen Ski Resort,"Gujo, Gifu, Japan",Gujo,Gifu,Japan,35.7484949,136.9643157,,,
+Saddleback Mountain,"Rangeley, ME, USA",Rangeley,Maine,United States,44.9656821,-70.6427102,,,
+Sasquatch Mountain Resort,"Agassiz, BC, CA",Agassiz,British Columbia,Canada,49.2357976,-121.761715,,,
+The Loppet,"Minneapolis, MN",Minneapolis,Minnesota,United States,44.977753,-93.2650108,,,
+Kamui Ski Links,"Asahikawa, Hokkaido, Japan",Asahikawa,Hokkaido,Japan,43.7708833,142.3650083,,,
+Huff Hills Ski Area,"Mandan, ND, USA",Mandan,North Dakota,United States,46.8266603,-100.8895761,,,
+Pyhä Ski Resort,"Pelkosenniemi, Finland",Pelkosenniemi,Lapland,Finland,67.1083683,27.5145782,,,
+Manning Park XC,"Hope, BC, CA",Hope,British Columbia,Canada,49.379491,-121.4416917,,,
+Leavenworth Winter Sports Club,"Leavenworth, WA, USA",Leavenworth,Washington,United States,47.5962326,-120.6614765,,,
+Bruce Mound Winter Sports Area,"Merrillan, WI",Merrillan,Wisconsin,United States,44.4510731,-90.8412561,,,
+Ski Land,"Fairbanks, AK",Fairbanks,Alaska,United States,64.8400511,-147.7199756,,,
+Pebble Creek Ski Area,"Inkom, ID",Inkom,Idaho,United States,42.7963041,-112.2541374,,,
+Tamarack Mountain Resort,"Donnelly , ID, USA",Donnelly,Idaho,United States,44.7308461,-116.0772125,,,
+Nutt Hill,"Plymouth, WI",Plymouth,Wisconsin,United States,43.7486054,-87.9770379,,,
+Portes du Soleil,French Swiss Border,,,,46.75624345,6.77246705,,,
+Ski Saint-Bruno,"St-Bruno, QC",St-Bruno-de-Montarville,Quebec,Canada,45.5298901,-73.3453766,,,
+Les 7 Laux,"Les Adrets, France",Les Adrets,Auvergne-Rhône-Alpes,France,45.2716781,5.965189199999999,,,
+Franconia Village XC Ski Area,"Franconia, NH",Franconia,New Hampshire,United States,44.2271729,-71.7479075,,,
+Shawnee Mountain Ski Area,"East Stroudsburg , PA, USA",East Stroudsburg,Pennsylvania,United States,41.0030522,-75.1817547,,,
+High Point XC Ski Center,"Sussex, NJ, USA",,New Jersey,United States,41.1288481,-74.6868815,,,
+Schuss Mountain at Shanty Creek,"Bellaire, MI, USA",Bellaire,Michigan,United States,44.9800981,-85.2102756,,,
+Washigatake Ski Resort,"Gujo, Gifu, Japan",Gujo,Gifu,Japan,35.7484949,136.9643157,,,
+Loveland Ski Area,"Georgetown, CO",Georgetown,Colorado,United States,39.70609839999999,-105.6975041,,,
+Ninox Snow Park,"Niigata, Shibata, Kamisanko, 大平国有林無番地",Shibata,Niigata,Japan,37.9342559,139.4249577,,,
+Tenney Mountain,"Plymouth, NH",Plymouth,New Hampshire,United States,43.7570415,-71.6878162,,,
+Mont Sutton,"Sutton, QC",Sutton,Quebec,Canada,45.105894,-72.6166646,,,
+Black Jack Cross Country Ski Club,"Rossland, BC, CA",Rossland,British Columbia,Canada,49.0781415,-117.8000037,,,
+Berkshire East Mountain Resort,"Charlemont, MA, USA",Charlemont,Massachusetts,United States,42.627862,-72.86981829999999,,,
+Muica Snow Resort,"Minamiuonuma, Niigata, Japan",Minamiuonuma,Niigata,Japan,37.0654976,138.8760378,,,
+Ejder3200 Palandoken,"Erzurum, Türkiye",Erzurum,Erzurum,Türkiye,,,,,
+49 Degrees North,"Chewelah, WA, USA",Chewelah,Washington,United States,48.276287,-117.7155208,,,
+Black Mountain of Maine,"Rumford, ME, USA",Rumford,Maine,United States,44.5539111,-70.5510382,,,
+Skaneateles Ski Club,"Syracuse, NY, USA",Syracuse,New York,United States,43.0494832,-76.14739770000001,,,
+Spring Mountain Adventures,"Schwenksville, PA",Schwenksville,Pennsylvania,United States,40.256213,-75.4637876,,,
+Kandatsu Snow Resort,"Niigata, Japan",Niigata,Niigata,Japan,37.9185345,139.069444,Japan,36.9283612,138.8036927
+The Krvavec Ski Resort,"Cerklje na Gorenjskem, Slovenia",Cerklje na Gorenjskem,Kranj,Slovenia,46.2531292,14.4868829,,,
+Val d'Irène,"Sainte-Irène, QC",,Quebec,Canada,48.435596,-67.5921783,,,
+Peek ‘n Peak,"Clymer, NY, USA",Clymer,New York,United States,42.0208501,-79.6299617,,,
+Massif du Sud,"Saint-Philémon, Quebec",Saint-Philémon,Quebec,Canada,46.6827894,-70.4552241,,,
+Granby Ranch,"Granby, CO, USA",Granby,Colorado,United States,40.086097,-105.9394597,,,
+Rauriser-Hochalmbahnen,"Liftweg 2, 5661 Rauris, Austria",Rauris,Salzburg,Austria,47.2238555,12.9911683,,,
+Snow King Mountain Resort,"Jackson, WY, USA",Jackson,Wyoming,United States,43.4799291,-110.7624282,,,
+Snowstar,"Andalusia, IL, USA",Andalusia,Illinois,United States,41.4391986,-90.717641,,,
+Manning Park,"Hope, BC, CA",Hope,British Columbia,Canada,49.379491,-121.4416917,,,
+Coffee Mill Ski Area,"Wabasha, Minnesota",Wabasha,Minnesota,United States,44.3754518,-92.0236059,,,
+Antelope Butte,"Shell, WY, USA",Shell,Wyoming,United States,44.5355158,-107.7798127,,,
+Beaver Mountain,"Garden City, UT, USA",Garden City,Utah,United States,41.946878,-111.3935397,,,
+Amihari Onsen Ski Resort,"Morioka City, Iwate Prefecture, Japan",Morioka,Iwate,Japan,39.7019558,141.1543303,,,
+Snow Resort The Cupid of Romance,"Nagano, Japan",Nagano,Nagano,Japan,36.6485258,138.1950371,,,
+WhitePIA Takasu,"Gujo, Gifu, Japan",Gujo,Gifu,Japan,35.7484949,136.9643157,,,
+Burke Mountain,"East Burke, VT, USA",Burke,Vermont,United States,44.589071,-71.94045539999999,,,
+Spirit Mountain,"Duluth, MN, USA",Duluth,Minnesota,United States,46.7844571,-92.1055411,,,
+Marquette Mountain,"Marquette, MI, USA",Marquette,Michigan,United States,46.5436199,-87.3953713,,,
+Brundage Mountain Resort,"McCall, ID, USA",McCall,Idaho,United States,44.906183,-116.1171311,,,
+White Pass,"White Pass, WA, USA",,Washington,United States,46.63872569999999,-121.3895281,,,
+Innsbruck Region,"Innsbruck Region, Austria",Innsbruck,Tyrol,Austria,47.2675322,11.3910349,,,
+Maple Ski Ridge,"Schenectady, NY, USA",Schenectady,New York,United States,42.8143509,-73.93874199999999,,,
+Nubs Nob,"Harbor Springs, MI, USA",Harbor Springs,Michigan,United States,45.43167589999999,-84.9919992,,,
+Okunakayama Kogen,"Morioka, Tohoku, Japan",Morioka,Iwate,Japan,39.7019558,141.1543303,,,
+Bolton Valley Resort,"Burlington, VT, USA",Burlington,Vermont,United States,44.4758825,-73.21207199999999,,,
+Waterville Valley Resort,"Waterville Valley, NH, USA",Waterville Valley,New Hampshire,United States,43.9500695,-71.4995204,,,
+Ragged Mountain,"Danbury, NH",Danbury,New Hampshire,United States,43.5256297,-71.8617481,,,
+Nickel Plate Cross Country Ski Club,"Hedley, BC, CA",Hedley,British Columbia,Canada,49.35717700000001,-120.076544,,,
+Destination Owls Head,"Mansonville, QC",Mansonville,Quebec,Canada,45.049737,-72.391992,,,
+Elm Creek Park Reserve,"Maple Grove, MN",Maple Grove,Minnesota,United States,45.0724642,-93.4557877,,,
+Great Bear Ski Valley,"Sioux Falls, SD, USA",Sioux Falls,South Dakota,United States,43.5460223,-96.731265,,,
+Hudson Bay Mountain,"Smithers, BC, Canada",Smithers,British Columbia,Canada,54.7817914,-127.1665996,,,
+Greek Peak Mountain Resort,"Cortland, NY, USA",Cortland,New York,United States,42.6011813,-76.1804843,,,
+Great Glen Trails Outdoor Center,"Gorham, NH",Gorham,New Hampshire,United States,44.3879504,-71.17278809999999,,,
+Malá Úpa,"Malá Úpa, Czechia",Malá Úpa,Hradec Králové Region,Czechia,50.7445932,15.8202619,,,
+Ober Mountain,"Gatlinburg, TN, USA",Gatlinburg,Tennessee,United States,35.714259,-83.5101638,,,
+Pomerelle Mountain Resort,"Burley, ID, USA",Burley,Idaho,United States,42.5357428,-113.7927948,,,
+Soldier Mountain,"Fairfield, ID, USA",Fairfield,Idaho,United States,43.3465675,-114.7917279,,,
+Titus Mountain,"Malone, NY, USA",Malone,New York,United States,44.848769,-74.2937178,,,
+Turpin Meadow Ranch,"Jackson , WY, USA",Jackson,Wyoming,United States,43.4799291,-110.7624282,,,
+Whaleback Mountain,"Enfield, NH, USA",Enfield,New Hampshire,United States,43.64064399999999,-72.14398299999999,,,
+Williams Lake Cross Country Ski Club,"Williams Lake, BC, CA",Williams Lake,British Columbia,Canada,52.1416736,-122.1416885,,,
+Magic Mountain,"Londonderry , VT, USA",Londonderry,Vermont,United States,43.2264643,-72.8064866,,,
+Corralco Resort de Montaña,"Reserva Nacional Malalcahuello S/N, Curacautin, Chile",,Araucanía,Chile,-38.4059882,-71.59613279999999,,,
+Carters XC Ski Center,"Bethel, Maine",Bethel,Maine,United States,44.4044586,-70.7898806,,,
+Kaunertaler Gletscher,"Kaunertal, Austria",Kaunertal,Tyrol,Austria,,,,,
+North Cascade Heli,"Winthrop, WA",Winthrop,Washington,United States,48.4778336,-120.1854093,,,
+Powder Ridge,"Kimball, MN, USA",Kimball,Minnesota,United States,45.3125517,-94.2972055,,,
+Camp 10 Ski Area,"Rhinelander, WI",Rhinelander,Wisconsin,United States,45.6366228,-89.4120753,,,
+Black Mountain Ski Area,"Jackson, NH, USA",Jackson,New Hampshire,United States,44.1462613,-71.1850996,,,
+Glencoe Mountain Resort,"Glencoe, Scotland",Glencoe,Scotland,United Kingdom,56.68255989999999,-5.1022713,,,
+Woodstock Nordic Center,"Woodstock, VT, USA",Woodstock,Vermont,United States,43.6242442,-72.51851119999999,,,
+Homestake Lodge,"Butte, MT, USA",Butte,Montana,United States,46.0038232,-112.5347776,,,
+Cannon Mountain,"Franconia, NH, USA",Franconia,New Hampshire,United States,44.2271729,-71.7479075,,,
+Ski Vallée Bleue,"Val-David, Québec",Val-David,Quebec,Canada,46.03064089999999,-74.2062837,,,
+Pitztaler Gletscherbahn,"Mittelberg, Austria",Mittelberg,Vorarlberg,Austria,,,,,
+Paul Bunyan Ski Hill,"Lakewood, WI",Lakewood,Wisconsin,United States,45.3008014,-88.52343959999999,,,
+Tazawako,"Tazawako, Tohoku",Minamiaizu,Fukushima,Japan,37.1910731,139.7700002,Japan,39.7623337,140.7681328
+Camden Snow Bowl,"Camden, Maine",Camden,Maine,United States,44.2097928,-69.0647838,,,
+Camp Fortune,"Chelsea, Quebec, Canada",Chelsea,Quebec,Canada,45.50376379999999,-75.7952731,,,
+Mont Edouard,"L'Anse-Saint-Jean, QC",L'Anse-Saint-Jean,Quebec,Canada,48.197035,-70.2456914,,,
+Shimokura,"Hachimantai, Iwate, Japan",Hachimantai,Iwate,Japan,39.9125031,141.0960734,,,
+Sovereign Lake Nordic Club,"Vernon, BC, CA",Vernon,British Columbia,Canada,50.2670137,-119.2720107,,,
+Christie Mountain,"Bruce, WI",Bruce,Wisconsin,United States,45.4569087,-91.2732106,,,
+Mt. Abram,"Greenwood, Maine",Greenwood,Maine,United States,44.3184011,-70.6508978,,,
+Kimberley Nordic Club,"Kimberley, BC, CA",Kimberley,British Columbia,Canada,49.6847012,-115.983001,,,
+Kendall Mountain Ski Area,"Silverton, CO",Silverton,Colorado,United States,37.811941,-107.6645057,,,
+Riksgränsen,"Riksgränsen, Sweden",Riksgränsen,Norrbotten County,Sweden,68.4264335,18.1259671,,,
+Enchanted Forest XC,"Red River, NM, USA",Red River,New Mexico,United States,36.7080849,-105.4061159,,,
+Northern Maine Community Trails,"Presque-Isle, ME",Presque Isle,Maine,United States,46.68115299999999,-68.0158615,,,
+Moose Mountain,"Fairbanks, AK",Fairbanks,Alaska,United States,64.8400511,-147.7199756,,,
+Mountain High,"Wrightwood, CA, USA",Wrightwood,California,United States,34.3610754,-117.6331912,,,
+Big White Ski Resort,"Kelowna, BC, CA",Kelowna,British Columbia,Canada,49.8863235,-119.4965917,,,
+Big Rock Mountain,"Mars Hill, ME, USA",Mars Hill,Maine,United States,46.5153817,-67.86611309999999,,,
+Hochzeiger Bergbahnen Pitztal AG,"Jerzens, Austria",Jerzens,Tyrol,Austria,47.1497132,10.7467049,,,
+Mohawk Mountain,"Cornwall, CT, USA",Cornwall,Connecticut,United States,41.8437058,-73.3292848,,,
+Skeetawk,"Palmer, Alaska",Palmer,Alaska,United States,61.599415,-149.1146333,,,
+Marble Mountain,"NL, Canada",,Newfoundland and Labrador,Canada,54.2730918,-61.7387586,Canada,48.9481507,-57.8310334
+Blue Knob All Season Resort,"Claysburg, PA, USA",Claysburg,Pennsylvania,United States,40.2967427,-78.449737,,,
+Shames Mountain,"Terrace, BC, CA",Terrace,British Columbia,Canada,54.5181925,-128.603154,,,
+Calabogie Peaks Resort,"Calabogie, ON, CA",Greater Madawaska,Ontario,Canada,45.299295,-76.721166,,,
+Buffalo Ski Club,"Colden, NY",Colden,New York,United States,42.6442273,-78.6847495,,,
+Hyland Hills,"Bloomington, MN",Bloomington,Minnesota,United States,44.840798,-93.2982799,,,
+Bear Valley Adventure Company,"Bear Valley, CA, USA",Bear Valley,California,United States,38.4646337,-120.0399088,,,
+Murray Ridge Ski Area,"Fort St. James, BC",Fort St. James,British Columbia,Canada,54.4440119,-124.2579297,,,
+Pippu Ski Resort,"Asahikawa, Hokkaido, Japan",Asahikawa,Hokkaido,Japan,43.7708833,142.3650083,,,
+Donner Ski Ranch,"Norden, Lake Tahoe, CA",,,United States,39.0968493,-120.0323507,,,
+Bear Creek,"Macungie, PA",Macungie,Pennsylvania,United States,40.51593039999999,-75.55518579999999,,,
+Mont Rigaud,"Riquad QC, Canada",,Quebec,Canada,45.47924159999999,-74.3003842,,,
+Tussey Mountain,"State College, PA, USA",State College,Pennsylvania,United States,40.7933949,-77.8600012,,,
+Big Moose,"447 Ski Resort Rd, Greenville Junction, ME 04442",,Maine,United States,45.5067332,-69.70202379999999,,,
+King Pine,"Madison, NH, USA",Madison,New Hampshire,United States,34.5370339,-86.3944307,United States,43.868280175903,-71.088944717979
+Fairmont Hot Springs,"Fairmont Hot Springs, BC, CA",Fairmont Hot Springs,British Columbia,Canada,50.335927,-115.851186,,,
+Telemark Nordic Center,"Kelowna, BC, CA",Kelowna,British Columbia,Canada,49.8863235,-119.4965917,,,
+Sunlight Mountain Resort,"Glenwood Springs, CO, USA",Glenwood Springs,Colorado,United States,39.5505376,-107.3247762,,,
+Togari Onsen Snow Resort,"Nagano, Japan",Nagano,Nagano,Japan,36.6485258,138.1950371,,,
+Hilltop Ski Area,"Anchorage, AK",Anchorage,Alaska,United States,61.2175758,-149.8996785,,,
+Ruka Ski Resort,"Kuusamo, Finland",Kuusamo,North Ostrobothnia,Finland,65.9645876,29.1886652,,,
+Cherry Peak,"Richmond, UT, USA",Richmond,Utah,United States,41.9227056,-111.8135571,,,
+Bear Valley Mountain Resort,"Bear Valley, CA",Bear Valley,California,United States,38.4646337,-120.0399088,,,
+Minocqua Winter Park,"Minocqua, WI, USA",Minocqua,Wisconsin,United States,45.8710837,-89.7092705,,,
+Powder Ridge,"Middlefield, Connecticut",Middlefield,Connecticut,United States,41.5173203,-72.71204019999999,,,
+Rikert Nordic Center,"Ripton, VT, USA",Ripton,Vermont,United States,43.973673,-73.0340033,,,
+Steinplatte,"Waidring, Austria",Waidring,Tyrol,Austria,47.584342,12.5701177,,,
+Chestnut Mountain Resort,"Galena, IL, USA",Galena,Illinois,United States,42.4166744,-90.4290168,,,
+Mt. Washington,"BC, Canada",,British Columbia,Canada,53.7266683,-127.6476206,Canada,49.804509751028,-125.26140942545
+Dry Hill Ski Area,"Watertown, NY, USA",Watertown,New York,United States,43.9725849,-75.90974299999999,,,
+Swain Resort,"Swain, NY, USA",Swain,New York,United States,42.4778443,-77.8533322,,,
+Crosscut Mountain Sports Center,"Bozeman, MT, USA",Bozeman,Montana,United States,45.67931189999999,-111.037259,,,
+Winter4Kids,"Vernon, NJ",Vernon Township,New Jersey,United States,41.1986119,-74.4829596,,,
+Baqueira/Beret,"Baqueira, Spain",Baqueira,Cataluña,Spain,42.699561,0.9313136,,,
+Little Ski Hill,"McCall, ID",McCall,Idaho,United States,44.906183,-116.1171311,,,
+Snow Ridge,"Turin, NY, USA",,New York,United States,43.6682497,-75.41116439999999,,,
+Dartmouth Skiway,"Lyme Center, NH, USA",Lyme,New Hampshire,United States,43.7995125,-72.12548070000001,,,
+Kelly Canyon,"Ririe, ID, USA",Ririe,Idaho,United States,43.6318575,-111.773575,,,
+Mt. Shasta,"Mount Shasta, CA, USA",Mount Shasta,California,United States,41.3098746,-122.3105666,,,
+Stranda Ski Resort,"Stranda, Norway",Stranda,Møre og Romsdal,Norway,62.3091141,6.9424091,,,
+Sleepy Hollow,"Huntington, VT",Huntington,Vermont,United States,44.3250315,-72.9868813,,,
+Crystal Mountain,"Thompsonville, MI, USA",Thompsonville,Michigan,United States,44.5202794,-85.9439718,,,
+Howelsen Hill,"Steamboat Springs, CO, USA",Steamboat Springs,Colorado,United States,40.4849769,-106.8317158,,,
+Catamount Mountain Resort,"South Egremont, MA, USA",Egremont,Massachusetts,United States,42.1605679,-73.4154169,,,
+Smokey Mountain Ski Club,"NL, Canada",,Newfoundland and Labrador,Canada,54.2730918,-61.7387586,Canada,52.9785263,-66.9240597
+Obertauern,"Salzburg Region, Austria",,Salzburg,Austria,47.8014154,13.0448441,,,
+Loup Loup Ski Bowl,"Twisp, WA, USA",Twisp,Washington,United States,48.3634784,-120.122303,,,
+Nayoro Piyashiri Ski Resort,"Nisshin, Nayoro City, Hokkaido, Japan",Nayoro,Hokkaido,Japan,44.3821749,142.5262673,,,
+Osceola Tug Hill XC Ski Center,"Camden, NY",Camden,New York,United States,43.33435190000001,-75.74805660000001,,,
+Tyrol Basin Ski and Snowboard,"Mt. Horeb, WI, USA",Mount Horeb,Wisconsin,United States,43.008608,-89.7384562,,,
+Middlebury Snowbowl,"Hancock, VT",Hancock,Vermont,United States,43.9261192,-72.8412292,,,
+Garnet Hill XC,"North River, NY, USA",North River,New York,United States,43.73867569999999,-74.0487476,,,
+Pizol,"Bad Ragaz, Switzerland",Bad Ragaz,St. Gallen,Switzerland,47.0034141,9.5011062,,,
+Catamount Outdoor Family Center,"Williston, VT, USA",Williston,Vermont,United States,44.4496023,-73.1109997,,,
+Bethel Village Trails,"Bethel, ME",Bethel,Maine,United States,44.4044586,-70.7898806,,,
+Engstligenalp,"Adelboden, Switzerland",Adelboden,Canton of Bern,Switzerland,46.4930889,7.5595123,,,
+Massanutten Resort,"Massanutten, VA, USA",Massanutten,Virginia,United States,38.4095701,-78.7378004,,,
+Castle Mountain Resort,"Pincher Creek, AB, CA",Pincher Creek,Alberta,Canada,49.484885,-113.9440351,,,
+Detroit Mountain,"Detroit Lakes, MN, USA",Detroit Lakes,Minnesota,United States,46.8171808,-95.8453253,,,
+Quarry Road Trails,"Waterville, ME, USA",Waterville,Maine,United States,44.5530012,-69.631276,,,
+Big Powderhorn,"Bessemer, MI, USA",Bessemer,Michigan,United States,46.4811957,-90.05246939999999,,,
+Baldy Mountain Resort,"Oliver, BC, CA",Oliver,British Columbia,Canada,49.1823264,-119.550428,,,
+Cataloochee Ski Area,"Maggie Valley, NC, USA",Maggie Valley,North Carolina,United States,35.5181575,-83.0976419,,,
+McIntyre Ski Area,"Manchester, NH, USA",Manchester,New Hampshire,United States,42.9956397,-71.4547891,,,
+Leukerbad Torrent Ski Resort & Gemmi Resort,"Leukerbad, Switzerland",Leukerbad,Valais,Switzerland,46.38002400000001,7.6288344,,,
+Phoenix Mountain,"Grand Forks, BC, CA",Grand Forks,British Columbia,Canada,49.0335312,-118.4389137,,,
+Magic Mountain Idaho,"Kimberly, Idaho",Kimberly,Idaho,United States,42.5338019,-114.3647561,,,
+Cuchara,"Cuchara, CO",Cuchara,Colorado,United States,37.379167,-105.099722,,,
+Saskadena Six Ski Area,"Woodstock, VT, USA",Woodstock,Vermont,United States,43.6242442,-72.51851119999999,,,
+Maiko Resort,"Maiko, Minamiuonuma, Niigata, Japan",Minamiuonuma,Niigata,Japan,36.9797053,138.8401497,,,
+Thrill Hills,"Fort Ransom, ND",Fort Ransom,North Dakota,United States,46.52080410000001,-97.9262128,,,
+Canmore Ski Village,"Hokkaido, Japan",,Hokkaido,Japan,43.2203266,142.8634737,,,
+Centre Vorlage,"Wakefield, QC",Wakefield,Quebec,Canada,45.6411034,-75.9284651,,,
+Fort Kent Outdoor Center,"Fort Kent, Maine",Fort Kent,Maine,United States,47.2586502,-68.589491,,,
+Orcières Merlette 1850,"Orcières, France",Orcières,Provence-Alpes-Côte d'Azur,France,44.6839206,6.3263652,,,
+Mont Ripley Ski Area,"Hancock , MI, USA",Hancock,Michigan,United States,47.1268714,-88.5809563,,,
+Hockley Valley Resort,"Mono, ON",Mono,Ontario,Canada,43.9462956,-80.1042868,,,
+Maplelag Resort,"Callaway, MN, USA",Callaway,Minnesota,United States,46.9824592,-95.9097694,,,
+Andes Tower Hills,"Alexandria, MN, USA",Alexandria,Minnesota,United States,45.8848164,-95.3776663,,,
+Mount Baldy Ski Area,"Thunder Bay, ON, CA",Thunder Bay,Ontario,Canada,48.3808991,-89.24777019999999,,,
+Smugglers' Notch Resort,"South Jeffersonville, VT",Cambridge,Vermont,United States,,,,,
+Dog Creek Lodge & Nordic Center,"Whitefish, MT, USA",Whitefish,Montana,United States,48.4106373,-114.3352652,,,
+West Mountain,"Queensbury, NY, USA",,New York,United States,43.3587232,-73.6577461,,,
+Mt Eyak,"Cordova, AK",Cordova,Alaska,United States,60.5424087,-145.7525414,,,
+Echo Mountain,"Evergreen, CO, USA",Evergreen,Colorado,United States,39.634584,-105.3155562,,,
+White Pine Resort,"Pinedale, WY, USA",Pinedale,Wyoming,United States,42.8678809,-109.8633501,,,
+Cooper Spur Ski Area,"Parkdale, OR, USA",Parkdale,Oregon,United States,45.5198391,-121.5967417,,,
+St Johann in Tirol,"St. Johann in Tirol,  Austria",Sankt Johann,Tyrol,Austria,47.5221901,12.4308125,,,
+Winterplace Ski Resort,"Flat Top , WV, USA",Flat Top,West Virginia,United States,37.5895616,-81.1067614,,,
+Canaan Valley,"Davis, WV, USA",Davis,West Virginia,United States,39.1287189,-79.4647739,,,
+Cazenovia Ski Club,"Cazenovia, New York",Cazenovia,New York,United States,42.9300668,-75.85269149999999,,,
+Pass Powderkeg,"Crowsnest Pass, AB, CA",,Alberta,Canada,49.6061343,-114.520425,,,
+Mount Kato,"Mankato, MN, USA",Mankato,Minnesota,United States,44.1661456,-94.0055647,,,
+Geto Kogen,"Kita Kami, Tohoku, Japan",Kitakami,Iwate,Japan,39.2867738,141.1131535,,,
+Mt. Hood Meadows,"Mt. Hood, OR, USA",Mount Hood,Oregon,United States,45.5378947,-121.568408,,,
+White Pine Touring Nordic Center,"Park City, UT, USA",Park City,Utah,United States,40.6460622,-111.4979729,,,
+Scotts Cobble Nordic Center,"Lake Placid, NY",Lake Placid,New York,United States,44.2794911,-73.9798713,,,
+Bear Basin Nordic Center,"McCall, ID",McCall,Idaho,United States,44.906183,-116.1171311,,,
+Pila,"Aosta, Italy",Aosta,Aosta Valley,Italy,45.7350508,7.3130948,,,
+Jay Peak Resort,"Jay, VT, USA",Jay,Vermont,United States,44.96492540000001,-72.4602429,,,
+Norway Mountain,"Norway, MI",Norway,Michigan,United States,45.7869023,-87.9037364,,,
+Eagle Point,"Beaver, UT, USA",Beaver,Utah,United States,38.2769149,-112.6410518,,,
+Red Lodge Mountain,"Red Lodge, MT",Red Lodge,Montana,United States,45.1869364,-109.247008,,,
+Hardwood Ski and Bike,"Barrie, ON, CA",Barrie,Ontario,Canada,44.3903652,-79.6910866,,,
+Treetops Resort,"Gaylord, MI, USA",Gaylord,Michigan,United States,45.0275126,-84.6747523,,,
+Glenshee Ski Centre,"Aberdeenshire, Scotland , AB35 5XU",,Scotland,United Kingdom,56.88662240000001,-3.4142834,,,
+Silver Mountain,"Kellogg, ID, USA",Kellogg,Idaho,United States,47.5361665,-116.1281193,,,
+Jackson XC,"Jackson, NH, USA",Jackson,New Hampshire,United States,44.1462613,-71.1850996,,,
+Sundown Mountain,"Dubuque, IA, USA",Dubuque,Iowa,United States,42.5063629,-90.6677479,,,
+Hodaigi Mountain Resort,"Tone-gun, Gunma",,Gunma,Japan,36.7862665,139.1625989,,,
+Norefjell Ski Resort,"Noresund, Norway",Noresund,Buskerud,Norway,60.1803077,9.6230989,,,
+Palcall Tsumagoi Resort,"Gunma, Agatsuma District, Tsumagoi, Japan",Tsumagoi,Gunma,Japan,36.5168949,138.5302234,,,
+Trollhaugen,"Dresser, WI, USA",Dresser,Wisconsin,United States,45.3560738,-92.6335386,,,
+Ercİyes Ski Resort,"Hisarcık Erciyes, 38220 Melikgazi/Kayseri, Türkiye",,Kayseri,Türkiye,,,,,
+Cupid Valley,"Joetsu, Niigata 942-0534, Japan",Joetsu,Niigata,Japan,37.05537959999999,138.4876298,,,
+Apex Mountain Resort,"Penticton, BC, CA",Penticton,British Columbia,Canada,49.4991381,-119.5937077,,,
+OBERSTDORF KLEINWALSERTAL BERGBAHNEN,"Riezlern, Austria",Riezlern,Vorarlberg,Austria,47.36166,10.18812,,,
+Ski Big Bear,"Lackawaxen, PA, USA",Lackawaxen,Pennsylvania,United States,41.482034,-74.9860016,,,
+Ski Sawmill,"Morris, PA, USA",Morris,Pennsylvania,United States,41.5950718,-77.2921988,,,
+Bryce Resort,"Basye, VA, USA",Basye,Virginia,United States,38.81435,-78.7646228,,,
+Hunt Hollow Ski Club,"Naples, NY",Naples,New York,United States,42.6153453,-77.4024853,,,
+Stöten i Sälen,"Sälen, Sweden",Sälen,Dalarna County,Sweden,61.1613853,13.2630157,,,
+Whitecap Mountains Resort,"Upson, WI",Upson,Wisconsin,United States,46.3689809,-90.4068069,,,
+Lost Valley,"Auburn, ME",Auburn,Maine,United States,44.0978509,-70.2311655,,,
+Bottineau Winter Park,"Bottineau , ND, USA",Bottineau,North Dakota,United States,48.8272301,-100.4456984,,,
+Dynaland,"Gujo, Gifu, Japan",Gujo,Gifu,Japan,35.7484949,136.9643157,,,
+"Levi, Finland","Kittilä, Finland",Kittilä,Lapland,Finland,67.6507324,24.9158197,,,
+Ski Bluewood,"Dayton, WA, USA",Dayton,Washington,United States,46.3237525,-117.9724367,,,
+Hurricane Ridge,"Port Angeles, WA, USA",Port Angeles,Washington,United States,48.118146,-123.4307413,,,
+Trapp Family Lodge,"Stowe, VT, USA",Stowe,Vermont,United States,44.4654332,-72.6874023,,,
+Tschiertschen - Chur,"Tschiertschen, Switzerland",Chur,Grisons,Switzerland,46.81777,9.60671,,,
+Hoedown Hill,"Windsor, Colorado",Windsor,Colorado,United States,,,,,
+Bergbahnen Hohsaas,"Saas-Grund, Switzerland",Saas-Grund,Valais,Switzerland,46.1229266,7.936553200000001,,,
+Mont-Kanasuta,"Rouyn-Noranda, QC",Rouyn-Noranda,Quebec,Canada,48.2342362,-79.01878359999999,,,
+Plain Valley Ski Trails,"Leavenworth, WA",Leavenworth,Washington,United States,47.5962326,-120.6614765,,,
+Montana Snowbowl,"Missoula, MT, USA",Missoula,Montana,United States,46.8721284,-113.9940314,,,
+Onikoube Ski Resort,"Narukoonsen Onikobe, Osaki Japan",Ōsaki,Miyagi,Japan,38.8022758,140.6389069,,,
+Bousquet Mountain,"Pittsfield, MA",Pittsfield,Massachusetts,United States,42.4500845,-73.2453824,,,
+China Peak,"Lakeshore, CA, USA",Lakeshore,California,United States,37.2530002,-119.1748429,,,
+Hatley Pointe,"Mars Hill, NC",Mars Hill,North Carolina,United States,35.82649809999999,-82.5492999,,,
+Loch Lomond,"Thunder Bay, ON, CA",Thunder Bay,Ontario,Canada,48.3808991,-89.24777019999999,,,
+Frost Fire Park,"Walhalla, ND",Walhalla,North Dakota,United States,48.9233284,-97.9181477,,,
+Dodge Ridge,"Pinecrest, CA, USA",Pinecrest,California,United States,38.1923581,-119.9946131,,,
+Lost Trail Powder Mountain,"Darby , MT, USA",Darby,Montana,United States,46.0245451,-114.1783168,,,
+Eaglecrest,"Juneau, AK, USA",Juneau,Alaska,United States,58.30049329999999,-134.4201306,,,
+Mt La Crosse,"La Crosse, WI",La Crosse,Wisconsin,United States,43.8137751,-91.2519017,,,
+Sunburst Ski Area,"Kewaskum, WI",Kewaskum,Wisconsin,United States,43.5208302,-88.2289851,,,
+Hoodoo,"Sisters, OR, USA",Sisters,Oregon,United States,44.2909491,-121.5492118,,,
+Pine Mountain,"Iron Mountain, MI, USA",Iron Mountain,Michigan,United States,45.8202334,-88.0659603,,,
+Powderhorn,"Mesa, CO",,Colorado,United States,38.9585381,-108.6175626,,,
+Whitehorse Nordic Centre,"Whitehorse, Yukon, Canada",Whitehorse,Yukon,Canada,60.7197137,-135.0522761,,,
+Yuzawa Nakazato Snow Resort,"Yuzawa, Niigata, Japan",Yuzawa,Niigata,Japan,36.9349293,138.8183239,,,
+Caledonia Nordic Ski Club,"Prince George, BC, CA",Prince George,British Columbia,Canada,53.9170641,-122.7496693,,,
+Terry Peak,"Lead, SD, USA",Lead,South Dakota,United States,44.3522065,-103.7651984,,,
+Montage Mountain,"Scranton PA, PA, USA",Scranton,Pennsylvania,United States,41.410314,-75.661099,,,
+Skigebiet Heiligenblut-Großglockner,"Carinthia, Austria",,Carinthia,Austria,46.722203,14.1805881,Austria,47.0405002,12.8383713
+Aomori Spring Ski Resort,"Hirosaki, Tohoku, Japan",Hirosaki,Aomori,Japan,40.6030626,140.4640543,,,
+Mt. Pisgah,"Saranac Lake, NY",Saranac Lake,New York,United States,44.325031,-74.131784,,,
+Veterans Memorial Recreation Area,"Franklin, NH",Franklin,New Hampshire,United States,43.4442432,-71.6472988,,,
+Le Relais,"Lac-Beauport, QC",,Quebec,Canada,46.9422313,-71.2993659,,,
+Whiteface,"Wilmington, NY",Wilmington,New York,United States,44.3886137,-73.8154356,,,
+Oak Hill Outdoor Center,"Hanover, NH",Hanover,New Hampshire,United States,43.7022451,-72.2895526,,,
+Oppdal,"Oppdal, Norway",Oppdal,Trøndelag,Norway,62.5941815,9.6912337,,,
+Belleayre,"Highmount, NY",Pine Hill,New York,United States,42.1470192,-74.4943239,,,
+Pitztal Glacier,"Mittelberg, Austria",Mittelberg,Vorarlberg,Austria,47.3227491,10.1527665,,,
+Smugglers' Notch Resort,"4323 VT RT 108 SOUTH, JEFFERSONVILLE, VT 05464",Cambridge,Vermont,United States,44.7039344,-72.8307231,,,
+Paul Smith's College Visitor Interpretive Center,"Paul Smiths, NY",Paul Smiths,New York,United States,44.4383629,-74.2525981,,,
+Devil's Thumb Ranch,"Tabernash, CO",Tabernash,Colorado,United States,39.9935977,-105.8430661,,,
+Hafjell,"Øyer, Norway",,Innlandet,Norway,61.34201150000001,10.5002227,United States,44.1417357,-71.1880377
+Bad Kleinkirchheim,"Kleinkirchheim, Austria",Kleinkirchheim,Kärnten,Austria,46.8137702,13.7951607,,,
+Beito Resort,"Beitostølen, Norway",Beitostølen,Innlandet,Norway,61.24858089999999,8.9064937,,,
+Kaunertal Glacier,"Kaunertal, Austria",Kaunertal,Tyrol,Austria,47.03335200000001,10.7479919,,,
+Kvitfjell,"Fåvang, Norway",Fåvang,Innlandet,Norway,61.4553923,10.1948203,,,
+Gore,"North Creek, NY",North Creek,New York,United States,43.6978427,-73.9859658,,,
+Mount Cain,"Port McNeill, BC",Port McNeill,British Columbia,Canada,50.590044,-127.0863356,,,

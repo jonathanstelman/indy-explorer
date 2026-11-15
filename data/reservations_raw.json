@@ -1,64 +1,74 @@
 {
   "resorts": [
     {
-      "name": "Berkshire East Mountain Resort",
+      "name": "Berkshire East, MA",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/berkshire-east-mountain-resort"
+      "reservation_url": "https://berkshireeast-ecom.intouchelevate.com/"
     },
     {
-      "name": "Brundage Mountain Resort",
+      "name": "Brundage Mountain Resort, ID",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/brundage-mountain-resort"
+      "reservation_url": "https://brundage.com/indypassvisitors/"
     },
     {
-      "name": "Cannon Mountain",
+      "name": "Cannon Mountain, NH",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/cannon-mountain"
+      "reservation_url": "https://www.cannonmt.com/indy-pass"
     },
     {
-      "name": "Catamount Mountain Resort",
+      "name": "Catamount, MA",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/catamount-mountain-resort"
+      "reservation_url": "https://detroitmountain.snowcloud.shop/shop/page/29CBD3FD-703B-C053-22BB-473AA9013184"
     },
     {
-      "name": "Detroit Mountain",
+      "name": "Detroit Mountain Recreation Area, MN",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/detroit-mountain"
+      "reservation_url": "https://detroitmountain.snowcloud.shop/shop/page/29CBD3FD-703B-C053-22BB-473AA9013184"
     },
     {
-      "name": "Greek Peak Mountain Resort",
+      "name": "Greek Peak, NY",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/greek-peak-mountain-resort"
+      "reservation_url": "https://www.greekpeak.net/ski-ride/indy-pass/"
     },
     {
-      "name": "Magic Mountain",
+      "name": "Hardwood Ski & Bike, ON",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/magic-mountain"
+      "reservation_url": "https://www.indyskipass.com/our-resorts/hardwood-ski-and-bike"
     },
     {
-      "name": "Mission Ridge",
+      "name": "Magic Mountain, VT",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/mission-ridge"
+      "reservation_url": "https://estore.magicmtn.com/products/indy-pass-reservation"
     },
     {
-      "name": "Pats Peak",
+      "name": "Pats Peak, NH",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/pats-peak"
+      "reservation_url": "https://www.patspeak.com/plan-your-visit/planning-tools/indy-pass-reservations/"
     },
     {
-      "name": "White Pass",
+      "name": "Plain Valley Ski Trails, WA",
       "reservation_status": "Required",
-      "reservation_url": "https://www.indyskipass.com/our-resorts/white-pass"
+      "reservation_url": "https://plainvalleyskitrails.regfox.com/indy-pass-holdersalley-ski-trails"
     },
     {
-      "name": "Blacktail Mountain Resort",
-      "reservation_status": "Optional",
-      "reservation_url": "https://estore.blacktailmountain.com/marketing/products/indy-pass-redemption-20252026"
+      "name": "Smugglers' Notch, VT",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/smugglers-notch-resort"
     },
     {
-      "name": "Saddleback Mountain",
+      "name": "Winter4Kids, NJ",
+      "reservation_status": "Required",
+      "reservation_url": "https://www.indyskipass.com/our-resorts/winter4kids"
+    },
+    {
+      "name": "Saddleback Mountain, ME",
       "reservation_status": "Optional",
       "reservation_url": "https://www.saddlebackmaine.com/indy-pass/"
+    },
+    {
+      "name": "White Pass, WA",
+      "reservation_status": "Optional",
+      "reservation_url": "https://skiwhitepass.com/the-mountain/indypass"
     }
   ]
 }
