@@ -87,7 +87,7 @@ cd frontend && npm run dev
 # Tests — always use poetry run; pytest lives in the poetry-managed venv
 poetry run pytest                    # run all tests (pytest.ini sets -q and testpaths=tests)
 poetry run pytest tests/test_blackout.py -k "test_name"  # run a single test
-poetry run pytest backend/tests/     # run backend tests
+cd backend && poetry run pytest tests/   # run backend tests (own poetry env: `cd backend && poetry install` first)
 
 # Formatting (Black, pinned to 25.12.0)
 poetry run black --check .          # check
@@ -125,7 +125,7 @@ poetry run python pipeline/prep_resort_data.py                      # merge all 
 - Mock `utils.gmaps` with `monkeypatch` — never call the real Google API in tests
 - `tests/conftest.py` adds `pipeline/` to `sys.path` so test imports resolve to pipeline modules
 - Python 3.12 required
-- Backend tests live in `backend/tests/` and run separately: `cd backend && pytest tests/`
+- Backend tests live in `backend/tests/` and run separately in the backend's own poetry env: `cd backend && poetry run pytest tests/` (matches CI)
 - CI runs three jobs: Format (Black), Test suite (pipeline), Backend test suite
 
 ## Playwright MCP (Visual Verification)
