@@ -6,7 +6,9 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-`feature/2026-11-15-resort-data-refresh` — **not yet PR'd.** Full data refresh, roster **291 → 300** (13 added, 4 removed, 2 renamed with new ids), plus three data-correction changes surfaced by it: wrong-country coordinate fallback (fixes Hafjell), heli-scale acreage kept in data but out of the slider range (North Cascade Heli, 300,000 acres, real), and `data/manual_overrides.csv` (first entry: Hochzeiger acres 19,136 → 271). Details in `docs/decisions.md` (2026-11-15 entries). 41 pipeline + 135 backend tests pass, Black clean. **Remaining: open PR, merge, redeploy backend (`flyctl deploy --config backend/fly.toml`), verify live (`/meta` acres max should be 16,018; Hafjell in Norway), close nothing (no issue), add the 13 new resorts to the Project Board.**
+None. **Last shipped: `feature/2026-11-15-resort-data-refresh` (PR #153, merged 2026-11-15)**: full data refresh, roster **291 → 300**, plus five data fixes: wrong-country coordinate fallback (Hafjell), heli-scale acreage kept out of the slider range (North Cascade Heli), `data/manual_overrides.csv` (Hochzeiger acres), reservation-name state-suffix stripping, and XC-only trail-count fill. Backend deployed to Fly.io and verified live (300 resorts, `/meta` acres max 16,018, Hafjell in Norway, Smuggs reservations Required). Tracked on the Project Board as #154 (Done). Details in `docs/decisions.md` (2026-11-15 entries).
+
+**Next up:** **#136** (data-changed pipeline verification, scheduled ~Nov 2026). This refresh is a good real-data test case: the reservations format change would have shipped silently through the automated workflow, so consider making unmatched reservation names a validation warning in the PR body. Older backlog: **#21**/**#22**.
 
 **Previously: `feature/2026-09-08-smuggs-roster-refresh`**: merged as PR #148 (279 → 291, Smugglers' Notch). Whether the backend was redeployed and the Project Board updated afterward isn't recorded here. The 2026-11-15 deploy supersedes the redeploy either way.
 
