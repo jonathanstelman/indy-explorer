@@ -160,3 +160,76 @@ def test_apply_coordinate_fallback_fills_missing_indy_coordinates():
     assert out.loc['No Geocode', 'latitude'] == 44.0
     assert out.loc['No Indy Coords', 'latitude'] == 46.9
     assert out.loc['No Indy Coords', 'longitude'] == 10.8
+
+
+_OVERRIDE_HEADER = 'source_id,field,indy_value,override_value,reason,source_url,added\n'
+
+
+def _write_overrides(path, rows):
+    path.write_text(_OVERRIDE_HEADER + ''.join(r + '\n' for r in rows), encoding='utf-8')
+
+
+def _hochzeiger(acres=19136.0):
+    return pd.DataFrame(
+        [
+            {
+                'name': 'Hochzeiger Bergbahnen Pitztal AG',
+                'indy_page': 'https://www.indyskipass.com/our-resorts/hochzeiger',
+                'acres': acres,
+            },
+            {
+                'name': 'Other',
+                'indy_page': 'https://www.indyskipass.com/our-resorts/other',
+                'acres': 500.0,
+            },
+        ]
+    )
+
+
+def test_apply_manual_overrides_replaces_value_when_indy_value_matches(tmp_path):
+    path = tmp_path / 'manual_overrides.csv'
+    _write_overrides(path, ['hochzeiger,acres,19136,271,~70x too large,https://x,2026-11-15'])
+
+    out = prep_resort_data.apply_manual_overrides(_hochzeiger(), str(path)).set_index('name')
+
+    assert out.loc['Hochzeiger Bergbahnen Pitztal AG', 'acres'] == 271
+    assert out.loc['Other', 'acres'] == 500.0
+
+
+def test_apply_manual_overrides_skips_stale_override(tmp_path, caplog):
+    """If Indy has since changed the value, the override no longer applies — keep Indy's
+    new value and warn so the stale row gets cleaned up."""
+    path = tmp_path / 'manual_overrides.csv'
+    _write_overrides(path, ['hochzeiger,acres,19136,271,~70x too large,https://x,2026-11-15'])
+
+    with caplog.at_level('WARNING'):
+        out = prep_resort_data.apply_manual_overrides(_hochzeiger(acres=280.0), str(path))
+
+    assert out.set_index('name').loc['Hochzeiger Bergbahnen Pitztal AG', 'acres'] == 280.0
+    assert any('hochzeiger' in r.message and 'stale' in r.message for r in caplog.records)
+
+
+def test_apply_manual_overrides_warns_on_unknown_resort(tmp_path, caplog):
+    path = tmp_path / 'manual_overrides.csv'
+    _write_overrides(path, ['gone-resort,acres,100,10,test,https://x,2026-11-15'])
+
+    with caplog.at_level('WARNING'):
+        out = prep_resort_data.apply_manual_overrides(_hochzeiger(), str(path))
+
+    assert out.set_index('name').loc['Hochzeiger Bergbahnen Pitztal AG', 'acres'] == 19136.0
+    assert any('gone-resort' in r.message for r in caplog.records)
+
+
+def test_apply_manual_overrides_blank_override_value_nulls_field(tmp_path):
+    path = tmp_path / 'manual_overrides.csv'
+    _write_overrides(path, ['hochzeiger,acres,19136,,no reliable figure,https://x,2026-11-15'])
+
+    out = prep_resort_data.apply_manual_overrides(_hochzeiger(), str(path)).set_index('name')
+
+    assert pd.isna(out.loc['Hochzeiger Bergbahnen Pitztal AG', 'acres'])
+
+
+def test_apply_manual_overrides_missing_file_is_noop(tmp_path):
+    out = prep_resort_data.apply_manual_overrides(_hochzeiger(), str(tmp_path / 'nope.csv'))
+
+    assert out.set_index('name').loc['Hochzeiger Bergbahnen Pitztal AG', 'acres'] == 19136.0

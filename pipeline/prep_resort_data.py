@@ -34,6 +34,7 @@ from utils import get_normalized_location, generate_resort_locations_csv
 logger = logging.getLogger(__name__)
 
 ID_MAP_PATH = 'data/resort_id_map.csv'
+MANUAL_OVERRIDES_PATH = 'data/manual_overrides.csv'
 
 
 def assign_resort_ids(resorts: pd.DataFrame) -> pd.DataFrame:
@@ -126,6 +127,80 @@ def apply_coordinate_fallback(resorts: pd.DataFrame) -> pd.DataFrame:
         )
     resorts.loc[replace, 'latitude'] = geo_lat[replace]
     resorts.loc[replace, 'longitude'] = geo_lon[replace]
+    return resorts
+
+
+def _parse_override_value(value: str):
+    """Blank means null; numeric strings become floats; anything else stays a string."""
+    if value == '':
+        return np.nan
+    try:
+        return float(value)
+    except ValueError:
+        return value
+
+
+def _values_match(current, expected) -> bool:
+    if pd.isna(expected):
+        return pd.isna(current)
+    if pd.isna(current):
+        return False
+    if isinstance(expected, float):
+        try:
+            return np.isclose(float(current), expected)
+        except (TypeError, ValueError):
+            return False
+    return str(current) == expected
+
+
+def apply_manual_overrides(
+    resorts: pd.DataFrame, overrides_path: str = MANUAL_OVERRIDES_PATH
+) -> pd.DataFrame:
+    """Correct egregious upstream data errors listed in data/manual_overrides.csv.
+
+    Reserved for errors that break the app (wrong country, size off by an order of
+    magnitude or more), not general fact-checking. Each row is keyed on the Indy page slug
+    and records the value Indy currently publishes (indy_value). If Indy's value has since
+    changed, the override is stale: it's skipped with a warning so Indy's new value wins
+    and the row can be removed.
+    """
+    if not os.path.exists(overrides_path):
+        return resorts
+    overrides = pd.read_csv(overrides_path, dtype=str, keep_default_na=False)
+    resorts = resorts.copy()
+    slugs = resorts['indy_page'].astype(str).str.rstrip('/').str.split('/').str[-1]
+
+    for _, o in overrides.iterrows():
+        mask = slugs == o['source_id']
+        if not mask.any():
+            logger.warning('Manual override for unknown resort %r — remove it.', o['source_id'])
+            continue
+        if o['field'] not in resorts.columns:
+            logger.warning(
+                'Manual override for %s names unknown field %r.', o['source_id'], o['field']
+            )
+            continue
+        expected = _parse_override_value(o['indy_value'])
+        current = resorts.loc[mask, o['field']].iloc[0]
+        if not _values_match(current, expected):
+            logger.warning(
+                'Manual override for %s.%s is stale: Indy now publishes %r (override expected '
+                '%r) — keeping Indy\'s value; remove or update the override.',
+                o['source_id'],
+                o['field'],
+                current,
+                o['indy_value'],
+            )
+            continue
+        resorts.loc[mask, o['field']] = _parse_override_value(o['override_value'])
+        logger.info(
+            'Applied manual override %s.%s: %r -> %r (%s)',
+            o['source_id'],
+            o['field'],
+            o['indy_value'],
+            o['override_value'],
+            o['reason'],
+        )
     return resorts
 
 
@@ -376,6 +451,7 @@ def main(refresh_blackout=False, refresh_ltt=False):
             resorts[col] = np.nan
 
     resorts = assign_resort_ids(resorts)
+    resorts = apply_manual_overrides(resorts)
     resorts = resorts[cols]
     resorts.to_csv('data/resorts.csv', index=False)
     logger.info('Prepared resort data written to data/resorts.csv')
