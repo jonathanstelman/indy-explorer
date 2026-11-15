@@ -102,15 +102,71 @@ def test_fully_parsed_additional_dates_add_no_note(blackout_map):
 # ---- Additional-dates edge cases ----
 
 
-def test_availability_windows_produce_no_dates():
-    """These say when the pass CAN be used; turning them into blackouts inverts them."""
-    for text in [
-        'Only available on Saturdays and Sundays, subject to availability.',
-        'Valid only Opening Day-12/24/2026 (daily) and 3/1/2027-Closing Day (Mon-Thu only)',
+# Availability windows ("only available ...") say when the pass CAN be used. Everything
+# else in the assumed season (Nov 1 - May 31; Indy gives no opening/closing days) is a
+# blackout. "Opening Day" / "Closing Day" stand for those bounds.
+
+
+def test_window_weekends_only_blacks_out_weekdays():
+    out = normalize_additional_dates(
+        'Only available on Saturdays and Sundays, subject to availability.'
+    )
+    assert '2026-11-02' in out  # Mon
+    assert '2027-05-31' in out  # Mon, last day of the assumed season
+    assert '2026-11-07' not in out  # Sat
+    assert '2026-11-01' not in out  # Sun
+    assert min(out) >= '2026-11-01' and max(out) <= '2027-05-31'
+
+
+def test_window_with_opening_closing_day_and_weekday_scope():
+    out = normalize_additional_dates(
+        'Valid only Opening Day-12/24/2026 (daily) and 3/1/2027-Closing Day (Mon-Thu only)'
+    )
+    assert '2026-12-20' not in out  # inside the daily window
+    assert '2026-12-26' in out  # after it
+    assert '2027-02-10' in out  # between the windows
+    assert '2027-03-01' not in out  # Mon, in the Mon-Thu window
+    assert '2027-03-05' in out  # Fri, outside Mon-Thu
+
+
+def test_window_of_specific_dates():
+    out = normalize_additional_dates(
         'Winter4Kids is only open to Indy Passholders for two days this season: '
-        '12/20/2026 & 3/7/2027',
-    ]:
-        assert normalize_additional_dates(text, '2026-12-19', '2027-03-07') == []
+        '12/20/2026 & 3/7/2027'
+    )
+    assert '2026-12-20' not in out and '2027-03-07' not in out
+    assert '2026-12-21' in out and '2026-11-01' in out
+    assert len(out) == len(utils.get_all_dates_in_range('2026-11-01', '2027-05-31')) - 2
+
+
+def test_window_of_weekdays_with_extra_detail():
+    out = normalize_additional_dates(
+        'Learn to Turn available Thursdays and Fridays before 3 PM, by reservation only'
+    )
+    assert '2026-12-03' not in out  # Thu
+    assert '2026-12-05' in out  # Sat
+
+
+def test_only_without_days_or_dates_is_not_a_window():
+    assert (
+        normalize_additional_dates('Jay Peakcan only accommodate LTT passholders aged 14+.') == []
+    )
+
+
+def test_opening_day_range_starts_at_assumed_season_start():
+    out = normalize_additional_dates('Opening Day-1/3/2027')
+    assert out[0] == '2026-11-01' and out[-1] == '2027-01-03'
+
+
+def test_all_months_weekday_range():
+    out = normalize_additional_dates(
+        '12/1/2026-12/27/2026, 12/31/2026-1/1/2027, ALL JAN & FEB MONDAY-FRIDAY, 2/27/2027-2/28/2027'
+    )
+    assert '2027-01-04' in out  # Mon in Jan
+    assert '2027-02-10' in out  # Wed in Feb
+    assert '2027-01-09' not in out  # Sat in Jan
+    assert '2027-03-01' not in out  # Mon in Mar
+    assert '2026-12-01' in out and '2027-02-28' in out
 
 
 def test_weekday_scoped_ranges():
@@ -148,9 +204,10 @@ def test_ltt_reads_renamed_additional_column(ltt_map):
     assert '2026-11-28' in dates  # from "Saturdays 11/28/2026-..." in Additional
 
 
-def test_ltt_availability_window_is_a_note_not_dates(ltt_map):
+def test_ltt_availability_window_becomes_dates_and_keeps_note(ltt_map):
     holiday = ltt_map['Mt. Holiday']
-    assert holiday['all_ltt_blackout_dates'] == []
+    assert '2026-11-02' in holiday['all_ltt_blackout_dates']  # weekday
+    assert '2026-11-07' not in holiday['all_ltt_blackout_dates']  # Saturday
     assert any('Only available on Saturdays and Sundays' in n for n in holiday['notes'])
 
 
@@ -223,3 +280,30 @@ def test_plain_name_shared_by_two_resorts_is_not_applied_to_either(blackout_map,
         out = merge_blackout_into_resorts(_powder_ridges(), {'Powder Ridge': entry})
     assert (out['blackout_count'] == 0).all()
     assert any('Powder Ridge' in r.message and 'ambiguous' in r.message for r in caplog.records)
+
+
+def test_window_dates_override_named_ranges():
+    """Winter4Kids marks every named range X but is "only open ... 12/20/2026 & 3/7/2027":
+    the explicitly named open days win over the X columns."""
+    df = pd.DataFrame(
+        {
+            'Resort': ['Winter4Kids, NJ'],
+            'Christmas/New Years\n Dec 19 - Jan 3': ['X'],
+            'Peak Sundays\n Jan 10 - Mar 7': ['X'],
+            'Additional Blackout Dates': [
+                'Winter4Kids is only open to Indy Passholders for two days this season: '
+                '12/20/2026 & 3/7/2027'
+            ],
+        }
+    )
+    dates = parse_blackout_sheet(df)['Winter4Kids']['all_blackout_dates']
+    assert '2026-12-20' not in dates and '2027-03-07' not in dates
+    assert '2026-12-21' in dates
+
+
+def test_weekday_window_does_not_override_named_blackouts(ltt_map):
+    """Hunt Hollow LTT: "available Thursdays and Fridays" plus BLACKOUT on every named
+    range. Weekday-only windows don't reopen named blackout periods."""
+    dates = ltt_map['Hunt Hollow Ski Club']['all_ltt_blackout_dates']
+    assert '2026-12-24' in dates  # Thu, inside the Christmas/New Years BLACKOUT range
+    assert '2026-12-10' not in dates  # Thu, outside any named range

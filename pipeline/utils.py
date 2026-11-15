@@ -262,6 +262,16 @@ def generate_resort_locations_csv(
 SEASON_START_YEAR = 2026
 
 
+def season_bounds() -> tuple[str, str]:
+    """Assumed first and last day of the season: Nov 1 to May 31.
+
+    Indy's sheets give no opening or closing days, so this stands in for "Opening Day" /
+    "Closing Day" and bounds availability windows ("Only available on Saturdays and
+    Sundays") when they're turned into blackout dates. A deliberate guess (owner's call).
+    """
+    return f'{SEASON_START_YEAR}-11-01', f'{SEASON_START_YEAR + 1}-05-31'
+
+
 def season_year(month: int) -> int:
     """Year a month falls in for the current season (Jul-Dec -> start year, else +1)."""
     return SEASON_START_YEAR if month >= 7 else SEASON_START_YEAR + 1

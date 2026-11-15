@@ -39,6 +39,7 @@ try:
         map_sheet_resort_name,
         match_sheet_entries,
         normalize_additional_dates,
+        window_open_dates,
         _parse_named_ranges,
     )
     from src.utils import get_all_dates_in_range
@@ -50,6 +51,7 @@ except ModuleNotFoundError:
         map_sheet_resort_name,
         match_sheet_entries,
         normalize_additional_dates,
+        window_open_dates,
         _parse_named_ranges,
     )
     from utils import get_all_dates_in_range
@@ -324,6 +326,7 @@ def parse_ltt_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
             season_end=season_end,
         )
         all_dates.update(additional)
+        all_dates -= window_open_dates(additional_text)
         if cutoff:
             all_dates = {d for d in all_dates if d <= cutoff}
 
