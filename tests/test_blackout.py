@@ -1,5 +1,8 @@
+import pytest
 import json
 import pandas as pd
+
+import utils
 
 from blackout import (
     normalize_additional_dates,
@@ -7,6 +10,12 @@ from blackout import (
     merge_blackout_into_resorts,
 )
 from utils import filter_dates_for_weekday, get_all_dates_in_range
+
+
+@pytest.fixture(autouse=True)
+def _season_2025_26(monkeypatch):
+    """These fixtures are 25/26-season sheets; pin the season their dates assume."""
+    monkeypatch.setattr(utils, 'SEASON_START_YEAR', 2025)
 
 
 def test_normalize_additional_dates():

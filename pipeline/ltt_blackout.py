@@ -32,13 +32,32 @@ from typing import Dict, List, Optional, Tuple
 import pandas as pd
 
 try:
-    from src.blackout import normalize_additional_dates, _parse_named_ranges
+    from src.blackout import (
+        additional_dates_note,
+        end_after_cutoff,
+        is_availability_window,
+        map_sheet_resort_name,
+        match_sheet_entries,
+        normalize_additional_dates,
+        _parse_named_ranges,
+    )
     from src.utils import get_all_dates_in_range
 except ModuleNotFoundError:
-    from blackout import normalize_additional_dates, _parse_named_ranges
+    from blackout import (
+        additional_dates_note,
+        end_after_cutoff,
+        is_availability_window,
+        map_sheet_resort_name,
+        match_sheet_entries,
+        normalize_additional_dates,
+        _parse_named_ranges,
+    )
     from utils import get_all_dates_in_range
 
-LTT_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=484077440&single=true&output=csv'
+# 26/27 season tab, linked from https://www.indyskipass.com/shop/learn-to-turn-pass (not
+# from the blackout-dates page). 25/26 was gid=484077440. When switching tabs, bump
+# utils.SEASON_START_YEAR too.
+LTT_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1618878436&single=true&output=csv'
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +80,24 @@ LTT_RESORT_NAME_MAP = {
     'Sunlight Mountain': 'Sunlight Mountain Resort',
     'Titus Mountain Family Ski Center': 'Titus Mountain',
     'Waterville Valley': 'Waterville Valley Resort',
+    'Bolton Valley': 'Bolton Valley Resort',
+    'Shawnee Mountain': 'Shawnee Mountain Ski Area',
+    # 26/27 sheet names (after ", ST" / "(Nordic)" suffixes are stripped)
+    'Big Rock': 'Big Rock Mountain',
+    # Two roster resorts are named "Powder Ridge"; this is the Connecticut one.
+    'Powder Ridge, CT': 'Powder Ridge|Middlefield, Connecticut',
+    'Black Mountain': 'Black Mountain Ski Area',  # "Black Mountain, NH"
+    'Greak Peak Mountain Resort': 'Greek Peak Mountain Resort',  # typo in Indy's sheet
+    'Hockley Valley': 'Hockley Valley Resort',
+    'Hunt Hollow': 'Hunt Hollow Ski Club',
+    'Kelly Canyon Resort': 'Kelly Canyon',
+    'Mt. Abram Ski Area': 'Mt. Abram',
+    'Spring Mountain': 'Spring Mountain Adventures',
+    'Sunburst': 'Sunburst Ski Area',
+    'Sundown Mountain Resort': 'Sundown Mountain',
+    'Tyrol Basin': 'Tyrol Basin Ski and Snowboard',
+    'White Grass Touring Center': 'White Grass Ski Touring',
+    'Woodstock Inn & Resort Nordic Center': 'Woodstock Nordic Center',
     # Names not present in resorts_raw.json — explicitly ignored
     'Smokey Mountains Ski Club': None,
 }
@@ -94,7 +131,9 @@ def _normalize_ltt_columns(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-_LTT_DATA_VALUES = {'BLACKOUT', 'NO BLACKOUT', 'PARTIAL (SEE ADDITIONAL)', 'PARTIAL'}
+_LTT_DATA_VALUES = {'BLACKOUT', 'NO BLACKOUT', 'PARTIAL (SEE ADDITIONAL)', 'PARTIAL', 'TBD'}
+# The 25/26 sheet called the column 'Additional Blackout Dates/Details'; 26/27 dropped '/Details'.
+_ADDITIONAL_COLS = ('Additional Blackout Dates/Details', 'Additional Blackout Dates')
 
 
 def _is_valid_data_row(row: pd.Series, named_range_cols: List[str]) -> bool:
@@ -237,7 +276,7 @@ def parse_ltt_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
         if not resort_name or (isinstance(resort_name, float) and pd.isna(resort_name)):
             continue
         resort_name = str(resort_name).strip()
-        mapped_name = LTT_RESORT_NAME_MAP.get(resort_name, resort_name)
+        mapped_name = map_sheet_resort_name(resort_name, LTT_RESORT_NAME_MAP)
         if mapped_name is None:
             continue
 
@@ -247,8 +286,15 @@ def parse_ltt_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
             logger.debug('Skipping LTT resort with no survey data: %s', resort_name)
             continue
 
+        additional_text = next(
+            (row.get(c) for c in _ADDITIONAL_COLS if isinstance(row.get(c), str)), None
+        )
+        cutoff = end_after_cutoff(additional_text)
+
         named_applied: List[str] = []
         all_dates: set = set()
+        tbd: List[str] = []
+        notes: List[str] = []
 
         for name, info in named_ranges.items():
             try:
@@ -258,26 +304,44 @@ def parse_ltt_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
             if not isinstance(cell, str):
                 continue
             cell_upper = cell.strip().upper()
-            if cell_upper == 'BLACKOUT':
-                # Apply full named range
+            # PARTIAL (SEE ADDITIONAL) normally means the named range does NOT apply
+            # wholesale — the additional column lists the specific dates. The exception is
+            # "All blackouts end after <date>": the range applies up to that cutoff.
+            if cell_upper == 'BLACKOUT' or (cutoff and cell_upper.startswith('PARTIAL')):
                 named_applied.append(name)
                 all_dates.update(info['dates'])
-            # PARTIAL (SEE ADDITIONAL): named range does NOT apply wholesale;
-            # the additional dates column will contain the specific blackout dates.
-            # NO BLACKOUT / blank / No Survey: skip.
+            elif cell_upper == 'TBD':
+                tbd.append(name)
+            elif cell_upper not in ('NO BLACKOUT', 'NO SURVEY', '') and not cell_upper.startswith(
+                'PARTIAL'
+            ):
+                if cell.strip() not in notes:
+                    notes.append(cell.strip())
 
         additional = _normalize_ltt_additional_dates(
-            row.get('Additional Blackout Dates/Details'),
+            additional_text,
             season_start=season_start,
             season_end=season_end,
         )
         all_dates.update(additional)
+        if cutoff:
+            all_dates = {d for d in all_dates if d <= cutoff}
+
+        if tbd:
+            if len(tbd) == len(named_ranges):
+                notes.insert(0, 'Learn to Turn blackout dates are TBD.')
+            else:
+                notes.insert(0, f"TBD: {', '.join(tbd)}.")
+        note = additional_dates_note(additional_text)
+        if note:
+            notes.append(note)
 
         resort_map[mapped_name] = {
             'ltt_available': True,
             'named_ranges': sorted(named_applied),
             'additional_dates': sorted(additional),
             'all_ltt_blackout_dates': sorted(all_dates),
+            'notes': notes,
         }
 
     return resort_map
@@ -290,28 +354,25 @@ def merge_ltt_into_resorts(resorts_df: pd.DataFrame, ltt_map: Dict[str, Dict]) -
       - ltt_available (bool)
       - ltt_blackout_all_dates (JSON list string)
       - ltt_blackout_count (int)
+      - ltt_blackout_notes (JSON list string): Indy's wording not turned into dates, plus TBDs
 
     Resorts not found in the LTT map get ltt_available=False and empty blackout lists.
     """
 
-    def _map_for_name(name: str) -> Tuple[bool, str, int]:
-        info = ltt_map.get(name)
+    def _map_for_entry(info: Optional[Dict]) -> Tuple[bool, str, int, str]:
         if not info:
-            return False, '[]', 0
+            return False, '[]', 0, '[]'
         all_dates = json.dumps(info.get('all_ltt_blackout_dates', []))
         count = len(info.get('all_ltt_blackout_dates', []))
-        return True, all_dates, count
+        notes = json.dumps(info.get('notes', []), ensure_ascii=False)
+        return True, all_dates, count, notes
 
-    mapped = resorts_df['name'].apply(lambda n: _map_for_name(n))
+    entries = match_sheet_entries(resorts_df, ltt_map, 'LTT')
+    mapped = pd.Series([_map_for_entry(e) for e in entries], index=resorts_df.index)
     resorts_df['ltt_available'] = mapped.apply(lambda t: t[0])
     resorts_df['ltt_blackout_all_dates'] = mapped.apply(lambda t: t[1])
     resorts_df['ltt_blackout_count'] = mapped.apply(lambda t: t[2])
-
-    missing_in_resorts = sorted(set(ltt_map.keys()) - set(resorts_df['name']))
-    if missing_in_resorts:
-        logger.warning('LTT resorts missing from resorts_df:')
-        for name in missing_in_resorts:
-            logger.warning('- %s', name)
+    resorts_df['ltt_blackout_notes'] = mapped.apply(lambda t: t[3])
 
     return resorts_df
 

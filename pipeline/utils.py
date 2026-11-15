@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import os
+import re
 import json
 import logging
 from typing import Optional, Dict
@@ -255,13 +256,46 @@ def generate_resort_locations_csv(
 
 # Date Utilities
 
+# Start year of the ski season the blackout sheets describe (2026 = the 26/27 season).
+# Dates without an explicit year are placed in it: Jul-Dec -> this year, Jan-Jun -> the
+# next. Bump it when switching the blackout/LTT sheet URLs to a new season's tabs.
+SEASON_START_YEAR = 2026
+
+
+def season_year(month: int) -> int:
+    """Year a month falls in for the current season (Jul-Dec -> start year, else +1)."""
+    return SEASON_START_YEAR if month >= 7 else SEASON_START_YEAR + 1
+
+
+# Trailing state/province on sheet resort names: "Pats Peak, NH", "Big Rock, Maine",
+# "Hochzeiger Bergbahnen Pitztal AG, " (empty), and a "(Nordic)" tag.
+_STATE_AND_PROVINCE_NAMES = (
+    'Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|'
+    'Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|'
+    'Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|'
+    'New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|'
+    'Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|'
+    'Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming|Alberta|British Columbia|'
+    'Manitoba|New Brunswick|Newfoundland|Nova Scotia|Ontario|Quebec|Saskatchewan'
+)
+_NAME_SUFFIX = re.compile(rf',\s*(?:[A-Z]{{2}}|{_STATE_AND_PROVINCE_NAMES})?\s*$')
+_NORDIC_TAG = re.compile(r'\s*\(nordic\)\s*$', re.IGNORECASE)
+
+
+def strip_sheet_name_suffix(name: str) -> str:
+    """Strip a trailing ", ST" / ", State" / "(Nordic)" from a resort name in Indy's sheets.
+
+    Country suffixes are left alone ("Levi, Finland" is a real roster name).
+    """
+    name = _NORDIC_TAG.sub('', str(name).strip())
+    return _NAME_SUFFIX.sub('', name).strip()
+
 
 def split_date_range(date_range: str) -> tuple[str, str]:
     """
     Splits a date range string formatted as "Jan 1 - Mar 31" into start and end dates.
     Must handle some implicit rules:
-    - If the date is between July and Dec, then it's in the current year (2025)
-    - If the date is between Jan and May, then it's in the next year (2026)
+    - Dates fall in the season starting SEASON_START_YEAR (see season_year())
     - If the two dates are in the same month, then the second date does not include the month
 
     """
@@ -274,7 +308,7 @@ def split_date_range(date_range: str) -> tuple[str, str]:
     start_day_str = start_parts[1]
     start_month = datetime.strptime(start_month_str, '%b').month
     start_day = int(start_day_str)
-    start_year = 2025 if start_month in [7, 8, 9, 10, 11, 12] else 2026
+    start_year = season_year(start_month)
 
     # end date
     if len(end_parts) == 2:
@@ -285,7 +319,7 @@ def split_date_range(date_range: str) -> tuple[str, str]:
         end_month = start_month
         end_day_str = end_parts[0]
     end_day = int(end_day_str)
-    end_year = 2025 if end_month in [7, 8, 9, 10, 11, 12] else 2026
+    end_year = season_year(end_month)
 
     start_date = f'{start_year}-{start_month:02d}-{start_day:02d}'
     end_date = f'{end_year}-{end_month:02d}-{end_day:02d}'
@@ -297,15 +331,14 @@ def convert_date_string_format(date_string: str):
     """
     Converts a date formatted as Jan 1 to YYYY-MM-DD
 
-    Need to determine the year based on the given month
-    If month is between Jan and May, then year is next year
+    The year comes from the month, within the season starting SEASON_START_YEAR.
     """
     month_day = date_string.strip().split(' ')
     month_str = month_day[0]
     day_str = month_day[1]
     month = datetime.strptime(month_str, '%b').month
     day = int(day_str)
-    year = 2025 if month in [7, 8, 9, 10, 11, 12] else 2026
+    year = season_year(month)
     return f'{year}-{month:02d}-{day:02d}'
 
 
