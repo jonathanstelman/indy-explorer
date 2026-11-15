@@ -2,7 +2,7 @@ import { DatePicker, Divider, Typography } from 'antd'
 import dayjs from 'dayjs'
 import { useFilters } from '@/hooks/useFilters'
 import { FeatureToggle } from '@/components/filters/FeatureFilters'
-import { BLACKOUT_SEASON } from '@/utils/blackout'
+import BlackoutSeasonNotice from '@/components/common/BlackoutSeasonNotice'
 
 const { Text } = Typography
 
@@ -44,7 +44,7 @@ export default function BlackoutDateFilters() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <FeatureToggle label="Reservation required" filterKey="reservation_required" />
-      <Text type="secondary" style={{ fontSize: 11 }}>{BLACKOUT_SEASON.notice}</Text>
+      <BlackoutSeasonNotice />
       <SectionHeading>Lift Ticket</SectionHeading>
       <FeatureToggle label="Blackout dates" filterKey="has_blackouts" />
       <BlackoutRangePicker

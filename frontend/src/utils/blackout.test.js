@@ -55,4 +55,12 @@ describe('BLACKOUT_SEASON', () => {
     expect(BLACKOUT_SEASON.notice).toMatch(/26\/27/)
     expect(BLACKOUT_SEASON.notice).toMatch(/still adding/i)
   })
+
+  it("links to Indy's blackout dates page", () => {
+    expect(BLACKOUT_SEASON.link).toEqual({
+      text: 'indyskipass.com',
+      url: 'https://www.indyskipass.com/blackout-dates-reservations',
+    })
+    expect(BLACKOUT_SEASON.notice).not.toMatch(/indyskipass\.com/)
+  })
 })

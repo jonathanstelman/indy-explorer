@@ -21,8 +21,12 @@ export function classifyBlackoutDates(standardJson, lttJson) {
 // and drop the "still adding" wording once Indy says its lists are complete.
 export const BLACKOUT_SEASON = {
   label: '26/27',
-  notice:
-    'Showing 26/27 blackout dates. Indy is still adding resorts and dates, so check indyskipass.com before you go.',
+  // Rendered as: notice + " check " + link + " before you go." (see BlackoutSeasonNotice)
+  notice: 'Showing 26/27 blackout dates. Indy is still adding resorts and dates, so',
+  link: {
+    text: 'indyskipass.com',
+    url: 'https://www.indyskipass.com/blackout-dates-reservations',
+  },
 }
 
 // Indy's free-text notes for a resort (closures, "only available ..." windows, TBDs),

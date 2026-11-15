@@ -11,6 +11,7 @@ import { formatVertical, formatTrailLength, formatAcres, convertSnowfall, UNIT_L
 import { COLORS, hexToHsl } from '@/theme'
 import ModalShell from '@/components/common/ModalShell'
 import ModalHeader from '@/components/common/ModalHeader'
+import BlackoutSeasonNotice from '@/components/common/BlackoutSeasonNotice'
 
 const { Text, Link } = Typography
 
@@ -517,9 +518,7 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
 
           {/* Blackout Dates */}
           <SectionHeader color={COLORS.error}>Blackout Dates</SectionHeader>
-          <Text type="secondary" style={{ display: 'block', fontSize: 11, marginTop: 4 }}>
-            {BLACKOUT_SEASON.notice}
-          </Text>
+          <BlackoutSeasonNotice style={{ display: 'block', marginTop: 4 }} />
           <div style={{ marginTop: 8 }}>
             <BlackoutCalendar
               standardJson={resort.blackout_all_dates}
