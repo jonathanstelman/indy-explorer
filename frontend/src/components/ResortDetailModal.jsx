@@ -6,11 +6,12 @@ import {
 } from 'recharts'
 import { Button, Calendar, Divider, Select, Skeleton, Space, Typography } from 'antd'
 import { fetchResort } from '@/api/resorts'
-import { classifyBlackoutDates } from '@/utils/blackout'
+import { BLACKOUT_SEASON, classifyBlackoutDates, parseNotes } from '@/utils/blackout'
 import { formatVertical, formatTrailLength, formatAcres, convertSnowfall, UNIT_LABELS } from '@/utils/units'
 import { COLORS, hexToHsl } from '@/theme'
 import ModalShell from '@/components/common/ModalShell'
 import ModalHeader from '@/components/common/ModalHeader'
+import BlackoutSeasonNotice from '@/components/common/BlackoutSeasonNotice'
 
 const { Text, Link } = Typography
 
@@ -232,13 +233,32 @@ function PeakRankings({ resort, isMobile }) {
   )
 }
 
+// Indy's own wording for things not shown as dates: closures, "only available ..." windows,
+// TBD dates. Shown verbatim rather than guessed into the calendar.
+function BlackoutNotes({ standardJson, lttJson }) {
+  const groups = [
+    { label: 'Lift ticket', notes: parseNotes(standardJson) },
+    { label: 'Learn to Turn', notes: parseNotes(lttJson) },
+  ].filter(g => g.notes.length)
+  if (!groups.length) return null
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 8 }}>
+      {groups.map(g => (
+        <Text key={g.label} style={{ fontSize: 12 }}>
+          <Text strong style={{ fontSize: 12 }}>{g.label}:</Text> {g.notes.join(' · ')}
+        </Text>
+      ))}
+    </div>
+  )
+}
+
 function BlackoutCalendar({ standardJson, lttJson, displayMonth, setMonth }) {
   const classified = classifyBlackoutDates(standardJson, lttJson)
   const hasAny = classified.size > 0
   const hasLtt = [...classified.values()].some(v => v === 'ltt' || v === 'both')
   const today = useRef(dayjs())
 
-  if (!hasAny) return <Text type="secondary">No blackout dates.</Text>
+  if (!hasAny) return <Text type="secondary">No {BLACKOUT_SEASON.label} blackout dates listed yet.</Text>
 
   const yearOptions = Array.from({ length: 3 }, (_, i) => dayjs().year() - 1 + i)
     .map(y => ({ value: y, label: String(y) }))
@@ -498,12 +518,17 @@ export default function ResortDetailModal({ resortId, onClose, unit = 'imperial'
 
           {/* Blackout Dates */}
           <SectionHeader color={COLORS.error}>Blackout Dates</SectionHeader>
+          <BlackoutSeasonNotice style={{ display: 'block', marginTop: 4 }} />
           <div style={{ marginTop: 8 }}>
             <BlackoutCalendar
               standardJson={resort.blackout_all_dates}
               lttJson={resort.ltt_blackout_all_dates}
               displayMonth={calendarMonth}
               setMonth={setCalendarMonth}
+            />
+            <BlackoutNotes
+              standardJson={resort.blackout_notes}
+              lttJson={resort.ltt_blackout_notes}
             />
           </div>
 

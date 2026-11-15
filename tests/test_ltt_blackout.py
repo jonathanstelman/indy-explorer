@@ -1,5 +1,7 @@
 import json
 import pandas as pd
+
+import utils
 import pytest
 
 from ltt_blackout import (
@@ -11,6 +13,12 @@ from ltt_blackout import (
 
 
 FIXTURE_PATH = 'tests/fixtures/ltt_sheet.csv'
+
+
+@pytest.fixture(autouse=True)
+def _season_2025_26(monkeypatch):
+    """These fixtures are 25/26-season sheets; pin the season their dates assume."""
+    monkeypatch.setattr(utils, 'SEASON_START_YEAR', 2025)
 
 
 def load_fixture() -> pd.DataFrame:
@@ -111,7 +119,7 @@ def test_parse_ltt_sheet_applies_name_map():
             'PARTICIPATING INDY LEARN TO TURN RESORT (NO ACCESS UNLESS RESORT IS LISTED)': [
                 "Nub's Nob Ski Resort",
                 'Smokey Mountains Ski Club',
-                'Shawnee Mountain',
+                'Kelly Canyon',
             ],
             "Christmas/New Years\nDec 20 - Jan 4": ['BLACKOUT', 'NO BLACKOUT', 'BLACKOUT'],
             'Additional Blackout Dates/Details': ['', '', ''],
@@ -126,8 +134,8 @@ def test_parse_ltt_sheet_applies_name_map():
     # 'Smokey Mountains Ski Club' is mapped to None — should be excluded
     assert 'Smokey Mountains Ski Club' not in mapping
 
-    # 'Shawnee Mountain' has no entry in LTT_RESORT_NAME_MAP — stays as-is
-    assert 'Shawnee Mountain' in mapping
+    # 'Kelly Canyon' has no entry in LTT_RESORT_NAME_MAP — stays as-is
+    assert 'Kelly Canyon' in mapping
 
 
 def test_merge_ltt_into_resorts():

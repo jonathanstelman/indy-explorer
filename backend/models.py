@@ -232,9 +232,13 @@ class Resort(BaseModel):
     blackout_additional_dates: Optional[str] = None
     blackout_all_dates: Optional[str] = None
     blackout_count: Optional[int] = None
+    # JSON list strings of Indy's wording not turned into dates (closures, "only available
+    # ..." windows, TBDs). Detail endpoint only.
+    blackout_notes: Optional[str] = None
     ltt_available: Optional[bool] = None
     ltt_blackout_all_dates: Optional[str] = None
     ltt_blackout_count: Optional[int] = None
+    ltt_blackout_notes: Optional[str] = None
     pr_snow: Optional[float] = None
     pr_resiliency: Optional[float] = None
     pr_size: Optional[float] = None

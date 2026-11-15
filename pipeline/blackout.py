@@ -21,6 +21,7 @@ import json
 import logging
 import os
 import re
+from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
@@ -30,19 +31,27 @@ try:
         convert_date_string_format,
         filter_dates_for_weekday,
         get_all_dates_in_range,
+        season_bounds,
+        season_year,
         split_date_range,
+        strip_sheet_name_suffix,
     )
 except ModuleNotFoundError:
     from utils import (
         convert_date_string_format,
         filter_dates_for_weekday,
         get_all_dates_in_range,
+        season_bounds,
+        season_year,
         split_date_range,
+        strip_sheet_name_suffix,
     )
 
 # BLACKOUT_DATES_AND_RESERVATIONS_URL = 'https://www.indyskipass.com/blackout-dates-reservations'
-# BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1371665852&single=true&output=csv'
-BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1762546441&single=true&output=csv'
+# 26/27 season tab, embedded on https://www.indyskipass.com/blackout-dates-reservations.
+# Previous seasons: 25/26 gid=1762546441, 24/25 gid=1371665852. When switching tabs, bump
+# utils.SEASON_START_YEAR too.
+BLACKOUT_DATE_GSHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUXA5uhe2QwuQvCTpaSpIQmNNWIAp4gADGo5DIUeDwMOfgg9a8nEMU2K_4J9_24E2dGaLgbBnplpqg/pub?gid=1360740952&single=true&output=csv'
 
 logger = logging.getLogger(__name__)
 
@@ -56,25 +65,33 @@ BLACKOUT_RESORT_NAME_MAP = {
     'Crystal Mountain, MI': 'Crystal Mountain',
     'Detroit Mountain Recreation Area': 'Detroit Mountain',
     'Dodge Ridge Mountain Resort': 'Dodge Ridge',
+    'Eagle Point Resort': 'Eagle Point',
     'Hochzeiger Pitztal': 'Hochzeiger Bergbahnen Pitztal AG',
     'Hoodoo Ski Area': 'Hoodoo',
     'Hyland Hills Ski Area': 'Hyland Hills',
     'Kelly Canyon Resort': 'Kelly Canyon',
     'Levi Ski Resort': 'Levi, Finland',
+    'Magic Mountain Ski Resort': 'Magic Mountain Idaho',  # "..., ID"; plain name is VT
     'Manning Park Resort': 'Manning Park',
     'Manning Park Resort Nordic Centre': 'Manning Park XC',
     'Meadowlark Ski Lodge': 'Meadowlark Ski Resort',
     'Mohawk Mountain Ski Area': 'Mohawk Mountain',
+    'Montage Mountain Resorts': 'Montage Mountain',
     'Mont Ripley': 'Mont Ripley Ski Area',
     'Mountain High Resort': 'Mountain High',
     'Mt. La Crosse': 'Mt La Crosse',
     'Mt. Shasta Ski Park': 'Mt. Shasta',
     'Mt. Washington Alpine Resort': 'Mt. Washington',
     "Nub's Nob Ski Area": 'Nubs Nob',
+    "Nub's Nob": 'Nubs Nob',
     "Owl's Head": 'Destination Owls Head',
+    'Pats Peak Ski Area': 'Pats Peak',
     "Peek'n Peak Resort": 'Peek ‘n Peak',
     'Ragged Mountain Resort': 'Ragged Mountain',
     'Schuss Mountain Shanty Creek': 'Schuss Mountain at Shanty Creek',
+    'Shanty Creek Resort': 'Schuss Mountain at Shanty Creek',
+    'Silver Mountain Resort': 'Silver Mountain',
+    'Spirit Mountain Recreation Area': 'Spirit Mountain',
     'Shawnee Mountain': 'Shawnee Mountain Ski Area',
     'Ski Big Bear at Masthope Mountain': 'Ski Big Bear',
     'Sundown Mountain Resort': 'Sundown Mountain',
@@ -141,7 +158,7 @@ def _parse_numeric_date(date_str: str, default_year: Optional[int] = None) -> Op
             if default_year is not None:
                 year = default_year
             else:
-                year = 2025 if month in [7, 8, 9, 10, 11, 12] else 2026
+                year = season_year(month)
         return f'{year:04d}-{month:02d}-{day:02d}'
     except ValueError:
         return None
@@ -284,71 +301,300 @@ def _season_weekend_dates(season_start: str, season_end: str) -> List[str]:
     return sorted(weekend)
 
 
+# Cells that say when a pass CAN be used ("Only available on Saturdays and Sundays",
+# "Valid only Opening Day-12/24/2026 ...") rather than listing blackouts. Their dates are
+# the complement within the assumed season (availability_window_blackouts()), and the text
+# is also kept as a note, since details like "before 3 PM" can't be drawn.
+_AVAILABILITY_WINDOW = re.compile(r'\b(only|available|valid)\b', re.IGNORECASE)
+_WEEKDAY_SCOPED = re.compile(r'^(saturdays?|sundays?)\s+(.+)$', re.IGNORECASE)
+_WEEKEND_WORDS = re.compile(r'weekend|saturday|sunday', re.IGNORECASE)
+_END_AFTER = re.compile(r'blackouts end after\s+(.+?)\s*\.?$', re.IGNORECASE)
+_PART_SPLIT = re.compile(r'\s*(?:[;,&]|\band\b)\s*', re.IGNORECASE)
+_MONTH_RE = re.compile(r'^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b')
+# Words that parse into dates; anything else left over in a cell is worth showing as a note.
+_PARSED_WORDS = re.compile(
+    r'\b(jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|jun(e)?|jul(y)?|aug(ust)?|'
+    r'sep(tember)?|oct(ober)?|nov(ember)?|dec(ember)?|and|all|saturdays?|sundays?|weekends?|'
+    r'throughout|the|season)\b',
+    re.IGNORECASE,
+)
+
+
+_DAY = r'(mon|tue|wed|thu|fri|sat|sun)[a-z]*'
+_DAY_RANGE = re.compile(rf'\b{_DAY}\s*-\s*{_DAY}\b', re.IGNORECASE)
+_DAY_WORD = re.compile(rf'\b{_DAY}\b', re.IGNORECASE)
+_DAY_INDEX = {'mon': 0, 'tue': 1, 'wed': 2, 'thu': 3, 'fri': 4, 'sat': 5, 'sun': 6}
+_NUMERIC_DATE = r'\d{1,2}/\d{1,2}(?:/\d{2,4})?'
+_NUMERIC_RANGE = re.compile(rf'({_NUMERIC_DATE})\s*-\s*({_NUMERIC_DATE})')
+_NUMERIC_SINGLE = re.compile(rf'(?<![\d/]){_NUMERIC_DATE}(?![\d/])')
+_MONTH_NAME = r'(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*'
+# "ALL JAN & FEB MONDAY-FRIDAY": weekdays within whole months.
+_ALL_MONTHS_DAYS = re.compile(
+    rf'\ball\s+({_MONTH_NAME}(?:\s*(?:&|and|,)\s*{_MONTH_NAME})*)\s+{_DAY}\s*-\s*{_DAY}\b',
+    re.IGNORECASE,
+)
+
+
+def _weekdays_in(text: str) -> set:
+    """Weekday indexes (Mon=0) named in text: "Saturdays and Sundays", "Mon-Thu"."""
+    days = set()
+    for start, end in _DAY_RANGE.findall(text):
+        a, b = _DAY_INDEX[start[:3].lower()], _DAY_INDEX[end[:3].lower()]
+        days.update(range(a, b + 1) if a <= b else [*range(a, 7), *range(0, b + 1)])
+    for day in _DAY_WORD.findall(_DAY_RANGE.sub(' ', text)):
+        days.add(_DAY_INDEX[day[:3].lower()])
+    return days
+
+
+def _weekday(iso_date: str) -> int:
+    return datetime.strptime(iso_date, '%Y-%m-%d').weekday()
+
+
+def _substitute_season_bounds(text: str) -> str:
+    """Replace "Opening Day" / "Closing Day" with the assumed season bounds (Nov 1 / May 31)."""
+    start, end = season_bounds()
+    to_numeric = lambda iso: '{1}/{2}/{0}'.format(*[int(x) for x in iso.split('-')])
+    text = re.sub(r'opening\s+day', to_numeric(start), text, flags=re.IGNORECASE)
+    return re.sub(r'closing\s+day', to_numeric(end), text, flags=re.IGNORECASE)
+
+
+def _numeric_dates_in(text: str) -> List[str]:
+    """All numeric dates and ranges in a piece of free text."""
+    dates: List[str] = []
+    for match in _NUMERIC_RANGE.finditer(text):
+        dates.extend(_expand_numeric_part(match.group(0)))
+    for match in _NUMERIC_SINGLE.finditer(_NUMERIC_RANGE.sub(' ', text)):
+        single = _parse_numeric_date(match.group(0))
+        if single:
+            dates.append(single)
+    return dates
+
+
+def _availability_window(text) -> Optional[Tuple[set, set]]:
+    """(allowed dates, explicitly dated allowed dates) for an availability window, or None.
+
+    Each part (split on and/&/,/;) contributes allowed dates: its dates, narrowed to any
+    weekdays it names, or, with no dates, those weekdays across the assumed season
+    (season_bounds()). Text with "only" but no days or dates ("can only accommodate
+    passholders aged 14+") isn't a window.
+    """
+    if not is_availability_window(text):
+        return None
+    season = get_all_dates_in_range(*season_bounds())
+    allowed: set = set()
+    explicit: set = set()
+    found = False
+    for part in _PART_SPLIT.split(_substitute_season_bounds(str(text))):
+        dates = _numeric_dates_in(part)
+        days = _weekdays_in(part)
+        if dates:
+            dated = {d for d in dates if not days or _weekday(d) in days}
+            allowed.update(dated)
+            explicit.update(dated)
+            found = True
+        elif days:
+            allowed.update(d for d in season if _weekday(d) in days)
+            found = True
+    return (allowed, explicit) if found else None
+
+
+def availability_window_blackouts(text: str) -> Optional[List[str]]:
+    """Blackout dates implied by an availability window, or None if text isn't one.
+
+    "Valid only Opening Day-12/24/2026 (daily) and 3/1/2027-Closing Day (Mon-Thu only)" ->
+    every date in the assumed season outside those windows.
+    """
+    window = _availability_window(text)
+    if window is None:
+        return None
+    return sorted(set(get_all_dates_in_range(*season_bounds())) - window[0])
+
+
+def window_open_dates(text) -> set:
+    """Dates an availability window explicitly names as open ("only open ... 12/20/2026 &
+    3/7/2027"). These override named-range blackouts; weekday-only windows ("available
+    Thursdays and Fridays") don't, since Indy also marks their blackout periods."""
+    window = _availability_window(text) if isinstance(text, str) else None
+    return window[1] if window else set()
+
+
+def _all_months_weekday_dates(text: str) -> Tuple[List[str], str]:
+    """Expand "ALL JAN & FEB MONDAY-FRIDAY" phrases; return (dates, text without them)."""
+    dates: List[str] = []
+    for match in _ALL_MONTHS_DAYS.finditer(text):
+        days = _weekdays_in(match.group(0))
+        for month_name in re.findall(_MONTH_NAME, match.group(1), re.IGNORECASE):
+            month = datetime.strptime(month_name[:3].title(), '%b').month
+            year = season_year(month)
+            last = (datetime(year + (month == 12), month % 12 + 1, 1) - timedelta(days=1)).day
+            month_dates = get_all_dates_in_range(
+                f'{year}-{month:02d}-01', f'{year}-{month:02d}-{last:02d}'
+            )
+            dates.extend(d for d in month_dates if _weekday(d) in days)
+    return dates, _ALL_MONTHS_DAYS.sub(' ', text)
+
+
+def is_availability_window(text) -> bool:
+    return bool(text) and isinstance(text, str) and bool(_AVAILABILITY_WINDOW.search(text))
+
+
+def additional_dates_note(text) -> Optional[str]:
+    """Return the cell text if it says more than the dates parsed from it, else None."""
+    if not text or (isinstance(text, float) and pd.isna(text)):
+        return None
+    raw = str(text).strip()
+    leftover = _PARSED_WORDS.sub(' ', re.sub(r'[\d/\-;,&.]', ' ', raw))
+    return raw if re.search(r'[A-Za-z]', leftover) else None
+
+
+def end_after_cutoff(text) -> Optional[str]:
+    """Parse "All blackouts end after 3/1/2027" / "... after March 1" to an ISO date."""
+    if not text or not isinstance(text, str):
+        return None
+    m = _END_AFTER.search(text.strip())
+    if not m:
+        return None
+    raw = m.group(1).strip()
+    if '/' in raw:
+        return _parse_numeric_date(raw)
+    for fmt in ('%B %d', '%b %d'):
+        try:
+            parsed = datetime.strptime(raw, fmt)
+        except ValueError:
+            continue
+        return f'{season_year(parsed.month):04d}-{parsed.month:02d}-{parsed.day:02d}'
+    return None
+
+
+def _expand_part(part: str, last_month: Optional[str]) -> List[str]:
+    if '/' in part:
+        return _expand_numeric_part(part)
+    if not _MONTH_RE.search(part) and last_month:
+        if '-' in part:
+            start_raw, end_raw = [p.strip() for p in part.split('-', 1)]
+            if start_raw and not _MONTH_RE.search(start_raw):
+                start_raw = f'{last_month} {start_raw}'
+            if end_raw and not _MONTH_RE.search(end_raw):
+                end_raw = f'{last_month} {end_raw}'
+            part = f'{start_raw} - {end_raw}'
+        else:
+            part = f'{last_month} {part}'
+    if '-' in part:
+        start, end = split_date_range(re.sub(r'\s*-\s*', ' - ', part))
+        return get_all_dates_in_range(start, end)
+    return [convert_date_string_format(part)]
+
+
 def normalize_additional_dates(
     text: str, season_start: Optional[str] = None, season_end: Optional[str] = None
 ) -> List[str]:
     """Normalize an "Additional Blackout Dates" cell into a list of ISO dates.
 
-    Supports comma/semicolon-separated values where each part is either a single
-    date (e.g., "Dec 25") or a range (e.g., "Jan 2 - Jan 5"). Missing months
-    in comma lists inherit the previous month. Empty or NaN input yields an
-    empty list.
+    Parts are separated by commas, semicolons, "&" or "and". Each part is a single date or
+    a range, in "Dec 25" or "12/25/2026" form; a missing month inherits the previous part's.
+    "Saturdays <range>" / "Sundays <range>" keep only that weekday; "ALL JAN & FEB
+    MONDAY-FRIDAY" covers those weekdays in those months. A part that only names weekends
+    ("All weekends") expands to every weekend between season_start and season_end.
+    "Opening Day" / "Closing Day" mean the assumed season bounds (season_bounds()).
+    Availability windows ("Only available on Saturdays and Sundays") become every other
+    date in the assumed season (availability_window_blackouts()). Parts that can't be
+    parsed are skipped rather than failing the whole cell.
     """
     if not text or (isinstance(text, float) and pd.isna(text)):
         return []
-
     raw = str(text).strip()
     if not raw:
         return []
-    raw_lower = raw.lower()
-    if "weekend" in raw_lower or "saturday" in raw_lower or "sunday" in raw_lower:
-        if season_start and season_end:
-            return _season_weekend_dates(season_start, season_end)
-        return []
+    if is_availability_window(raw):
+        return availability_window_blackouts(raw) or []
 
-    raw = raw.replace(";", ",")
-    parts = [p.strip() for p in raw.split(",") if p.strip()]
-    out: List[str] = []
+    month_weekday_dates, raw = _all_months_weekday_dates(_substitute_season_bounds(raw))
+    out: set = set(month_weekday_dates)
     last_month: Optional[str] = None
-    month_re = re.compile(r'^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b')
-
-    for part in parts:
+    for part in _PART_SPLIT.split(raw):
         part = part.split('.', 1)[0].strip()
         if not part:
             continue
 
-        if "/" in part:
-            out.extend(_expand_numeric_part(part))
+        scoped = _WEEKDAY_SCOPED.match(part)
+        if scoped and re.search(r'\d', scoped.group(2)):
+            weekday = 5 if scoped.group(1).lower().startswith('sat') else 6
+            out.update(filter_dates_for_weekday(_expand_numeric_part(scoped.group(2)), weekday))
             continue
 
-        month_match = month_re.search(part)
-        if not month_match and last_month:
-            if "-" in part:
-                start_raw, end_raw = [p.strip() for p in part.split("-", 1)]
-                if start_raw and not month_re.search(start_raw):
-                    start_raw = f"{last_month} {start_raw}"
-                if end_raw and not month_re.search(end_raw):
-                    end_raw = f"{last_month} {end_raw}"
-                part = f"{start_raw} - {end_raw}"
-            else:
-                part = f"{last_month} {part}"
+        if _WEEKEND_WORDS.search(part) and not re.search(r'\d', part):
+            if season_start and season_end:
+                out.update(_season_weekend_dates(season_start, season_end))
+            continue
 
-        if "-" in part:
-            # range
-            start, end = split_date_range(part)
-            out.extend(get_all_dates_in_range(start, end))
-        else:
-            try:
-                converted = convert_date_string_format(part)
-            except (ValueError, IndexError):
-                converted = None
-            if converted:
-                out.append(converted)
+        try:
+            out.update(_expand_part(part, last_month))
+        except (ValueError, IndexError):
+            logger.debug('Skipping unparseable blackout date part: %r', part)
+            continue
 
-        month_match = month_re.search(part)
+        month_match = _MONTH_RE.search(part)
         if month_match:
             last_month = month_match.group(1)
-    return sorted(set(out))
+    return sorted(d for d in out if d)
+
+
+def map_sheet_resort_name(raw_name, name_map: Dict[str, Optional[str]]) -> Optional[str]:
+    """Normalize a sheet resort name to its resorts.csv name (None = ignore this row).
+
+    Looks up the name as written first (older sheets used e.g. "Crystal Mountain, MI" as a
+    map key), then with any ", ST" / "(Nordic)" suffix stripped.
+    """
+    name = str(raw_name).strip()
+    if name in name_map:
+        return name_map[name]
+    stripped = strip_sheet_name_suffix(name)
+    return name_map.get(stripped, stripped)
+
+
+def match_sheet_entries(resorts_df: pd.DataFrame, sheet_map: Dict[str, Dict], label: str) -> list:
+    """Match each resort row to its sheet entry (or None).
+
+    A sheet key is either a resort name or "name|location_name", the latter for resorts
+    that share a name (two "Powder Ridge" resorts: Kimball, MN and Middlefield, CT). A plain
+    name shared by more than one resort is ambiguous: it's applied to neither, with a
+    warning, rather than silently copied onto both.
+    """
+    names = resorts_df['name']
+    locations = (
+        resorts_df['location_name']
+        if 'location_name' in resorts_df.columns
+        else pd.Series([None] * len(resorts_df), index=resorts_df.index)
+    )
+    name_counts = names.value_counts()
+    used, ambiguous, entries = set(), set(), []
+    for name, location in zip(names, locations):
+        loc_key = f'{name}|{location}'
+        if loc_key in sheet_map:
+            entries.append(sheet_map[loc_key])
+            used.add(loc_key)
+        elif name in sheet_map and name_counts.get(name, 0) > 1:
+            ambiguous.add(name)
+            entries.append(None)
+        elif name in sheet_map:
+            entries.append(sheet_map[name])
+            used.add(name)
+        else:
+            entries.append(None)
+
+    for name in sorted(ambiguous):
+        logger.warning(
+            '%s entry for %r is ambiguous (several resorts share that name) — not applied; '
+            'map it to "name|location_name".',
+            label,
+            name,
+        )
+    missing = sorted(set(sheet_map) - used - ambiguous)
+    if missing:
+        logger.warning('%s resorts missing from resorts_df:', label)
+        for name in missing:
+            logger.warning('- %s', name)
+    return entries
 
 
 def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
@@ -392,13 +638,13 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
     for resort_name, row in blackout_dates_df.iterrows():
         if not resort_name or (isinstance(resort_name, float) and pd.isna(resort_name)):
             continue
-        resort_name = str(resort_name).strip()
-        resort_name = BLACKOUT_RESORT_NAME_MAP.get(resort_name, resort_name)
+        resort_name = map_sheet_resort_name(resort_name, BLACKOUT_RESORT_NAME_MAP)
         if resort_name is None:
             continue
 
         named_applied: List[str] = []
         all_dates = set()
+        notes: List[str] = []
 
         for name, info in named_ranges.items():
             try:
@@ -410,19 +656,31 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
                 if cell_value == "X" or cell_value.startswith("PARTIAL"):
                     named_applied.append(name)
                     all_dates.update(info["dates"])
+                elif cell_value and cell.strip() not in notes:
+                    # e.g. "CLOSED FOR 26/27 DUE TO WILDFIRE"
+                    notes.append(cell.strip())
 
+        additional_text = row.get("Additional Blackout Dates")
         additional = normalize_additional_dates(
-            row.get("Additional Blackout Dates"),
+            additional_text,
             season_start=season_start,
             season_end=season_end,
         )
-        for d in additional:
-            all_dates.add(d)
+        all_dates.update(additional)
+
+        all_dates -= window_open_dates(additional_text)
+        cutoff = end_after_cutoff(additional_text)
+        if cutoff:
+            all_dates = {d for d in all_dates if d <= cutoff}
+        note = additional_dates_note(additional_text)
+        if note:
+            notes.append(note)
 
         resort_map[resort_name] = {
             "named_ranges": sorted(named_applied),
             "additional_dates": sorted(additional),
             "all_blackout_dates": sorted(all_dates),
+            "notes": notes,
         }
 
     return resort_map
@@ -438,31 +696,28 @@ def merge_blackout_into_resorts(
       - blackout_additional_dates (JSON list string)
       - blackout_all_dates (JSON list string)
       - blackout_count (int)
+      - blackout_notes (JSON list string): Indy's wording for anything not turned into dates
 
     If a resort is not found in the blackout map, blanks are used.
     """
 
-    def _map_for_name(name: str) -> Tuple[str, str, str, int]:
-        info = blackout_map.get(name)
+    def _map_for_entry(info: Optional[Dict]) -> Tuple[str, str, str, int, str]:
         if not info:
-            return "", "[]", "[]", 0
+            return "", "[]", "[]", 0, "[]"
         named = ",".join(info.get("named_ranges", []))
         additional = json.dumps(info.get("additional_dates", []))
         all_dates = json.dumps(info.get("all_blackout_dates", []))
         count = len(info.get("all_blackout_dates", []))
-        return named, additional, all_dates, count
+        notes = json.dumps(info.get("notes", []), ensure_ascii=False)
+        return named, additional, all_dates, count, notes
 
-    mapped = resorts_df["name"].apply(lambda n: _map_for_name(n))
+    entries = match_sheet_entries(resorts_df, blackout_map, 'Blackout')
+    mapped = pd.Series([_map_for_entry(e) for e in entries], index=resorts_df.index)
     resorts_df["blackout_named_ranges"] = mapped.apply(lambda t: t[0])
     resorts_df["blackout_additional_dates"] = mapped.apply(lambda t: t[1])
     resorts_df["blackout_all_dates"] = mapped.apply(lambda t: t[2])
     resorts_df["blackout_count"] = mapped.apply(lambda t: t[3])
-
-    missing_in_resorts = sorted(set(blackout_map.keys()) - set(resorts_df["name"]))
-    if missing_in_resorts:
-        logger.warning('Blackout resorts missing from resorts_df:')
-        for name in missing_in_resorts:
-            logger.warning('- %s', name)
+    resorts_df["blackout_notes"] = mapped.apply(lambda t: t[4])
 
     return resorts_df
 
