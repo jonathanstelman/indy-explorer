@@ -70,6 +70,7 @@ BLACKOUT_RESORT_NAME_MAP = {
     'Hoodoo Ski Area': 'Hoodoo',
     'Hyland Hills Ski Area': 'Hyland Hills',
     'Kelly Canyon Resort': 'Kelly Canyon',
+    'King Pine Ski Area': 'King Pine',
     'Levi Ski Resort': 'Levi, Finland',
     'Magic Mountain Ski Resort': 'Magic Mountain Idaho',  # "..., ID"; plain name is VT
     'Manning Park Resort': 'Manning Park',
@@ -358,6 +359,15 @@ def _substitute_season_bounds(text: str) -> str:
     return re.sub(r'closing\s+day', to_numeric(end), text, flags=re.IGNORECASE)
 
 
+# A range end written "02-21,2027" or "02/21,2027" (Belleayre/Gore/Whiteface 26/27): the
+# comma would split the year off as its own part, and the dash isn't a date separator.
+_COMMA_YEAR_RANGE_END = re.compile(r'-\s*(\d{1,2})[-/](\d{1,2}),\s*(\d{4})\b')
+
+
+def _fix_comma_year_range_ends(text: str) -> str:
+    return _COMMA_YEAR_RANGE_END.sub(r'-\1/\2/\3', text)
+
+
 def _numeric_dates_in(text: str) -> List[str]:
     """All numeric dates and ranges in a piece of free text."""
     dates: List[str] = []
@@ -508,6 +518,7 @@ def normalize_additional_dates(
     if is_availability_window(raw):
         return availability_window_blackouts(raw) or []
 
+    raw = _fix_comma_year_range_ends(raw)
     month_weekday_dates, raw = _all_months_weekday_dates(_substitute_season_bounds(raw))
     out: set = set(month_weekday_dates)
     last_month: Optional[str] = None
@@ -646,6 +657,9 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
         all_dates = set()
         notes: List[str] = []
 
+        additional_text = row.get("Additional Blackout Dates")
+        cutoff = end_after_cutoff(additional_text)
+
         for name, info in named_ranges.items():
             try:
                 cell = row.get(name)
@@ -653,14 +667,18 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
                 cell = None
             if isinstance(cell, str):
                 cell_value = cell.strip().upper()
-                if cell_value == "X" or cell_value.startswith("PARTIAL"):
+                # "Partial (See Additional)": the Additional column lists the dates, so the
+                # range isn't applied wholesale (same rule as the LTT sheet), unless
+                # "All blackouts end after <date>" says it applies up to that cutoff.
+                if cell_value == "X" or (cutoff and cell_value.startswith("PARTIAL")):
                     named_applied.append(name)
                     all_dates.update(info["dates"])
+                elif cell_value.startswith("PARTIAL"):
+                    continue
                 elif cell_value and cell.strip() not in notes:
                     # e.g. "CLOSED FOR 26/27 DUE TO WILDFIRE"
                     notes.append(cell.strip())
 
-        additional_text = row.get("Additional Blackout Dates")
         additional = normalize_additional_dates(
             additional_text,
             season_start=season_start,
@@ -669,7 +687,6 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
         all_dates.update(additional)
 
         all_dates -= window_open_dates(additional_text)
-        cutoff = end_after_cutoff(additional_text)
         if cutoff:
             all_dates = {d for d in all_dates if d <= cutoff}
         note = additional_dates_note(additional_text)

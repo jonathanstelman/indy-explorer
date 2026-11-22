@@ -289,11 +289,12 @@ _STATE_AND_PROVINCE_NAMES = (
     'Manitoba|New Brunswick|Newfoundland|Nova Scotia|Ontario|Quebec|Saskatchewan'
 )
 _NAME_SUFFIX = re.compile(rf',\s*(?:[A-Z]{{2}}|{_STATE_AND_PROVINCE_NAMES})?\s*$')
-_NORDIC_TAG = re.compile(r'\s*\(nordic\)\s*$', re.IGNORECASE)
+# "(Nordic)", and "(Allied Partner)" / "(Allied Resort)" / "(Allied Parter)" [sic].
+_NORDIC_TAG = re.compile(r'\s*\((?:nordic|allied\b[^)]*)\)\s*$', re.IGNORECASE)
 
 
 def strip_sheet_name_suffix(name: str) -> str:
-    """Strip a trailing ", ST" / ", State" / "(Nordic)" from a resort name in Indy's sheets.
+    """Strip a trailing ", ST" / ", State" / "(Nordic)" / "(Allied ...)" from a sheet name.
 
     Country suffixes are left alone ("Levi, Finland" is a real roster name).
     """
