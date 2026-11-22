@@ -288,7 +288,7 @@
         "href": "/our-resorts/beito-resort"
     },
     "562": {
-        "name": "Belleayre",
+        "name": "Belleayre Mountain",
         "coordinates": {
             "latitude": 42.1425154,
             "longitude": -74.5037785
@@ -303,7 +303,7 @@
         "num_lifts": 8,
         "is_open_nights": false,
         "has_terrain_parks": true,
-        "href": "/our-resorts/belleayre"
+        "href": "/our-resorts/belleayre-mountain"
     },
     "490": {
         "name": "Bergbahnen Hohsaas",
@@ -650,8 +650,8 @@
     "266": {
         "name": "Burke Mountain",
         "coordinates": {
-            "latitude": 44.62870605,
-            "longitude": -71.91029195
+            "latitude": 44.582,
+            "longitude": -71.9059
         },
         "location_name": "East Burke, VT, USA",
         "vertical": 2011,
@@ -938,8 +938,8 @@
     "317": {
         "name": "Cherry Peak",
         "coordinates": {
-            "latitude": 41.636244851822,
-            "longitude": -112.01267522305
+            "latitude": 41.63624,
+            "longitude": 112.01268
         },
         "location_name": "Richmond, UT, USA",
         "vertical": 1265,
@@ -1584,7 +1584,7 @@
         "href": "/our-resorts/glenshee-ski-centre"
     },
     "563": {
-        "name": "Gore",
+        "name": "Gore Mountain",
         "coordinates": {
             "latitude": 43.6732782,
             "longitude": -74.0068455
@@ -1599,7 +1599,7 @@
         "num_lifts": 14,
         "is_open_nights": true,
         "has_terrain_parks": true,
-        "href": "/our-resorts/gore"
+        "href": "/our-resorts/gore-mountain"
     },
     "83": {
         "name": "Granby Ranch",
@@ -1647,9 +1647,9 @@
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
-        "is_xc_only": true,
+        "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 22,
+        "num_trails": null,
         "num_lifts": null,
         "is_open_nights": false,
         "has_terrain_parks": false,
@@ -1676,8 +1676,8 @@
     "556": {
         "name": "Hafjell",
         "coordinates": {
-            "latitude": 44.1417357,
-            "longitude": -71.1880377
+            "latitude": 61.2335899,
+            "longitude": 10.4457115
         },
         "location_name": "\u00d8yer, Norway",
         "vertical": 2740,
@@ -1863,11 +1863,11 @@
         "vertical": null,
         "is_nordic": true,
         "is_alpine_xc": false,
-        "is_xc_only": true,
+        "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 21,
+        "num_trails": null,
         "num_lifts": null,
-        "is_open_nights": true,
+        "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/homestake-lodge"
     },
@@ -2950,6 +2950,24 @@
         "is_open_nights": true,
         "has_terrain_parks": true,
         "href": "/our-resorts/mt-la-crosse"
+    },
+    "570": {
+        "name": "Mt Van Hoevenberg",
+        "coordinates": {
+            "latitude": 44.2187343,
+            "longitude": -73.9253551
+        },
+        "location_name": "Lake Placid, NY",
+        "vertical": null,
+        "is_nordic": true,
+        "is_alpine_xc": false,
+        "is_xc_only": true,
+        "is_allied": false,
+        "num_trails": 28,
+        "num_lifts": null,
+        "is_open_nights": false,
+        "has_terrain_parks": false,
+        "href": "/our-resorts/mt-van-hoevenberg"
     },
     "347": {
         "name": "Mt. Abram",
@@ -4571,6 +4589,24 @@
         "has_terrain_parks": true,
         "href": "/our-resorts/steinplatte"
     },
+    "572": {
+        "name": "Stoke Mountain",
+        "coordinates": {
+            "latitude": 47.447577,
+            "longitude": -122.2565179
+        },
+        "location_name": "Tukwila, WA",
+        "vertical": 24,
+        "is_nordic": false,
+        "is_alpine_xc": false,
+        "is_xc_only": false,
+        "is_allied": false,
+        "num_trails": 15,
+        "num_lifts": 1,
+        "is_open_nights": true,
+        "has_terrain_parks": true,
+        "href": "/our-resorts/stoke-mountain"
+    },
     "491": {
         "name": "St\u00f6ten i S\u00e4len",
         "coordinates": {
@@ -5139,11 +5175,11 @@
         "vertical": 1200,
         "is_nordic": true,
         "is_alpine_xc": false,
-        "is_xc_only": true,
+        "is_xc_only": false,
         "is_allied": false,
-        "num_trails": 44,
+        "num_trails": null,
         "num_lifts": null,
-        "is_open_nights": true,
+        "is_open_nights": false,
         "has_terrain_parks": false,
         "href": "/our-resorts/white-grass-ski-touring"
     },
@@ -5220,7 +5256,7 @@
         "href": "/our-resorts/whitecap-mountains-resort"
     },
     "561": {
-        "name": "Whiteface",
+        "name": "Whiteface Mountain",
         "coordinates": {
             "latitude": 44.354323,
             "longitude": -73.860557
@@ -5235,7 +5271,7 @@
         "num_lifts": 11,
         "is_open_nights": false,
         "has_terrain_parks": true,
-        "href": "/our-resorts/whiteface"
+        "href": "/our-resorts/whiteface-mountain"
     },
     "378": {
         "name": "Whitehorse Nordic Centre",
