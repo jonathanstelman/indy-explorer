@@ -6,7 +6,7 @@ Current work-in-progress. Update this file at the start and end of every session
 
 ## Current Branch
 
-**`feature/159-ltt-blackout-refresh`** (PR pending): Learn to Turn launch refresh. Roster 300 → 302 (ORDA renames with new slugs, plus Mt Van Hoevenberg and Stoke), LTT resorts 49 → 53, and lift-ticket "Partial" cells now use only the Additional dates (12 resorts' counts dropped, e.g. Sundown 18 → 2). Peak Rankings name map now covers the ORDA renames. **After merge:** redeploy the backend, close #159, and add it to the Project Board as Done (user-visible blackout counts changed).
+**`feature/159-ltt-blackout-refresh`** (PR #160, open): Learn to Turn launch refresh. Roster 300 → 302 (ORDA renames with new slugs, plus Mt Van Hoevenberg and Stoke), LTT resorts 49 → 53, and lift-ticket "Partial" cells now use only the Additional dates (12 resorts' counts dropped, e.g. Sundown 18 → 2). Peak Rankings name map now covers the ORDA renames. **After merge:** redeploy the backend, close #159, and add it to the Project Board as Done (user-visible blackout counts changed).
 
 **Previously: `feature/155-2026-27-blackout-dates`** (PR #156, merged 2026-11-15): lift-ticket and Learn to Turn blackout dates switched to 26/27 with a linked "still adding" notice; Indy's notes shown in the resort modal; availability windows drawn over an assumed Nov 1 – May 31 season. Backend deployed and verified live (`/meta` ranges 2026-11-01 → 2027-05-31; Eagle Point closure note; Mt. Holiday 151 LTT weekday blackouts). #155 closed, on the Project Board as Done.
 
