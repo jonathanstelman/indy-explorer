@@ -123,3 +123,21 @@ def test_partial_cell_with_only_a_note_adds_no_dates(blackout_map):
     stoke = blackout_map['Stoke Mountain']
     assert stoke['all_blackout_dates'] == []
     assert stoke['notes'] == ['Stoke Mountain is closed Thanksgiving Day and Christmas Day.']
+
+
+# ---- Peak Rankings follow the ORDA renames ----
+
+
+@pytest.mark.parametrize(
+    'sheet_name, roster_name',
+    [
+        ('Belleayre', 'Belleayre Mountain'),
+        ('Gore', 'Gore Mountain'),
+        ('Whiteface', 'Whiteface Mountain'),
+    ],
+)
+def test_peak_rankings_map_renamed_orda_resorts(sheet_name, roster_name):
+    from peak_rankings import build_peak_rankings_map
+
+    rankings = build_peak_rankings_map(pd.DataFrame([{'name': sheet_name, 'total': 40}]))
+    assert roster_name in rankings

@@ -30,6 +30,9 @@ DEFAULT_CACHE_PATH = 'data/peak_rankings_raw.csv'
 # Populated after running once and checking logs for unmatched names.
 PEAK_RANKINGS_NAME_MAP: Dict[str, str] = {
     'Bear Valley': 'Bear Valley Mountain Resort',
+    'Belleayre': 'Belleayre Mountain',  # Indy renamed the ORDA resorts 2026-11
+    'Gore': 'Gore Mountain',
+    'Whiteface': 'Whiteface Mountain',
     'Big White': 'Big White Ski Resort',
     'Bolton Valley': 'Bolton Valley Resort',
     'Cannon': 'Cannon Mountain',
