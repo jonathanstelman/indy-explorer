@@ -657,6 +657,9 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
         all_dates = set()
         notes: List[str] = []
 
+        additional_text = row.get("Additional Blackout Dates")
+        cutoff = end_after_cutoff(additional_text)
+
         for name, info in named_ranges.items():
             try:
                 cell = row.get(name)
@@ -664,14 +667,18 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
                 cell = None
             if isinstance(cell, str):
                 cell_value = cell.strip().upper()
-                if cell_value == "X" or cell_value.startswith("PARTIAL"):
+                # "Partial (See Additional)": the Additional column lists the dates, so the
+                # range isn't applied wholesale (same rule as the LTT sheet), unless
+                # "All blackouts end after <date>" says it applies up to that cutoff.
+                if cell_value == "X" or (cutoff and cell_value.startswith("PARTIAL")):
                     named_applied.append(name)
                     all_dates.update(info["dates"])
+                elif cell_value.startswith("PARTIAL"):
+                    continue
                 elif cell_value and cell.strip() not in notes:
                     # e.g. "CLOSED FOR 26/27 DUE TO WILDFIRE"
                     notes.append(cell.strip())
 
-        additional_text = row.get("Additional Blackout Dates")
         additional = normalize_additional_dates(
             additional_text,
             season_start=season_start,
@@ -680,7 +687,6 @@ def parse_blackout_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
         all_dates.update(additional)
 
         all_dates -= window_open_dates(additional_text)
-        cutoff = end_after_cutoff(additional_text)
         if cutoff:
             all_dates = {d for d in all_dates if d <= cutoff}
         note = additional_dates_note(additional_text)

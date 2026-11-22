@@ -102,3 +102,24 @@ def test_range_end_with_comma_before_year(text):
 def test_belleayre_keeps_presidents_week_range(blackout_map):
     dates = set(blackout_map['Belleayre Mountain']['all_blackout_dates'])
     assert set(get_all_dates_in_range('2027-02-13', '2027-02-21')) <= dates
+
+
+# ---- Lift-ticket "Partial (See Additional)" ----
+
+
+def test_partial_cell_uses_only_additional_dates(blackout_map):
+    """King Pine: X on MLK/Presidents; Partial elsewhere, with the dates in Additional."""
+    king_pine = blackout_map['King Pine']
+    assert set(king_pine['named_ranges']) == {'MLK Weekend', "President's Weekend"}
+    expected = (
+        set(get_all_dates_in_range('2026-12-26', '2027-01-03'))
+        | set(get_all_dates_in_range('2027-01-16', '2027-01-18'))
+        | set(get_all_dates_in_range('2027-02-13', '2027-02-20'))
+    )
+    assert set(king_pine['all_blackout_dates']) == expected
+
+
+def test_partial_cell_with_only_a_note_adds_no_dates(blackout_map):
+    stoke = blackout_map['Stoke Mountain']
+    assert stoke['all_blackout_dates'] == []
+    assert stoke['notes'] == ['Stoke Mountain is closed Thanksgiving Day and Christmas Day.']
