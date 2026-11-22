@@ -93,6 +93,7 @@ LTT_RESORT_NAME_MAP = {
     'Hockley Valley': 'Hockley Valley Resort',
     'Hunt Hollow': 'Hunt Hollow Ski Club',
     'Kelly Canyon Resort': 'Kelly Canyon',
+    'Loup Loup': 'Loup Loup Ski Bowl',
     'Mt. Abram Ski Area': 'Mt. Abram',
     'Spring Mountain': 'Spring Mountain Adventures',
     'Sunburst': 'Sunburst Ski Area',
@@ -133,7 +134,14 @@ def _normalize_ltt_columns(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-_LTT_DATA_VALUES = {'BLACKOUT', 'NO BLACKOUT', 'PARTIAL (SEE ADDITIONAL)', 'PARTIAL', 'TBD'}
+# 'X' is the lift-ticket sheet's blackout mark; some LTT rows (King Pine 26/27) use it too.
+_LTT_BLACKOUT_VALUES = {'BLACKOUT', 'X'}
+_LTT_DATA_VALUES = _LTT_BLACKOUT_VALUES | {
+    'NO BLACKOUT',
+    'PARTIAL (SEE ADDITIONAL)',
+    'PARTIAL',
+    'TBD',
+}
 # The 25/26 sheet called the column 'Additional Blackout Dates/Details'; 26/27 dropped '/Details'.
 _ADDITIONAL_COLS = ('Additional Blackout Dates/Details', 'Additional Blackout Dates')
 
@@ -309,7 +317,7 @@ def parse_ltt_sheet(df_raw: pd.DataFrame) -> Dict[str, Dict]:
             # PARTIAL (SEE ADDITIONAL) normally means the named range does NOT apply
             # wholesale — the additional column lists the specific dates. The exception is
             # "All blackouts end after <date>": the range applies up to that cutoff.
-            if cell_upper == 'BLACKOUT' or (cutoff and cell_upper.startswith('PARTIAL')):
+            if cell_upper in _LTT_BLACKOUT_VALUES or (cutoff and cell_upper.startswith('PARTIAL')):
                 named_applied.append(name)
                 all_dates.update(info['dates'])
             elif cell_upper == 'TBD':

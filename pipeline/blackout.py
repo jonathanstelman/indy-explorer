@@ -70,6 +70,7 @@ BLACKOUT_RESORT_NAME_MAP = {
     'Hoodoo Ski Area': 'Hoodoo',
     'Hyland Hills Ski Area': 'Hyland Hills',
     'Kelly Canyon Resort': 'Kelly Canyon',
+    'King Pine Ski Area': 'King Pine',
     'Levi Ski Resort': 'Levi, Finland',
     'Magic Mountain Ski Resort': 'Magic Mountain Idaho',  # "..., ID"; plain name is VT
     'Manning Park Resort': 'Manning Park',
@@ -358,6 +359,15 @@ def _substitute_season_bounds(text: str) -> str:
     return re.sub(r'closing\s+day', to_numeric(end), text, flags=re.IGNORECASE)
 
 
+# A range end written "02-21,2027" or "02/21,2027" (Belleayre/Gore/Whiteface 26/27): the
+# comma would split the year off as its own part, and the dash isn't a date separator.
+_COMMA_YEAR_RANGE_END = re.compile(r'-\s*(\d{1,2})[-/](\d{1,2}),\s*(\d{4})\b')
+
+
+def _fix_comma_year_range_ends(text: str) -> str:
+    return _COMMA_YEAR_RANGE_END.sub(r'-\1/\2/\3', text)
+
+
 def _numeric_dates_in(text: str) -> List[str]:
     """All numeric dates and ranges in a piece of free text."""
     dates: List[str] = []
@@ -508,6 +518,7 @@ def normalize_additional_dates(
     if is_availability_window(raw):
         return availability_window_blackouts(raw) or []
 
+    raw = _fix_comma_year_range_ends(raw)
     month_weekday_dates, raw = _all_months_weekday_dates(_substitute_season_bounds(raw))
     out: set = set(month_weekday_dates)
     last_month: Optional[str] = None
